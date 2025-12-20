@@ -1,192 +1,206 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import NavbarImage from '../assets/NavbarImage.jpg';
-
-const MENU = [
-  {
-    key: 'about',
-    title: 'About us',
-    description:
-      'In 1996, Renny Strips Ltd embarked on its dynamic journey. Renny Strips Ltd. aimed to carve a niche in producing Innovative, Sustainable & Industry-fit Steel Products at Competitive Prices.',
-    links: [
-      { label: 'Access the page', to: '/company-overview-2/' },
-      { label: 'Timeline', to: '/timeline/' },
-      { label: 'Manufacturing Process', to: '/manufacturing-units/' },
-      { label: 'Network', to: '/network/' },
-      { label: 'Quality & Standard', to: '/quality-standard/' },
-      { label: 'Design Centre', to: '/design-centre/' },
-    ],
-  },
-  {
-    key: 'products',
-    title: 'Products',
-    description:
-      'Renny offers a diverse product portfolio across MS billets, Wire rods, Narrow-width HR coils, ERW black and galvanized pipes and tubes, Scaffolding and formwork system.',
-    links: [
-      { label: 'MS billets', to: '/MS-billets/' },
-      { label: 'Wire rods', to: '/wire-rods-2/' },
-      { label: 'Narrow-width HR coils', to: '/narrow-hrcoil/' },
-      {
-        label: 'ERW black and galvanized pipes and tubes',
-        to: '/erw-pipes-and-tubes/',
-      },
-      {
-        label: 'Scaffolding and formwork system',
-        to: '/scaffolding-formwork/',
-      },
-    ],
-  },
-  {
-    key: 'investor',
-    title: 'Investor Relations',
-    description:
-      'Access our financial reports, corporate governance standards, IPO documents, and shareholder information.',
-    links: [
-      { label: 'Financials', to: '/financials/' },
-      { label: 'Corporate Governance', to: '/corporate-governance/' },
-      { label: 'Industry Report', to: '/industry-report/' },
-      { label: 'IPO Documents', to: '/ipo/' },
-      { label: 'IPO Audio Visual', to: '/ipo-audio-visual/' },
-      { label: 'Shareholding Pattern', to: '/Share-holding-pattern/' },
-      { label: 'Our Policies', to: '/our-policies/' },
-    ],
-  },
-  {
-    key: 'ec',
-    title: 'EC',
-    description: '',
-    links: [{ label: 'EC', to: '/ec/' }],
-  },
-  {
-    key: 'sustainability',
-    title: 'Sustainability',
-    description:
-      'Renny is a committed force in sustainable manufacturing and community development, advancing industry with responsibility and purpose.',
-    links: [
-      { label: 'Community Development', to: '/community-development/' },
-      { label: 'Sustainability', to: '/sustainability/' },
-    ],
-  },
-  {
-    key: 'media',
-    title: 'Media',
-    description:
-      'Stay informed with Renny’s latest updates insights, press features, and project milestones.',
-    links: [
-      { label: 'News Room', to: '/news-room/' },
-      { label: 'Blogs', to: '/blog/' },
-      { label: 'Event', to: '/events/' },
-    ],
-  },
-  {
-    key: 'career',
-    title: 'Career',
-    description:
-      'At Renny, a career goes beyond a job—it’s a journey of growth, purpose, and impact.',
-    links: [{ label: 'Career', to: '/careers/' }],
-  },
-  {
-    key: 'contact',
-    title: 'Contact us',
-    description:
-      'Connect with Renny where every conversation shapes a stronger, smarter future.',
-    links: [{ label: 'Contact us', to: '/contact/' }],
-  },
-];
+import RennyLogo from '../assets/RennyLogo.png';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState(null);
-
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-  }, [isOpen]);
-
-  const activeData = MENU.find(m => m.key === activeSection);
-
   return (
-    <>
-      {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="fixed top-6 left-6 z-50 bg-[#0C183E] p-3 rounded"
-        >
-          <i className="ri-menu-3-fill text-white text-2xl font-helvetica" />
-        </button>
-      )}
+    <div className="w-full h-16 bg-white flex items-center justify-between px-6 shadow">
+      {/* Logo */}
+      <img src={RennyLogo} alt="Logo" className="h-16" />
 
-      <div
-        className={`fixed inset-0 z-40 bg-[#0C183E] text-white transform transition-transform duration-500 ease-in-out ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        {isOpen && (
-          <button
-            onClick={() => setIsOpen(false)}
-            className="absolute top-6 left-6 z-50 p-3"
+      {/* Navigation */}
+      <ul className="flex items-center gap-3 font-medium text-gray-700">
+        {/* ABOUT US */}
+        <li className="relative group">
+          <span className="cursor-pointer hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
+            About Us
+          </span>
+          <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-64 z-50">
+            <li>
+              <Link to="/company-overview-2/" className="dropdown-item">
+                Company Overview
+              </Link>
+            </li>
+            <li>
+              <Link to="/timeline/" className="dropdown-item">
+                Timeline
+              </Link>
+            </li>
+            <li>
+              <Link to="/manufacturing-units/" className="dropdown-item">
+                Manufacturing Process
+              </Link>
+            </li>
+            <li>
+              <Link to="/network/" className="dropdown-item">
+                Network
+              </Link>
+            </li>
+            <li>
+              <Link to="/quality-standard/" className="dropdown-item">
+                Quality & Standard
+              </Link>
+            </li>
+            <li>
+              <Link to="/design-centre/" className="dropdown-item">
+                Design Centre
+              </Link>
+            </li>
+          </ul>
+        </li>
+
+        {/* PRODUCTS */}
+        <li className="relative group">
+          <span className="cursor-pointer  hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
+            Products
+          </span>
+          <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-72 z-50">
+            <li>
+              <Link to="/MS-billets/" className="dropdown-item">
+                MS Billets
+              </Link>
+            </li>
+            <li>
+              <Link to="/wire-rods-2/" className="dropdown-item">
+                Wire Rods
+              </Link>
+            </li>
+            <li>
+              <Link to="/narrow-hrcoil/" className="dropdown-item">
+                Narrow-width HR Coils
+              </Link>
+            </li>
+            <li>
+              <Link to="/erw-pipes-and-tubes/" className="dropdown-item">
+                ERW Pipes & Tubes
+              </Link>
+            </li>
+            <li>
+              <Link to="/scaffolding-formwork/" className="dropdown-item">
+                Scaffolding & Formwork
+              </Link>
+            </li>
+          </ul>
+        </li>
+
+        {/* INVESTOR RELATIONS */}
+        <li className="relative group">
+          <span className="cursor-pointer  hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
+            Investor Relations
+          </span>
+          <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-72 z-50">
+            <li>
+              <Link to="/financials/" className="dropdown-item">
+                Financials
+              </Link>
+            </li>
+            <li>
+              <Link to="/corporate-governance/" className="dropdown-item">
+                Corporate Governance
+              </Link>
+            </li>
+            <li>
+              <Link to="/industry-report/" className="dropdown-item">
+                Industry Report
+              </Link>
+            </li>
+            <li>
+              <Link to="/ipo/" className="dropdown-item">
+                IPO Documents
+              </Link>
+            </li>
+            <li>
+              <Link to="/ipo-audio-visual/" className="dropdown-item">
+                IPO Audio Visual
+              </Link>
+            </li>
+            <li>
+              <Link to="/Share-holding-pattern/" className="dropdown-item">
+                Shareholding Pattern
+              </Link>
+            </li>
+            <li>
+              <Link to="/our-policies/" className="dropdown-item">
+                Our Policies
+              </Link>
+            </li>
+          </ul>
+        </li>
+
+        {/* EC */}
+        <li>
+          <Link
+            to="/ec/"
+            className=" hover:bg-blue hover:text-white px-4 py-3 rounded-xl"
           >
-            <i className="ri-close-large-line text-xl" />{' '}
-            <span className="text-xl text-white font-helvetica">Close</span>
-          </button>
-        )}
+            EC
+          </Link>
+        </li>
 
-        <div className="grid grid-cols-12 h-full">
-          <div className="col-span-4 flex flex-col pt-24">
-            {MENU.map(item => (
-              <div
-                key={item.key}
-                onMouseEnter={() => setActiveSection(item.key)}
-                className="px-10 py-4 font-helvetica flex justify-between items-center cursor-pointer hover:bg-white hover:text-black transition"
-              >
-                <span className="text-xl">{item.title}</span>
-                <i className="ri-arrow-right-line text-xl" />
-              </div>
-            ))}
-          </div>
+        {/* SUSTAINABILITY */}
+        <li className="relative group">
+          <span className="cursor-pointer  hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
+            Sustainability
+          </span>
+          <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-64 z-50">
+            <li>
+              <Link to="/community-development/" className="dropdown-item">
+                Community Development
+              </Link>
+            </li>
+            <li>
+              <Link to="/sustainability/" className="dropdown-item">
+                Sustainability
+              </Link>
+            </li>
+          </ul>
+        </li>
 
-          <div
-            className={`col-span-4 font-helvetica px-10 py-8 transition-colors duration-300 ${
-              activeSection ? 'bg-white text-[#0C183E]' : 'bg-[#0C183E]'
-            }`}
+        {/* MEDIA */}
+        <li className="relative group">
+          <span className="cursor-pointer  hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
+            Media
+          </span>
+          <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-48 z-50">
+            <li>
+              <Link to="/news-room/" className="dropdown-item">
+                News Room
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog/" className="dropdown-item">
+                Blogs
+              </Link>
+            </li>
+            <li>
+              <Link to="/events/" className="dropdown-item">
+                Events
+              </Link>
+            </li>
+          </ul>
+        </li>
+
+        {/* CAREER */}
+        <li>
+          <Link
+            to="/career/"
+            className=" hover:bg-blue hover:text-white px-4 py-3 rounded-xl"
           >
-            {activeData && (
-              <>
-                <h2 className="text-2xl font-helvetica mb-4">
-                  {activeData.title}
-                </h2>
-                {activeData.description && (
-                  <p className="mb-6 text-sm text-gray-500">
-                    {activeData.description}
-                  </p>
-                )}
-                <ul className="space-y-4">
-                  {activeData.links.map(link => (
-                    <li key={link.label}>
-                      <Link
-                        to={link.to}
-                        className="flex justify-between font-helvetica items-center hover:scale-105 transition-transform duration-200"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {link.label}
-                        <i className="ri-arrow-right-line" />
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </div>
+            Career
+          </Link>
+        </li>
 
-          <div className="col-span-4 h-full">
-            <img
-              src={NavbarImage}
-              alt="Navbar"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </div>
-    </>
+        {/* CONTACT US */}
+        <li>
+          <Link
+            to="/contact-us/"
+            className=" hover:bg-blue hover:text-white px-4 py-3 rounded-xl"
+          >
+            Contact Us
+          </Link>
+        </li>
+      </ul>
+    </div>
   );
 };
 

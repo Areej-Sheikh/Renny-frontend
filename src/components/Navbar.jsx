@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import RennyLogo from '../assets/RennyLogo.png';
-
+import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-full h-16 bg-white flex items-center justify-between px-6 shadow">
       {/* Logo */}
-      <img src={RennyLogo} alt="Logo" className="h-16" />
+      <img
+        src={RennyLogo}
+        alt="Logo"
+        className="h-16"
+        onClick={() => navigate('/')}
+      />
 
       {/* Navigation */}
       <ul className="flex items-center gap-3 font-medium text-gray-700">

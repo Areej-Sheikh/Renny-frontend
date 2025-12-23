@@ -1,14 +1,16 @@
-import React from "react";
-import aboutVideo from "../../assets/01-aboutVideo.webm";
-import CountUp from "react-countup";
-import icons1 from "../../assets/1a-about.svg";
-import icons2 from "../../assets/2a-about.svg";
-import icons3 from "../../assets/3a-about.svg";
-
+import React from 'react';
+import aboutVideo from '../../assets/01-aboutVideo.webm';
+import CountUp from 'react-countup';
+import icons1 from '../../assets/1a-about.svg';
+import icons2 from '../../assets/2a-about.svg';
+import icons3 from '../../assets/3a-about.svg';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 const About = () => {
   return (
-    <div className="w-full bg-black text-white">
+    <div className="w-full font-helvetica bg-black text-white">
       {/* ================= FULL SCREEN VIDEO ================= */}
+      <Navbar />
       <section className="relative w-screen h-screen overflow-hidden">
         <video
           className="absolute inset-0 w-full h-full object-cover"
@@ -89,21 +91,21 @@ const About = () => {
           <div className="space-y-12">
             <div>
               <p className="text-5xl font-light text-sky-400">
-                <CountUp end={1000} duration={2} /> +{" "}
+                <CountUp end={1000} duration={2} /> +{' '}
               </p>
               <p className="text-xl text-orange-400 mt-2">SKUs</p>
             </div>
 
             <div>
               <p className="text-5xl font-light text-sky-400">
-                <CountUp end={199200} duration={3} separator="," /> TPA{" "}
+                <CountUp end={199200} duration={3} separator="," /> TPA{' '}
               </p>
               <p className="text-xl text-orange-400 mt-2">Annual Production</p>
             </div>
 
             <div>
               <p className="text-5xl font-light text-sky-400">
-                <CountUp end={1000} duration={2} /> +{" "}
+                <CountUp end={1000} duration={2} /> +{' '}
               </p>
               <p className="text-xl text-orange-400 mt-2">Work Force</p>
             </div>
@@ -117,23 +119,23 @@ const About = () => {
             {[
               {
                 icon: icons1,
-                title: "Precision Engineering and Manufacturing",
-                desc: "Specializes in manufacturing high precision, safety-critical components as per product specifications.",
+                title: 'Precision Engineering and Manufacturing',
+                desc: 'Specializes in manufacturing high precision, safety-critical components as per product specifications.',
               },
               {
                 icon: icons2,
-                title: "Fabrication and Forging",
-                desc: "Advanced sheet metal processing with certified welding ensuring EN 1090 & ISO 3834 compliance.",
+                title: 'Fabrication and Forging',
+                desc: 'Advanced sheet metal processing with certified welding ensuring EN 1090 & ISO 3834 compliance.',
               },
               {
                 icon: icons3,
-                title: "Customized Excellence",
-                desc: "Tailored solutions backed by a predominantly in-house raw material ecosystem ensuring consistent quality.",
+                title: 'Customized Excellence',
+                desc: 'Tailored solutions backed by a predominantly in-house raw material ecosystem ensuring consistent quality.',
               },
               {
                 icon: icons1,
-                title: "CNC Machining and Finishing",
-                desc: "Automated precision engineering for consistent, high-quality components.",
+                title: 'CNC Machining and Finishing',
+                desc: 'Automated precision engineering for consistent, high-quality components.',
               },
             ].map((item, index) => (
               <div
@@ -185,6 +187,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

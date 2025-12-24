@@ -6,7 +6,6 @@ import Banner3 from "../assets/Banner3.jpg"
 import Banner4 from "../assets/Banner4.jpg";
 
 const Slider = () => {
-  // ✅ Using only images 1, 2, 4
   const images = [Banner1, Banner2, Banner3,Banner4];
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -45,7 +44,6 @@ const Slider = () => {
         ))}
       </div>
 
-      {/* Button → LEFT bottom (as per reference) */}
       <button
         className="absolute bottom-12 left-20 
                    bg-white text-black 

@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "../../components/Slider";
-
+import Footer from "../../components/Footer.jsx"
 const timelineData = [
   {
     year: "1996",

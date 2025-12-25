@@ -1,6 +1,4 @@
-import React from 'react';
-import Navbar from './../../components/Navbar';
-import Footer from './../../components/Footer';
+
 
 import community from '../../assets/community.jpg';
 import community1 from '../../assets/community1.jpg';
@@ -13,7 +11,6 @@ import quotes from '../../assets/quotes.png';
 const Community = () => {
   return (
     <div>
-      <Navbar />
       {/* Banner Section */}
       <section className="relative w-full">
         {/* Image */}
@@ -91,7 +88,6 @@ const Community = () => {
           {/* Optional dark overlay for readability */}
         </div>
       </section>
-      <Footer />
     </div>
   );
 };

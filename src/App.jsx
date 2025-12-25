@@ -67,132 +67,138 @@ import WireRodsPrecision from './pages/Media/Blogs/WireRodsPrecision';
 import ERWPipesTrends from './pages/Media/Blogs/ERWPipesTrends';
 import ConstructionRevolution from './pages/Media/Blogs/ConstructionRevolution';
 import GlobalERWPipes from './pages/Media/Blogs/GlobalERWPipes';
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-      {/* About */}
-      <Route path="/company-overview-2/" element={<About />} />
-      <Route path="/timeline/" element={<Timeline />} />
-      <Route path="/manufacturing-units/" element={<Manufacturing />} />
-      <Route path="/network/" element={<Network />} />
-      <Route path="/quality-standard/" element={<Quality />} />
-      <Route path="/design-centre/" element={<DesignCentre />} />
+        {/* About */}
+        <Route path="/company-overview-2/" element={<About />} />
+        <Route path="/timeline/" element={<Timeline />} />
+        <Route path="/manufacturing-units/" element={<Manufacturing />} />
+        <Route path="/network/" element={<Network />} />
+        <Route path="/quality-standard/" element={<Quality />} />
+        <Route path="/design-centre/" element={<DesignCentre />} />
 
-      {/* Products */}
-      <Route path="/MS-billets/" element={<MSBillets />} />
-      <Route path="/wire-rods-2/" element={<WireRods />} />
-      <Route path="/narrow-hrcoil/" element={<HRCoils />} />
-      <Route path="/erw-pipes-and-tubes/" element={<ERW />} />
-      <Route path="/scaffolding-formwork/" element={<Scaffolding />} />
+        {/* Products */}
+        <Route path="/MS-billets/" element={<MSBillets />} />
+        <Route path="/wire-rods-2/" element={<WireRods />} />
+        <Route path="/narrow-hrcoil/" element={<HRCoils />} />
+        <Route path="/erw-pipes-and-tubes/" element={<ERW />} />
+        <Route path="/scaffolding-formwork/" element={<Scaffolding />} />
 
-      {/* Investor Relations */}
-      <Route path="/financials/" element={<Financials />} />
-      <Route path="/corporate-governance/" element={<Governance />} />
-      <Route path="/industry-report/" element={<Industry />} />
-      <Route path="/ipo/" element={<IPODocs />} />
-      <Route path="/ipo-audio-visual/" element={<IPOAV />} />
-      <Route path="/Share-holding-pattern/" element={<Shareholding />} />
-      <Route path="/our-policies/" element={<Policies />} />
+        {/* Investor Relations */}
+        <Route path="/financials/" element={<Financials />} />
+        <Route path="/corporate-governance/" element={<Governance />} />
+        <Route path="/industry-report/" element={<Industry />} />
+        <Route path="/ipo/" element={<IPODocs />} />
+        <Route path="/ipo-audio-visual/" element={<IPOAV />} />
+        <Route path="/Share-holding-pattern/" element={<Shareholding />} />
+        <Route path="/our-policies/" element={<Policies />} />
 
-      {/* EC */}
-      <Route path="/ec/" element={<EC />} />
+        {/* EC */}
+        <Route path="/ec/" element={<EC />} />
 
-      {/* Sustainability */}
-      <Route path="/sustainability/" element={<Sustainability />} />
-      <Route path="/community-development/" element={<Community />} />
+        {/* Sustainability */}
+        <Route path="/sustainability/" element={<Sustainability />} />
+        <Route path="/community-development/" element={<Community />} />
 
-      {/* Media */}
-      <Route path="/news-room/" element={<News />} />
-      <Route path="/blog/" element={<Blogs />} />
-      <Route path="/events/" element={<Events />} />
+        {/* Media */}
+        <Route path="/news-room/" element={<News />} />
+        <Route path="/blog/" element={<Blogs />} />
+        <Route path="/events/" element={<Events />} />
 
-      {/* Media Blogs */}
-      <Route
-        path="/kwikstage-scaffolding/"
-        element={<KwikstageScaffolding />}
-      />
-      <Route
-        path="/scaffolding-formworks-innovation/"
-        element={<ScaffoldingFormworksInnovation />}
-      />
-      <Route
-        path="/scaffolding-steel-props-jacks/"
-        element={<ScaffoldingSteelPropsJacks />}
-      />
-      <Route
-        path="/wire-rod-manufacturers-india/"
-        element={<WireRodManufacturersIndia />}
-      />
-      <Route
-        path="/top-ringlock-scaffolding-manufacturer/"
-        element={<TopRinglockScaffolding />}
-      />
-      <Route
-        path="/square-hollow-pipe-manufacturers/"
-        element={<SquareHollowPipe />}
-      />
-      <Route path="/forging-billets/" element={<ForgingBillets />} />
-      <Route path="/ltd-design-centre/" element={<DesignCentreBlog />} />
-      <Route
-        path="/scaffolding-and-formwork-company/"
-        element={<ScaffoldingFormworkCompany />}
-      />
-      <Route
-        path="/the-right-erw-pipe-manufacturer/"
-        element={<ERWPipeManufacturer />}
-      />
-      <Route
-        path="/building-a-strong-sustainable-future/"
-        element={<SustainableFuture />}
-      />
-      <Route
-        path="/best-scaffolding-formwork-manufacturers/"
-        element={<BestScaffoldingFormwork />}
-      />
-      <Route path="/gi-pipes-tubes/" element={<GIPipesTubes />} />
-      <Route
-        path="/key-narrow-hr-coil-manufacturing/"
-        element={<NarrowHRCoilManufacturing />}
-      />
-      <Route path="/ms-black-round-pipes/" element={<MSBlackRoundPipes />} />
-      <Route
-        path="/global-powerhouse-in-scaffolding-formwork/"
-        element={<GlobalScaffolding />}
-      />
-      <Route
-        path="/precision-engineering-for-structural-excellence/"
-        element={<PrecisionEngineering />}
-      />
-      <Route
-        path="/forging-billets-precision-engineered/"
-        element={<ForgingBilletsPrecision />}
-      />
-      <Route
-        path="/wire-rods-precision-performance/"
-        element={<WireRodsPrecision />}
-      />
-      <Route
-        path="/trends-and-market-dynamics-of-erw-pipes/"
-        element={<ERWPipesTrends />}
-      />
-      <Route
-        path="/revolutionizing-the-construction-industry/"
-        element={<ConstructionRevolution />}
-      />
-      <Route
-        path="/global-trends-in-erw-ms-black-pipes/"
-        element={<GlobalERWPipes />}
-      />
+        {/* Media Blogs */}
+        <Route
+          path="/kwikstage-scaffolding/"
+          element={<KwikstageScaffolding />}
+        />
+        <Route
+          path="/scaffolding-formworks-innovation/"
+          element={<ScaffoldingFormworksInnovation />}
+        />
+        <Route
+          path="/scaffolding-steel-props-jacks/"
+          element={<ScaffoldingSteelPropsJacks />}
+        />
+        <Route
+          path="/wire-rod-manufacturers-india/"
+          element={<WireRodManufacturersIndia />}
+        />
+        <Route
+          path="/top-ringlock-scaffolding-manufacturer/"
+          element={<TopRinglockScaffolding />}
+        />
+        <Route
+          path="/square-hollow-pipe-manufacturers/"
+          element={<SquareHollowPipe />}
+        />
+        <Route path="/forging-billets/" element={<ForgingBillets />} />
+        <Route path="/ltd-design-centre/" element={<DesignCentreBlog />} />
+        <Route
+          path="/scaffolding-and-formwork-company/"
+          element={<ScaffoldingFormworkCompany />}
+        />
+        <Route
+          path="/the-right-erw-pipe-manufacturer/"
+          element={<ERWPipeManufacturer />}
+        />
+        <Route
+          path="/building-a-strong-sustainable-future/"
+          element={<SustainableFuture />}
+        />
+        <Route
+          path="/best-scaffolding-formwork-manufacturers/"
+          element={<BestScaffoldingFormwork />}
+        />
+        <Route path="/gi-pipes-tubes/" element={<GIPipesTubes />} />
+        <Route
+          path="/key-narrow-hr-coil-manufacturing/"
+          element={<NarrowHRCoilManufacturing />}
+        />
+        <Route path="/ms-black-round-pipes/" element={<MSBlackRoundPipes />} />
+        <Route
+          path="/global-powerhouse-in-scaffolding-formwork/"
+          element={<GlobalScaffolding />}
+        />
+        <Route
+          path="/precision-engineering-for-structural-excellence/"
+          element={<PrecisionEngineering />}
+        />
+        <Route
+          path="/forging-billets-precision-engineered/"
+          element={<ForgingBilletsPrecision />}
+        />
+        <Route
+          path="/wire-rods-precision-performance/"
+          element={<WireRodsPrecision />}
+        />
+        <Route
+          path="/trends-and-market-dynamics-of-erw-pipes/"
+          element={<ERWPipesTrends />}
+        />
+        <Route
+          path="/revolutionizing-the-construction-industry/"
+          element={<ConstructionRevolution />}
+        />
+        <Route
+          path="/global-trends-in-erw-ms-black-pipes/"
+          element={<GlobalERWPipes />}
+        />
 
-      {/* Career */}
-      <Route path="/careers/" element={<Career />} />
+        {/* Career */}
+        <Route path="/careers/" element={<Career />} />
 
-      {/* Contact */}
-      <Route path="/contact/" element={<Contact />} />
-    </Routes>
+        {/* Contact */}
+        <Route path="/contact/" element={<Contact />} />
+      </Routes>
+      <Footer />
+    </div>
   );
 };
 

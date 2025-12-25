@@ -1,8 +1,3 @@
-import React from 'react';
-
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
-
 import BlogBanner from '../../assets/BlogBanner.png';
 import BlogCard from '../../components/BlogCard.jsx';
 
@@ -29,10 +24,9 @@ import blog20 from '../../assets/blog20.jpg';
 import blog21 from '../../assets/blog21.jpg';
 import blog22 from '../../assets/blog22.jpg';
 
-const Blogs = () => { 
+const Blogs = () => {
   return (
     <div className="font-helvetica ">
-      <Navbar />
       <div>
         <img
           src={BlogBanner}
@@ -262,7 +256,6 @@ const Blogs = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

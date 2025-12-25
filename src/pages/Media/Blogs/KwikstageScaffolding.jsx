@@ -1,7 +1,5 @@
 import React from 'react';
 import blog1 from '../../../assets/blog1.jpeg';
-import Navbar from '../../../components/Navbar';
-import Footer from './../../../components/Footer';
 import { Link } from 'react-router-dom';
 import Newsletter from '../../../components/Newsletter';
 import BlogCard from '../../../components/BlogCard';
@@ -29,7 +27,6 @@ const KwikstageScaffolding = () => {
 
   return (
     <div className="font-helvetica">
-      <Navbar />
       <div className="flex flex-col items-center font-poppins justify-center px-6 py-16 bg-white">
         <h1 className="text-[65px] text-blue font-semibold text-center">
           Kwikstage Scaffolding Expert <br /> Insights for Better <br />{' '}
@@ -433,7 +430,6 @@ const KwikstageScaffolding = () => {
           <Newsletter />
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

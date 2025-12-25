@@ -10,7 +10,6 @@ Modern React frontend application built with **Vite**, **React**, **Tailwind CSS
 - **Vite** – Fast build tool & dev server
 - **Tailwind CSS v4** – Utility-first styling
 - **React Router v7** – Client-side routing
-- **Lenis** – Smooth scrolling
 - **React Toastify** – Toast notifications
 - **ESLint** – Code linting & quality
 
@@ -44,9 +43,3 @@ Modern React frontend application built with **Vite**, **React**, **Tailwind CSS
 - Routes defined in App.jsx
 - Supports flat and CMS-style URLs
 - Navbar navigation powered by <Link />
-
----
-
-## Smooth Scrolling
-
-- Lenis used for smooth scrolling experience

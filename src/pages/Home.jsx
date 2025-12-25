@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
@@ -9,13 +9,11 @@ import Footer from '../components/Footer';
 
 import HomepageBanner from '../assets/HomepageBanner.mp4';
 
-import mission from '../assets/mission.png';
-import vision from '../assets/vision.png';
-import values from '../assets/values.png';
+import AboutUs from '../assets/AboutUs.png';
 
-import MS from '../assets/MS-Billets.png';
+import MS from '../assets/MS-Billets.jpeg';
 import Scaffolding from '../assets/Scaffolding-Formwork.png';
-import ERW from '../assets/ERW-Black-Galvanized-Pipes.png';
+import ERW from '../assets/ERW-Black-Galvanized-Pipes.jpeg';
 import Coil from '../assets/Narrow-width-Coils.png';
 import rods from '../assets/Wire-Rods.png';
 
@@ -34,6 +32,12 @@ import blog1 from '../assets/blog1.jpeg';
 import blog2 from '../assets/blog2.jpeg';
 import blog3 from '../assets/blog3.jpeg';
 import blog4 from '../assets/blog4.jpeg';
+
+import news1 from '../assets/news1.jpg';
+import news2 from '../assets/news2.jpeg';
+import news3 from '../assets/news3.png';
+import news4 from '../assets/news4.jpg';
+
 const Home = () => {
   const navigate = useNavigate();
 
@@ -41,168 +45,226 @@ const Home = () => {
     triggerOnce: true,
     threshold: 0.3,
   });
+  const products = [
+    {
+      title: 'MS Billets',
+      image: MS,
+      link: '/MS-billets/',
+    },
+    {
+      title: 'Wire Rods',
+      image: rods,
+      link: '/wire-rods-2/',
+    },
+    {
+      title: 'HR Coils',
+      image: Coil,
+      link: '/narrow-hrcoil/',
+    },
+    {
+      title: 'ERW Pipes',
+      image: ERW,
+      link: '/erw-pipes-and-tubes/',
+    },
+    {
+      title: 'Scaffolding Formwork',
+      image: Scaffolding,
+      link: '/scaffolding-formwork/',
+    },
+  ];
+  const features = [
+    {
+      icon: icons1,
+      title: 'Precision Engineering and Manufacturing',
+      desc: 'Specializes in manufacturing high precision, safety-critical components as per product specifications.',
+    },
+    {
+      icon: icons2,
+      title: 'Fabrication and Forging',
+      desc: 'Advanced sheet metal processing with certified welding ensuring EN 1090 & ISO 3834 compliance.',
+    },
+    {
+      icon: icons3,
+      title: 'Customized Excellence',
+      desc: 'Tailored solutions backed by a predominantly in-house raw material ecosystem ensuring consistent quality.',
+    },
+    {
+      icon: icons1,
+      title: 'CNC Machining and Finishing',
+      desc: 'Automated precision engineering for consistent, high-quality components.',
+    },
+  ];
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleCard = index => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+  const newsData = [
+    {
+      id: 1,
+      title:
+        'Renny Strips reshapes construction with sustainable scaffolding and formwork solutions',
+      desc: 'Renny Strips is driving India’s urban revolution on a sustainable basis by providing cutting-edge scaffolding and formwork solutions that prioritise safety, reduce carbon footprint, and enable smart vertical growth across the country.',
+      link: 'https://aceupdate.com/renny-strips-reshapes-construction-with-sustainable-scaffolding-and-formwork-solutions/',
+      img: news1,
+    },
+    {
+      id: 2,
+      title:
+        'Renny Strips Sets New Benchmarks in Scaffolding Safety and Reliability',
+      desc: 'Steel formwork and scaffolding are the cornerstones of contemporary construction, infusing strength, efficiency, and security. Steel scaffolding offers a safe working platform at heights, enhances accessibility, and facilitates free movement of material and equipment.',
+      link: 'https://odishabiznewz.com/news/renny-strips-sets-new-benchmarks-in-scaffolding-safety-and-reliability/',
+      img: news2,
+    },
+    {
+      id: 3,
+      title:
+        'Renny Strips Sets New Benchmarks in Scaffolding Safety and Reliability',
+      desc: 'Steel formwork and scaffolding are the cornerstones of contemporary construction, infusing strength, efficiency, and security.',
+      link: 'https://businessnewsthisweek.com/business/renny-strips-sets-new-benchmarks-in-scaffolding-safety-and-reliability/',
+      img: news3,
+    },
+    {
+      id: 4,
+      title:
+        'Renny Strips leads sustainable manufacturing with 22 MW solar power plant',
+      desc: "Renny Strips, India's exclusive manufacturer of customised green steel solutions for the scaffolding and formwork industry, has installed a cutting-edge 22 MW solar power plant across 100 acres.",
+      link: 'https://www.projectstoday.com/News/Renny-Strips-leads-sustainable-manufacturing-with-22-MW-solar-power-plant',
+      img: news4,
+    },
+  ];
 
   return (
     <div className="flex flex-col font-helvetica h-screen">
       <Navbar />
       {/* Banner */}
-      <div className="relative w-full h-[90%]">
-        <video
-          className="w-full h-full object-cover"
-          src={HomepageBanner}
-          autoPlay
-          loop
-          muted
-        />
-        <h1 className="absolute inset-10 flex items-end justify-start text-white text-5xl font-bold">
-          Building A Future Together
-        </h1>
-      </div>
+      <section className="w-full h-[500px] flex flex-col md:flex-row items-center mt-15">
+        {/* Left Text Column */}
+        <div className="md:w-1/2 flex flex-col justify-center px-6 md:px-12 h-full">
+          <h1 className="text-4xl text-8xl font-semibold text-black mb-4 font-jost">
+            Building <br /> A Future <br /> Together
+          </h1>
+        </div>
+
+        {/* Right Video Column */}
+        <div className="md:w-3/2 h-full relative overflow-hidden rounded-lg">
+          <video
+            className="w-full h-full object-cover"
+            src={HomepageBanner}
+            autoPlay
+            loop
+            muted
+          />
+          {/* Optional overlay */}
+        </div>
+      </section>
+
       {/* About Us */}
-      <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16">
-        <h1 className="text-3xl font-bold mb-10">About Us</h1>
-        <div className="flex flex-row items-start gap-10 max-w-7xl">
-          {/* Left Content */}
-          <div className="w-[65%] space-y-6">
-            <p className="text-gray-700 leading-relaxed">
+      <section className="flex flex-col items-center font-helvetica justify-center  mt-10">
+        <div className="relative w-full h-[500px] overflow-hidden rounded-lg">
+          {/* Background Image */}
+          <img
+            src={AboutUs}
+            alt="About Us"
+            className="w-full h-full object-cover"
+          />
+
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/50"></div>
+
+          {/* Text Content */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              About Us
+            </h1>
+            <p className="text-white max-w-3xl mb-4 leading-relaxed">
+              In 1996, Renny Strips Ltd embarked on its dynamic journey. Renny
+              Strips Ltd. aimed to carve a niche in producing Innovative,
+              Sustainable & Industry-fit Steel Products at Competitive Prices.
+            </p>
+            <p className="text-white max-w-3xl leading-relaxed">
               Founded in 1996, Renny Strips Limited is a fully integrated
               structural products manufacturer headquartered in Ludhiana,
               Punjab. The Company operates 3 integrated manufacturing units,
               providing end-to-end finished products.
             </p>
-            <p className="text-gray-700 leading-relaxed">
-              Renny operates three induction furnaces with a total melting
-              capacity of 199,200 TPA (versus an industry average of
-              65,000–75,000 TPA), supported by two continuous casting lines and
-              two rolling mills producing MS billets, wire rods, and
-              narrow-width HR coils. A downstream unit manufactures ERW black
-              and galvanized pipes and tubes, along with scaffolding and
-              formwork systems, using largely in-house inputs, positioning Renny
-              among the few vertically integrated players in India across this
-              value chain.
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              The Company’s scaffolding and formwork portfolio exceeds 1,000
-              SKUs, supplied to customers across 5 continents and serves the
-              construction, automotive, water, oil & gas, and fabrication
-              sectors.
-            </p>
-            <button className="bg-[#20ADCD] text-white px-6 py-2 rounded-lg hover:bg-[#1b98b4] transition">
-              Know More
-            </button>
-          </div>
-
-          {/* Right Cards */}
-          <div className="flex flex-col w-[35%]">
-            {/* Mission */}
-            <div className="shadow-xl rounded-xl p-6 hover:scale-105 transition-transform duration-300">
-              <div className="flex items-start gap-4">
-                <img
-                  src={mission}
-                  alt="Mission"
-                  className="bg-[#20ADCD] p-3 rounded-lg"
-                />
-                <div>
-                  <p className="text-[#20ADCD] text-xs font-semibold">
-                    MISSION
-                  </p>
-                  <h2 className="font-bold mb-2">
-                    Building Stronger Foundations
-                  </h2>
-                  <p className="text-sm text-gray-600">
-                    To manufacture high-quality steel products through
-                    integrated processes, innovation, and operational
-                    excellence.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Vision */}
-            <div className="shadow-xl rounded-xl p-6 hover:scale-105 transition-transform duration-300">
-              <div className="flex items-start gap-4">
-                <img
-                  src={vision}
-                  alt="Vision"
-                  className="bg-[#20ADCD] p-3 rounded-lg"
-                />
-                <div>
-                  <p className="text-[#20ADCD] text-xs font-semibold">VISION</p>
-                  <h2 className="font-bold mb-2">
-                    Leading the Future of Steel
-                  </h2>
-                  <p className="text-sm text-gray-600">
-                    To become a globally trusted steel solutions provider known
-                    for sustainability and reliability.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Values */}
-            <div className="shadow-xl rounded-xl p-6 hover:scale-105 transition-transform duration-300 sm:col-span-2">
-              <div className="flex items-start gap-4">
-                <img
-                  src={values}
-                  alt="Values"
-                  className="bg-[#20ADCD] p-3 rounded-lg"
-                />
-                <div>
-                  <p className="text-[#20ADCD] text-xs font-semibold">VALUES</p>
-                  <h2 className="font-bold mb-2">
-                    Driven by Strong Principles
-                  </h2>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>Quality & Consistency</li>
-                    <li>Integrity & Transparency</li>
-                    <li>Safety & Responsibility</li>
-                    <li>Innovation & Growth</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
       {/* Our Products */}
       <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16">
-        <h1 className="text-3xl font-bold mb-10">Our Products</h1>
-        <div className="flex gap-2">
-          <img
-            src={MS}
-            alt="MS Billets"
-            className="h-[95%] transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer"
-            onClick={() => navigate('/MS-billets/')}
-          />
-          <img
-            src={rods}
-            alt="Wire Rods"
-            className="h-[95%] transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer"
-            onClick={() => navigate('/wire-rods-2/')}
-          />
-          <img
-            src={Coil}
-            alt="HR Coils"
-            className="h-[95%] transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer"
-            onClick={() => navigate('/narrow-hrcoil/')}
-          />
-          <img
-            src={ERW}
-            alt="ERW Pipes"
-            className="h-[95%] transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer"
-            onClick={() => navigate('/erw-pipes-and-tubes/')}
-          />
-          <img
-            src={Scaffolding}
-            alt="Scaffolding"
-            className="h-[95%] transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer"
-            onClick={() => navigate('/scaffolding-formwork/')}
-          />
+        <h1 className="text-3xl font-bold mb-10 w-full text-left">
+          Our Products
+        </h1>
+
+        <div className="flex h-105 overflow-hidden w-full max-w-7xl">
+          {products.map((item, index) => (
+            <div
+              key={index}
+              onClick={() => navigate(item.link)}
+              className="
+          group relative flex-1 hover:flex-[5]
+          transition-all duration-500 ease-in-out
+          cursor-pointer overflow-hidden
+        "
+            >
+              {/* Image */}
+              <img
+                src={item.image}
+                alt={item.title}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-all duration-300" />
+
+              <div
+                className="
+            relative z-10 h-full w-full
+            flex items-end justify-end
+            group-hover:justify-center
+            transition-all duration-500
+            p-6
+          "
+              >
+                <div
+                  className="
+              w-full text-white
+              flex flex-col items-end
+              group-hover:items-center
+              text-right group-hover:text-center
+              transition-all duration-500
+            "
+                >
+                  <h1
+                    className="text-lg font-semibold tracking-wide [writing-mode:vertical-rl] 
+    [text-orientation:mixed] group-hover:[writing-mode:horizontal-tb] transition-all duration-500
+  "
+                  >
+                    {item.title}
+                  </h1>
+
+                  <button
+                    className="
+                mt-4 px-4 py-2 border border-white text-sm
+                opacity-0 translate-y-4
+                group-hover:opacity-100 group-hover:translate-y-0
+                transition-all duration-500 delay-150
+              "
+                  >
+                    Know More
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
+
       {/* Our Networks*/}
       <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16">
-        <h1 className="text-3xl font-bold mb-10">Our Networks</h1>
+        <h1 className="text-3xl font-bold mb-10 w-full text-left">
+          Our Networks
+        </h1>
         <img src={worldmap} alt="World Map" className="h-full" />
 
         <div ref={ref} className="flex items-center justify-center gap-6 mt-6">
@@ -236,188 +298,250 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-          {[
-            {
-              icon: icons1,
-              title: 'Precision Engineering and Manufacturing',
-              desc: 'Specializes in manufacturing high precision, safety-critical components as per product specifications.',
-            },
-            {
-              icon: icons2,
-              title: 'Fabrication and Forging',
-              desc: 'Advanced sheet metal processing with certified welding ensuring EN 1090 & ISO 3834 compliance.',
-            },
-            {
-              icon: icons3,
-              title: 'Customized Excellence',
-              desc: 'Tailored solutions backed by a predominantly in-house raw material ecosystem ensuring consistent quality.',
-            },
-            {
-              icon: icons1,
-              title: 'CNC Machining and Finishing',
-              desc: 'Automated precision engineering for consistent, high-quality components.',
-            },
-          ].map((item, index) => (
-            <div
-              key={index}
-              className="relative group overflow-hidden rounded-2xl border border-gray-300 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.15)] p-12 text-center
-                 hover:shadow-xl transition-shadow duration-500"
-            >
-              {/* Hover Overlay (diagonal fade-in) */}
-              <div
-                className="absolute inset-0 bg-[#0C183E] opacity-0 transform rotate-12 scale-0
-                   group-hover:opacity-100 group-hover:scale-150 group-hover:rotate-0
-                   transition-all duration-500 ease-out"
-              />
+      {/* Features Section */}
+      <section className="flex justify-center px-6 py-16 font-helvetica">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl w-full">
+          {features.map((item, index) => {
+            const isOpen = openIndex === index;
 
-              {/* Card Content */}
-              <div className="relative z-10">
-                <div className="mb-10 flex justify-center">
+            return (
+              <div
+                key={index}
+                className={`
+          rounded-2xl border
+          transition-all duration-500 ease-in-out
+          overflow-hidden
+          ${
+            isOpen
+              ? 'bg-[#0C183E] border-[#0C183E] shadow-xl'
+              : 'bg-white border-gray-200 shadow-md hover:shadow-lg'
+          }
+        `}
+              >
+                {/* Header */}
+                <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center">
+                  {/* Icon */}
                   <img
                     src={item.icon}
                     alt={item.title}
-                    className="h-20 w-20 transition-all duration-300 group-hover:brightness-0 group-hover:invert"
+                    className={`
+              h-18 w-18 mb-6
+              transition-all duration-500
+              ${isOpen ? 'scale-110 brightness-0 invert' : 'scale-100'}
+            `}
                   />
+
+                  {/* Title */}
+                  <h3
+                    className={`
+              text-lg font-semibold mb-6
+              transition-colors duration-300
+              ${isOpen ? 'text-white' : 'text-gray-800'}
+            `}
+                  >
+                    {item.title}
+                  </h3>
+
+                  {/* Toggle Button */}
+                  <button
+                    onClick={() => toggleCard(index)}
+                    className={`
+              w-10 h-10 
+              flex items-center justify-center
+              transition-all duration-300
+              ${
+                isOpen
+                  ? 'border-white text-white'
+                  : 'border-gray-300 text-gray-600 hover:border-gray-500'
+              }
+            `}
+                  >
+                    <i
+                      className={`
+                ri-arrow-${isOpen ? 'up' : 'down'}-s-line
+                text-2xl
+                transition-transform duration-300
+                ${isOpen ? 'rotate-180' : 'rotate-0'}
+              `}
+                    />
+                  </button>
                 </div>
 
-                <h3 className="text-xl font-semibold text-gray-800 group-hover:text-white transition-colors duration-300 mb-5">
-                  {item.title}
-                </h3>
-
-                <p className="text-gray-600 group-hover:text-gray-200 transition-colors duration-300 leading-relaxed text-base">
-                  {item.desc}
-                </p>
+                {/* Expandable Description */}
+                <div
+                  className={`
+            px-8
+            overflow-hidden
+            transition-all duration-500 ease-in-out
+            ${isOpen ? 'max-h-48 pb-10 opacity-100' : 'max-h-0 opacity-0'}
+          `}
+                >
+                  <p
+                    className={`
+              text-sm leading-relaxed
+              transition-colors duration-300
+              ${isOpen ? 'text-gray-200' : 'text-gray-600'}
+            `}
+                  >
+                    {item.desc}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
-      <section className="flex gap-9 items-center font-helvetica justify-center px-6 py-16 bg-gray-100">
-        <div className=" w-1/2 flex flex-col items-center justify-center">
-          <h1 className="text-3xl font-bold mb-10">News</h1>
-        </div>
-        <div className="w-full flex flex-col items-center justify-center px-6 py-16">
-          <h1 className="text-3xl font-bold mb-10">Investor Relation</h1>
+      {/* News Section */}
+      <section className="font-helvetica bg-gray-100 py-20 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start justify-between">
+          {/* ================= News Section ================= */}
+          <div className="w-full lg:w-3/4 flex flex-col items-center">
+            <h1 className="text-3xl font-bold mb-12">News</h1>
 
-          {/* Cards stacked vertically */}
-          <div className="flex flex-col gap-6 w-full max-w-lg mb-8">
-            {/* Card 1 */}
-            <div className="border rounded-lg p-6 flex justify-between items-center shadow hover:shadow-xl transition-shadow duration-300">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Financials</h3>
-                <p className="text-sm text-gray-500">Q1 (2025–26)</p>
-              </div>
-              <div>
-                <button className="bg-blue text-white px-4 py-2 rounded hover:bg-blue transition">
-                  Download
-                </button>
-              </div>
-            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-xl">
+              {newsData.map(news => (
+                <div
+                  key={news.id}
+                  className="bg-white rounded-xl shadow-sm overflow-hidden group hover:shadow-lg transition"
+                >
+                  <img
+                    src={news.img}
+                    alt={news.title}
+                    className="w-full h-40 object-cover"
+                    loading="lazy"
+                  />
 
-            {/* Card 2 */}
-            <div className="border rounded-lg p-6 flex justify-between items-center shadow hover:shadow-xl transition-shadow duration-300">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">
-                  Corporate Governance
-                </h3>
-                <p className="text-sm text-gray-500">Q1 (2025–26)</p>
-              </div>
-              <div>
-                <button className="bg-blue text-white px-4 py-2 rounded hover:bg-blue transition">
-                  Download
-                </button>
-              </div>
-            </div>
+                  <div className="p-6 flex flex-col">
+                    <h3 className="text-base font-semibold mb-3 line-clamp-2">
+                      {news.title}
+                    </h3>
 
-            {/* Card 3 */}
-            <div className="border rounded-lg p-6 flex justify-between items-center shadow hover:shadow-xl transition-shadow duration-300">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Industry Report</h3>
-                <p className="text-sm text-gray-500">Q1 (2025–26)</p>
-              </div>
-              <div>
-                <button className="bg-blue text-white px-4 py-2 rounded hover:bg-blue transition">
-                  Download
-                </button>
-              </div>
-            </div>
+                    <p className="text-sm text-gray-600 line-clamp-3">
+                      {news.desc}
+                    </p>
 
-            {/* Card 4 */}
-            <div className="border rounded-lg p-6 flex justify-between items-center shadow hover:shadow-xl transition-shadow duration-300">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">IPO Documents</h3>
-                <p className="text-sm text-gray-500">Q4 (2024–25)</p>
-              </div>
-              <div>
-                <button className="bg-blue text-white px-4 py-2 rounded hover:bg-blue transition">
-                  Download
-                </button>
-              </div>
+                    <a
+                      href={news.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-block font-medium text-blue group-hover:text-blue-800 transition"
+                    >
+                      Read More →
+                    </a>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Stock Prices */}
-          <div className="bg-gray-200 w-lg max-w-3xl rounded-lg p-4 flex justify-around text-lg font-semibold">
-            <div>BSE: 93.90</div>
-            <div>NSE: 93.63</div>
+          {/* ================= Investor Relation ================= */}
+          <div className="w-full lg:w-1/2 flex flex-col items-center">
+            <h1 className="text-3xl font-bold mb-12">Investor Relations</h1>
+
+            {/* Investor Cards */}
+            <div className="flex flex-col gap-6 w-full max-w-xl mb-12">
+              {[
+                { title: 'Financials', period: 'Q1 (2025–26)' },
+                { title: 'Corporate Governance', period: 'Q1 (2025–26)' },
+                { title: 'Industry Report', period: 'Q1 (2025–26)' },
+                { title: 'IPO Documents', period: 'Q4 (2024–25)' },
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white border-gray-100 rounded-xl p-6 flex items-center justify-between shadow-sm hover:shadow-lg transition"
+                >
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
+                    <p className="text-sm text-gray-500">{item.period}</p>
+                  </div>
+
+                  <button className="bg-blue text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-800 transition">
+                    Download
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Stock Prices */}
+            <div className="bg-white w-full max-w-xl rounded-xl p-6 flex justify-around shadow-sm">
+              <div className="text-center">
+                <p className="text-sm text-gray-500 mb-1">BSE</p>
+                <p className="text-lg font-semibold">₹93.90</p>
+              </div>
+              <div className="text-center">
+                <p className="text-sm text-gray-500 mb-1">NSE</p>
+                <p className="text-lg font-semibold">₹93.63</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Sustainability Section */}
       <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16 bg-white">
-        <h1 className="text-3xl font-bold mb-10">Sustainability</h1>
-
+        <h1 className="text-3xl font-bold mb-10 w-full text-left">
+          Sustainability
+        </h1>
         <div className="w-full max-w-7xl">
-          <h2 className="text-2xl font-semibold mb-8 text-center">CBAM</h2>
-
           <div className="flex flex-col lg:flex-row gap-10 items-center">
-            <img
-              src={sustainability1}
-              alt="Sustainability 1"
-              className="w-full max-w-md rounded-lg shadow-md hover:shadow-2xl   transform hover:-translate-y-2   transition-all duration-300 ease-out"
-            />
+            <div className="w-full">
+              <h2 className="text-2xl font-semibold mb-8 text-center">CBAM</h2>
 
-            <div className=" flex flex-col justify-center text-center lg:text-left max-w-md   bg-white rounded-xl p-8   shadow-md hover:shadow-2xl   transform hover:-translate-y-2   transition-all duration-300 ease-out">
-              <div className="flex items-center justify-center lg:justify-between gap-6 mb-4">
-                <p className="text-lg font-semibold">Careers</p>
+              <img
+                src={sustainability1}
+                alt="Sustainability 1"
+                className="w-full max-w-md rounded-lg shadow-md hover:shadow-2xl   transform hover:-translate-y-2   transition-all duration-300 ease-out"
+              />
+            </div>
+
+            <div className="w-full">
+              <h2 className="text-2xl font-semibold mb-8 text-center">CBAM</h2>
+              <div className=" flex flex-col justify-center text-center lg:text-left max-w-md   bg-white rounded-xl p-8   shadow-md hover:shadow-2xl   transform hover:-translate-y-2   transition-all duration-300 ease-out">
+                <div className="flex items-center justify-center lg:justify-between gap-6 mb-4">
+                  <p className="text-lg font-semibold">Careers</p>
+
+                  <Link to="/careers">
+                    <img
+                      src={career1}
+                      alt="Career"
+                      className="h-16 cursor-pointer "
+                    />
+                  </Link>
+                </div>
+
+                <p className="text-gray-600">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Accusantium esse natus quas impedit reiciendis rem deserunt
+                  ipsum eos delectus eum.
+                </p>
 
                 <Link to="/careers">
-                  <img
-                    src={career1}
-                    alt="Career"
-                    className="h-16 cursor-pointer "
-                  />
+                  <button className="mt-6 bg-blue text-white px-8 py-4 rounded-md  hover:bg-blue-800 transition">
+                    Visit our career page
+                  </button>
                 </Link>
               </div>
-
-              <p className="text-gray-600">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Accusantium esse natus quas impedit reiciendis rem deserunt
-                ipsum eos delectus eum.
-              </p>
-
-              <Link to="/careers">
-                <button className="mt-6 bg-blue text-white px-8 py-4 rounded-md  hover:bg-blue-800 transition">
-                  Visit our career page
-                </button>
-              </Link>
             </div>
+            <div className="w-full">
+              <h2 className="text-2xl font-semibold mb-8 text-center">CBAM</h2>
 
-            <img
-              src={sustainability2}
-              alt="Sustainability 2"
-              className="w-full max-w-md rounded-lg shadow-md hover:shadow-2xl   transform hover:-translate-y-2   transition-all duration-300 ease-out"
-            />
+              <img
+                src={sustainability2}
+                alt="Sustainability 2"
+                className="w-full max-w-md rounded-lg shadow-md hover:shadow-2xl   transform hover:-translate-y-2   transition-all duration-300 ease-out"
+              />
+            </div>
           </div>
         </div>
       </section>
+      {/* Blog Section */}
       <section className="bg-gray-100 px-6 py-16 font-helvetica">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10">
           {/* ================= Latest Blog ================= */}
           <div className="lg:w-1/2">
-            <h1 className="text-2xl font-bold mb-6">Latest Blog</h1>
-
+            <h1 className="text-2xl font-bold mb-6 w-full text-left">
+              Latest Blog
+            </h1>
             <Link
               to="/kwikstage-scaffolding/"
               className="
@@ -459,7 +583,9 @@ const Home = () => {
 
           {/* ================= Other Blogs ================= */}
           <div className="lg:w-1/2">
-            <h1 className="text-2xl font-bold mb-6">Other Blogs</h1>
+            <h1 className="text-2xl font-bold mb-6 w-full text-left">
+              Other Blogs
+            </h1>
 
             <div className="space-y-6">
               {/* Blog Card */}

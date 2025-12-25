@@ -1,22 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import RennyLogo from '../assets/RennyLogo.png';
-import { useNavigate } from 'react-router-dom';
+
 const Navbar = () => {
   const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // check initial scroll
+    console.log('Scrolled:', window.scrollY);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="w-full h-16 bg-white flex items-center justify-between px-6 shadow">
+    <div
+      className={`fixed top-0 left-0 z-50 w-full h-16 flex items-center justify-between px-6
+        transition-all duration-500 ease-in-out font-helvetica
+        ${
+          isScrolled
+            ? 'bg-white/70 backdrop-blur-md shadow-md '
+            : 'bg-transparent backdrop-blur-0'
+        }
+      `}
+    >
       {/* Logo */}
       <img
         src={RennyLogo}
         alt="Logo"
-        className="h-16"
+        className="h-16 cursor-pointer rounded-md p-2"
         onClick={() => navigate('/')}
       />
 
       {/* Navigation */}
-      <ul className="flex items-center gap-3 font-medium text-gray-700">
-        {/* ABOUT US */}
+      <ul
+        className={`flex items-center gap-3 transition-all duration-300
+    ${isScrolled ? 'text-gray-700 font-medium' : 'text-gray-700 font-normal'}
+  `}
+      >
+        {/* About Us */}
         <li className="relative group">
           <span className="cursor-pointer hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
             About Us
@@ -55,9 +82,9 @@ const Navbar = () => {
           </ul>
         </li>
 
-        {/* PRODUCTS */}
+        {/* Products */}
         <li className="relative group">
-          <span className="cursor-pointer  hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
+          <span className="cursor-pointer hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
             Products
           </span>
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-72 z-50">
@@ -89,9 +116,9 @@ const Navbar = () => {
           </ul>
         </li>
 
-        {/* INVESTOR RELATIONS */}
+        {/* Investor Relations */}
         <li className="relative group">
-          <span className="cursor-pointer  hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
+          <span className="cursor-pointer hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
             Investor Relations
           </span>
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-72 z-50">
@@ -137,15 +164,15 @@ const Navbar = () => {
         <li>
           <Link
             to="/ec/"
-            className=" hover:bg-blue hover:text-white px-4 py-3 rounded-xl"
+            className="hover:bg-blue hover:text-white px-4 py-3 rounded-xl"
           >
             EC
           </Link>
         </li>
 
-        {/* SUSTAINABILITY */}
+        {/* Sustainability */}
         <li className="relative group">
-          <span className="cursor-pointer  hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
+          <span className="cursor-pointer hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
             Sustainability
           </span>
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-64 z-50">
@@ -162,9 +189,9 @@ const Navbar = () => {
           </ul>
         </li>
 
-        {/* MEDIA */}
+        {/* Media */}
         <li className="relative group">
-          <span className="cursor-pointer  hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
+          <span className="cursor-pointer hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
             Media
           </span>
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-48 z-50">
@@ -186,21 +213,21 @@ const Navbar = () => {
           </ul>
         </li>
 
-        {/* CAREER */}
+        {/* Career */}
         <li>
           <Link
             to="/career/"
-            className=" hover:bg-blue hover:text-white px-4 py-3 rounded-xl"
+            className="hover:bg-blue hover:text-white px-4 py-3 rounded-xl"
           >
             Career
           </Link>
         </li>
 
-        {/* CONTACT US */}
+        {/* Contact Us */}
         <li>
           <Link
             to="/contact-us/"
-            className=" hover:bg-blue hover:text-white px-4 py-3 rounded-xl"
+            className="hover:bg-blue hover:text-white px-4 py-3 rounded-xl"
           >
             Contact Us
           </Link>

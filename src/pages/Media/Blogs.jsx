@@ -29,7 +29,7 @@ import blog20 from '../../assets/blog20.jpg';
 import blog21 from '../../assets/blog21.jpg';
 import blog22 from '../../assets/blog22.jpg';
 
-const Blogs = () => {
+const Blogs = () => { 
   return (
     <div className="font-helvetica ">
       <Navbar />

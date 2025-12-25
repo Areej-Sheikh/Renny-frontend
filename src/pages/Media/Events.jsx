@@ -1,6 +1,3 @@
-import React from 'react';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
 import events from '../../assets/Events.png';
 import events1 from '../../assets/events1.mp4';
 import events2 from '../../assets/events2.mp4';
@@ -40,7 +37,6 @@ const Events = () => {
 
   return (
     <div className="font-helvetica ">
-      <Navbar />
       <div>
         <img
           src={events}
@@ -74,7 +70,6 @@ const Events = () => {
           ))}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

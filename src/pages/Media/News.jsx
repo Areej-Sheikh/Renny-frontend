@@ -1,6 +1,4 @@
-import React from 'react';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
+
 import news from '../../assets/news.png';
 import news1 from '../../assets/news1.jpg';
 import news2 from '../../assets/news2.jpeg';
@@ -85,7 +83,6 @@ const News = () => {
 
   return (
     <div className="font-helvetica ">
-      <Navbar />
       <div>
         <img
           src={news}
@@ -128,7 +125,6 @@ const News = () => {
           ))}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -1,11 +1,9 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 import HomepageBanner from '../assets/HomepageBanner.mp4';
 
@@ -17,16 +15,14 @@ import ERW from '../assets/ERW-Black-Galvanized-Pipes.jpeg';
 import Coil from '../assets/Narrow-width-Coils.png';
 import rods from '../assets/Wire-Rods.png';
 
+import sustainability2 from '../assets/Sustainability2.jpg';
+
 import CountUp from 'react-countup';
-import worldmap from '../assets/worldmap.png';
+import worldmap from '../assets/World-Map.webm';
 
 import icons1 from '../assets/1a-about.svg';
 import icons2 from '../assets/2a-about.svg';
 import icons3 from '../assets/3a-about.svg';
-
-import sustainability1 from '../assets/Sustainability1.png';
-import sustainability2 from '../assets/Sustainability2.png';
-import career1 from '../assets/career1.png';
 
 import blog1 from '../assets/blog1.jpeg';
 import blog2 from '../assets/blog2.jpeg';
@@ -38,6 +34,7 @@ import news2 from '../assets/news2.jpeg';
 import news3 from '../assets/news3.png';
 import news4 from '../assets/news4.jpg';
 
+import SustainabilitySlider from '../components/SustainabilitySlider';
 const Home = () => {
   const navigate = useNavigate();
 
@@ -72,28 +69,7 @@ const Home = () => {
       link: '/scaffolding-formwork/',
     },
   ];
-  const features = [
-    {
-      icon: icons1,
-      title: 'Precision Engineering and Manufacturing',
-      desc: 'Specializes in manufacturing high precision, safety-critical components as per product specifications.',
-    },
-    {
-      icon: icons2,
-      title: 'Fabrication and Forging',
-      desc: 'Advanced sheet metal processing with certified welding ensuring EN 1090 & ISO 3834 compliance.',
-    },
-    {
-      icon: icons3,
-      title: 'Customized Excellence',
-      desc: 'Tailored solutions backed by a predominantly in-house raw material ecosystem ensuring consistent quality.',
-    },
-    {
-      icon: icons1,
-      title: 'CNC Machining and Finishing',
-      desc: 'Automated precision engineering for consistent, high-quality components.',
-    },
-  ];
+
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleCard = index => {
@@ -133,35 +109,56 @@ const Home = () => {
       img: news4,
     },
   ];
+  
 
   return (
-    <div className="flex flex-col font-helvetica h-screen">
-      <Navbar />
+    <div className="flex flex-col  font-helvetica">
       {/* Banner */}
-      <section className="w-full h-[500px] flex flex-col md:flex-row items-center mt-15">
+      <section className="w-full h-125 flex flex-col md:flex-row items-center mt-15 ">
         {/* Left Text Column */}
-        <div className="md:w-1/2 flex flex-col justify-center px-6 md:px-12 h-full">
-          <h1 className="text-4xl text-8xl font-semibold text-black mb-4 font-jost">
+        <motion.div
+          className="md:w-1/2 flex flex-col justify-center px-6 md:px-12 h-full"
+          initial={{ opacity: 0, x: -80 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          viewport={{ once: true }}
+        >
+          <h1 className="text-8xl font-semibold text-black mb-4 font-jost">
             Building <br /> A Future <br /> Together
           </h1>
-        </div>
+        </motion.div>
 
         {/* Right Video Column */}
-        <div className="md:w-3/2 h-full relative overflow-hidden rounded-lg">
+        <motion.div
+          className="md:w-3/2 h-full relative overflow-hidden"
+          initial={{ opacity: 0, x: 80 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
+          viewport={{ once: true }}
+        >
           <video
             className="w-full h-full object-cover"
             src={HomepageBanner}
             autoPlay
             loop
             muted
+            playsInline
           />
-          {/* Optional overlay */}
-        </div>
+        </motion.div>
       </section>
 
       {/* About Us */}
-      <section className="flex flex-col items-center font-helvetica justify-center  mt-10">
-        <div className="relative w-full h-[500px] overflow-hidden rounded-lg">
+      <motion.section
+        className="flex flex-col items-center font-helvetica justify-center mt-10"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={{
+          hidden: {},
+          visible: {},
+        }}
+      >
+        <div className="relative w-full h-125 overflow-hidden">
           {/* Background Image */}
           <img
             src={AboutUs}
@@ -173,27 +170,50 @@ const Home = () => {
           <div className="absolute inset-0 bg-black/50"></div>
 
           {/* Text Content */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <div className="absolute  inset-0 flex flex-col items-center justify-center text-center px-6">
+            {/* Heading */}
+            <motion.h1
+              className="text-4xl md:text-5xl font-bold text-white mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              viewport={{ once: true }}
+            >
               About Us
-            </h1>
-            <p className="text-white max-w-3xl mb-4 leading-relaxed">
+            </motion.h1>
+
+            {/* Paragraph 1 */}
+            <motion.p
+              className="text-white max-w-3xl mb-4 leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
+              viewport={{ once: true }}
+            >
               In 1996, Renny Strips Ltd embarked on its dynamic journey. Renny
               Strips Ltd. aimed to carve a niche in producing Innovative,
               Sustainable & Industry-fit Steel Products at Competitive Prices.
-            </p>
-            <p className="text-white max-w-3xl leading-relaxed">
+            </motion.p>
+
+            {/* Paragraph 2 */}
+            <motion.p
+              className="text-white max-w-3xl leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
+              viewport={{ once: true }}
+            >
               Founded in 1996, Renny Strips Limited is a fully integrated
               structural products manufacturer headquartered in Ludhiana,
               Punjab. The Company operates 3 integrated manufacturing units,
               providing end-to-end finished products.
-            </p>
+            </motion.p>
           </div>
         </div>
-      </section>
+      </motion.section>
       {/* Our Products */}
       <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16">
-        <h1 className="text-3xl font-bold mb-10 w-full text-left">
+        <h1 className="text-[37px] font-bold ml-20 mb-10 w-full text-left">
           Our Products
         </h1>
 
@@ -203,7 +223,7 @@ const Home = () => {
               key={index}
               onClick={() => navigate(item.link)}
               className="
-          group relative flex-1 hover:flex-[5]
+          group relative flex-1 hover:flex-5
           transition-all duration-500 ease-in-out
           cursor-pointer overflow-hidden
         "
@@ -261,148 +281,361 @@ const Home = () => {
       </section>
 
       {/* Our Networks*/}
-      <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16">
-        <h1 className="text-3xl font-bold mb-10 w-full text-left">
-          Our Networks
-        </h1>
-        <img src={worldmap} alt="World Map" className="h-full" />
+      <motion.section
+        className="flex flex-col items-center font-helvetica justify-center px-6 py-16"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+      >
+        {/* Heading */}
+        <motion.h1
+          className="text-[37px] font-bold ml-20 mb-10 w-full text-left"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Our Network
+        </motion.h1>
 
-        <div ref={ref} className="flex items-center justify-center gap-6 mt-6">
-          <div className="border-t-2 border-b-2 px-6 py-4 text-center">
-            <p className="text-5xl font-light text-blue">
-              {inView ? <CountUp end={1000} duration={2} /> : 0} +
-            </p>
-            <p className="text-xl text-blue-900  mt-2">SKUs</p>
-          </div>
+        {/* Video */}
+        <motion.video
+          src={worldmap}
+          className="w-full max-w-7xl rounded-xl"
+          autoPlay
+          loop
+          muted
+          initial={{ opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        />
 
-          <div className="border-t-2 border-b-2 px-6 py-4 text-center">
-            <p className="text-5xl font-light text-blue">
-              {inView ? <CountUp end={199200} duration={3} separator="," /> : 0}{' '}
-              TPA
-            </p>
-            <p className="text-xl text-blue-900  mt-2">Annual Production</p>
-          </div>
-
-          <div className="border-t-2 border-b-2 px-6 py-4 text-center">
-            <p className="text-5xl font-light text-blue">
-              {inView ? <CountUp end={1000} duration={2} /> : 0} +
-            </p>
-            <p className="text-xl text-blue-900  mt-2">Work Force</p>
-          </div>
-
-          <div className="border-t-2 border-b-2 px-6 py-4 text-center">
-            <p className="text-5xl font-light text-blue">
-              {inView ? <CountUp end={50} duration={2} /> : 0} +
-            </p>
-            <p className="text-xl text-blue-900  mt-2">Years of Experience</p>
-          </div>
-        </div>
-      </section>
+        {/* Stats */}
+        <motion.div
+          ref={ref}
+          className="flex flex-wrap items-center justify-center gap-6 mt-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.15 },
+            },
+          }}
+        >
+          {[
+            { value: 1000, suffix: '+', label: 'SKUs', duration: 2 },
+            {
+              value: 199200,
+              suffix: ' TPA',
+              label: 'Annual Production',
+              duration: 3,
+              separator: ',',
+            },
+            { value: 1000, suffix: '+', label: 'Work Force', duration: 2 },
+            { value: 22, suffix: ' MW', label: 'Solar Panel', duration: 2 },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              className="border-t-2 border-b-2 px-6 py-4 text-center"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+            >
+              <p className="text-5xl font-light text-blue">
+                {inView ? (
+                  <CountUp
+                    end={item.value}
+                    duration={item.duration}
+                    separator={item.separator}
+                  />
+                ) : (
+                  0
+                )}
+                {item.suffix}
+              </p>
+              <p className="text-xl text-blue-900 mt-2">{item.label}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.section>
       {/* Features Section */}
       <section className="flex justify-center px-6 py-16 font-helvetica">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl w-full">
-          {features.map((item, index) => {
-            const isOpen = openIndex === index;
-
-            return (
-              <div
-                key={index}
-                className={`
-          rounded-2xl border
-          transition-all duration-500 ease-in-out
-          overflow-hidden
+        <motion.section
+          className="flex justify-center w-full"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+        >
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl w-full"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: { staggerChildren: 0.15 },
+              },
+            }}
+          >
+            {/* CARD 1 */}
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              className={`
+          rounded-2xl border overflow-hidden transition-all duration-500
           ${
-            isOpen
+            openIndex === 0
               ? 'bg-[#0C183E] border-[#0C183E] shadow-xl'
               : 'bg-white border-gray-200 shadow-md hover:shadow-lg'
           }
         `}
-              >
-                {/* Header */}
-                <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center">
-                  {/* Icon */}
-                  <img
-                    src={item.icon}
-                    alt={item.title}
-                    className={`
-              h-18 w-18 mb-6
-              transition-all duration-500
-              ${isOpen ? 'scale-110 brightness-0 invert' : 'scale-100'}
-            `}
-                  />
-
-                  {/* Title */}
-                  <h3
-                    className={`
-              text-lg font-semibold mb-6
-              transition-colors duration-300
-              ${isOpen ? 'text-white' : 'text-gray-800'}
-            `}
-                  >
-                    {item.title}
-                  </h3>
-
-                  {/* Toggle Button */}
-                  <button
-                    onClick={() => toggleCard(index)}
-                    className={`
-              w-10 h-10 
-              flex items-center justify-center
-              transition-all duration-300
-              ${
-                isOpen
-                  ? 'border-white text-white'
-                  : 'border-gray-300 text-gray-600 hover:border-gray-500'
-              }
-            `}
-                  >
-                    <i
-                      className={`
-                ri-arrow-${isOpen ? 'up' : 'down'}-s-line
-                text-2xl
-                transition-transform duration-300
-                ${isOpen ? 'rotate-180' : 'rotate-0'}
-              `}
-                    />
-                  </button>
-                </div>
-
-                {/* Expandable Description */}
-                <div
-                  className={`
-            px-8
-            overflow-hidden
-            transition-all duration-500 ease-in-out
-            ${isOpen ? 'max-h-48 pb-10 opacity-100' : 'max-h-0 opacity-0'}
-          `}
+            >
+              <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center">
+                <img
+                  src={icons1}
+                  className={`h-18 w-18 mb-6 transition-all duration-500 ${
+                    openIndex === 0 ? 'scale-110 brightness-0 invert' : ''
+                  }`}
+                />
+                <h3
+                  className={`text-lg font-semibold mb-6 ${
+                    openIndex === 0 ? 'text-white' : 'text-gray-800'
+                  }`}
                 >
-                  <p
-                    className={`
-              text-sm leading-relaxed
-              transition-colors duration-300
-              ${isOpen ? 'text-gray-200' : 'text-gray-600'}
-            `}
-                  >
-                    {item.desc}
-                  </p>
-                </div>
+                  Precision Engineering and Manufacturing
+                </h3>
+                <button onClick={() => toggleCard(0)}>
+                  <i
+                    className={`ri-arrow-${
+                      openIndex === 0 ? 'up' : 'down'
+                    }-s-line text-2xl transition-transform ${
+                      openIndex === 0 ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
               </div>
-            );
-          })}
-        </div>
+              <div
+                className={`px-8 overflow-hidden transition-all duration-500 ${
+                  openIndex === 0
+                    ? 'max-h-48 pb-10 opacity-100'
+                    : 'max-h-0 opacity-0'
+                }`}
+              >
+                <p className="text-sm text-gray-200">
+                  Specializes in manufacturing high precision, safety-critical
+                  components as per specifications.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* CARD 2 */}
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              className={`
+          rounded-2xl border overflow-hidden transition-all duration-500
+          ${
+            openIndex === 1
+              ? 'bg-[#0C183E] border-[#0C183E] shadow-xl'
+              : 'bg-white border-gray-200 shadow-md hover:shadow-lg'
+          }
+        `}
+            >
+              <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center">
+                <img
+                  src={icons2}
+                  className={`h-18 w-18 mb-6 transition-all duration-500 ${
+                    openIndex === 1 ? 'scale-110 brightness-0 invert' : ''
+                  }`}
+                />
+                <h3
+                  className={`text-lg font-semibold mb-7 ${
+                    openIndex === 1 ? 'text-white' : 'text-gray-800'
+                  }`}
+                >
+                  Fabrication and Forging
+                </h3>
+                <button onClick={() => toggleCard(1)}>
+                  <i
+                    className={`ri-arrow-${
+                      openIndex === 1 ? 'up' : 'down'
+                    }-s-line text-2xl transition-transform ${
+                      openIndex === 1 ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+              </div>
+              <div
+                className={`px-8 overflow-hidden transition-all duration-500 ${
+                  openIndex === 1
+                    ? 'max-h-48 pb-10 opacity-100'
+                    : 'max-h-0 opacity-0'
+                }`}
+              >
+                <p className="text-sm text-gray-200">
+                  Advanced sheet metal processing with EN 1090 & ISO 3834
+                  compliance.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* CARD 3 */}
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              className={`
+          rounded-2xl border overflow-hidden transition-all duration-500
+          ${
+            openIndex === 2
+              ? 'bg-[#0C183E] border-[#0C183E] shadow-xl'
+              : 'bg-white border-gray-200 shadow-md hover:shadow-lg'
+          }
+        `}
+            >
+              <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center">
+                <img
+                  src={icons3}
+                  className={`h-18 w-18 mb-6 transition-all duration-500 ${
+                    openIndex === 2 ? 'scale-110 brightness-0 invert' : ''
+                  }`}
+                />
+                <h3
+                  className={`text-lg font-semibold mb-14 ${
+                    openIndex === 2 ? 'text-white' : 'text-gray-800'
+                  }`}
+                >
+                  Customized Excellence
+                </h3>
+                <button onClick={() => toggleCard(2)}>
+                  <i
+                    className={`ri-arrow-${
+                      openIndex === 2 ? 'up' : 'down'
+                    }-s-line text-2xl transition-transform ${
+                      openIndex === 2 ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+              </div>
+              <div
+                className={`px-8 overflow-hidden transition-all duration-500 ${
+                  openIndex === 2
+                    ? 'max-h-48 pb-10 opacity-100'
+                    : 'max-h-0 opacity-0'
+                }`}
+              >
+                <p className="text-sm text-gray-200">
+                  Tailored solutions backed by an in-house raw material
+                  ecosystem.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* CARD 4 */}
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              className={`
+          rounded-2xl border overflow-hidden transition-all duration-500
+          ${
+            openIndex === 3
+              ? 'bg-[#0C183E] border-[#0C183E] shadow-xl'
+              : 'bg-white border-gray-200 shadow-md hover:shadow-lg'
+          }
+        `}
+            >
+              <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center">
+                <img
+                  src={icons1}
+                  className={`h-18 w-18 mb-6 transition-all duration-500 ${
+                    openIndex === 3 ? 'scale-110 brightness-0 invert' : ''
+                  }`}
+                />
+                <h3
+                  className={`text-lg font-semibold mb-6 ${
+                    openIndex === 3 ? 'text-white' : 'text-gray-800'
+                  }`}
+                >
+                  CNC Machining and Finishing
+                </h3>
+                <button onClick={() => toggleCard(3)}>
+                  <i
+                    className={`ri-arrow-${
+                      openIndex === 3 ? 'up' : 'down'
+                    }-s-line text-2xl transition-transform ${
+                      openIndex === 3 ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+              </div>
+              <div
+                className={`px-8 overflow-hidden transition-all duration-500 ${
+                  openIndex === 3
+                    ? 'max-h-48 pb-10 opacity-100'
+                    : 'max-h-0 opacity-0'
+                }`}
+              >
+                <p className="text-sm text-gray-200">
+                  Automated precision machining for consistent, high-quality
+                  output.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </motion.section>
       </section>
       {/* News Section */}
       <section className="font-helvetica bg-gray-100 py-20 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start justify-between">
+        <motion.div
+          className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start justify-between"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+        >
           {/* ================= News Section ================= */}
           <div className="w-full lg:w-3/4 flex flex-col items-center">
-            <h1 className="text-3xl font-bold mb-12">News</h1>
+            <motion.h1
+              className="text-[37px] font-bold mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              News
+            </motion.h1>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-xl">
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-xl"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={{
+                visible: { transition: { staggerChildren: 0.15 } },
+              }}
+            >
               {newsData.map(news => (
-                <div
+                <motion.div
                   key={news.id}
                   className="bg-white rounded-xl shadow-sm overflow-hidden group hover:shadow-lg transition"
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
                 >
                   <img
                     src={news.img}
@@ -429,41 +662,70 @@ const Home = () => {
                       Read More →
                     </a>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
 
-          {/* ================= Investor Relation ================= */}
+          {/* ================= Investor Relations ================= */}
           <div className="w-full lg:w-1/2 flex flex-col items-center">
-            <h1 className="text-3xl font-bold mb-12">Investor Relations</h1>
+            <motion.h1
+              className="text-[37px] font-bold mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              Investor Relations
+            </motion.h1>
 
             {/* Investor Cards */}
-            <div className="flex flex-col gap-6 w-full max-w-xl mb-12">
+            <motion.div
+              className="flex flex-col gap-6 w-full max-w-xl mb-12"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={{
+                visible: { transition: { staggerChildren: 0.15 } },
+              }}
+            >
               {[
-                { title: 'Financials', period: 'Q1 (2025–26)' },
-                { title: 'Corporate Governance', period: 'Q1 (2025–26)' },
-                { title: 'Industry Report', period: 'Q1 (2025–26)' },
-                { title: 'IPO Documents', period: 'Q4 (2024–25)' },
+                { title: 'Financials', path: '/financials/' },
+                { title: 'Industry Report', path: '/industry-report/' },
+                {
+                  title: 'Corporate Governance',
+                  path: '/corporate-governance/',
+                },
+                { title: 'IPO Documents', path: '/ipo/' },
               ].map((item, index) => (
-                <div
+                <motion.div
                   key={index}
                   className="bg-white border-gray-100 rounded-xl p-6 flex items-center justify-between shadow-sm hover:shadow-lg transition"
+                  variants={{
+                    hidden: { opacity: 0, x: 40 },
+                    visible: { opacity: 1, x: 0 },
+                  }}
+                  transition={{ duration: 0.45, ease: 'easeOut' }}
                 >
-                  <div>
-                    <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
-                    <p className="text-sm text-gray-500">{item.period}</p>
-                  </div>
+                  <h3 className="text-lg font-semibold">{item.title}</h3>
 
-                  <button className="bg-blue text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-800 transition">
-                    Download
-                  </button>
-                </div>
+                  <Link to={item.path}>
+                    <button className="bg-blue text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-800 transition">
+                      View
+                    </button>
+                  </Link>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             {/* Stock Prices */}
-            <div className="bg-white w-full max-w-xl rounded-xl p-6 flex justify-around shadow-sm">
+            <motion.div
+              className="bg-white w-full max-w-xl rounded-xl p-6 flex justify-around shadow-sm"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+            >
               <div className="text-center">
                 <p className="text-sm text-gray-500 mb-1">BSE</p>
                 <p className="text-lg font-semibold">₹93.90</p>
@@ -472,67 +734,59 @@ const Home = () => {
                 <p className="text-sm text-gray-500 mb-1">NSE</p>
                 <p className="text-lg font-semibold">₹93.63</p>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Sustainability Section */}
       <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16 bg-white">
-        <h1 className="text-3xl font-bold mb-10 w-full text-left">
-          Sustainability
-        </h1>
-        <div className="w-full max-w-7xl">
-          <div className="flex flex-col lg:flex-row gap-10 items-center">
-            <div className="w-full">
-              <h2 className="text-2xl font-semibold mb-8 text-center">CBAM</h2>
+        {/* Heading */}
+        <motion.h1
+          className="text-[37px] ml-20 font-bold mb-10 w-full text-left"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
+          Engineering a{' '}
+          <span className="text-green-700">Sustainable Tomorrow</span>
+        </motion.h1>
 
-              <img
-                src={sustainability1}
-                alt="Sustainability 1"
-                className="w-full max-w-md rounded-lg shadow-md hover:shadow-2xl   transform hover:-translate-y-2   transition-all duration-300 ease-out"
-              />
-            </div>
+        {/* Content */}
+        <motion.div
+          className="flex flex-col lg:flex-row items-center justify-center gap-10 max-w-7xl w-full"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+        >
+          {/* Slider */}
+          <motion.div
+            className="w-full lg:w-3/5"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+          >
+            <SustainabilitySlider />
+          </motion.div>
 
-            <div className="w-full">
-              <h2 className="text-2xl font-semibold mb-8 text-center">CBAM</h2>
-              <div className=" flex flex-col justify-center text-center lg:text-left max-w-md   bg-white rounded-xl p-8   shadow-md hover:shadow-2xl   transform hover:-translate-y-2   transition-all duration-300 ease-out">
-                <div className="flex items-center justify-center lg:justify-between gap-6 mb-4">
-                  <p className="text-lg font-semibold">Careers</p>
-
-                  <Link to="/careers">
-                    <img
-                      src={career1}
-                      alt="Career"
-                      className="h-16 cursor-pointer "
-                    />
-                  </Link>
-                </div>
-
-                <p className="text-gray-600">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium esse natus quas impedit reiciendis rem deserunt
-                  ipsum eos delectus eum.
-                </p>
-
-                <Link to="/careers">
-                  <button className="mt-6 bg-blue text-white px-8 py-4 rounded-md  hover:bg-blue-800 transition">
-                    Visit our career page
-                  </button>
-                </Link>
-              </div>
-            </div>
-            <div className="w-full">
-              <h2 className="text-2xl font-semibold mb-8 text-center">CBAM</h2>
-
-              <img
-                src={sustainability2}
-                alt="Sustainability 2"
-                className="w-full max-w-md rounded-lg shadow-md hover:shadow-2xl   transform hover:-translate-y-2   transition-all duration-300 ease-out"
-              />
-            </div>
-          </div>
-        </div>
+          {/* Side Image */}
+          <motion.div
+            className="w-full lg:w-2/5"
+            initial={{ opacity: 0, x: 40, scale: 0.96 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.25, ease: 'easeOut' }}
+          >
+            <img
+              src={sustainability2}
+              alt="Sustainability"
+              className="w-full h-full object-cover shadow-lg rounded-xl"
+            />
+          </motion.div>
+        </motion.div>
       </section>
       {/* Blog Section */}
       <section className="bg-gray-100 px-6 py-16 font-helvetica">
@@ -702,7 +956,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };

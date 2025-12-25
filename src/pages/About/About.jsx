@@ -6,8 +6,6 @@ import { useState } from 'react';
 import icons1 from '../../assets/1a-about.svg';
 import icons2 from '../../assets/2a-about.svg';
 import icons3 from '../../assets/3a-about.svg';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
 const About = () => {
   const features = [
     {
@@ -38,7 +36,6 @@ const About = () => {
   return (
     <div className="w-full font-helvetica bg-black text-white">
       {/* ================= FULL SCREEN VIDEO ================= */}
-      <Navbar />
       <section className="relative w-screen h-screen overflow-hidden">
         <video
           className="absolute inset-0 w-full h-full object-cover"
@@ -237,7 +234,6 @@ const About = () => {
           </section>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };

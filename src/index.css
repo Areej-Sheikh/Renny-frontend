@@ -3,7 +3,7 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-blue: #0c183e;
+  --color-blue: #292c44;
   --font-jost: 'Jost', Arial, sans-serif;
   --font-helvetica: Helvetica, Arial, sans-serif;
   --font-poppins: 'Poppins', Arial, sans-serif;
@@ -16,6 +16,7 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  overflow-y: auto;
 }
 
 .scrollbar-hide::-webkit-scrollbar {

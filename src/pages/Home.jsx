@@ -109,7 +109,6 @@ const Home = () => {
       img: news4,
     },
   ];
-  
 
   return (
     <div className="flex flex-col  font-helvetica">
@@ -137,7 +136,7 @@ const Home = () => {
           viewport={{ once: true }}
         >
           <video
-            className="w-full h-full object-cover"
+            className="w-full h-full rounded-4xl object-cover"
             src={HomepageBanner}
             autoPlay
             loop
@@ -212,7 +211,13 @@ const Home = () => {
         </div>
       </motion.section>
       {/* Our Products */}
-      <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16">
+      <motion.section
+        className="flex flex-col items-center font-helvetica justify-center px-6 py-16"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+      >
         <h1 className="text-[37px] font-bold ml-20 mb-10 w-full text-left">
           Our Products
         </h1>
@@ -278,7 +283,7 @@ const Home = () => {
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Our Networks*/}
       <motion.section
@@ -789,8 +794,30 @@ const Home = () => {
         </motion.div>
       </section>
       {/* Blog Section */}
-      <section className="bg-gray-100 px-6 py-16 font-helvetica">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10">
+      <motion.section
+        className="bg-gray-100 px-6 py-16 font-helvetica"
+        variants={{
+          hidden: { opacity: 0, y: 40 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 0.6,
+              ease: 'easeOut',
+            },
+          },
+        }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+      >
+        <motion.div
+          className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
+        >
           {/* ================= Latest Blog ================= */}
           <div className="lg:w-1/2">
             <h1 className="text-2xl font-bold mb-6 w-full text-left">
@@ -808,7 +835,7 @@ const Home = () => {
               <img
                 src={blog1}
                 alt="Kwikstage Scaffolding"
-                className="w-full h-64 object-fit"
+                className="w-full h-64 object-cover"
               />
 
               <div className="p-6">
@@ -954,8 +981,8 @@ const Home = () => {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
     </div>
   );
 };

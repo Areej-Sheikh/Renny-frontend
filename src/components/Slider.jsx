@@ -1,27 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import Banner1 from "../assets/Banner1.jpg";
-import Banner2 from "../assets/Banner2.jpg";
-import Banner3 from "../assets/Banner3.jpg"
-import Banner4 from "../assets/Banner4.jpg";
+import Banner1 from '../assets/Banner1.jpg';
+import Banner2 from '../assets/Banner2.jpg';
+import Banner3 from '../assets/Banner3.jpg';
+import Banner4 from '../assets/Banner4.jpg';
 
 const Slider = () => {
-  const images = [Banner1, Banner2, Banner3,Banner4];
+  const images = [Banner1, Banner2, Banner3, Banner4];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) =>
-        prev === images.length - 1 ? 0 : prev + 1
-      );
+      setCurrentIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
     }, 3000);
 
     return () => clearInterval(interval);
   }, [images.length]);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
-      
+    <div className="relative w-full  overflow-hidden">
       {/* Image */}
       <img
         src={images[currentIndex]}
@@ -36,9 +33,7 @@ const Slider = () => {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${
-              currentIndex === index
-                ? "bg-[#FFD166] scale-110"
-                : "bg-white/50"
+              currentIndex === index ? 'bg-[#FFD166] scale-110' : 'bg-white/50'
             }`}
           />
         ))}

@@ -57,7 +57,7 @@ const Footer = () => {
       >
         {/* COL 1 */}
         <motion.div variants={item} className="space-y-4">
-          <img src={RennyLogo} alt="Renny Logo" className="h-16" />
+          <img src={RennyLogo} alt="Renny Logo" className="h-25" />
           <p className="text-sm text-gray-600">
             In 1996, Renny Strips Ltd embarked on its dynamic journey. Founded
             under the prudent leadership of Mr. Binny Gupta, Renny Strips Ltd.
@@ -85,6 +85,9 @@ const Footer = () => {
           <FooterLink to="/narrow-hrcoil">Narrow-width HR Coils</FooterLink>
           <FooterLink to="/erw-pipes-and-tubes">
             ERW Black & Galvanized Pipes & Tubes
+          </FooterLink>
+          <FooterLink to="/scaffolding-formwork/">
+            Scaffolding & Formwork
           </FooterLink>
         </motion.div>
 

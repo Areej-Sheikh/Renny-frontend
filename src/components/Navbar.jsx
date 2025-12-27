@@ -33,7 +33,7 @@ const Navbar = () => {
       <img
         src={RennyLogo}
         alt="Logo"
-        className="h-16 cursor-pointer rounded-md p-2"
+        className="h-20  cursor-pointer rounded-md p-2"
         onClick={() => navigate('/')}
       />
 

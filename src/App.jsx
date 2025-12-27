@@ -69,10 +69,10 @@ import ConstructionRevolution from './pages/Media/Blogs/ConstructionRevolution';
 import GlobalERWPipes from './pages/Media/Blogs/GlobalERWPipes';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
-
+import Parallax from './components/ParallaxSection';
 const App = () => {
   return (
-    <div>
+    <div className="App">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -197,6 +197,7 @@ const App = () => {
         {/* Contact */}
         <Route path="/contact/" element={<Contact />} />
       </Routes>
+      <Parallax />
       <Footer />
     </div>
   );

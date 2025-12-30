@@ -18,12 +18,12 @@ const Slider = () => {
   }, [images.length]);
 
   return (
-    <div className="relative w-full  overflow-hidden">
+    <div className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden">
       {/* Image */}
       <img
         src={images[currentIndex]}
         alt="banner"
-        className="w-full h-full object-cover transition-all duration-700"
+        className="w-full h-full object-contain transition-all duration-700"
       />
 
       {/* Left side dots */}

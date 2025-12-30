@@ -71,8 +71,6 @@ const Footer = () => {
           <FooterLink to="/manufacturing-units">
             Manufacturing Process
           </FooterLink>
-          <FooterLink to="/timeline">Timeline</FooterLink>
-          <FooterLink to="/network">Network</FooterLink>
           <FooterLink to="/quality-standard">Quality & Standard</FooterLink>
           <FooterLink to="/design-centre">Design Centre</FooterLink>
         </motion.div>
@@ -96,7 +94,7 @@ const Footer = () => {
           <h3 className="font-semibold">Investor Relations</h3>
           <FooterLink to="/">Renny</FooterLink>
           <FooterLink to="/leadership">Leadership</FooterLink>
-          <FooterLink to="/Investors">Investors</FooterLink>
+          <FooterLink to="/financials">Investors</FooterLink>
         </motion.div>
 
         {/* COL 5 */}

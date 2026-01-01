@@ -1,13 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
-
 /* Pages */
 import Home from './pages/Home';
 
 /* About */
 import About from './pages/About/About';
-import Timeline from './pages/About/Timeline';
 import Manufacturing from './pages/About/Manufacturing';
-import Network from './pages/About/Network';
 import Quality from './pages/About/Quality';
 import DesignCentre from './pages/About/DesignCentre';
 
@@ -41,6 +38,7 @@ import Events from './pages/Media/Events';
 
 /* Career */
 import Career from './pages/Career/Career';
+import JobDetails from "./pages/Career/JobDetails";
 
 /* Contact */
 import Contact from './pages/Contact/Contact';
@@ -70,18 +68,17 @@ import GlobalERWPipes from './pages/Media/Blogs/GlobalERWPipes';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Parallax from './components/ParallaxSection';
+import Leadership from './pages/Investors/Leadership';
 const App = () => {
   return (
-    <div className="App">
+    <div className="App relative min-h-screen overflow-x-hidden">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
 
         {/* About */}
         <Route path="/company-overview-2/" element={<About />} />
-        <Route path="/timeline/" element={<Timeline />} />
         <Route path="/manufacturing-units/" element={<Manufacturing />} />
-        <Route path="/network/" element={<Network />} />
         <Route path="/quality-standard/" element={<Quality />} />
         <Route path="/design-centre/" element={<DesignCentre />} />
 
@@ -100,6 +97,7 @@ const App = () => {
         <Route path="/ipo-audio-visual/" element={<IPOAV />} />
         <Route path="/Share-holding-pattern/" element={<Shareholding />} />
         <Route path="/our-policies/" element={<Policies />} />
+        <Route path="/leadership/" element={<Leadership />} />
 
         {/* EC */}
         <Route path="/ec/" element={<EC />} />
@@ -192,10 +190,11 @@ const App = () => {
         />
 
         {/* Career */}
-        <Route path="/careers/" element={<Career />} />
+        <Route path="/career/" element={<Career />} />
 
         {/* Contact */}
-        <Route path="/contact/" element={<Contact />} />
+        <Route path="/contact-us/" element={<Contact />} />
+        <Route path='/careers/:jobId' element={<JobDetails/>}/>
       </Routes>
       <Parallax />
       <Footer />

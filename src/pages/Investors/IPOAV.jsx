@@ -1,7 +1,136 @@
-import React from 'react';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+
+import Navbar from "../../components/Navbar"; 
+import Footer from "../../components/Footer"; 
+import ipoHero from "../../assets/Financials.webp";
+import InvestorSidebar from "../../components/InvestorSidebar"; 
 
 const IPOAV = () => {
-  return <div>IPOAV</div>;
+  const [videos, setVideos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const brandColor = "#292C44";
+  const mainHeadingFont = "font-['Helvetica','Arial',sans-serif] text-[37px] font-semibold";
+  const subHeadingFont = "font-['Helvetica','Arial',sans-serif] text-[18px] font-semibold";
+
+  // LOGIC TO CONVERT DRIVE LINK TO EMBED LINK
+  const getEmbedUrl = (driveUrl) => {
+    if (!driveUrl) return "";
+    // Replaces the '/view' part with '/preview' to allow iframe embedding
+    return driveUrl.replace(/\/view.*$/, "/preview");
+  };
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      // MOCK DATA: Structured for easy backend replacement
+      const data = [
+        {
+          title: "DRHP Statutory AV - English",
+          driveUrl: "https://drive.google.com/file/d/1aTuU8Kj31PcgptbbV7yk-Mgo6VpPMYMa/view"
+        },
+        {
+          title: "DRHP Statutory AV - Hindi",
+          driveUrl: "https://drive.google.com/file/d/1wrHiuYyk-CN_7PxuqRAWTzhqw07O058P/view"
+        }
+      ];
+      setVideos(data);
+      setIsLoading(false);
+    };
+    fetchVideos();
+  }, []);
+
+  if (isLoading) return null;
+
+  return (
+    <div className="font-['Helvetica','Arial',sans-serif]">
+      <Navbar />
+      
+      {/* -------------------- HERO SECTION -------------------- */}
+      <section className="relative w-full h-[55vh] overflow-hidden">
+        <img src={ipoHero} alt="IPO Audio Visual" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative z-10 h-full flex items-center px-6 lg:px-20">
+          <div className="max-w-7xl w-full">
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.6 }} 
+              className={`text-white ${mainHeadingFont}`}
+            >
+              IPO Audio Visual
+            </motion.h1>
+            <nav className="mt-4 text-sm text-gray-300 flex gap-2">
+              <Link to="/" className="hover:text-white transition">Home</Link> 
+              <span>&gt;</span> 
+              <Link to="/investor-relations" className="hover:text-white transition">Investor Relations</Link> 
+              <span>&gt;</span> 
+              <span className="text-white font-medium">IPO Audio Visual</span>
+            </nav>
+          </div>
+        </div>
+      </section>
+
+      {/* -------------------- MAIN CONTENT SECTION -------------------- */}
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="pt-20 pb-32 bg-white px-6"
+      >
+        <div className="max-w-[1400px] mx-auto grid grid-cols-12 gap-12 items-start">
+          
+          <div className="col-span-12 lg:col-span-8">
+            <div 
+              className="inline-block text-white px-5 py-1.5 rounded-md mb-6 font-semibold text-[13px] tracking-wide" 
+              style={{ backgroundColor: brandColor }}
+            >
+              INVESTOR RELATIONS
+            </div>
+            <h2 className={`${mainHeadingFont} mb-12 text-gray-900`}>IPO Audio Visual</h2>
+            
+            {/* VIDEO GRID */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              {videos.map((video, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex flex-col"
+                >
+                  <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-gray-100">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={getEmbedUrl(video.driveUrl)}
+                      title={video.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    ></iframe>
+                  </div>
+                  <h3 className="mt-5 text-center text-[16px] font-bold text-gray-800 leading-snug">
+                    {video.title}
+                  </h3>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* REUSABLE STICKY SIDEBAR */}
+          <div className="col-span-12 lg:col-span-4 sticky top-28">
+              <InvestorSidebar />
+          </div>
+        </div>
+      </motion.section>
+
+      <Footer />
+    </div>
+  );
 };
 
 export default IPOAV;

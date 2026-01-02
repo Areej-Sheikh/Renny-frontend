@@ -61,35 +61,29 @@ const Events = () => {
   const bannerY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
 
   return (
-    <motion.div className="font-helvetica mt-5 overflow-hidden  min-h-screen px-6 py-12">
+    <motion.div className="font-helvetica  overflow-hidden  min-h-screen ">
       {/* ---------------- Banner ---------------- */}
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden rounded-2xl mb-12"
+        className="relative h-[70vh] w-full overflow-hidden  mb-12"
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
       >
-        <motion.img
+        <img
           src={banner}
-          alt="Events Banner"
-          initial={{ scale: 1.2, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.4, ease: 'easeOut' }}
-          className="absolute inset-0 w-full h-full object-cover"
+          alt="Blogs Banner"
+          className="absolute inset-0 w-full h-full  object-cover"
         />
-
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
-
-        <motion.div
+        <div className="absolute inset-0  bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+        <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
-          className="relative z-10 flex items-center justify-center h-full"
+          className="relative z-10 text-white text-6xl md:text-7xl font-bold 
+                 flex items-end justify-start h-full py-10 px-10"
         >
-          <h1 className="text-white text-6xl md:text-7xl font-bold tracking-[0.35em]">
-            EVENTS
-          </h1>
-        </motion.div>
+          Events
+        </motion.h1>
       </motion.section>
 
       {/* ---------------- Event Cards ---------------- */}

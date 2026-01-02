@@ -67,7 +67,6 @@ import GlobalERWPipes from './pages/Media/Blogs/GlobalERWPipes';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Parallax from './components/ParallaxSection';
-import Leadership from './pages/Investors/Leadership';
 const App = () => {
   return (
     <div className="App relative min-h-screen overflow-x-hidden">
@@ -96,7 +95,6 @@ const App = () => {
         <Route path="/ipo-audio-visual/" element={<IPOAV />} />
         <Route path="/Share-holding-pattern/" element={<Shareholding />} />
         <Route path="/our-policies/" element={<Policies />} />
-        <Route path="/leadership/" element={<Leadership />} />
 
         {/* EC */}
         <Route path="/ec/" element={<EC />} />
@@ -193,7 +191,7 @@ const App = () => {
 
         {/* Contact */}
         <Route path="/contact-us/" element={<Contact />} />
-        <Route path='/careers/:jobId' element={<JobDetails/>}/>
+        <Route path="/careers/:jobId" element={<JobDetails />} />
       </Routes>
       <Parallax />
       <Footer />

@@ -4,17 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import Navbar from "../../components/Navbar"; 
 import Footer from "../../components/Footer"; 
-import industryHero from "../../assets/Industry Report.webp"; // Using your hero placeholder
+import industryHero from "../../assets/Industry Report.webp"; 
 import InvestorSidebar from "../../components/InvestorSidebar"; 
-const SIDEBAR_LINKS = [
-  { title: "Financials", path: "/financials" },
-  { title: "Corporate Governance", path: "/corporate-governance" },
-  { title: "Industry Report", path: "/industry-report" },
-  { title: "IPO Documents", path: "/ipo" },
-  { title: "IPO Audio Visual", path: "/ipo-audio-visual" },
-  { title: "Shareholding Pattern", path: "/Share-holding-pattern" },
-  { title: "Our Policies", path: "/our-policies" },
-];
 
 // This is structured to easily accept backend data later
 const INDUSTRY_DOCS = [
@@ -32,8 +23,6 @@ const IndustryReport = () => {
   const subHeadingFont = "font-['Helvetica','Arial',sans-serif] text-[18px] font-semibold";
   const btnClass = "text-white px-5 py-2.5 rounded-lg text-[14px] font-medium hover:opacity-90 transition-all duration-300 font-['Helvetica','Arial',sans-serif]";
 
-  const normalizePath = (path) => path.replace(/\/$/, "");
-
   return (
     <div className="font-['Helvetica','Arial',sans-serif]">
       <Navbar />
@@ -41,25 +30,18 @@ const IndustryReport = () => {
       {/* -------------------- HERO SECTION -------------------- */}
       <section className="relative w-full h-[55vh] overflow-hidden">
         <img src={industryHero} alt="Industry Report" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 h-full flex items-center px-6 lg:px-20">
-          <div className="max-w-7xl w-full">
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.6 }} 
-              className={`text-white ${mainHeadingFont}`}
-            >
-              Industry Report
-            </motion.h1>
-            <nav className="mt-4 text-sm text-gray-300 flex gap-2">
-              <Link to="/" className="hover:text-white transition">Home</Link> 
-              <span>&gt;</span> 
-              <Link to="/investor-relations" className="hover:text-white transition">Investor Relations</Link> 
-              <span>&gt;</span> 
-              <span className="text-white font-medium">Industry Report</span>
-            </nav>
-          </div>
+        <div className="absolute inset-0 bg-black/50" />
+        
+        {/* Heading positioned at the bottom left */}
+        <div className="absolute bottom-16 left-0 w-full px-6 lg:px-20 z-10">
+          <motion.h1 
+            initial={{ opacity: 0, x: -20 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 0.8 }} 
+            className={`text-white ${mainHeadingFont}`}
+          >
+            Industry Report
+          </motion.h1>
         </div>
       </section>
 
@@ -81,7 +63,7 @@ const IndustryReport = () => {
             </div>
             <h2 className={`${mainHeadingFont} mb-12 text-gray-900`}>Industry Report</h2>
             
-            {/* DOCUMENT LIST (Matching Financials Style) */}
+            {/* DOCUMENT LIST */}
             <div className="space-y-4">
               {INDUSTRY_DOCS.map((doc, i) => (
                 <motion.div 

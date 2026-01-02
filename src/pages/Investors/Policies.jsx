@@ -65,13 +65,21 @@ const Policies = () => {
       <style>{`.no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }`}</style>
       <Navbar />
 
+      {/* HERO SECTION */}
       <section className="relative w-full h-[55vh] overflow-hidden">
         <img src={policiesHero} alt="Policies" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 h-full flex items-center px-6 lg:px-20">
-          <div className="max-w-7xl w-full">
-            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className={`text-white ${mainHeadingFont}`}>Our Policies</motion.h1>
-          </div>
+        
+        {/* Heading positioned bottom-left */}
+        <div className="absolute bottom-16 left-0 w-full px-6 lg:px-20 z-10">
+          <motion.h1 
+            initial={{ opacity: 0, x: -20 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 0.8 }}
+            className={`text-white ${mainHeadingFont}`}
+          >
+            Our Policies
+          </motion.h1>
         </div>
       </section>
 
@@ -81,7 +89,7 @@ const Policies = () => {
             <div className="inline-block text-white px-5 py-1.5 rounded-md mb-6 font-semibold text-[13px]" style={{ backgroundColor: brandColor }}>INVESTOR RELATIONS</div>
             <h2 className={`${mainHeadingFont} mb-12 text-gray-900`}>Our Policies</h2>
 
-            {/* TAB SCROLLER WITH FULL NAMES */}
+            {/* TAB SCROLLER */}
             <div className="relative mb-12 group flex items-center">
               <button onClick={() => scroll('left')} className="absolute left-0 z-20 p-2 bg-white/90 shadow-lg rounded-full -ml-4 opacity-0 group-hover:opacity-100 transition-opacity border border-gray-100">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={brandColor} strokeWidth="3"><path d="M15 18l-6-6 6-6"/></svg>
@@ -124,13 +132,13 @@ const Policies = () => {
             </AnimatePresence>
           </div>
 
-          {/* STICKY SIDEBAR */}
           <div className="col-span-12 lg:col-span-4 sticky top-28">
             <InvestorSidebar />
           </div>
         </div>
       </section>
       
+     
     </div>
   );
 };

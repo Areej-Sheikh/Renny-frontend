@@ -2,10 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-
 import Navbar from "../../components/Navbar"; 
 import Footer from "../../components/Footer"; 
-// Import the new reusable component
 import InvestorSidebar from "../../components/InvestorSidebar"; 
 import financialsHero from "../../assets/Financials.webp";
 
@@ -46,25 +44,18 @@ const Financials = () => {
       {/* HERO SECTION */}
       <section className="relative w-full h-[60vh] overflow-hidden">
         <img src={financialsHero} alt="Financials" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 h-full flex items-center px-20">
-          <div className="max-w-7xl w-full">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.8 }} 
-              className={`text-white ${mainHeadingFont}`}
-            >
-              Financials
-            </motion.h1>
-            <nav className="mt-3 text-sm text-gray-200 flex gap-2 font-['Helvetica','Arial',sans-serif]">
-              <Link to="/" className="hover:text-white transition">Home</Link>
-              <span>&gt;</span>
-              <Link to="/investor-relations" className="hover:text-white transition">Investor Relations</Link>
-              <span>&gt;</span>
-              <span className="text-white font-medium">Financials</span>
-            </nav>
-          </div>
+        <div className="absolute inset-0 bg-black/40" />
+        
+        {/* Heading positioned at the bottom left */}
+        <div className="absolute bottom-16 left-0 w-full px-10 md:px-20 z-10">
+          <motion.h1 
+            initial={{ opacity: 0, x: -20 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 0.8 }} 
+            className={`text-white ${mainHeadingFont}`}
+          >
+            Financials
+          </motion.h1>
         </div>
       </section>
 
@@ -125,7 +116,6 @@ const Financials = () => {
 
         </div>
       </motion.section>
-
       
     </>
   );

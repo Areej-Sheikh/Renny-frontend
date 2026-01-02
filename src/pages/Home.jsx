@@ -111,9 +111,9 @@ const Home = () => {
   ];
 
   return (
-    <div className="flex flex-col  font-helvetica">
+    <div className="relative flex flex-col  font-helvetica">
       {/* Banner */}
-      <section className="w-full h-125 flex flex-col md:flex-row items-center mt-15 ">
+      <section className="w-full relative h-125 flex flex-col md:flex-row items-center mt-15 ">
         {/* Left Text Column */}
         <motion.div
           className="md:w-1/2 flex flex-col justify-center px-6 md:px-12 h-full"
@@ -222,7 +222,7 @@ const Home = () => {
           Our Products
         </h1>
 
-        <div className="flex h-105 overflow-hidden w-full max-w-7xl">
+        <div className="flex min-h-[400px] overflow-hidden w-full max-w-7xl">
           {products.map((item, index) => (
             <div
               key={index}

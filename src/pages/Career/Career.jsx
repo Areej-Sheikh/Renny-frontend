@@ -21,7 +21,13 @@ const jobsData = [
   },
 ];
 
-const jobTypes = ["Full Time", "Part Time", "Contract", "Temporary", "Trainee"];
+const jobTypes = [
+  "Full Time",
+  "Part Time",
+  "Contract",
+  "Temporary",
+  "Trainee",
+];
 
 const Career = () => {
   const [activeDepartment, setActiveDepartment] = useState("IT");
@@ -30,13 +36,16 @@ const Career = () => {
   const navigate = useNavigate();
 
   const filteredJobs = jobsData
+    .filter((job) => job.department === activeDepartment)
     .filter((job) => job.type === activeType)
-    .filter((job) => job.title.toLowerCase().includes(search.toLowerCase()));
+    .filter((job) =>
+      job.title.toLowerCase().includes(search.toLowerCase())
+    );
 
   const handleDepartmentChange = (dept) => {
     setActiveDepartment(dept);
-    setActiveType("Full Time"); // reset job type
-    setSearch(""); // reset search
+    setActiveType("Full Time");
+    setSearch("");
   };
 
   return (
@@ -47,8 +56,8 @@ const Career = () => {
           alt="Career Banner"
           className="w-full h-full object-cover"
         />
-        
       </div>
+
       <motion.div
         className="flex flex-wrap items-center gap-8 mb-12"
         initial={{ opacity: 0, y: 20 }}
@@ -126,7 +135,9 @@ const Career = () => {
         }}
       >
         {filteredJobs.length === 0 ? (
-          <p className="text-gray-500">No jobs available for this selection.</p>
+          <p className="text-gray-500">
+            No jobs available for this selection.
+          </p>
         ) : (
           filteredJobs.map((job) => (
             <motion.div

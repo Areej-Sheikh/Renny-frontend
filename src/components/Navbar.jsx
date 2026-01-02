@@ -54,21 +54,13 @@ const Navbar = () => {
                 Company Overview
               </Link>
             </li>
-            <li>
-              <Link to="/timeline/" className="dropdown-item">
-                Timeline
-              </Link>
-            </li>
+
             <li>
               <Link to="/manufacturing-units/" className="dropdown-item">
                 Manufacturing Process
               </Link>
             </li>
-            <li>
-              <Link to="/network/" className="dropdown-item">
-                Network
-              </Link>
-            </li>
+
             <li>
               <Link to="/quality-standard/" className="dropdown-item">
                 Quality & Standard

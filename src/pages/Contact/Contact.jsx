@@ -154,7 +154,6 @@ const Contact = () => {
           </motion.div>
         </div>
       </section>
-      {/* ================= CONTACT INFO WITH ANIMATION ================= */}
       <section className="w-full bg-gray-100 text-black px-6 md:px-20 py-16">
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -346,7 +345,6 @@ const Contact = () => {
           </motion.div>
         </div>
 
-        {/* ===== UNIT II ===== */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}

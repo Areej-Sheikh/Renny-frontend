@@ -41,6 +41,8 @@ import Events from './pages/Media/Events';
 
 /* Career */
 import Career from './pages/Career/Career';
+import JobDetails from "./pages/Career/JobDetails";
+
 
 /* Contact */
 import Contact from './pages/Contact/Contact';
@@ -192,10 +194,11 @@ const App = () => {
         />
 
         {/* Career */}
-        <Route path="/careers/" element={<Career />} />
+        <Route path="/career/" element={<Career />} />
 
         {/* Contact */}
-        <Route path="/contact/" element={<Contact />} />
+        <Route path="/contact-us/" element={<Contact />} />
+        <Route path='/careers/:jobId' element={<JobDetails/>}/>
       </Routes>
       <Parallax />
       <Footer />

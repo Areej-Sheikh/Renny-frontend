@@ -18,13 +18,11 @@ const IPOAV = () => {
   // LOGIC TO CONVERT DRIVE LINK TO EMBED LINK
   const getEmbedUrl = (driveUrl) => {
     if (!driveUrl) return "";
-    // Replaces the '/view' part with '/preview' to allow iframe embedding
     return driveUrl.replace(/\/view.*$/, "/preview");
   };
 
   useEffect(() => {
     const fetchVideos = async () => {
-      // MOCK DATA: Structured for easy backend replacement
       const data = [
         {
           title: "DRHP Statutory AV - English",
@@ -50,25 +48,18 @@ const IPOAV = () => {
       {/* -------------------- HERO SECTION -------------------- */}
       <section className="relative w-full h-[55vh] overflow-hidden">
         <img src={ipoHero} alt="IPO Audio Visual" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 h-full flex items-center px-6 lg:px-20">
-          <div className="max-w-7xl w-full">
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.6 }} 
-              className={`text-white ${mainHeadingFont}`}
-            >
-              IPO Audio Visual
-            </motion.h1>
-            <nav className="mt-4 text-sm text-gray-300 flex gap-2">
-              <Link to="/" className="hover:text-white transition">Home</Link> 
-              <span>&gt;</span> 
-              <Link to="/investor-relations" className="hover:text-white transition">Investor Relations</Link> 
-              <span>&gt;</span> 
-              <span className="text-white font-medium">IPO Audio Visual</span>
-            </nav>
-          </div>
+        <div className="absolute inset-0 bg-black/50" />
+        
+        {/* Heading positioned at the bottom left */}
+        <div className="absolute bottom-16 left-0 w-full px-6 lg:px-20 z-10">
+          <motion.h1 
+            initial={{ opacity: 0, x: -20 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 0.8 }} 
+            className={`text-white ${mainHeadingFont}`}
+          >
+            IPO Audio Visual
+          </motion.h1>
         </div>
       </section>
 
@@ -128,7 +119,7 @@ const IPOAV = () => {
         </div>
       </motion.section>
 
-      <Footer />
+      
     </div>
   );
 };

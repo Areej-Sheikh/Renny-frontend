@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import InvestorSidebar from "../../components/InvestorSidebar";
 import Navbar from "../../components/Navbar"; 
 import Footer from "../../components/Footer"; 
-import shareholdingHero from "../../assets/Share Holding Pattern.webp"; // Using consistent hero placeholder
+import shareholdingHero from "../../assets/Share Holding Pattern.webp";
 
 const SIDEBAR_LINKS = [
   { title: "Financials", path: "/financials" },
@@ -41,25 +41,18 @@ const Shareholding = () => {
       {/* -------------------- HERO SECTION -------------------- */}
       <section className="relative w-full h-[55vh] overflow-hidden">
         <img src={shareholdingHero} alt="Share Holding Pattern" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 h-full flex items-center px-6 lg:px-20">
-          <div className="max-w-7xl w-full">
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.6 }} 
-              className={`text-white ${mainHeadingFont}`}
-            >
-              Share Holding Pattern
-            </motion.h1>
-            <nav className="mt-4 text-sm text-gray-300 flex gap-2">
-              <Link to="/" className="hover:text-white transition">Home</Link> 
-              <span>&gt;</span> 
-              <Link to="/investor-relations" className="hover:text-white transition">Investor Relations</Link> 
-              <span>&gt;</span> 
-              <span className="text-white font-medium">Share Holding Pattern</span>
-            </nav>
-          </div>
+        <div className="absolute inset-0 bg-black/50" />
+        
+        {/* Heading positioned at the bottom left */}
+        <div className="absolute bottom-16 left-0 w-full px-6 lg:px-20 z-10">
+          <motion.h1 
+            initial={{ opacity: 0, x: -20 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 0.8 }} 
+            className={`text-white ${mainHeadingFont}`}
+          >
+            Share Holding Pattern
+          </motion.h1>
         </div>
       </section>
 
@@ -81,7 +74,7 @@ const Shareholding = () => {
             </div>
             <h2 className={`${mainHeadingFont} mb-12 text-gray-900`}>Share Holding Pattern</h2>
 
-            {/* Share Holding Pattern Badge - Color Matched to Brand */}
+            {/* Share Holding Pattern Badge */}
             <div className="mb-8">
                <button 
                   className="text-white px-6 py-2 rounded font-bold text-[14px] shadow-sm cursor-default"
@@ -113,33 +106,8 @@ const Shareholding = () => {
           </div>
 
           {/* -------------------- SIDEBAR SECTION -------------------- */}
-          <aside className="col-span-12 lg:col-span-4">
-            <motion.h4 
-              initial={{ opacity: 0 }} 
-              whileInView={{ opacity: 1 }} 
-              className={`${mainHeadingFont} mb-10 text-gray-900`}
-            >
-              Other Information
-            </motion.h4>
-            <div className="flex flex-col gap-5">
-              {SIDEBAR_LINKS
-                .filter(item => normalizePath(item.path) !== normalizePath(location.pathname))
-                .map((item, index) => (
-                <motion.div 
-                  key={index} 
-                  initial={{ opacity: 0, x: 30 }} 
-                  whileInView={{ opacity: 1, x: 0 }} 
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="bg-white border border-gray-100 rounded-xl p-6 flex items-center justify-between shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                >
-                  <h3 className={subHeadingFont}>{item.title}</h3>
-                  <Link to={item.path}>
-                    <button className={btnClass} style={{ backgroundColor: brandColor }}>View</button>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
+          <aside className="col-span-12 lg:col-span-4 sticky top-28">
+            <InvestorSidebar />
           </aside>
         </div>
       </motion.section>

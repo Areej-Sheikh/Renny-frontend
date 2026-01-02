@@ -21,16 +21,6 @@ const GOVERNANCE_TABS = [
   { key: "contact", label: "Investor Contacts" },
 ];
 
-const SIDEBAR_LINKS = [
-  { title: "Financials", path: "/financials" },
-  { title: "Corporate Governance", path: "/corporate-governance" },
-  { title: "Industry Report", path: "/industry-report" },
-  { title: "IPO Documents", path: "/ipo" },
-  { title: "IPO Audio Visual", path: "/ipo-audio-visual" },
-  { title: "Shareholding Pattern", path: "/Share-holding-pattern" },
-  { title: "Our Policies", path: "/our-policies" },
-];
-
 const Governance = () => {
   const [activeTab, setActiveTab] = useState("board");
   const location = useLocation();
@@ -40,9 +30,7 @@ const Governance = () => {
   const subHeadingFont = "font-['Helvetica','Arial',sans-serif] text-[18px] font-semibold";
   const btnClass = "text-white px-5 py-2.5 rounded-lg text-[14px] font-medium hover:opacity-90 transition-all duration-300 font-['Helvetica','Arial',sans-serif]";
 
-  const normalizePath = (path) => path.replace(/\/$/, "");
-
-  // 1. BOARD OF DIRECTORS RENDERER (With Scroll Animation)
+  // 1. BOARD OF DIRECTORS RENDERER
   const renderBoard = () => (
     <motion.div 
       initial="hidden"
@@ -82,7 +70,7 @@ const Governance = () => {
     </motion.div>
   );
 
-  // 2. COMMITTEES RENDERER (Full Data from Images)
+  // 2. COMMITTEES RENDERER
   const renderCommittee = () => (
     <div className="grid grid-cols-1 gap-8">
       {[
@@ -203,20 +191,18 @@ const Governance = () => {
       {/* HERO SECTION */}
       <section className="relative w-full h-[55vh] overflow-hidden">
         <img src={governanceHero} alt="Hero" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 h-full flex items-center px-6 lg:px-20">
-          <div className="max-w-7xl w-full">
-            <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className={`text-white ${mainHeadingFont}`}>
-              Corporate Governance
-            </motion.h1>
-            <nav className="mt-4 text-sm text-gray-300 flex gap-2">
-              <Link to="/" className="hover:text-white transition">Home</Link> 
-              <span>&gt;</span> 
-              <Link to="/investor-relations" className="hover:text-white transition">Investor Relations</Link> 
-              <span>&gt;</span> 
-              <span className="text-white font-medium">Corporate Governance</span>
-            </nav>
-          </div>
+        <div className="absolute inset-0 bg-black/50" />
+        
+        {/* Heading positioned at the bottom left */}
+        <div className="absolute bottom-16 left-0 w-full px-6 lg:px-20 z-10">
+          <motion.h1 
+            initial={{ opacity: 0, x: -20 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ duration: 0.8 }} 
+            className={`text-white ${mainHeadingFont}`}
+          >
+            Corporate Governance
+          </motion.h1>
         </div>
       </section>
 
@@ -264,8 +250,7 @@ const Governance = () => {
           </div>
         </div>
       </section>
-
-      
+     
     </div>
   );
 };

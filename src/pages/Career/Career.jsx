@@ -1,7 +1,162 @@
-import React from 'react';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { MdLocationOn, MdSearch } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+
+const jobsData = [
+  {
+    id: "web-dev",
+    title: "Web Developer",
+    department: "IT",
+    location: "India",
+    type: "Full Time",
+  },
+  {
+    id: "product-manager",
+    title: "Product Manager",
+    department: "Engineering",
+    location: "India",
+    type: "Full Time",
+  },
+];
+
+const jobTypes = [
+  "Full Time",
+  "Part Time",
+  "Contract",
+  "Temporary",
+  "Trainee",
+];
 
 const Career = () => {
-  return <div>Career</div>;
+  const [activeDepartment, setActiveDepartment] = useState("IT");
+  const [activeType, setActiveType] = useState("Full Time");
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  const filteredJobs = jobsData
+    .filter((job) => job.type === activeType)
+    .filter((job) =>
+      job.title.toLowerCase().includes(search.toLowerCase())
+    );
+
+  const handleDepartmentChange = (dept) => {
+    setActiveDepartment(dept);
+    setActiveType("Full Time"); // reset job type
+    setSearch(""); // reset search
+  };
+
+  return (
+    <section className="w-full bg-gray-50 px-6 md:px-20 py-16">
+      <motion.div
+        className="flex flex-wrap items-center gap-8 mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+      >
+        {/* Department */}
+        <div className="flex items-center gap-6">
+          <span className="font-medium text-gray-700">Department</span>
+
+          <button
+            onClick={() => handleDepartmentChange("IT")}
+            className={`text-lg font-semibold transition ${
+              activeDepartment === "IT"
+                ? "text-[#292c44] border-b-2 border-[#292c44]"
+                : "text-gray-400"
+            }`}
+          >
+            IT
+          </button>
+
+          <button
+            onClick={() => handleDepartmentChange("Engineering")}
+            className={`text-lg font-semibold transition ${
+              activeDepartment === "Engineering"
+                ? "text-[#292c44] border-b-2 border-[#292c44]"
+                : "text-gray-400"
+            }`}
+          >
+            Engineering
+          </button>
+        </div>
+
+        <div className="flex items-center gap-2 text-gray-700">
+          <MdLocationOn />
+          <span>India</span>
+        </div>
+
+        <div className="flex flex-wrap gap-3">
+          {jobTypes.map((type) => (
+            <button
+              key={type}
+              onClick={() => setActiveType(type)}
+              className={`px-4 py-1.5 rounded-full text-sm transition ${
+                activeType === type
+                  ? "bg-[#292c44] text-white"
+                  : "bg-white border border-gray-300 text-gray-500"
+              }`}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
+
+        <div className="relative ml-auto">
+          <MdSearch className="absolute top-2.5 left-3 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search jobs"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="pl-10 pr-4 py-2 border rounded-lg outline-none"
+          />
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="space-y-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          visible: { transition: { staggerChildren: 0.15 } },
+        }}
+      >
+        {filteredJobs.length === 0 ? (
+          <p className="text-gray-500">
+            No jobs available for this selection.
+          </p>
+        ) : (
+          filteredJobs.map((job) => (
+            <motion.div
+              key={job.id}
+              variants={{
+                hidden: { opacity: 0, y: 25 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.4 }}
+              className="bg-white p-6 rounded-xl flex justify-between items-center"
+            >
+              <div>
+                <h2 className="text-xl font-semibold">{job.title}</h2>
+                <p className="text-sm text-gray-500 mt-1">{job.type}</p>
+              </div>
+
+              <button
+                onClick={() => navigate(`/careers/${job.id}`)}
+                className="px-6 py-2 rounded-lg text-sm text-white bg-[#292c44] hover:opacity-90 transition"
+              >
+                Details
+              </button>
+            </motion.div>
+          ))
+        )}
+      </motion.div>
+    </section>
+  );
 };
 
 export default Career;

@@ -248,12 +248,20 @@ const Blogs = () => {
   const [activeBlog, setActiveBlog] = useState(blogsData[0]);
   const [sortType, setSortType] = useState('All');
   const leftRefs = useRef([]);
-
+  const [dateSortOrder, setDateSortOrder] = useState('newest'); // default
+  const [open, setOpen] = useState(false);
   // Filter blogs by year
-  const filteredBlogs = blogsData.filter(blog => {
-    if (sortType === 'All') return true;
-    return blog.date.includes(sortType);
-  });
+  const filteredBlogs = blogsData
+    .filter(blog => {
+      if (sortType === 'All') return true;
+      return new Date(blog.date).getFullYear().toString() === sortType;
+    })
+    .sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+
+      return dateSortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+    });
 
   // Track which blogs are in view for animations
   const [inViewIndexes, setInViewIndexes] = useState([]);
@@ -276,10 +284,10 @@ const Blogs = () => {
   }, [filteredBlogs]);
 
   return (
-    <div className="font-helvetica mt-5 overflow-hidden  min-h-screen px-6 py-12">
+    <div className="font-helvetica overflow-hidden  min-h-screen">
       {/* Banner */}
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden rounded-2xl mb-12"
+        className="relative h-[70vh] w-full overflow-hidden  mb-12"
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
@@ -287,28 +295,34 @@ const Blogs = () => {
         <img
           src={banner}
           alt="Blogs Banner"
-          className="absolute inset-0 w-full h-full  rounded-2xlobject-cover"
+          className="absolute inset-0 w-full h-full  object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+        <div className="absolute inset-0  bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
         <motion.h1
-          className="relative z-10 text-white text-6xl md:text-7xl font-bold tracking-[0.35em] flex items-center justify-center h-full"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
+          className="relative z-10 text-white text-6xl md:text-7xl font-bold 
+           flex items-end justify-start h-full py-10 px-10"
         >
-          BLOGS
+          Blogs
         </motion.h1>
       </motion.section>
 
-      <div className="flex flex-col lg:flex-row gap-8">
+      <motion.div
+        className="flex flex-col lg:flex-row mb-20 mt-20 gap-8"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
+      >
         {/* Left Panel */}
         <div className="lg:w-1/3 space-y-4">
           {/* Sorting */}
           <div className="bg-white rounded-2xl shadow p-4 mb-4 flex gap-2 flex-wrap">
-            {['All', '2025', '2024'].map(year => (
+            {['All', '2026', '2025', '2024'].map(year => (
               <button
                 key={year}
-                className={`px-4 py-2 rounded-2xl font-medium ${
+                className={`px-4 py-2 rounded-2xl font-medium transition ${
                   sortType === year ? 'bg-blue text-white' : 'bg-gray-100'
                 }`}
                 onClick={() => setSortType(year)}
@@ -316,43 +330,93 @@ const Blogs = () => {
                 {year}
               </button>
             ))}
+
+            {/* Custom Sort Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setOpen(!open)}
+                className="px-4 py-2 pr-10 rounded-2xl bg-gray-100 font-medium text-sm flex items-center justify-between gap-2 w-[180px]"
+              >
+                {dateSortOrder === 'newest' ? 'Newest First' : 'Oldest First'}
+                <span className="text-xl">
+                  <i className="ri-arrow-down-s-line"></i>
+                </span>
+              </button>
+
+              {open && (
+                <div className="absolute mt-2 w-full bg-white rounded-2xl shadow-lg z-50 overflow-hidden">
+                  {[
+                    { label: 'Newest First', value: 'newest' },
+                    { label: 'Oldest First', value: 'oldest' },
+                  ].map(option => (
+                    <button
+                      key={option.value}
+                      onClick={() => {
+                        setDateSortOrder(option.value);
+                        setOpen(false);
+                      }}
+                      className={`w-full text-left px-4 py-2 font-medium transition ${
+                        dateSortOrder === option.value
+                          ? 'bg-blue text-white'
+                          : 'bg-gray-100'
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow p-4 space-y-4">
+          {/* Scrollable Blog List */}
+          <div className="bg-white rounded-2xl shadow p-4 space-y-4 max-h-[90vh] overflow-y-auto">
             {filteredBlogs.length === 0 && (
               <p className="text-gray-500">
                 No blogs found for this selection.
               </p>
             )}
-            {filteredBlogs.map((blog, index) => (
-              <motion.button
-                key={blog.id}
-                ref={el => (leftRefs.current[index] = el)}
-                onClick={() => setActiveBlog(blog)}
-                className={`flex items-center gap-4 w-full p-3 rounded-2xl text-left transition ${
-                  activeBlog.id === blog.id
-                    ? 'bg-gray-100'
-                    : 'hover:bg-blue hover:text-white'
-                }`}
-                initial={{ opacity: 0, x: -50 }}
-                animate={
-                  inViewIndexes.includes(index) ? { opacity: 1, x: 0 } : {}
-                }
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.1,
-                  ease: 'easeOut',
-                }}
-                whileHover={{ scale: 1.03 }}
-              >
-                <img
-                  src={blog.image}
-                  alt={blog.title}
-                  className="w-16 h-16 object-cover rounded-2xl "
-                />
-                <p className="text-sm font-medium line-clamp-2">{blog.title}</p>
-              </motion.button>
-            ))}
+
+            {filteredBlogs.map((blog, index) => {
+              const isActive = activeBlog.id === blog.id;
+
+              return (
+                <motion.button
+                  key={blog.id}
+                  ref={el => (leftRefs.current[index] = el)}
+                  onClick={() => setActiveBlog(blog)}
+                  className={`
+            relative flex items-center gap-4 w-full p-3 rounded-2xl text-left
+            ${isActive ? 'bg-gray-100' : 'bg-transparent'}
+          `}
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={
+                    inViewIndexes.includes(index) ? { opacity: 1, x: 0 } : {}
+                  }
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: 'easeOut',
+                  }}
+                  whileHover={false}
+                >
+                  {/* Active Indicator */}
+                  {isActive && (
+                    <span className="absolute left-0 top-1/2 -translate-y-1/2 h-20 w-1 bg-blue rounded-full" />
+                  )}
+
+                  <img
+                    src={blog.image}
+                    alt={blog.title}
+                    className="w-16 h-16 object-cover rounded-2xl"
+                  />
+
+                  <p className="text-sm font-medium line-clamp-2">
+                    {blog.title}
+                  </p>
+                </motion.button>
+              );
+            })}
           </div>
         </div>
 
@@ -388,7 +452,7 @@ const Blogs = () => {
             </motion.div>
           </AnimatePresence>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

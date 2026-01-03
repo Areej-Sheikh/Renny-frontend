@@ -92,9 +92,17 @@ const Footer = () => {
         {/* COL 4 */}
         <motion.div variants={item} className="space-y-3">
           <h3 className="font-semibold">Investor Relations</h3>
-          <FooterLink to="/">Renny</FooterLink>
-          <FooterLink to="/leadership">Leadership</FooterLink>
-          <FooterLink to="/financials">Investors</FooterLink>
+          <FooterLink to="/financials/">Financials</FooterLink>
+          <FooterLink to="/corporate-governance/">
+            Corporate Governance
+          </FooterLink>
+          <FooterLink to="/industry-report/">Industry Report</FooterLink>
+          <FooterLink to="/ipo/">IPO Documents</FooterLink>
+          <FooterLink to="/ipo-audio-visual/">IPO Audio Visual</FooterLink>
+          <FooterLink to="/Share-holding-pattern/">
+            Shareholding Pattern
+          </FooterLink>
+          <FooterLink to="/our-policies/">Our Policies</FooterLink>
         </motion.div>
 
         {/* COL 5 */}

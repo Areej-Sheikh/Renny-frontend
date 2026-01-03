@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MdLocationOn, MdSearch } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import careerBanner from "../../assets/careerBanner.jpg";
 
 const jobsData = [
   {
@@ -20,13 +21,7 @@ const jobsData = [
   },
 ];
 
-const jobTypes = [
-  "Full Time",
-  "Part Time",
-  "Contract",
-  "Temporary",
-  "Trainee",
-];
+const jobTypes = ["Full Time", "Part Time", "Contract", "Temporary", "Trainee"];
 
 const Career = () => {
   const [activeDepartment, setActiveDepartment] = useState("IT");
@@ -36,9 +31,7 @@ const Career = () => {
 
   const filteredJobs = jobsData
     .filter((job) => job.type === activeType)
-    .filter((job) =>
-      job.title.toLowerCase().includes(search.toLowerCase())
-    );
+    .filter((job) => job.title.toLowerCase().includes(search.toLowerCase()));
 
   const handleDepartmentChange = (dept) => {
     setActiveDepartment(dept);
@@ -48,6 +41,13 @@ const Career = () => {
 
   return (
     <section className="w-full bg-gray-50 px-6 md:px-20 py-16">
+      <div className="w-full h-[320px] mb-14 overflow-hidden rounded-2xl">
+        <img
+          src={careerBanner}
+          alt="Career Banner"
+          className="w-full h-full object-cover"
+        />
+      </div>
       <motion.div
         className="flex flex-wrap items-center gap-8 mb-12"
         initial={{ opacity: 0, y: 20 }}
@@ -125,9 +125,7 @@ const Career = () => {
         }}
       >
         {filteredJobs.length === 0 ? (
-          <p className="text-gray-500">
-            No jobs available for this selection.
-          </p>
+          <p className="text-gray-500">No jobs available for this selection.</p>
         ) : (
           filteredJobs.map((job) => (
             <motion.div

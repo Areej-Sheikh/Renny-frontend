@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md';
-import contactBanner from '../../assets/contactBanner.jpg';
+import React from "react";
+import { motion } from "framer-motion";
+import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
+import contactBanner from "../../assets/contactBanner.jpg"
 import rennylocation from "../../assets/renny's-location.png";
 import unit1 from '../../assets/Unit-1.jpg';
 import unit3 from '../../assets/Unit-3.jpg';
@@ -20,11 +20,11 @@ const Contact = () => {
         <div className="absolute inset-0 bg-black/40"></div>
 
         {/* Text */}
-        {/* <div className="relative z-10 h-full flex items-center  px-6 md:px-20">
+        <div className="relative z-10 h-full flex items-center  px-6 md:px-20">
           <h1 className="text-4xl md:text-5xl font-semibold text-white ">
-            Renny's
+            Contact Us
           </h1>
-        </div> */}
+        </div>
       </section>
       <section className="w-full bg-white text-black px-6 md:px-20 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
@@ -154,7 +154,6 @@ const Contact = () => {
           </motion.div>
         </div>
       </section>
-      {/* ================= CONTACT INFO WITH ANIMATION ================= */}
       <section className="w-full bg-gray-100 text-black px-6 md:px-20 py-16">
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -346,7 +345,6 @@ const Contact = () => {
           </motion.div>
         </div>
 
-        {/* ===== UNIT II ===== */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}

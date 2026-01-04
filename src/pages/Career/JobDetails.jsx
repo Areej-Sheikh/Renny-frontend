@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { MdWorkOutline, MdCurrencyRupee } from 'react-icons/md';
 import banner from '../../assets/Image.webp';
 
-/* ================= JOB DATA ================= */
+
 const jobsData = {
   'web-dev': {
     title: 'Web Developer',
@@ -85,7 +85,6 @@ const JobDetails = () => {
           </h1>
         </motion.div>
 
-        {/* ================= GRID 1 : JOB INFO ================= */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -117,24 +116,20 @@ const JobDetails = () => {
           </motion.button>
         </motion.div>
 
-        {/* ================= GRID 2 : CONTENT ================= */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="bg-white rounded-xl shadow-md p-6 md:p-8 text-left w-full"
         >
-          {/* About Company */}
           <h2 className="text-lg font-semibold mb-3">About Company</h2>
           <p className="text-gray-700 leading-relaxed whitespace-pre-line mb-8">
             {job.description}
           </p>
 
-          {/* Key Responsibility */}
           <h3 className="text-base font-semibold mb-2">Job Description</h3>
           <p className="text-sm text-gray-600 mb-10">{job.key}</p>
 
-          {/* Bottom Apply Button */}
           <div className="flex justify-center">
             <motion.button
               whileHover={{ scale: 1.05 }}

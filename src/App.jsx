@@ -38,8 +38,7 @@ import Events from './pages/Media/Events';
 
 /* Career */
 import Career from './pages/Career/Career';
-import JobDetails from './pages/Career/JobDetails';
-
+import JobDetails from "./pages/Career/JobDetails";
 /* Contact */
 import Contact from './pages/Contact/Contact';
 /* Media Blogs */

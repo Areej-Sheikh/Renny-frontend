@@ -7,22 +7,22 @@ import aboutVideo from "../../assets/01-aboutVideo.webm";
 import worldmap from "../../assets/World-Map.webm";
 import { image } from "framer-motion/client";
 //images
-import t1996 from "../../assets/1996.jpeg";//changing part of images
-import t2005 from "../../assets/2005.webp";//changing part of images
-import t2016 from "../../assets/2016.webp";//changing part of images
-import t2018 from "../../assets/2018.jpg";//changing part of images
-import t2019 from "../../assets/2019.jpg";//changing part of images
-import t2021 from "../../assets/2021.jpg";//changing part of images
-import t2023 from "../../assets/2023.jpg";//changing part of images
-import t2024 from "../../assets/2024.webp";//changing part of images
+import bgCompanyOverview from "../../assets/BG-companyoverview.jpeg";
+import t1996 from "../../assets/1996.jpeg"; //changing part of images
+import t2005 from "../../assets/2005.webp"; //changing part of images
+import t2016 from "../../assets/2016.webp"; //changing part of images
+import t2018 from "../../assets/2018.jpg"; //changing part of images
+import t2019 from "../../assets/2019.jpg"; //changing part of images
+import t2021 from "../../assets/2021.jpg"; //changing part of images
+import t2023 from "../../assets/2023.jpg"; //changing part of images
+import t2024 from "../../assets/2024.webp"; //changing part of images
 import t2025 from "../../assets/2025.png";
 
-import g1 from "../../assets/g1.jpg";//changing part of images
-import g2 from "../../assets/g2.jpg";//changing part of images
-import g3 from "../../assets/g3.webp";//changing part of images
-import g4 from "../../assets/g4.jpg";//changing part of images
+import g1 from "../../assets/g1.jpg"; //changing part of images
+import g2 from "../../assets/g2.jpg"; //changing part of images
+import g3 from "../../assets/g3.webp"; //changing part of images
+import g4 from "../../assets/g4.jpg"; //changing part of images
 
-/* ================= TIMELINE DATA ================= */
 const timelineData = [
   {
     year: "1996",
@@ -77,7 +77,6 @@ const timelineData = [
 const About = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  /* ===== AUTO TIMELINE ===== */
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) =>
@@ -87,7 +86,6 @@ const About = () => {
     return () => clearInterval(interval);
   }, []);
 
-  /* ===== COUNTUP ===== */
   const { ref: statsRef, inView } = useInView({
     triggerOnce: true,
     threshold: 0.3,
@@ -106,7 +104,6 @@ const About = () => {
 
   return (
     <div className="w-full bg-black text-white font-helvetica">
-      {/* ================= HERO ================= */}
       <section className="relative w-screen h-screen overflow-hidden">
         <video
           className="absolute inset-0 w-full h-full object-cover"
@@ -131,11 +128,10 @@ const About = () => {
         </div>
       </section>
 
-      {/* ================= COMPANY OVERVIEW ================= */}
       <section
         className="relative min-h-screen bg-cover bg-center"
         style={{
-          backgroundImage: "url('/src/assets/BG-companyoverview.jpeg')",
+          backgroundImage: `url(${bgCompanyOverview})`,
         }}
       >
         <div className="absolute inset-0 bg-black/60"></div>
@@ -238,10 +234,8 @@ const About = () => {
         </div>
       </section>
 
-      {/* ================= TIMELINE ================= */}
       <section className="bg-[#F8F8F8] py-24 text-black">
         <div className="max-w-7xl mx-auto px-6 md:px-16">
-          {/* HEADING */}
           <motion.h2
             className="text-4xl font-semibold mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -252,9 +246,7 @@ const About = () => {
             Renny’s Journey
           </motion.h2>
 
-          {/* TIMELINE */}
           <div className="relative mb-20">
-            {/* HORIZONTAL LINE */}
             <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gray-300" />
 
             <div className="flex justify-between relative">
@@ -262,24 +254,22 @@ const About = () => {
                 const isActive = index === activeIndex;
 
                 return (
-                  // ✅ UPDATED: made relative
                   <div
                     key={index}
                     className="relative flex flex-col items-center"
                   >
-                    {/* YEAR */}
                     <span
                       className={`mb-10 text-lg font-semibold transition ${
-                        isActive ? "text-orange-500" : "text-gray-500"
+                        isActive ? "text-[#292c44]" : "text-gray-500"
                       }`}
                     >
                       {item.year}
                     </span>
 
-                    {/* DOT – NOW ON THE LINE */}
+                    {/* DOT  */}
                     <motion.div
                       className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full ${
-                        isActive ? "bg-orange-500" : "bg-gray-400"
+                        isActive ? "bg-[#292c44]" : "bg-gray-400"
                       }`}
                       animate={{ scale: isActive ? 1.4 : 1 }}
                       transition={{ duration: 0.4 }}
@@ -290,7 +280,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* CONTENT */}
           <motion.div
             key={activeIndex}
             initial={{ opacity: 0, y: 30 }}
@@ -325,7 +314,6 @@ const About = () => {
       </section>
 
       <section className="relative w-screen h-[600px] overflow-hidden">
-        {/* IMAGE */}
         <motion.img
           key={currentSlide}
           src={galleryImages[currentSlide]}
@@ -335,41 +323,8 @@ const About = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         />
-
-        {/* LEFT ARROW */}
-        <button
-          onClick={() =>
-            setCurrentSlide(
-              currentSlide === 0 ? galleryImages.length - 1 : currentSlide - 1
-            )
-          }
-          className="absolute left-6 top-1/2 -translate-y-1/2 z-10
-               bg-black/40 hover:bg-black/60
-               text-white text-4xl w-14 h-14
-               flex items-center justify-center rounded-full
-               transition"
-        >
-          &lt;
-        </button>
-
-        {/* RIGHT ARROW */}
-        <button
-          onClick={() =>
-            setCurrentSlide(
-              currentSlide === galleryImages.length - 1 ? 0 : currentSlide + 1
-            )
-          }
-          className="absolute right-6 top-1/2 -translate-y-1/2 z-10
-               bg-black/40 hover:bg-black/60
-               text-white text-4xl w-14 h-14
-               flex items-center justify-center rounded-full
-               transition"
-        >
-          &gt;
-        </button>
       </section>
 
-      {/* ================= OUR NETWORK ================= */}
       <section className="bg-white py-24 text-black">
         <div className="max-w-7xl mx-auto px-6 md:px-16">
           <motion.h1
@@ -394,6 +349,22 @@ const About = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           />
+          <motion.p
+            className="mt-12 text-sm md:text-base text-black leading-relaxed w-full"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            Renny Strips Ltd. boasts a strong Pan-India footprint and a growing
+            global presence, proudly exporting to 5 continents. Recognized for
+            its expertise in high-precision, safety-critical components for
+            scaffolding and  formwork systems and ERW black and galvanized pipes
+            and tubes, Renny has established itself as a leading exporter. With
+            a commitment to customization, quality & timely delivery, Renny
+            continues to serve both domestic & international markets with
+            distinction.  
+          </motion.p>
         </div>
       </section>
     </div>

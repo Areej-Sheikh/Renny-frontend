@@ -64,9 +64,9 @@ const Career = () => {
           Career
         </motion.h1>
       </motion.section>
-      <div className="px-6 md:px-20 py-16">
+      <div className="px-6 md:px-20 py-16 h-screen mb-12">
         <motion.div
-          className="flex flex-wrap items-center gap-8 mb-12"
+          className="flex flex-wrap items-center gap-8 mb-12 "
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

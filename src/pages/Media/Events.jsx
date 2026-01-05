@@ -4,7 +4,7 @@ import events1 from '../../assets/events1.mp4';
 import events2 from '../../assets/events2.mp4';
 import events3 from '../../assets/events3.mp4';
 import events4 from '../../assets/events4.mp4';
-import banner from '../../assets/Image.webp';
+import banner from '../../assets/eventsbanner.png';
 
 import EventCard from '../../components/EventCard';
 

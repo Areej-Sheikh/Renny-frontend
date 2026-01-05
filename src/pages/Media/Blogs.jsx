@@ -26,7 +26,7 @@ import blog20 from '../../assets/blog20.jpg';
 import blog21 from '../../assets/blog21.jpg';
 import blog22 from '../../assets/blog22.jpg';
 import { useScroll, useTransform, useInView } from 'framer-motion';
-import banner from '../../assets/Image.webp';
+import blogsbanner from '../../assets/blogsbanner.png';
 const blogsData = [
   {
     id: 1,
@@ -293,7 +293,7 @@ const Blogs = () => {
         transition={{ duration: 1.4, ease: 'easeOut' }}
       >
         <img
-          src={banner}
+          src={blogsbanner}
           alt="Blogs Banner"
           className="absolute inset-0 w-full h-full  object-cover"
         />

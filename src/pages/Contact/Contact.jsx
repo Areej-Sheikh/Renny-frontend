@@ -1,31 +1,36 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
-import contactBanner from "../../assets/contactBanner.jpg";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md';
+import banner from '../../assets/contactusbanner.png';
 import rennylocation from "../../assets/renny's-location.png";
-import unit1 from "../../assets/Unit-1.jpg";
-import unit3 from "../../assets/Unit-3.jpg";
+import unit1 from '../../assets/Unit-1.jpg';
+import unit3 from '../../assets/Unit-3.jpg';
 
 const Contact = () => {
   return (
     <>
-      <section className="relative w-full h-[25vh] md:h-[50vh] overflow-hidden">
+      <motion.section
+        className="relative h-[70vh] w-full overflow-hidden  mb-12"
+        initial={{ opacity: 0, scale: 1.2 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.4, ease: 'easeOut' }}
+      >
         <img
-          src={contactBanner}
-          alt="Contact Banner"
-          className="absolute inset-0 w-full h-full object-cover"
+          src={banner}
+          alt="Blogs Banner"
+          className="absolute inset-0 w-full h-full  object-cover"
         />
-
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/40"></div>
-
-        {/* Text */}
-        {/* <div className="relative z-10 h-full flex items-center  px-6 md:px-20">
-          <h1 className="text-4xl md:text-5xl font-semibold text-white ">
-            Renny's
-          </h1>
-        </div> */}
-      </section>
+        <div className="absolute inset-0  bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
+          className="relative z-10 text-white text-6xl md:text-7xl font-bold 
+                       flex items-end justify-start h-full py-10 px-10"
+        >
+          Contact Us
+        </motion.h1>
+      </motion.section>
       <section className="w-full bg-white text-black px-6 md:px-20 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           {/* LEFT SIDE */}
@@ -33,14 +38,14 @@ const Contact = () => {
             className="flex flex-col gap-6 max-w-xl"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
             viewport={{ once: true }}
           >
             <motion.h2
               className="text-4xl md:text-5xl font-semibold leading-tight"
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
               viewport={{ once: true }}
             >
               Get In Touch With Us
@@ -50,7 +55,7 @@ const Contact = () => {
               className="text-base md:text-lg text-gray-700 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
               viewport={{ once: true }}
             >
               We believe in building strong partnerships rooted in trust,
@@ -68,7 +73,7 @@ const Contact = () => {
               className="w-full h-[260px] rounded-lg overflow-hidden"
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
               viewport={{ once: true }}
             >
               <img
@@ -83,14 +88,14 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }}
             viewport={{ once: true }}
           >
             <form className="space-y-8">
               {[
-                { type: "text", placeholder: "Full Name" },
-                { type: "email", placeholder: "Email Address" },
-                { type: "tel", placeholder: "Phone Number" },
+                { type: 'text', placeholder: 'Full Name' },
+                { type: 'email', placeholder: 'Email Address' },
+                { type: 'tel', placeholder: 'Phone Number' },
               ].map((field, i) => (
                 <motion.input
                   key={i}
@@ -101,7 +106,7 @@ const Contact = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{
                     duration: 0.5,
-                    ease: "easeOut",
+                    ease: 'easeOut',
                     delay: i * 0.1,
                   }}
                   viewport={{ once: true }}
@@ -112,7 +117,7 @@ const Contact = () => {
                 className="w-full bg-transparent border-b border-black px-1 py-2 outline-none"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+                transition={{ duration: 0.5, ease: 'easeOut', delay: 0.3 }}
                 viewport={{ once: true }}
               >
                 <option value="">Enquiry Type</option>
@@ -128,23 +133,23 @@ const Contact = () => {
                 className="w-full bg-transparent border-b border-black px-1 py-2 outline-none resize-none"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
+                transition={{ duration: 0.5, ease: 'easeOut', delay: 0.4 }}
                 viewport={{ once: true }}
               />
               <motion.div
                 className="flex justify-center pt-6"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
+                transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
                 viewport={{ once: true }}
               >
                 <button
                   type="submit"
                   className="px-10 py-2.5 text-sm tracking-wide rounded-lg transition-all duration-300 hover:opacity-90"
                   style={{
-                    backgroundColor: "#292c44",
-                    border: "1px solid #292c44",
-                    color: "#ffffff",
+                    backgroundColor: '#292c44',
+                    border: '1px solid #292c44',
+                    color: '#ffffff',
                   }}
                 >
                   Submit
@@ -174,7 +179,7 @@ const Contact = () => {
               hidden: { opacity: 0, y: 40 },
               visible: { opacity: 1, y: 0 },
             }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             whileHover={{ y: -6 }}
             className="bg-white border border-white rounded-xl p-6 space-y-4"
           >
@@ -209,7 +214,7 @@ const Contact = () => {
               hidden: { opacity: 0, y: 40 },
               visible: { opacity: 1, y: 0 },
             }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             whileHover={{ y: -6 }}
             className="bg-white border border-white rounded-xl p-6 space-y-4 text-center"
           >
@@ -237,7 +242,7 @@ const Contact = () => {
               hidden: { opacity: 0, y: 40 },
               visible: { opacity: 1, y: 0 },
             }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             whileHover={{ y: -6 }}
             className="bg-white border border-white rounded-xl p-6 space-y-4 text-center"
           >
@@ -269,7 +274,7 @@ const Contact = () => {
               hidden: { opacity: 0, y: 40 },
               visible: { opacity: 1, y: 0 },
             }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             whileHover={{ y: -6 }}
             className="bg-white border border-white rounded-xl p-6 space-y-4 text-center"
           >
@@ -302,7 +307,7 @@ const Contact = () => {
           className="text-4xl md:text-5xl font-semibold text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
           Industrial Plant
@@ -314,7 +319,7 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
             viewport={{ once: true }}
             className="w-full h-[360px] rounded-xl overflow-hidden"
           >
@@ -327,7 +332,7 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
             viewport={{ once: true }}
             className="space-y-5"
           >
@@ -351,7 +356,7 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
             viewport={{ once: true }}
             className="space-y-5 order-2 md:order-1"
           >
@@ -373,7 +378,7 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
             viewport={{ once: true }}
             className="w-full h-[360px] rounded-xl overflow-hidden order-1 md:order-2"
           >

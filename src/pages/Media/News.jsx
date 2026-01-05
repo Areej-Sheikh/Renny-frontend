@@ -1,13 +1,7 @@
-import news1 from '../../assets/news1.jpg';
-import news2 from '../../assets/news2.jpeg';
-import news3 from '../../assets/news3.png';
-import news4 from '../../assets/news4.jpg';
-import news5 from '../../assets/news5.jpg';
-import news6 from '../../assets/news6.jpeg';
-import news7 from '../../assets/news7.png';
-import news8 from '../../assets/news8.png';
-import news9 from '../../assets/news9.jpg';
-import banner from '../../assets/Image.webp';
+import news1 from '../../assets/news1.png';
+import news2 from '../../assets/news2.jpg';
+
+import newsbanner from '../../assets/newsbanner.png';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
@@ -19,70 +13,18 @@ const News = () => {
     {
       id: 1,
       title:
-        'Renny Strips reshapes construction with sustainable scaffolding and formwork solutions',
-      desc: 'Renny Strips is driving India’s urban revolution on a sustainable basis by providing cutting-edge scaffolding and formwork solutions that prioritise safety, reduce carbon footprint, and enable smart vertical growth across the country.',
-      link: 'https://aceupdate.com/renny-strips-reshapes-construction-with-sustainable-scaffolding-and-formwork-solutions/',
-      img: news1,
+        'Renny Strips Limited, a vertically integrated and sustainability-focused manufacturer of structural steel products based in Ludhiana, Punjab',
+      desc: 'Renny Strips Limited, a vertically integrated and sustainability-focused manufacturer of structural steel products based in Ludhiana, Punjab, has officially filed its Draft Red Herring Prospectus (DRHP) for a Main Board IPO.',
+      link: 'https://www.linkedin.com/posts/credalis-capital_ipo-mainboardipo-rennystripslimited-activity-7405536132534415360-AJFL?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFHfNUUBjQFe8h87fXxTHlZAp0_QWM5CAk4',
+      img: news2,
     },
     {
       id: 2,
       title:
-        'Renny Strips Sets New Benchmarks in Scaffolding Safety and Reliability',
-      desc: 'Steel formwork and scaffolding are the cornerstones of contemporary construction, infusing strength, efficiency, and security. Steel scaffolding offers a safe working platform at heights, enhances accessibility, and facilitates free movement of material and equipment.',
-      link: 'https://odishabiznewz.com/news/renny-strips-sets-new-benchmarks-in-scaffolding-safety-and-reliability/',
-      img: news2,
-    },
-    {
-      id: 3,
-      title:
-        'Renny Strips Sets New Benchmarks in Scaffolding Safety and Reliability',
-      desc: 'Steel formwork and scaffolding are the cornerstones of contemporary construction, infusing strength, efficiency, and security.',
-      link: 'https://businessnewsthisweek.com/business/renny-strips-sets-new-benchmarks-in-scaffolding-safety-and-reliability/',
-      img: news3,
-    },
-    {
-      id: 4,
-      title:
-        'Renny Strips leads sustainable manufacturing with 22 MW solar power plant',
-      desc: "Renny Strips, India's exclusive manufacturer of customised green steel solutions for the scaffolding and formwork industry, has installed a cutting-edge 22 MW solar power plant across 100 acres.",
-      link: 'https://www.projectstoday.com/News/Renny-Strips-leads-sustainable-manufacturing-with-22-MW-solar-power-plant',
-      img: news4,
-    },
-    {
-      id: 5,
-      title: 'Renny Strips Powers Ahead with 22MW Solar Energy Initiative',
-      desc: 'Renny Strips Pvt. Ltd., with its specialized expertise in fabrication and forging, stands as India’s exclusive manufacturer of end-to-end customized green steel solutions for the scaffolding and formwork industry.',
-      link: 'https://electronicsera.in/renny-strips-powers-ahead-with-22mw-solar-energy-initiative/',
-      img: news5,
-    },
-    {
-      id: 6,
-      title: 'First-ever 1000 MW thermal power plant commissioned in India',
-      desc: 'First-ever 1000 MW thermal power plant commissioned in India at Tamnar.',
-      link: 'https://pdf.equipmentindia.com//Monthly-Edition/PDF-version/January-2025/index.html',
-      img: news6,
-    },
-    {
-      id: 7,
-      title:
-        'Rennystrips to Showcase Premium Solutions at Bauma Conexpo India 2024',
-      desc: 'Rennystrips Pvt. Ltd. announced its participation in Bauma Conexpo India 2024, taking place from December 11–14 at the India Expo Centre, Greater Noida.',
-      link: 'https://gyanmuse.com/rennystrips-to-showcase-premium-solutions-at-bauma-conexpo-india-2024/',
-      img: news7,
-    },
-    {
-      id: 8,
-      title: 'Renny Strips Shines at bauma CONEXPO INDIA',
-      desc: 'Renny Strips, a pioneer in the building material industry, proudly participated in bauma CONEXPO INDIA.',
-      link: 'https://www.apnnews.com/renny-strips-shines-at-bauma-conexpo-india/',
-      img: news8,
-    },
-    {
-      id: 9,
-      title: 'Renny Strips Shines at bauma CONEXPO INDIA',
-      desc: 'Held from 11th to 14th December at the India Expo Centre, Greater Noida, bauma CONEXPO INDIA is a vital platform for innovation and global industry connections.',
-      link: 'https://www.apnnews.com/renny-strips-shines-at-bauma-conexpo-india/',
-      img: news9,
+        'Renny Strips files IPO papers with SEBI, seeks to raise up to Rs 300 crore via fresh issue',
+      desc: 'Renny Strips IPO | The company proposed to raise Rs 300 crore by issuing fresh shares, while promoters Dev Raj Gupta, and Usha Gupta plan to offload 1.2 crore equity shares via offer-for-sale.',
+      link: 'https://www.moneycontrol.com/news/business/ipo/renny-strips-files-ipo-papers-with-sebi-seeks-to-raise-up-to-rs-300-crore-via-fresh-issue-13726597.html',
+      img: news1,
     },
   ];
 
@@ -151,8 +93,8 @@ const News = () => {
         transition={{ duration: 1.4, ease: 'easeOut' }}
       >
         <img
-          src={banner}
-          alt="Blogs Banner"
+          src={newsbanner}
+          alt="News Banner"
           className="absolute inset-0 w-full h-full  object-cover"
         />
         <div className="absolute inset-0  bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
@@ -202,7 +144,7 @@ const News = () => {
         </motion.div>
       </section>
 
-      <div className="flex flex-col lg:flex-row gap-8 mt-16">
+      <div className="flex flex-col lg:flex-row gap-8 mb-40 mt-16">
         {/* ---------------- Left Panel ---------------- */}
         <motion.div
           variants={staggerContainer}

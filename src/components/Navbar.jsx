@@ -56,20 +56,14 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link to="/manufacturing-units/" className="dropdown-item">
-                Manufacturing Process
-              </Link>
+              <Link className="dropdown-item">Manufacturing Process</Link>
             </li>
 
             <li>
-              <Link to="/quality-standard/" className="dropdown-item">
-                Quality & Standard
-              </Link>
+              <Link className="dropdown-item">Quality & Standard</Link>
             </li>
             <li>
-              <Link to="/design-centre/" className="dropdown-item">
-                Design Centre
-              </Link>
+              <Link className="dropdown-item">Design Centre</Link>
             </li>
           </ul>
         </li>
@@ -81,29 +75,19 @@ const Navbar = () => {
           </span>
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-72 z-50">
             <li>
-              <Link to="/MS-billets/" className="dropdown-item">
-                MS Billets
-              </Link>
+              <Link className="dropdown-item">MS Billets</Link>
             </li>
             <li>
-              <Link to="/wire-rods-2/" className="dropdown-item">
-                Wire Rods
-              </Link>
+              <Link className="dropdown-item">Wire Rods</Link>
             </li>
             <li>
-              <Link to="/narrow-hrcoil/" className="dropdown-item">
-                Narrow-width HR Coils
-              </Link>
+              <Link className="dropdown-item">Narrow-width HR Coils</Link>
             </li>
             <li>
-              <Link to="/erw-pipes-and-tubes/" className="dropdown-item">
-                ERW Pipes & Tubes
-              </Link>
+              <Link className="dropdown-item">ERW Pipes & Tubes</Link>
             </li>
             <li>
-              <Link to="/scaffolding-formwork/" className="dropdown-item">
-                Scaffolding & Formwork
-              </Link>
+              <Link className="dropdown-item">Scaffolding & Formwork</Link>
             </li>
           </ul>
         </li>
@@ -169,14 +153,10 @@ const Navbar = () => {
           </span>
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-64 z-50">
             <li>
-              <Link to="/community-development/" className="dropdown-item">
-                Community Development
-              </Link>
+              <Link className="dropdown-item">Community Development</Link>
             </li>
             <li>
-              <Link to="/sustainability/" className="dropdown-item">
-                Sustainability
-              </Link>
+              <Link className="dropdown-item">Sustainability</Link>
             </li>
           </ul>
         </li>

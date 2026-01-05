@@ -68,25 +68,19 @@ const Footer = () => {
         <motion.div variants={item} className="space-y-3">
           <h3 className="font-semibold">About Us</h3>
           <FooterLink to="/company-overview-2">Company Overview</FooterLink>
-          <FooterLink to="/manufacturing-units">
-            Manufacturing Process
-          </FooterLink>
-          <FooterLink to="/quality-standard">Quality & Standard</FooterLink>
-          <FooterLink to="/design-centre">Design Centre</FooterLink>
+          <FooterLink>Manufacturing Process</FooterLink>
+          <FooterLink>Quality & Standard</FooterLink>
+          <FooterLink>Design Centre</FooterLink>
         </motion.div>
 
         {/* COL 3 */}
         <motion.div variants={item} className="space-y-3">
           <h3 className="font-semibold">Products</h3>
-          <FooterLink to="/MS-billets">MS Billets</FooterLink>
-          <FooterLink to="/wire-rods-2">Wire Rods</FooterLink>
-          <FooterLink to="/narrow-hrcoil">Narrow-width HR Coils</FooterLink>
-          <FooterLink to="/erw-pipes-and-tubes">
-            ERW Black & Galvanized Pipes & Tubes
-          </FooterLink>
-          <FooterLink to="/scaffolding-formwork/">
-            Scaffolding & Formwork
-          </FooterLink>
+          <FooterLink>MS Billets</FooterLink>
+          <FooterLink>Wire Rods</FooterLink>
+          <FooterLink>Narrow-width HR Coils</FooterLink>
+          <FooterLink>ERW Black & Galvanized Pipes & Tubes</FooterLink>
+          <FooterLink>Scaffolding & Formwork</FooterLink>
         </motion.div>
 
         {/* COL 4 */}
@@ -114,10 +108,8 @@ const Footer = () => {
 
           <div className="space-y-3">
             <h3 className="font-semibold">Sustainability</h3>
-            <FooterLink to="/community-development">
-              Community Development
-            </FooterLink>
-            <FooterLink to="/sustainability">Sustainability</FooterLink>
+            <FooterLink>Community Development</FooterLink>
+            <FooterLink>Sustainability</FooterLink>
           </div>
 
           <div className="space-y-3">
@@ -128,7 +120,7 @@ const Footer = () => {
 
           <div className="space-y-3">
             <h3 className="font-semibold">Career</h3>
-            <FooterLink to="/careers">Career</FooterLink>
+            <FooterLink to="/career">Career</FooterLink>
           </div>
         </motion.div>
 

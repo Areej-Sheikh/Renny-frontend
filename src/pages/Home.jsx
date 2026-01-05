@@ -29,8 +29,8 @@ import blog2 from '../assets/blog2.jpeg';
 import blog3 from '../assets/blog3.jpeg';
 import blog4 from '../assets/blog4.jpeg';
 
-import news1 from '../assets/news1.jpg';
-import news2 from '../assets/news2.jpeg';
+import news1 from '../assets/news1.png';
+import news2 from '../assets/news2.jpg';
 import news3 from '../assets/news3.png';
 import news4 from '../assets/news4.jpg';
 

@@ -68,9 +68,11 @@ import GlobalERWPipes from './pages/Media/Blogs/GlobalERWPipes';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Parallax from './components/ParallaxSection';
+import ScrollToTop from './components/ScrollToTop.jsx';
 const App = () => {
   return (
     <div className="App relative min-h-screen overflow-x-hidden">
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

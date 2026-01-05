@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MdWorkOutline, MdCurrencyRupee } from "react-icons/md";
-
+import careerBanner from "../../assets/careerBanner.png"
 
 const jobsData = {
   "web-dev": {
@@ -46,7 +46,15 @@ const JobDetails = () => {
 
   return (
     <section className="w-full bg-gray-100 px-6 py-16">
+      
       <div className="max-w-4xl mx-auto text-center">
+        <div className="w-full h-[320px] mb-14 overflow-hidden rounded-2xl">
+                <img
+                  src={careerBanner}
+                  alt="Career Banner"
+                  className="w-full h-full object-cover"
+                />
+              </div>
         {/* ================= HEADER ================= */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

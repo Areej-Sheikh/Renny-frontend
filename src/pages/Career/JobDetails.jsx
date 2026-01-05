@@ -1,15 +1,18 @@
+
 import React from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MdWorkOutline, MdCurrencyRupee } from "react-icons/md";
 import careerBanner from "../../assets/careerBanner.png"
 
+
+/* ================= JOB DATA ================= */
 const jobsData = {
-  "web-dev": {
-    title: "Web Developer",
-    department: "IT",
-    type: "Full Time",
-    salary: "40,000 INR / Monthly",
+  'web-dev': {
+    title: 'Web Developer',
+    department: 'IT',
+    type: 'Full Time',
+    salary: '40,000 INR / Monthly',
     description: `Renny, headquartered in Ludhiana, is a steel pipes, Formwork & scaffolding manufacturer renowned for its excellence in this dynamic industry landscape. With 3 strategically located, +state-of-the-art manufacturing facilities in Punjab, Renny boasts a production capacity of 250,000 MTPA. Serving both national & international markets through a strong network of distributors, the company is certified with ISO 9001:2015, ISO 14001:2015 & ISO 45001:2018.
 
 Specializing in the production of ERW Pipes & Tubes, Formwork & scaffolding crafted from premium quality HR Coils, Renny, adheres to core values of rigorous standards, excellence in innovation, sustainable manufacturing processes & unwavering customer satisfaction. The company's diverse & cost-effective product portfolio includes over 1,000 SKUs, establishing it as one of the foremost ERW Pipes & Tubes, Formwork & Scaffolding manufacturers in North India.
@@ -17,14 +20,14 @@ Specializing in the production of ERW Pipes & Tubes, Formwork & scaffolding craf
 Renny is at the forefront of driving India's industrial modernization, with a mission to open new markets through cutting-edge, eco-friendly innovations. The company operates across 4 divisions: Coil Division, Pipe division (producing MS black, Galvanized, Hollow sections such as Circular, Square & Rectangular), Formwork & Scaffolding & Industrial Paints. Renny caters to a broad spectrum of domestic & international needs. With a global presence, Renny serves clients in 40 Countries across 6 Continents.
 
 With a commitment to the highest industry standards and a visionary approach, Renny continues to propel forward, shaping the future of the Structural Steel Building Sector. `,
-    key: "Creating dynamic websites",
+    key: 'Creating dynamic websites',
   },
 
-  "product-manager": {
-    title: "Product Manager",
-    department: "Engineering",
-    type: "Full Time",
-    salary: "60,000 INR / Monthly",
+  'product-manager': {
+    title: 'Product Manager',
+    department: 'Engineering',
+    type: 'Full Time',
+    salary: '60,000 INR / Monthly',
     description: `Renny, headquartered in Ludhiana, is a steel pipes, Formwork & scaffolding manufacturer renowned for its excellence in this dynamic industry landscape. With 3 strategically located, +state-of-the-art manufacturing facilities in Punjab, Renny boasts a production capacity of 250,000 MTPA. Serving both national & international markets through a strong network of distributors, the company is certified with ISO 9001:2015, ISO 14001:2015 & ISO 45001:2018.
 
 Specializing in the production of ERW Pipes & Tubes, Formwork & scaffolding crafted from premium quality HR Coils, Renny, adheres to core values of rigorous standards, excellence in innovation, sustainable manufacturing processes & unwavering customer satisfaction. The company's diverse & cost-effective product portfolio includes over 1,000 SKUs, establishing it as one of the foremost ERW Pipes & Tubes, Formwork & Scaffolding manufacturers in North India.
@@ -56,6 +59,7 @@ const JobDetails = () => {
                 />
               </div>
          
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -70,6 +74,7 @@ const JobDetails = () => {
           </h1>
         </motion.div>
 
+        {/* ================= GRID 1 : JOB INFO ================= */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -101,20 +106,24 @@ const JobDetails = () => {
           </motion.button>
         </motion.div>
 
+        {/* ================= GRID 2 : CONTENT ================= */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="bg-white rounded-xl shadow-md p-6 md:p-8 text-left w-full"
         >
+          {/* About Company */}
           <h2 className="text-lg font-semibold mb-3">About Company</h2>
           <p className="text-gray-700 leading-relaxed whitespace-pre-line mb-8">
             {job.description}
           </p>
 
+          {/* Key Responsibility */}
           <h3 className="text-base font-semibold mb-2">Job Description</h3>
           <p className="text-sm text-gray-600 mb-10">{job.key}</p>
 
+          {/* Bottom Apply Button */}
           <div className="flex justify-center">
             <motion.button
               whileHover={{ scale: 1.05 }}

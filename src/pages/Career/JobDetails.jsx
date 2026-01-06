@@ -1,8 +1,10 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { MdWorkOutline, MdCurrencyRupee } from 'react-icons/md';
-import banner from '../../assets/Image.webp';
+
+import React from "react";
+import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import { MdWorkOutline, MdCurrencyRupee } from "react-icons/md";
+import careerBanner from "../../assets/careerBanner.png"
+
 
 /* ================= JOB DATA ================= */
 const jobsData = {
@@ -46,31 +48,18 @@ const JobDetails = () => {
   }
 
   return (
-    <section className="w-full bg-gray-100 ">
-      <motion.section
-        className="relative h-[70vh] w-full overflow-hidden  mb-12"
-        initial={{ opacity: 0, scale: 1.2 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.4, ease: 'easeOut' }}
-      >
-        <img
-          src={banner}
-          alt="Blogs Banner"
-          className="absolute inset-0 w-full h-full  object-cover"
-        />
-        <div className="absolute inset-0  bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
-          className="relative z-10 text-white text-6xl md:text-7xl font-bold 
-                 flex items-end justify-start h-full py-10 px-10"
-        >
-          Job Details
-        </motion.h1>
-      </motion.section>
-      <div className="max-w-4xl mx-auto text-center mb-20">
-        {/* ================= HEADER ================= */}
+    <section className="w-full bg-gray-100 px-6 py-16">
+      
+      <div className="max-w-4xl mx-auto text-center">
+        <div className="w-full h-[320px] mb-14 overflow-hidden rounded-2xl">
+                <img
+                  src={careerBanner}
+                  alt="Career Banner"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+         
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

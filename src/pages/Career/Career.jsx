@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { MdLocationOn, MdSearch } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
-import banner from '../../assets/Image.webp';
+
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { MdLocationOn, MdSearch } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import careerBanner from "../../assets/careerBanner.png"
 
 const jobsData = [
   {

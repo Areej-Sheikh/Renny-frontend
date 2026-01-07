@@ -7,21 +7,21 @@ import aboutVideo from "../../assets/01-aboutVideo.webm";
 import worldmap from "../../assets/World-Map.webm";
 import { image } from "framer-motion/client";
 //images
-import bgCompanyOverview from "../../assets/BG-companyoverview.jpeg";
-import t1996 from "../../assets/1996.jpeg"; //changing part of images
+import bgCompanyOverview from "../../assets/BG-companyoverview.webp";
+import t1996 from "../../assets/1996.webp" //changing part of images
 import t2005 from "../../assets/2005.webp"; //changing part of images
 import t2016 from "../../assets/2016.webp"; //changing part of images
-import t2018 from "../../assets/2018.jpg"; //changing part of images
-import t2019 from "../../assets/2019.jpg"; //changing part of images
-import t2021 from "../../assets/2021.jpg"; //changing part of images
-import t2023 from "../../assets/2023.jpg"; //changing part of images
+import t2018 from "../../assets/2018.webp"; //changing part of images
+import t2019 from "../../assets/2019.webp"; //changing part of images
+import t2021 from "../../assets/2021.webp"; //changing part of images
+import t2023 from "../../assets/2023.webp"; //changing part of images
 import t2024 from "../../assets/2024.webp"; //changing part of images
-import t2025 from "../../assets/2025.png";
+import t2025 from "../../assets/2025.webp"; //changing part of images
 
-import g1 from "../../assets/g1.jpg"; //changing part of images
-import g2 from "../../assets/g2.jpg"; //changing part of images
-import g3 from "../../assets/g3.webp"; //changing part of images
-import g4 from "../../assets/g4.jpg"; //changing part of images
+import g1 from "../../assets/g1.webp"; //changing part of images
+import g2 from "../../assets/g2.webp"; //changing part of images
+import g3 from "../../assets/g3.webp" //changing part of images
+import g4 from "../../assets/g4.webp"; //changing part of images
 
 const timelineData = [
   {
@@ -129,12 +129,12 @@ const About = () => {
       </section>
 
       <section
-        className="relative min-h-screen bg-cover bg-center"
+        className="relative min-h-screen bg-cover bg-center brightness-120"
         style={{
           backgroundImage: `url(${bgCompanyOverview})`,
         }}
       >
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/100 via-black/90 to-black/20"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-[65%_35%] gap-16 px-6 md:px-16 py-20">
           {/* LEFT */}
@@ -219,7 +219,13 @@ const About = () => {
               { value: 1000, label: "Workforce" },
             ].map((item, i) => (
               <div key={i} className="text-center">
-                <p className="text-5xl font-light text-sky-400">
+                <p
+                  className={`text-5xl font-light ${
+                    item.label === "Annual Production"
+                      ? "text-orange-400"
+                      : "text-sky-400"
+                  }`}
+                >
                   {inView ? (
                     <CountUp end={item.value} separator={item.separator} />
                   ) : (
@@ -227,7 +233,11 @@ const About = () => {
                   )}
                   +
                 </p>
-                <p className="text-orange-400 mt-2">{item.label}</p>
+
+                <p className="text-orange-400 mt-2">
+                  {item.label}
+                  {item.label === "Annual Production" && " (TPA)"}
+                </p>
               </div>
             ))}
           </motion.div>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import RennyLogo from '../assets/RennyLogo.png';
+import RennyLogo from "../assets/RennyLogo.webp"
 import {
   FaXTwitter,
   FaFacebookF,

@@ -5,17 +5,17 @@ import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import HomepageBanner from '../assets/HomepageBanner.mp4';
+import HomepageBanner from '../assets/HomepageBanner.webm';
 
-import AboutUs from '../assets/AboutUs.png';
+import AboutUs from '../assets/AboutUs.webp';
 
-import MS from '../assets/MS-Billets.jpeg';
-import Scaffolding from '../assets/Scaffolding-Formwork.png';
-import ERW from '../assets/ERW-Black-Galvanized-Pipes.jpeg';
-import Coil from '../assets/Narrow-width-Coils.png';
-import rods from '../assets/Wire-Rods.png';
+import MS from '../assets/MS-Billets.webp';
+import Scaffolding from '../assets/Scaffolding-Formwork.webp';
+import ERW from '../assets/ERW-Black-Galvanized-Pipes.webp';
+import Coil from '../assets/Narrow-width-Coils.webp';
+import rods from '../assets/Wire-Rods.webp';
 
-import sustainability2 from '../assets/Sustainability2.jpg';
+import sustainability2 from '../assets/Sustainability2.webp';
 
 import CountUp from 'react-countup';
 import worldmap from '../assets/World-Map.webm';
@@ -24,15 +24,15 @@ import icons1 from '../assets/1a-about.svg';
 import icons2 from '../assets/2a-about.svg';
 import icons3 from '../assets/3a-about.svg';
 
-import blog1 from '../assets/blog1.jpeg';
-import blog2 from '../assets/blog2.jpeg';
-import blog3 from '../assets/blog3.jpeg';
-import blog4 from '../assets/blog4.jpeg';
+import blog1 from '../assets/blog1.webp';
+import blog2 from '../assets/blog2.webp';
+import blog3 from '../assets/blog3.webp';
+import blog4 from '../assets/blog4.webp';
 
-import news1 from '../assets/news1.jpg';
-import news2 from '../assets/news2.jpeg';
-import news3 from '../assets/news3.png';
-import news4 from '../assets/news4.jpg';
+import news1 from '../assets/news1.webp';
+import news2 from '../assets/news2.webp';
+import news3 from '../assets/news3.webp';
+import news4 from '../assets/news4.webp';
 
 import SustainabilitySlider from '../components/SustainabilitySlider';
 const Home = () => {

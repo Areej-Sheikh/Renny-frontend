@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import parallaxImg from '../assets/RENNY.png';
+import parallaxImg from "../assets/RENNY.webp";
 
 const CinematicParallax = () => {
   const ref = useRef(null);

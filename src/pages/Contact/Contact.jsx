@@ -1,10 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
-import contactBanner from "../../assets/contactBanner.jpg";
-import rennylocation from "../../assets/renny's-location.png";
-import unit1 from "../../assets/Unit-1.jpg";
-import unit3 from "../../assets/Unit-3.jpg";
+import contactBanner from "../../assets/contactBanner.webp";
+import rennylocation from "../../assets/renny's-location.webp";
+import unit1 from "../../assets/Unit-1.webp";
+import unit3 from "../../assets/Unit-3.webp";
 
 const Contact = () => {
   return (

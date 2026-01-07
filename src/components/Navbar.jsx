@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import RennyLogo from '../assets/RennyLogo.png';
-
+import RennyLogo from "../assets/RennyLogo.webp"
 const Navbar = () => {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);

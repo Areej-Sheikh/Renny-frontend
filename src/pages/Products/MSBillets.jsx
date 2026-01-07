@@ -1,5 +1,5 @@
-import msBilletsBG from "../../assets/msBilletsBG.png";
-import msBillets1 from "../../assets/msBillets1.jpg";
+import msBilletsBG from "../../assets/msBilletsBG.webp";
+import msBillets1 from "../../assets/msBillets1.webp";
 
 const MSBillets = () => {
   return (

@@ -22,6 +22,7 @@ import g2 from '../../assets/g2.jpg'; //changing part of images
 import g3 from '../../assets/g3.webp'; //changing part of images
 import g4 from '../../assets/g4.jpg'; //changing part of images
 
+import banner from '../../assets/Image.webp';
 /* ================= TIMELINE DATA ================= */
 const timelineData = [
   {
@@ -130,16 +131,20 @@ const About = () => {
       </section>
 
       {/* ================= COMPANY OVERVIEW ================= */}
-      <section
-        className="relative min-h-screen bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/src/assets/BG-companyoverview.jpeg')",
-        }}
-      >
+      <section className="relative min-h-screen overflow-hidden">
+        {/* Background Image */}
+        <img
+          src={banner}
+          alt="About Banner"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+        {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/60"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-[65%_35%] gap-16 px-6 md:px-16 py-20">
-          {/* LEFT */}
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-[65%_35%] gap-16 px-6 md:px-16 py-20 text-white">
+          {/* LEFT CONTENT */}
           <motion.div
             className="space-y-6"
             initial={{ opacity: 0, x: -80 }}
@@ -162,7 +167,9 @@ const About = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
-              variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
+              variants={{
+                visible: { transition: { staggerChildren: 0.15 } },
+              }}
             >
               <motion.p
                 variants={{
@@ -176,17 +183,8 @@ const About = () => {
                 structural products manufacturer headquartered in Ludhiana,
                 Punjab. The Company operates 3 integrated manufacturing units,
                 providing end-to-end finished products. Renny operates three
-                induction furnaces with a total melting capacity of 199,200 TPA
-                (versus an industry average of 65,000–75,000 TPA), supported by
-                two continuous casting lines and two rolling mills producing MS
-                billets, wire rods, and narrow-width HR coils. A downstream unit
-                manufactures ERW black and galvanized pipes and tubes, along
-                with scaffolding and formwork systems, using largely in-house
-                inputs, positioning Renny among the few vertically integrated
-                players in India across this value chain. The Company’s
-                scaffolding and formwork portfolio exceeds 1,000 SKUs, supplied
-                to customers across 5 continents and serves the construction,
-                automotive, water, oil & gas, and fabrication sectors.
+                induction furnaces with a total melting capacity of 199,200 TPA,
+                supported by two continuous casting lines and two rolling mills.
               </motion.p>
 
               <motion.ol
@@ -206,7 +204,7 @@ const About = () => {
             </motion.div>
           </motion.div>
 
-          {/* STATS */}
+          {/* RIGHT STATS */}
           <motion.div
             ref={statsRef}
             className="flex flex-col items-center space-y-10 pt-6"

@@ -29,10 +29,10 @@ import blog2 from '../assets/blog2.jpeg';
 import blog3 from '../assets/blog3.jpeg';
 import blog4 from '../assets/blog4.jpeg';
 
-import news1 from '../assets/news1.png';
-import news2 from '../assets/news2.jpg';
-import news3 from '../assets/news3.png';
-import news4 from '../assets/news4.jpg';
+import bs from '../assets/bs.png';
+import et from '../assets/et.jfif';
+import mc from '../assets/mc.jfif';
+import bt from '../assets/bt.jfif';
 
 import SustainabilitySlider from '../components/SustainabilitySlider';
 const Home = () => {
@@ -79,34 +79,33 @@ const Home = () => {
     {
       id: 1,
       title:
-        'Renny Strips reshapes construction with sustainable scaffolding and formwork solutions',
-      desc: 'Renny Strips is driving India’s urban revolution on a sustainable basis by providing cutting-edge scaffolding and formwork solutions that prioritise safety, reduce carbon footprint, and enable smart vertical growth across the country.',
-      link: 'https://aceupdate.com/renny-strips-reshapes-construction-with-sustainable-scaffolding-and-formwork-solutions/',
-      img: news1,
+        'Structural products maker Renny Strips files DRHP for IPO; seeks Rs 300 crore via fresh equity sale',
+      desc: 'Structural products manufacturer Renny Strips has taken the first formal step toward the capital markets, filing its draft red herring prospectus with the capital markets Sebi India for an IPO. The Ludhiana-based company plans to raise up to Rs 300 crore through a fresh issue of equity shares, along with an offer for sale of up to 1.2 crore shares by existing shareholders.',
+      link: 'https://economictimes.indiatimes.com/markets/ipos/fpos/structural-products-maker-renny-strips-files-drhp-for-ipo-seeks-rs-300-crore-via-fresh-equity-sale/articleshow/125978899.cms?from=mdr',
+      img: et,
     },
     {
       id: 2,
       title:
-        'Renny Strips Sets New Benchmarks in Scaffolding Safety and Reliability',
-      desc: 'Steel formwork and scaffolding are the cornerstones of contemporary construction, infusing strength, efficiency, and security. Steel scaffolding offers a safe working platform at heights, enhances accessibility, and facilitates free movement of material and equipment.',
-      link: 'https://odishabiznewz.com/news/renny-strips-sets-new-benchmarks-in-scaffolding-safety-and-reliability/',
-      img: news2,
+        'Renny Strips files IPO papers with SEBI, seeks to raise up to Rs 300 crore via fresh issue',
+      desc: 'Renny Strips IPO | The company proposed to raise Rs 300 crore by issuing fresh shares, while promoters Dev Raj Gupta, and Usha Gupta plan to offload 1.2 crore equity shares via offer-for-sale.',
+      link: 'https://www.moneycontrol.com/news/business/ipo/renny-strips-files-ipo-papers-with-sebi-seeks-to-raise-up-to-rs-300-crore-via-fresh-issue-13726597.html',
+      img: mc,
     },
     {
       id: 3,
       title:
-        'Renny Strips Sets New Benchmarks in Scaffolding Safety and Reliability',
-      desc: 'Steel formwork and scaffolding are the cornerstones of contemporary construction, infusing strength, efficiency, and security.',
-      link: 'https://businessnewsthisweek.com/business/renny-strips-sets-new-benchmarks-in-scaffolding-safety-and-reliability/',
-      img: news3,
+        'Renny Strips files DRHP to launch its IPO with Sebi, check details',
+      desc: 'Renny Strips files DRHP for IPO with Rs 300 crore fresh issue and 12 million shares OFS; Pantomath Capital Advisors is sole lead manager. Book building, BSE/NSE listing planned.',
+      link: 'https://www.businesstoday.in/markets/ipo-corner/story/renny-strips-files-drhp-to-launch-its-ipo-with-sebi-check-details-506711-2025-12-15',
+      img: bt,
     },
     {
       id: 4,
-      title:
-        'Renny Strips leads sustainable manufacturing with 22 MW solar power plant',
-      desc: "Renny Strips, India's exclusive manufacturer of customised green steel solutions for the scaffolding and formwork industry, has installed a cutting-edge 22 MW solar power plant across 100 acres.",
-      link: 'https://www.projectstoday.com/News/Renny-Strips-leads-sustainable-manufacturing-with-22-MW-solar-power-plant',
-      img: news4,
+      title: 'Renny Strips Ltd IPO Details',
+      desc: 'Funding the capital expenditure requirements of the Company. Prepayment or re-payment, in full or in part, of certain outstanding borrowings availed by its Company. General corporate purposes.',
+      link: 'https://www.business-standard.com/markets/ipo/renny-strips-ltd-ipo-35303',
+      img: bs,
     },
   ];
 
@@ -645,7 +644,7 @@ const Home = () => {
                   <img
                     src={news.img}
                     alt={news.title}
-                    className="w-full h-40 object-cover"
+                    className="w-full h-40 object-fill"
                     loading="lazy"
                   />
 

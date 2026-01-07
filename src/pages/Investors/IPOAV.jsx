@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import Navbar from '../../components/Navbar';
-import ipoHero from '../../assets/Financials.webp';
+import ipoHero from '../../assets/investorbanner.jpeg';
 import InvestorSidebar from '../../components/InvestorSidebar';
 
 const IPOAV = () => {
@@ -49,7 +49,7 @@ const IPOAV = () => {
       <Navbar />
 
       {/* -------------------- HERO SECTION -------------------- */}
-      <section className="relative w-full h-[55vh] overflow-hidden">
+      <section className="relative w-full h-[70vh] overflow-hidden">
         <img
           src={ipoHero}
           alt="IPO Audio Visual"

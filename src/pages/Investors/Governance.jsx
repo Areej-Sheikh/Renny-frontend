@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Navbar from '../../components/Navbar';
-import governanceHero from '../../assets/Corporate Governance.webp';
+import governanceHero from '../../assets/investorbanner.jpeg';
 import InvestorSidebar from '../../components/InvestorSidebar';
 
 // Profile Image Imports
@@ -241,7 +241,7 @@ const Governance = () => {
       <Navbar />
 
       {/* HERO SECTION */}
-      <section className="relative w-full h-[55vh] overflow-hidden">
+      <section className="relative w-full h-[70vh] overflow-hidden">
         <img
           src={governanceHero}
           alt="Hero"

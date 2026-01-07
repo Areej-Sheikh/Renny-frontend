@@ -1,5 +1,8 @@
-import news1 from '../../assets/news1.png';
-import news2 from '../../assets/news2.jpg';
+import pti from '../../assets/pti.jfif';
+import et from '../../assets/et.jfif';
+import bs from '../../assets/bs.png';
+import mc from '../../assets/mc.jfif';
+import bt from '../../assets/bt.jfif';
 
 import newsbanner from '../../assets/newsbanner.png';
 import { Link } from 'react-router-dom';
@@ -7,16 +10,17 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import newsvideo from '../../assets/newsvideo.mp4';
 
 const News = () => {
   const newsData = [
     {
       id: 1,
       title:
-        'Renny Strips Limited, a vertically integrated and sustainability-focused manufacturer of structural steel products based in Ludhiana, Punjab',
-      desc: 'Renny Strips Limited, a vertically integrated and sustainability-focused manufacturer of structural steel products based in Ludhiana, Punjab, has officially filed its Draft Red Herring Prospectus (DRHP) for a Main Board IPO.',
-      link: 'https://www.linkedin.com/posts/credalis-capital_ipo-mainboardipo-rennystripslimited-activity-7405536132534415360-AJFL?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFHfNUUBjQFe8h87fXxTHlZAp0_QWM5CAk4',
-      img: news2,
+        'Structural products maker Renny Strips files DRHP for IPO; seeks Rs 300 crore via fresh equity sale',
+      desc: 'Structural products manufacturer Renny Strips has taken the first formal step toward the capital markets, filing its draft red herring prospectus with the capital markets Sebi India for an IPO. The Ludhiana-based company plans to raise up to Rs 300 crore through a fresh issue of equity shares, along with an offer for sale of up to 1.2 crore shares by existing shareholders.',
+      link: 'https://economictimes.indiatimes.com/markets/ipos/fpos/structural-products-maker-renny-strips-files-drhp-for-ipo-seeks-rs-300-crore-via-fresh-equity-sale/articleshow/125978899.cms?from=mdr',
+      img: et,
     },
     {
       id: 2,
@@ -24,7 +28,30 @@ const News = () => {
         'Renny Strips files IPO papers with SEBI, seeks to raise up to Rs 300 crore via fresh issue',
       desc: 'Renny Strips IPO | The company proposed to raise Rs 300 crore by issuing fresh shares, while promoters Dev Raj Gupta, and Usha Gupta plan to offload 1.2 crore equity shares via offer-for-sale.',
       link: 'https://www.moneycontrol.com/news/business/ipo/renny-strips-files-ipo-papers-with-sebi-seeks-to-raise-up-to-rs-300-crore-via-fresh-issue-13726597.html',
-      img: news1,
+      img: mc,
+    },
+    {
+      id: 3,
+      title:
+        'Renny Strips files DRHP to launch its IPO with Sebi, check details',
+      desc: 'Renny Strips files DRHP for IPO with Rs 300 crore fresh issue and 12 million shares OFS; Pantomath Capital Advisors is sole lead manager. Book building, BSE/NSE listing planned.',
+      link: 'https://www.businesstoday.in/markets/ipo-corner/story/renny-strips-files-drhp-to-launch-its-ipo-with-sebi-check-details-506711-2025-12-15',
+      img: bt,
+    },
+    {
+      id: 4,
+      title: 'Renny Strips Ltd IPO Details',
+      desc: 'Funding the capital expenditure requirements of the Company. Prepayment or re-payment, in full or in part, of certain outstanding borrowings availed by its Company. General corporate purposes.',
+      link: 'https://www.business-standard.com/markets/ipo/renny-strips-ltd-ipo-35303',
+      img: bs,
+    },
+    {
+      id: 5,
+      title:
+        'Renny Strips files IPO papers with Sebi; targets to raise Rs 300 cr via fresh issue',
+      desc: 'NEW DELHI: (Dec 15) Renny Strips Ltd, a steel structural products manufacturing company, has filed preliminary papers with markets regulator Sebi to raise funds through an initial public offering (IPO), comprising fresh issue of shares worth Rs 300 crore.',
+      link: 'https://www.ptinews.com/story/business/renny-strips-files-ipo-papers-with-sebi-targets-to-raise-rs-300-cr-via-fresh-issue/3191154',
+      img: pti,
     },
   ];
 
@@ -85,9 +112,10 @@ const News = () => {
     },
   };
   return (
-    <div className=" min-h-screen  font-helvetica">
+    <div className=" min-h-screen font-helvetica">
+      {/* Banner */}
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden  mb-12"
+        className="relative h-[70vh] w-full overflow-hidden "
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
@@ -108,40 +136,59 @@ const News = () => {
           News
         </motion.h1>
       </motion.section>
-      <section ref={ref} className="max-w-6xl mx-auto rounded-2xl px-6 py-24">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          className="space-y-6"
-        >
-          <motion.h2
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold text-gray-900 text-center"
-          >
-            Showcasing Our Journey
-          </motion.h2>
+      {/* Spotlight section */}
+      <section className="flex items-center justify-center">
+        <div className="relative h-[550px] w-5xl mt-20 rounded-4xl overflow-hidden ">
+          {/* Background Video */}
+          <video
+            src={newsvideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0  w-full h-full object-cover z-0"
+          />
 
-          <motion.h3
-            variants={itemVariants}
-            className="text-2xl md:text-3xl font-semibold text-gray-700 text-center"
-          >
-            Through the Spotlight
-          </motion.h3>
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/60 z-10" />
 
-          <motion.p
-            variants={itemVariants}
-            className="text-gray-600 text-center md:text-lg leading-relaxed max-w-3xl mx-auto"
-          >
-            At Renny Strips, our work and leadership continue to inspire stories
-            of growth, innovation, and resilience. From prestigious awards to
-            industry recognitions and leadership features, our journey has been
-            highlighted across respected media platforms. This coverage not only
-            reflects our achievements but also reinforces our commitment to
-            shaping the future of the steel industry with excellence and
-            integrity.
-          </motion.p>
-        </motion.div>
+          {/* Content */}
+          <section ref={ref} className="relative z-20  p-20 md:p-16">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              className="space-y-6"
+            >
+              <motion.h2
+                variants={itemVariants}
+                className="text-4xl md:text-5xl mt-20 font-bold text-white text-center"
+              >
+                Showcasing Our Journey
+              </motion.h2>
+
+              <motion.h3
+                variants={itemVariants}
+                className="text-2xl md:text-3xl font-semibold text-white/90 text-center"
+              >
+                Through the Spotlight
+              </motion.h3>
+
+              <motion.p
+                variants={itemVariants}
+                className="text-white/80 text-center md:text-lg leading-relaxed max-w-3xl mx-auto"
+              >
+                At Renny Strips, our work and leadership continue to inspire
+                stories of growth, innovation, and resilience. From prestigious
+                awards to industry recognitions and leadership features, our
+                journey has been highlighted across respected media platforms.
+                This coverage not only reflects our achievements but also
+                reinforces our commitment to shaping the future of the steel
+                industry with excellence and integrity.
+              </motion.p>
+            </motion.div>
+          </section>
+        </div>
       </section>
 
       <div className="flex flex-col lg:flex-row gap-8 mb-40 mt-16">
@@ -206,7 +253,7 @@ const News = () => {
                 variants={scaleFade}
                 src={activeNews.img}
                 alt={activeNews.title}
-                className="w-full h-72 object-cover rounded-2xl mb-6"
+                className="w-72 h-72 object-fit rounded-2xl mb-6"
               />
 
               {/* Title */}

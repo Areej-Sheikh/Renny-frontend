@@ -47,6 +47,7 @@ const JobDetails = () => {
 
   return (
     <section className="w-full bg-gray-100 ">
+      {/* Banner */}
       <motion.section
         className="relative h-[70vh] w-full overflow-hidden  mb-12"
         initial={{ opacity: 0, scale: 1.2 }}

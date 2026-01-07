@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Navbar from '../../components/Navbar';
-import ipoHero from '../../assets/IPO Documents.webp';
+import ipoHero from '../../assets/investorbanner.jpeg';
 import InvestorSidebar from '../../components/InvestorSidebar';
 
 const IPO_DOCUMENTS = [
@@ -29,7 +29,7 @@ const IPODocs = () => {
       <Navbar />
 
       {/* -------------------- HERO SECTION -------------------- */}
-      <section className="relative w-full h-[55vh] overflow-hidden">
+      <section className="relative w-full h-[70vh] overflow-hidden">
         <img
           src={ipoHero}
           alt="IPO Documents"

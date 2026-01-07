@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import InvestorSidebar from '../../components/InvestorSidebar';
 import Navbar from '../../components/Navbar';
-import shareholdingHero from '../../assets/Share Holding Pattern.webp';
+import shareholdingHero from '../../assets/investorbanner.jpeg';
 
 const SIDEBAR_LINKS = [
   { title: 'Financials', path: '/financials' },
@@ -41,7 +41,7 @@ const Shareholding = () => {
       <Navbar />
 
       {/* -------------------- HERO SECTION -------------------- */}
-      <section className="relative w-full h-[55vh] overflow-hidden">
+      <section className="relative w-full h-[70vh] overflow-hidden">
         <img
           src={shareholdingHero}
           alt="Share Holding Pattern"

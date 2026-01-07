@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Navbar from '../../components/Navbar';
-import industryHero from '../../assets/Industry Report.webp';
+import industryHero from '../../assets/investorbanner.jpeg';
 import InvestorSidebar from '../../components/InvestorSidebar';
 
 // This is structured to easily accept backend data later
@@ -30,7 +30,7 @@ const IndustryReport = () => {
       <Navbar />
 
       {/* -------------------- HERO SECTION -------------------- */}
-      <section className="relative w-full h-[55vh] overflow-hidden">
+      <section className="relative w-full h-[70vh] overflow-hidden">
         <img
           src={industryHero}
           alt="Industry Report"

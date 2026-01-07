@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import Navbar from '../../components/Navbar';
 import InvestorSidebar from '../../components/InvestorSidebar';
-import policiesHero from '../../assets/Financials.webp';
+import policiesHero from '../../assets/investorbanner.jpeg';
 
 const Policies = () => {
   const [policies, setPolicies] = useState([]);
@@ -174,7 +174,7 @@ const Policies = () => {
       <Navbar />
 
       {/* HERO SECTION */}
-      <section className="relative w-full h-[55vh] overflow-hidden">
+      <section className="relative w-full h-[70vh] overflow-hidden">
         <img
           src={policiesHero}
           alt="Policies"

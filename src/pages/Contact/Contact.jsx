@@ -5,10 +5,10 @@ import banner from '../../assets/contactusbanner.png';
 import rennylocation from "../../assets/renny's-location.png";
 import unit1 from '../../assets/Unit-1.jpg';
 import unit3 from '../../assets/Unit-3.jpg';
-
 const Contact = () => {
   return (
     <>
+      {/* Banner */}
       <motion.section
         className="relative h-[70vh] w-full overflow-hidden  mb-12"
         initial={{ opacity: 0, scale: 1.2 }}
@@ -26,7 +26,7 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
           className="relative z-10 text-white text-6xl md:text-7xl font-bold 
-                       flex items-end justify-start h-full py-10 px-10"
+                      flex items-end justify-start h-full py-10 px-10"
         >
           Contact Us
         </motion.h1>
@@ -159,17 +159,17 @@ const Contact = () => {
           </motion.div>
         </div>
       </section>
-      {/* ================= CONTACT INFO WITH ANIMATION ================= */}
-      <section className="w-full bg-gray-100 text-black px-6 md:px-20 py-16">
+      {/* Get in touch with us */}
+      <section className="w-full px-6 md:px-20 py-20 bg-gradient-to-t to-[#262731] from-[#879cefe6]">
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={{
             hidden: {},
             visible: {
-              transition: { staggerChildren: 0.15 },
+              transition: { staggerChildren: 0.2 },
             },
           }}
         >
@@ -181,7 +181,7 @@ const Contact = () => {
             }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             whileHover={{ y: -6 }}
-            className="bg-white border border-white rounded-xl p-6 space-y-4"
+            className="bg-gray-200 hover:bg-white rounded-2xl p-8 space-y-4 text-center shadow-sm hover:shadow-xl  transition-all duration-300"
           >
             <h1 className="text-2xl md:text-3xl font-semibold text-[#292c44]">
               Get in Touch
@@ -216,12 +216,12 @@ const Contact = () => {
             }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             whileHover={{ y: -6 }}
-            className="bg-white border border-white rounded-xl p-6 space-y-4 text-center"
+            className="bg-gray-200 hover:bg-white rounded-2xl p-8 space-y-4 text-center shadow-sm hover:shadow-xl  transition-all duration-300"
           >
             <div className="flex items-center justify-center gap-3">
               <MdLocationOn size={28} className="text-[#292c44]" />
-              <h1 className="text-2xl md:text-3xl font-semibold text-[#292c44]">
-                Unit I
+              <h1 className="text-2xl md:text-2xl font-semibold text-[#292c44]">
+                Registered Office
               </h1>
             </div>
 
@@ -244,21 +244,21 @@ const Contact = () => {
             }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             whileHover={{ y: -6 }}
-            className="bg-white border border-white rounded-xl p-6 space-y-4 text-center"
+            className="bg-gray-200 hover:bg-white rounded-2xl p-8 space-y-4 text-center shadow-sm hover:shadow-xl  transition-all duration-300"
           >
             <div className="flex items-center justify-center gap-3">
               <MdLocationOn size={28} className="text-[#292c44]" />
-              <h1 className="text-2xl md:text-3xl font-semibold text-[#292c44]">
-                Unit II
+              <h1 className="text-2xl md:text-2xl font-semibold text-[#292c44]">
+                Site Office
               </h1>
             </div>
 
             <h2 className="text-lg md:text-xl font-semibold text-black leading-snug">
               Renny Strips Ltd.
-              <br />
+              {/* <br />
               <span className="text-base md:text-lg font-medium">
                 (Furnace Division)
-              </span>
+              </span> */}
             </h2>
 
             <p className="text-sm leading-relaxed text-gray-600">
@@ -267,44 +267,13 @@ const Contact = () => {
               District Ludhiana, Punjab – 141112, India.
             </p>
           </motion.div>
-
-          {/* BOX 4 – Unit III */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 40 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            whileHover={{ y: -6 }}
-            className="bg-white border border-white rounded-xl p-6 space-y-4 text-center"
-          >
-            <div className="flex items-center justify-center gap-3">
-              <MdLocationOn size={28} className="text-[#292c44]" />
-              <h1 className="text-2xl md:text-3xl font-semibold text-[#292c44]">
-                Unit III
-              </h1>
-            </div>
-
-            <h2 className="text-lg md:text-xl font-semibold text-black leading-snug">
-              Renny Strips Ltd.
-              <br />
-              <span className="text-base md:text-lg font-medium">
-                (Furnace Division)
-              </span>
-            </h2>
-
-            <p className="text-sm leading-relaxed text-gray-600">
-              Lakhowal Road, Opposite PSPCL House, Kohara,
-              <br />
-              Ludhiana, Punjab – 141112, India.
-            </p>
-          </motion.div>
         </motion.div>
       </section>
 
-      <section className="w-full bg-white px-6 md:px-20 py-20">
+      <section className="w-full bg-blue-50  md:px-10  relative">
+        {/* Heading */}
         <motion.h2
-          className="text-4xl md:text-5xl font-semibold text-center mb-16"
+          className="text-4xl md:text-5xl font-semibold text-center mt-20 mb-24 text-[#292c44] tracking-wide"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -312,83 +281,93 @@ const Contact = () => {
         >
           Industrial Plant
         </motion.h2>
+        <section className="relative overflow-hidden ">
+          {/* ================= UNIT I & II ================= */}
+          <div className="grid grid-cols-1  md:grid-cols-2 gap-70 items-center mb-28">
+            {/* Image */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.03 }}
+              className="w-[700px] rounded-2xl overflow-hidden shadow-md"
+            >
+              <img
+                src={unit1}
+                alt="Unit I Plant"
+                className="w-full h-full object-cover transition-transform duration-500"
+              />
+            </motion.div>
 
-        {/* ===== UNIT I ===== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="w-full h-[360px] rounded-xl overflow-hidden"
-          >
-            <img
-              src={unit1}
-              alt="Unit I Plant"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="space-y-5"
-          >
-            <div className="flex items-center gap-3">
-              <MdLocationOn size={30} className="text-[#292c44]" />
-              <h3 className="text-2xl md:text-3xl font-semibold text-[#292c44]">
-                Unit I & II
-              </h3>
-            </div>
+            {/* Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              viewport={{ once: true }}
+              className="space-y-6 p-6 border-l-4 border-[#292c44]"
+            >
+              <div className="flex  items-center gap-3">
+                <MdLocationOn size={30} className="text-[#292c44]" />
+                <h3 className="text-2xl md:text-3xl font-semibold text-[#292c44]">
+                  Unit I & II
+                </h3>
+              </div>
 
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-              Village Mangarh, Machhiwara Road, Kohara,
-              <br />
-              District Ludhiana, Punjab – 141112, India.
-            </p>
-          </motion.div>
-        </div>
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                Village Mangarh, Machhiwara Road, Kohara,
+                <br />
+                District Ludhiana, Punjab – 141112, India.
+              </p>
 
-        {/* ===== UNIT II ===== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="space-y-5 order-2 md:order-1"
-          >
-            <div className="flex items-center gap-3">
-              <MdLocationOn size={30} className="text-[#292c44]" />
-              <h3 className="text-2xl md:text-3xl font-semibold text-[#292c44]">
-                Unit III
-              </h3>
-            </div>
+              <div className="w-16 h-[2px] bg-[#292c44]" />
+            </motion.div>
+          </div>
 
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-              Lakhowal Road, Opposite PSPCL House, Kohara,
-              <br />
-              Ludhiana, Punjab – 141112, India.
-            </p>
-          </motion.div>
+          {/* ================= UNIT III ================= */}
+          <div className="grid grid-cols-1 md:grid-cols-2 mb-30 gap-16 mr-50 items-center">
+            {/* Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              viewport={{ once: true }}
+              className="space-y-6 p-6 border-l-4 border-[#292c44] order-2 md:order-1"
+            >
+              <div className="flex items-center gap-3">
+                <MdLocationOn size={30} className="text-[#292c44]" />
+                <h3 className="text-2xl md:text-3xl font-semibold text-[#292c44]">
+                  Unit III
+                </h3>
+              </div>
 
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="w-full h-[360px] rounded-xl overflow-hidden order-1 md:order-2"
-          >
-            <img
-              src={unit3}
-              alt="Unit II Plant"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-        </div>
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                Lakhowal Road, Opposite PSPCL House, Kohara,
+                <br />
+                Ludhiana, Punjab – 141112, India.
+              </p>
+
+              <div className="w-16 h-[2px] bg-[#292c44]" />
+            </motion.div>
+
+            {/* Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.03 }}
+              className="w-[650px] border-amber-500 rounded-2xl overflow-hidden shadow-md order-1 md:order-2"
+            >
+              <img
+                src={unit3}
+                alt="Unit III Plant"
+                className=" rounded-2xl object-cover transition-transform duration-500"
+              />
+            </motion.div>
+          </div>
+        </section>
       </section>
     </>
   );

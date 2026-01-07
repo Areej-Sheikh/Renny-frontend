@@ -1,4 +1,3 @@
-import BlogBanner from '../../assets/BlogBanner.png';
 import BlogCard from '../../components/BlogCard.jsx';
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';

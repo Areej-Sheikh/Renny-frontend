@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import Navbar from '../../components/Navbar';
 import InvestorSidebar from '../../components/InvestorSidebar';
-import financialsHero from '../../assets/Financials.webp';
+import financialsHero from '../../assets/investorbanner.jpeg';
 
 /* -------------------- TABS & DATA -------------------- */
 const TABS = [
@@ -73,7 +73,7 @@ const Financials = () => {
       <Navbar />
 
       {/* HERO SECTION */}
-      <section className="relative w-full h-[60vh] overflow-hidden">
+      <section className="relative w-full h-[70vh] overflow-hidden">
         <img
           src={financialsHero}
           alt="Financials"

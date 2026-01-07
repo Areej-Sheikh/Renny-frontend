@@ -1,9 +1,9 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-import events1 from '../../assets/events1.mp4';
-import events2 from '../../assets/events2.mp4';
-import events3 from '../../assets/events3.mp4';
-import events4 from '../../assets/events4.mp4';
+import events1 from '../../assets/events1.webm';
+import events2 from '../../assets/events2.webm';
+import events3 from '../../assets/events3.webm';
+import events4 from '../../assets/events4.webm';
 import banner from '../../assets/Image.webp';
 
 import EventCard from '../../components/EventCard';

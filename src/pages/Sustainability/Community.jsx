@@ -1,12 +1,10 @@
-
-
-import community from '../../assets/community.jpg';
-import community1 from '../../assets/community1.jpg';
-import community2 from '../../assets/community2.jpg';
+import community from '../../assets/community.webp';
+import community1 from '../../assets/community1.webp';
+import community2 from '../../assets/community2.webp';
 // import community3 from '../../assets/community3.jpg';
 // import community4 from '../../assets/community4.jpg';
 // import community5 from '../../assets/community5.jpg';
-import quotes from '../../assets/quotes.png';
+import quotes from '../../assets/quotes.webp';
 // import DesignCentre from './../About/DesignCentre';
 const Community = () => {
   return (

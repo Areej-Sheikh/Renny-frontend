@@ -1,7 +1,7 @@
 import React from "react";
 
-import wireRodsBG from "../../assets/wireRodsBG.jpg";
-import wireRods1 from "../../assets/wireRods1.jpg";
+import wireRodsBG from "../../assets/wireRodsBG.webp";
+import wireRods1 from "../../assets/wireRods1.webp";
 
 const WireRods = () => {
   return (

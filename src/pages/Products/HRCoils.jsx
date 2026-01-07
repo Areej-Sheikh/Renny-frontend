@@ -1,7 +1,7 @@
 import React from "react";
 
-import hrCoilsBG from "../../assets/HR-Coil-scaled.jpg";
-import hrCoilsSide from "../../assets/narrow-HR-Coil-min-scaled.jpg";
+import hrCoilsBG from "../../assets/HR-Coil-scaled.webp";
+import hrCoilsSide from "../../assets/narrow-HR-Coil-min-scaled.webp";
 
 const HRCoils = () => {
   return (

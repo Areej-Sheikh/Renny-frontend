@@ -1,10 +1,10 @@
 import React from 'react';
-import blog1 from '../../../assets/blog1.jpeg';
+import blog1 from '../../../assets/blog1.webp';
 import { Link } from 'react-router-dom';
 import Newsletter from '../../../components/Newsletter';
 import BlogCard from '../../../components/BlogCard';
-import blog2 from '../../../assets/blog2.jpeg';
-import blog3 from '../../../assets/blog3.jpeg';
+import blog2 from '../../../assets/blog2.webp';
+import blog3 from '../../../assets/blog3.webp';
 const KwikstageScaffolding = () => {
   const socialLinks = [
     {

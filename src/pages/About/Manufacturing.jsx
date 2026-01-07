@@ -1,10 +1,10 @@
 import React from "react";
 //Video
 import aboutVideo from "../../assets/01-aboutVideo.webm";
-import manufacturingVideo from "../../assets/OurManufacturingProcess.mp4"
+import manufacturingVideo from "../../assets/OurManufacturingProcess.webm"
 // import images
-import unit1 from "../../assets/Unit-1.jpg";
-import unit3 from "../../assets/Unit-3.jpg";
+import unit1 from "../../assets/Unit-1.webp";
+import unit3 from "../../assets/Unit-3.webp";
 
 const Manufacturing = () => {
   return (

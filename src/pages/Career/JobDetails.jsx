@@ -3,10 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MdWorkOutline, MdCurrencyRupee } from "react-icons/md";
-import careerBanner from "../../assets/careerBanner.png"
-
-
-/* ================= JOB DATA ================= */
+import careerBanner from "../../assets/careerBanner.webp";
 const jobsData = {
   'web-dev': {
     title: 'Web Developer',

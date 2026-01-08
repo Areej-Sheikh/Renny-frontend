@@ -170,7 +170,7 @@ const Home = () => {
   return (
     <div className="relative flex flex-col  font-helvetica ">
       {/* Banner */}
-      <section className=" panel  w-full relative h-125 flex flex-col md:flex-row items-center mt-15 ">
+      <section className=" panel  w-full relative h-125 flex flex-col md:flex-row items-center mt-18 ">
         {/* Left Text Column */}
         <motion.div
           className="md:w-1/2 flex flex-col justify-center px-6 md:px-12 h-full"

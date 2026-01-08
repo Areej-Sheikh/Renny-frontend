@@ -40,7 +40,9 @@ const Navbar = () => {
       {/* Navigation */}
       <ul
         className={`flex items-center gap-3 transition-all duration-300
-    ${isScrolled ? 'text-gray-700 font-medium' : 'text-gray-700 font-normal'}
+    ${
+      isScrolled ? 'text-gray-700 font-semibold' : 'font-semibold text-gray-400'
+    }
   `}
       >
         {/* About Us */}

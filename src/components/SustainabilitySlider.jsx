@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import sustainability1 from "../assets/Sustainability1.webp";
-import sustainability3 from "../assets/Sustainability3.webp";
-import sustainability4 from "../assets/Sustainability4.webp";
+import sustainability1 from '../assets/Sustainability1.webp';
+import sustainability3 from '../assets/Sustainability3.webp';
+import sustainability4 from '../assets/Sustainability4.webp';
 
 const SustainabilitySlider = () => {
   const [current, setCurrent] = useState(0);

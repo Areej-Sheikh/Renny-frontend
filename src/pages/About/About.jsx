@@ -1,69 +1,71 @@
-import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import CountUp from "react-countup";
+import React, { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import CountUp from 'react-countup';
 
-import aboutVideo from "../../assets/01-aboutVideo.webm";
-import worldmap from "../../assets/World-Map.webm";
-import { image } from "framer-motion/client";
+import aboutVideo from '../../assets/01-aboutVideo.webm';
+import worldmap from '../../assets/World-Map.webm';
+import { image } from 'framer-motion/client';
 //images
-import bgCompanyOverview from "../../assets/BG-companyoverview.webp";
-import t1996 from "../../assets/1996.webp" //changing part of images
-import t2005 from "../../assets/2005.webp"; //changing part of images
-import t2016 from "../../assets/2016.webp"; //changing part of images
-import t2018 from "../../assets/2018.webp"; //changing part of images
-import t2019 from "../../assets/2019.webp"; //changing part of images
-import t2021 from "../../assets/2021.webp"; //changing part of images
-import t2023 from "../../assets/2023.webp"; //changing part of images
-import t2024 from "../../assets/2024.webp"; //changing part of images
-import t2025 from "../../assets/2025.webp"; //changing part of images
+import bgCompanyOverview from '../../assets/BG-companyoverview.webp';
+import t1996 from '../../assets/1996.webp'; //changing part of images
+import t2005 from '../../assets/2005.webp'; //changing part of images
+import t2016 from '../../assets/2016.webp'; //changing part of images
+import t2018 from '../../assets/2018.webp'; //changing part of images
+import t2019 from '../../assets/2019.webp'; //changing part of images
+import t2021 from '../../assets/2021.webp'; //changing part of images
+import t2023 from '../../assets/2023.webp'; //changing part of images
+import t2024 from '../../assets/2024.webp'; //changing part of images
+import t2025 from '../../assets/2025.webp'; //changing part of images
 
-import g1 from "../../assets/g1.webp"; //changing part of images
-import g2 from "../../assets/g2.webp"; //changing part of images
-import g3 from "../../assets/g3.webp" //changing part of images
-import g4 from "../../assets/g4.webp"; //changing part of images
+import banner from '../../assets/Image.webp';
+
+import g1 from '../../assets/g1.webp'; //changing part of images
+import g2 from '../../assets/g2.webp'; //changing part of images
+import g3 from '../../assets/g3.webp'; //changing part of images
+import g4 from '../../assets/g4.webp'; //changing part of images
 
 const timelineData = [
   {
-    year: "1996",
-    title: "Incorporation of our Company\nCommenced trading of MS Billets.",
+    year: '1996',
+    title: 'Incorporation of our Company\nCommenced trading of MS Billets.',
     image: t1996,
   },
   {
-    year: "2005",
+    year: '2005',
     title:
-      "Setting up a rolling mill at Unit I and commenced manufacturing of wire rods.",
+      'Setting up a rolling mill at Unit I and commenced manufacturing of wire rods.',
     image: t2005,
   },
   {
-    year: "2016",
-    title: "Export of galvanized iron fully threaded rods to U.A.E.",
+    year: '2016',
+    title: 'Export of galvanized iron fully threaded rods to U.A.E.',
     image: t2016,
   },
   {
-    year: "2018",
-    title: "Set up of continuous casting machine and rolling mill at Unit I.",
+    year: '2018',
+    title: 'Set up of continuous casting machine and rolling mill at Unit I.',
     image: t2018,
   },
   {
-    year: "2019",
+    year: '2019',
     title:
-      "Set up of continuous casting machine and induction melting furnace at Unit II.",
+      'Set up of continuous casting machine and induction melting furnace at Unit II.',
     image: t2019,
   },
-  { year: "2021", title: "Expansion of Unit I.", image: t2021 },
+  { year: '2021', title: 'Expansion of Unit I.', image: t2021 },
   {
-    year: "2023",
-    title: "Installation of 66Kva Sub-station at Unit I.",
+    year: '2023',
+    title: 'Installation of 66Kva Sub-station at Unit I.',
     image: t2023,
   },
   {
-    year: "2024",
-    title: "Commencement of production of HR coils.",
+    year: '2024',
+    title: 'Commencement of production of HR coils.',
     image: t2024,
   },
   {
-    year: "2025",
+    year: '2025',
     title: `Set up of Unit III and commencement of production of ERW pipes and tubes and Scaffolding and Formwork systems.
 
     Company acquired land for Proposed Unit IV.
@@ -79,9 +81,7 @@ const About = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) =>
-        prev === timelineData.length - 1 ? 0 : prev + 1
-      );
+      setActiveIndex(prev => (prev === timelineData.length - 1 ? 0 : prev + 1));
     }, 3500);
     return () => clearInterval(interval);
   }, []);
@@ -95,7 +95,7 @@ const About = () => {
 
   useEffect(() => {
     const slider = setInterval(() => {
-      setCurrentSlide((prev) =>
+      setCurrentSlide(prev =>
         prev === galleryImages.length - 1 ? 0 : prev + 1
       );
     }, 2000);
@@ -120,7 +120,7 @@ const About = () => {
             className="text-4xl md:text-5xl font-bold"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             viewport={{ once: true }}
           >
             Company Overview
@@ -128,28 +128,32 @@ const About = () => {
         </div>
       </section>
 
-      <section
-        className="relative min-h-screen bg-cover bg-center brightness-120"
-        style={{
-          backgroundImage: `url(${bgCompanyOverview})`,
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-black/100 via-black/90 to-black/20"></div>
+      <section className="relative min-h-screen overflow-hidden">
+        {/* Background Image */}
+        <img
+          src={banner}
+          alt="About Banner"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
 
-        <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-[65%_35%] gap-16 px-6 md:px-16 py-20">
-          {/* LEFT */}
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/60"></div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-[65%_35%] gap-16 px-6 md:px-16 py-20 text-white">
+          {/* LEFT CONTENT */}
           <motion.div
             className="space-y-6"
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.h1
               className="text-3xl md:text-4xl font-semibold"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
               viewport={{ once: true }}
             >
               Renny Strips Ltd: One of India’s Key Manufacturers of Customized
@@ -160,31 +164,24 @@ const About = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
-              variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
+              variants={{
+                visible: { transition: { staggerChildren: 0.15 } },
+              }}
             >
               <motion.p
                 variants={{
                   hidden: { opacity: 0, y: 30 },
                   visible: { opacity: 1, y: 0 },
                 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
                 className="text-base md:text-lg text-gray-200 leading-relaxed"
               >
                 Founded in 1996, Renny Strips Limited is a fully integrated
                 structural products manufacturer headquartered in Ludhiana,
                 Punjab. The Company operates 3 integrated manufacturing units,
                 providing end-to-end finished products. Renny operates three
-                induction furnaces with a total melting capacity of 199,200 TPA
-                (versus an industry average of 65,000–75,000 TPA), supported by
-                two continuous casting lines and two rolling mills producing MS
-                billets, wire rods, and narrow-width HR coils. A downstream unit
-                manufactures ERW black and galvanized pipes and tubes, along
-                with scaffolding and formwork systems, using largely in-house
-                inputs, positioning Renny among the few vertically integrated
-                players in India across this value chain. The Company’s
-                scaffolding and formwork portfolio exceeds 1,000 SKUs, supplied
-                to customers across 5 continents and serves the construction,
-                automotive, water, oil & gas, and fabrication sectors.
+                induction furnaces with a total melting capacity of 199,200 TPA,
+                supported by two continuous casting lines and two rolling mills.
               </motion.p>
 
               <motion.ol
@@ -192,7 +189,7 @@ const About = () => {
                   hidden: { opacity: 0, y: 30 },
                   visible: { opacity: 1, y: 0 },
                 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
                 className="list-decimal list-inside space-y-2 text-gray-100 pt-5"
               >
                 <li>MS billets</li>
@@ -204,28 +201,22 @@ const About = () => {
             </motion.div>
           </motion.div>
 
-          {/* STATS */}
+          {/* RIGHT STATS */}
           <motion.div
             ref={statsRef}
             className="flex flex-col items-center space-y-10 pt-6"
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
             viewport={{ once: true }}
           >
             {[
-              { value: 1000, label: "SKUs" },
-              { value: 199200, label: "Annual Production", separator: "," },
-              { value: 1000, label: "Workforce" },
+              { value: 1000, label: 'SKUs' },
+              { value: 199200, label: 'Annual Production', separator: ',' },
+              { value: 1000, label: 'Workforce' },
             ].map((item, i) => (
               <div key={i} className="text-center">
-                <p
-                  className={`text-5xl font-light ${
-                    item.label === "Annual Production"
-                      ? "text-orange-400"
-                      : "text-sky-400"
-                  }`}
-                >
+                <p className="text-5xl font-light text-sky-400">
                   {inView ? (
                     <CountUp end={item.value} separator={item.separator} />
                   ) : (
@@ -233,11 +224,7 @@ const About = () => {
                   )}
                   +
                 </p>
-
-                <p className="text-orange-400 mt-2">
-                  {item.label}
-                  {item.label === "Annual Production" && " (TPA)"}
-                </p>
+                <p className="text-orange-400 mt-2">{item.label}</p>
               </div>
             ))}
           </motion.div>
@@ -270,7 +257,7 @@ const About = () => {
                   >
                     <span
                       className={`mb-10 text-lg font-semibold transition ${
-                        isActive ? "text-[#292c44]" : "text-gray-500"
+                        isActive ? 'text-[#292c44]' : 'text-gray-500'
                       }`}
                     >
                       {item.year}
@@ -279,7 +266,7 @@ const About = () => {
                     {/* DOT  */}
                     <motion.div
                       className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full ${
-                        isActive ? "bg-[#292c44]" : "bg-gray-400"
+                        isActive ? 'bg-[#292c44]' : 'bg-gray-400'
                       }`}
                       animate={{ scale: isActive ? 1.4 : 1 }}
                       transition={{ duration: 0.4 }}
@@ -294,7 +281,7 @@ const About = () => {
             key={activeIndex}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             className="grid lg:grid-cols-2 gap-20"
           >
             <div>
@@ -310,7 +297,7 @@ const About = () => {
               key={activeIndex}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
               className="h-[420px] rounded-xl overflow-hidden"
             >
               <img
@@ -331,7 +318,7 @@ const About = () => {
           className="absolute inset-0 w-full h-full object-cover"
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         />
       </section>
 
@@ -341,7 +328,7 @@ const About = () => {
             className="text-4xl md:text-5xl font-semibold mb-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
             viewport={{ once: true }}
           >
             Our Network
@@ -356,14 +343,14 @@ const About = () => {
             className="w-full rounded-2xl"
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
             viewport={{ once: true }}
           />
           <motion.p
             className="mt-12 text-sm md:text-base text-black leading-relaxed w-full"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
             viewport={{ once: true }}
           >
             Renny Strips Ltd. boasts a strong Pan-India footprint and a growing

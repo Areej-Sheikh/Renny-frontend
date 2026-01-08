@@ -1,9 +1,9 @@
 import community from '../../assets/community.webp';
 import community1 from '../../assets/community1.webp';
 import community2 from '../../assets/community2.webp';
-// import community3 from '../../assets/community3.jpg';
-// import community4 from '../../assets/community4.jpg';
-// import community5 from '../../assets/community5.jpg';
+// import community3 from '../../assets/community3.webp';
+// import community4 from '../../assets/community4.webp';
+// import community5 from '../../assets/community5.webp';
 import quotes from '../../assets/quotes.webp';
 // import DesignCentre from './../About/DesignCentre';
 const Community = () => {

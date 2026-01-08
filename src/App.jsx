@@ -70,7 +70,7 @@ import Parallax from './components/ParallaxSection';
 import ScrollToTop from './components/ScrollToTop.jsx';
 const App = () => {
   return (
-    <div className="App relative min-h-screen overflow-x-hidden scroll-smooth no-scrollbar ml-5 mr-5">
+    <div className="App relative min-h-screen overflow-x-hidden scroll-smooth no-scrollbar">
       <ScrollToTop />
       <Navbar />
       <Routes>

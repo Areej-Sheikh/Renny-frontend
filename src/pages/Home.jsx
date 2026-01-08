@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 import { useInView } from 'react-intersection-observer';
@@ -38,8 +38,32 @@ import emission from '../assets/emmisionSection.webm';
 import { AnimatePresence } from 'framer-motion';
 import aboutusVideo from '../assets/newsvideo.webm';
 
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 import SustainabilitySlider from '../components/SustainabilitySlider';
+
 const Home = () => {
+  ScrollTrigger.normalizeScroll(true);
+  useEffect(() => {
+    const sections = gsap.utils.toArray('.panel');
+
+    ScrollTrigger.create({
+      trigger: sections[0],
+      start: 'top top',
+      end: () => '+=' + window.innerHeight * (sections.length - 1),
+      snap: {
+        snapTo: 1 / (sections.length - 1),
+        duration: 0.6,
+        ease: 'power2.out',
+      },
+    });
+
+    return () => ScrollTrigger.getAll().forEach(t => t.kill());
+  }, []);
+
   const navigate = useNavigate();
   const newsData = [
     {
@@ -146,7 +170,7 @@ const Home = () => {
   return (
     <div className="relative flex flex-col  font-helvetica ">
       {/* Banner */}
-      <section className="w-full relative h-125 flex flex-col md:flex-row items-center mt-15 ">
+      <section className=" panel  w-full relative h-125 flex flex-col md:flex-row items-center mt-15 ">
         {/* Left Text Column */}
         <motion.div
           className="md:w-1/2 flex flex-col justify-center px-6 md:px-12 h-full"
@@ -181,7 +205,7 @@ const Home = () => {
 
       {/* Emmission Section */}
       <motion.section
-        className="flex flex-col items-center font-helvetica justify-center mt-30"
+        className="flex flex-col items-center font-helvetica justify-center mt-40 panel h-screen"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -260,7 +284,7 @@ const Home = () => {
 
       {/* About Us */}
       <motion.section
-        className="flex flex-col items-center font-helvetica justify-center mt-30"
+        className="flex flex-col items-center font-helvetica justify-center  panel h-screen"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -328,7 +352,7 @@ const Home = () => {
 
       {/* Our Products */}
       <motion.section
-        className="flex flex-col items-center font-helvetica justify-center px-6 py-16"
+        className="flex flex-col items-center font-helvetica justify-center px-6 py-16 panel h-screen "
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -403,7 +427,7 @@ const Home = () => {
 
       {/* Our Networks*/}
       <motion.section
-        className="flex flex-col items-center font-helvetica justify-center px-6 py-16"
+        className="flex flex-col items-center font-helvetica justify-center px-6 py-16 panel  "
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -423,7 +447,7 @@ const Home = () => {
         {/* Video */}
         <motion.video
           src={worldmap}
-          className="w-full max-w-7xl rounded-xl"
+          className="w-full max-w-7xl max-h-[75vh] object-cover"
           autoPlay
           loop
           muted
@@ -683,7 +707,7 @@ const Home = () => {
       </section>
 
       {/* News and investor Section */}
-      <section className="font-helvetica bg-gray-100 py-20 px-6">
+      <section className="font-helvetica bg-gray-100 py-20 px-6 panel  ">
         {/* Heading */}
         <motion.h1
           className="text-[37px] font-bold ml-20 mb-10 w-full text-center"
@@ -835,7 +859,7 @@ const Home = () => {
       </section>
 
       {/* Sustainability Section */}
-      <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16 bg-white">
+      <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16 bg-white panel h-screen ">
         {/* Heading */}
         <motion.h1
           className="text-[37px] ml-20 font-bold mb-10 w-full text-left"
@@ -885,7 +909,7 @@ const Home = () => {
       </section>
       {/* Blog Section */}
       <motion.section
-        className="bg-gray-100 px-6 py-16 font-helvetica"
+        className="bg-gray-100 px-6 py-16 font-helvetica  panel"
         variants={{
           hidden: { opacity: 0, y: 40 },
           visible: {

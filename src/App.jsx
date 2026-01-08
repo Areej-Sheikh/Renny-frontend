@@ -29,7 +29,6 @@ import EC from './pages/EC/EC';
 
 /* Sustainability */
 import Sustainability from './pages/Sustainability/Sustainability';
-import Community from './pages/Sustainability/Community';
 
 /* Media */
 import News from './pages/Media/News';
@@ -38,7 +37,8 @@ import Events from './pages/Media/Events';
 
 /* Career */
 import Career from './pages/Career/Career';
-import JobDetails from "./pages/Career/JobDetails";
+import JobDetails from './pages/Career/JobDetails';
+
 /* Contact */
 import Contact from './pages/Contact/Contact';
 /* Media Blogs */
@@ -67,9 +67,11 @@ import GlobalERWPipes from './pages/Media/Blogs/GlobalERWPipes';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Parallax from './components/ParallaxSection';
+import ScrollToTop from './components/ScrollToTop.jsx';
 const App = () => {
   return (
-    <div className="App relative min-h-screen overflow-x-hidden">
+    <div className="App relative min-h-screen overflow-x-hidden scroll-smooth no-scrollbar">
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -101,7 +103,6 @@ const App = () => {
 
         {/* Sustainability */}
         <Route path="/sustainability/" element={<Sustainability />} />
-        <Route path="/community-development/" element={<Community />} />
 
         {/* Media */}
         <Route path="/news-room/" element={<News />} />

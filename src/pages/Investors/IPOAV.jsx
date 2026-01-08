@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import Navbar from '../../components/Navbar';
-import ipoHero from '../../assets/investorbanner.jpeg';
+import ipoHero from '../../assets/investorbanner.webp';
 import InvestorSidebar from '../../components/InvestorSidebar';
 
 const IPOAV = () => {

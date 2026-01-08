@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Navbar from '../../components/Navbar';
-import industryHero from '../../assets/investorbanner.jpeg';
+import industryHero from '../../assets/investorbanner.webp';
 import InvestorSidebar from '../../components/InvestorSidebar';
 
 // This is structured to easily accept backend data later

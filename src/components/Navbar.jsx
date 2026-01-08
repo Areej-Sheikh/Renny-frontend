@@ -153,9 +153,6 @@ const Navbar = () => {
           </span>
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-64 z-50">
             <li>
-              <Link className="dropdown-item">Community Development</Link>
-            </li>
-            <li>
               <Link className="dropdown-item">Sustainability</Link>
             </li>
           </ul>

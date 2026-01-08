@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Navbar from '../../components/Navbar';
-import governanceHero from '../../assets/investorbanner.jpeg';
+import governanceHero from '../../assets/investorbanner.webp';
 import InvestorSidebar from '../../components/InvestorSidebar';
 
 // Profile Image Imports

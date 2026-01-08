@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MdLocationOn, MdSearch } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-import banner from '../../assets/careerbanner.png';
-
+import banner from '../../assets/careerBanner.webp';
+import CareerCarousel from '../../components/CareerCarousel';
 const jobsData = [
   {
     id: 'web-dev',
@@ -40,7 +40,7 @@ const Career = () => {
   };
 
   return (
-    <section className="w-full bg-gray-50 ">
+    <section className="w-full bg-blue-50 ">
       {/* Banner */}
       <motion.section
         className="relative h-[70vh] w-full overflow-hidden  mb-12"
@@ -64,7 +64,8 @@ const Career = () => {
           Career
         </motion.h1>
       </motion.section>
-      <div className="px-6 md:px-20 py-16 h-screen mb-12">
+      {/* Career Section */}
+      <div className="px-6 md:px-20 py-16 h-screen  mb-10">
         <motion.div
           className="flex flex-wrap items-center gap-8 mb-12 "
           initial={{ opacity: 0, y: 20 }}
@@ -127,7 +128,7 @@ const Career = () => {
               placeholder="Search jobs"
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="pl-10 pr-4 py-2 border rounded-lg outline-none"
+              className="pl-10 pr-4 py-2 border-gray-300 border bg-white rounded-lg outline-none"
             />
           </div>
         </motion.div>
@@ -173,6 +174,31 @@ const Career = () => {
           )}
         </motion.div>
       </div>
+      {/* Success Stories */}
+      <section className="bg-[#eff6ff] py-10">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-semibold text-center text-[#292c44] mb-18">
+            Success Stories
+          </h2>
+
+          <h1 className="text-2xl text-center font-bold text-[#292c44] mb-3">
+            Where careers are built to last
+          </h1>
+
+          <span className="block max-w-3xl mx-auto text-center text-sm md:text-base text-black leading-relaxed md:leading-7">
+            At RENNY Strips, we invest in our people with the same commitment we
+            bring to our products. Through hands-on experience, collaboration,
+            and real-world challenges, we create an environment where talent
+            grows, innovation thrives, and long-term careers are built on trust
+            and expertise. Our teams work on meaningful projects that shape
+            industries while continuously developing their skills, confidence,
+            and professional capabilities.
+          </span>
+
+          {/* Carousel here */}
+          <CareerCarousel />
+        </div>
+      </section>
     </section>
   );
 };

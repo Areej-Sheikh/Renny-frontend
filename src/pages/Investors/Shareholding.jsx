@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import InvestorSidebar from '../../components/InvestorSidebar';
 import Navbar from '../../components/Navbar';
-import shareholdingHero from '../../assets/investorbanner.jpeg';
+import shareholdingHero from '../../assets/investorbanner.webp';
 
 const SIDEBAR_LINKS = [
   { title: 'Financials', path: '/financials' },

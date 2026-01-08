@@ -1,26 +1,27 @@
-import pti from '../../assets/pti.jfif';
-import et from '../../assets/et.jfif';
-import bs from '../../assets/bs.png';
-import mc from '../../assets/mc.jfif';
-import bt from '../../assets/bt.jfif';
+import pti from '../../assets/pti.webp';
+import et from '../../assets/et.webp';
+import bs from '../../assets/bs.webp';
+import mc from '../../assets/mc.webp';
+import bt from '../../assets/bt.webp';
+import newsimg from '../../assets/newsimg.webp';
 
-import newsbanner from '../../assets/newsbanner.png';
+import newsbanner from '../../assets/newsbanner.webp';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import newsvideo from '../../assets/newsvideo.mp4';
+import newsvideo from '../../assets/newsvideo.webm';
 
 const News = () => {
   const newsData = [
     {
       id: 1,
       title:
-        'Structural products maker Renny Strips files DRHP for IPO; seeks Rs 300 crore via fresh equity sale',
-      desc: 'Structural products manufacturer Renny Strips has taken the first formal step toward the capital markets, filing its draft red herring prospectus with the capital markets Sebi India for an IPO. The Ludhiana-based company plans to raise up to Rs 300 crore through a fresh issue of equity shares, along with an offer for sale of up to 1.2 crore shares by existing shareholders.',
-      link: 'https://economictimes.indiatimes.com/markets/ipos/fpos/structural-products-maker-renny-strips-files-drhp-for-ipo-seeks-rs-300-crore-via-fresh-equity-sale/articleshow/125978899.cms?from=mdr',
-      img: et,
+        'Renny Strips Limited, a vertically integrated and sustainability-focused manufacturer of structural steel products has officially filed its Draft Red Herring Prospectus (DRHP) for a Main Board IPO.',
+      desc: 'Company operates a vertically integrated, sustainability-focused structural products business manufacturing MS billets, wire rods, HR coils, ERW pipes and tubes, and engineered scaffolding and formwork systems. Our energy-efficient cascading production model reduces costs and enhances quality, supported by automation and digital quality monitoring. ',
+      link: 'https://www.linkedin.com/posts/credalis-capital_ipo-mainboardipo-rennystripslimited-activity-7405536132534415360-AJFL?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFHfNUUBjQFe8h87fXxTHlZAp0_QWM5CAk4',
+      img: newsimg,
     },
     {
       id: 2,
@@ -53,10 +54,19 @@ const News = () => {
       link: 'https://www.ptinews.com/story/business/renny-strips-files-ipo-papers-with-sebi-targets-to-raise-rs-300-cr-via-fresh-issue/3191154',
       img: pti,
     },
+    {
+      id: 6,
+      title:
+        'Structural products maker Renny Strips files DRHP for IPO; seeks Rs 300 crore via fresh equity sale',
+      desc: 'Structural products manufacturer Renny Strips has taken the first formal step toward the capital markets, filing its draft red herring prospectus with the capital markets Sebi India for an IPO. The Ludhiana-based company plans to raise up to Rs 300 crore through a fresh issue of equity shares, along with an offer for sale of up to 1.2 crore shares by existing shareholders.',
+      link: 'https://economictimes.indiatimes.com/markets/ipos/fpos/structural-products-maker-renny-strips-files-drhp-for-ipo-seeks-rs-300-crore-via-fresh-equity-sale/articleshow/125978899.cms?from=mdr',
+      img: et,
+    },
   ];
 
   // Latest news shown by default
-  const [activeNews, setActiveNews] = useState(newsData[newsData.length - 1]);
+const [activeNews, setActiveNews] = useState(newsData[0]);
+
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -138,7 +148,7 @@ const News = () => {
       </motion.section>
       {/* Spotlight section */}
       <section className="flex items-center justify-center">
-        <div className="relative h-[550px] w-5xl mt-20 rounded-4xl overflow-hidden ">
+        <div className="relative h-[550px] w-6xl mt-20 rounded-4xl overflow-hidden ">
           {/* Background Video */}
           <video
             src={newsvideo}
@@ -191,6 +201,7 @@ const News = () => {
         </div>
       </section>
 
+      {/* NEWS Panel */}
       <div className="flex flex-col lg:flex-row gap-8 mb-40 mt-16">
         {/* ---------------- Left Panel ---------------- */}
         <motion.div

@@ -25,7 +25,8 @@ import blog20 from '../../assets/blog20.jpg';
 import blog21 from '../../assets/blog21.jpg';
 import blog22 from '../../assets/blog22.jpg';
 import { useScroll, useTransform, useInView } from 'framer-motion';
-import blogsbanner from '../../assets/blogsbanner.png';
+import blogsbanner from '../../assets/blogsbanner.webp';
+import newsvideo from '../../assets/newsvideo.webm';
 const blogsData = [
   {
     id: 1,
@@ -249,6 +250,24 @@ const Blogs = () => {
   const leftRefs = useRef([]);
   const [dateSortOrder, setDateSortOrder] = useState('newest'); // default
   const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
+  };
+  const inView = useInView(ref, { once: true, margin: '-20% 0px' });
   // Filter blogs by year
   const filteredBlogs = blogsData
     .filter(blog => {
@@ -307,7 +326,59 @@ const Blogs = () => {
           Blogs
         </motion.h1>
       </motion.section>
+      {/* Spotlight section */}
+      <section className="flex items-center justify-center">
+        <div className="relative h-[550px] w-6xl mt-20 rounded-4xl overflow-hidden ">
+          {/* Background Video */}
+          <video
+            src={newsvideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0  w-full h-full object-cover z-0"
+          />
 
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/60 z-10" />
+
+          {/* Content */}
+          <section ref={ref} className="relative z-20  p-20 md:p-16">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              className="space-y-6"
+            >
+              <motion.h2
+                variants={itemVariants}
+                className="text-4xl md:text-5xl mt-20 font-bold text-white text-center"
+              >
+                Sharing Ideas That Matter
+              </motion.h2>
+
+              <motion.h3
+                variants={itemVariants}
+                className="text-2xl md:text-3xl font-semibold text-white/90 text-center"
+              >
+                Through Industry Insights
+              </motion.h3>
+
+              <motion.p
+                variants={itemVariants}
+                className="text-white/80 text-center md:text-lg leading-relaxed max-w-3xl mx-auto"
+              >
+                Our blog is a space where knowledge meets experience. At Renny
+                Strips, we share insights on industry trends, innovations,
+                leadership perspectives, and company milestones. Each article
+                reflects our commitment to excellence, continuous learning, and
+                contributing meaningful thought leadership to the evolving steel
+                industry.
+              </motion.p>
+            </motion.div>
+          </section>
+        </div>
+      </section>
       <motion.div
         className="flex flex-col lg:flex-row mb-20 mt-20 gap-8"
         initial={{ opacity: 0, y: 40 }}

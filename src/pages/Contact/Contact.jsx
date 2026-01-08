@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md';
-import banner from '../../assets/contactusbanner.png';
+import banner from '../../assets/contactusbanner.webp';
 import rennylocation from "../../assets/renny's-location.png";
 import unit1 from '../../assets/Unit-1.jpg';
 import unit3 from '../../assets/Unit-3.jpg';
@@ -20,7 +20,7 @@ const Contact = () => {
           alt="Blogs Banner"
           className="absolute inset-0 w-full h-full  object-cover"
         />
-        <div className="absolute inset-0  bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -226,13 +226,13 @@ const Contact = () => {
             </div>
 
             <h2 className="text-lg md:text-xl font-semibold text-black">
-              Renny Strips Ltd.
+              Lakhowal Road, Opposite PSPCL
             </h2>
 
             <p className="text-sm leading-relaxed text-gray-600">
-              Village Mangarh, Machhiwara Road, Kohara,
+              House- Kohara, Ludhiana,
               <br />
-              District Ludhiana, Punjab – 141112, India.
+              Punjab-141112, India
             </p>
           </motion.div>
 
@@ -254,17 +254,13 @@ const Contact = () => {
             </div>
 
             <h2 className="text-lg md:text-xl font-semibold text-black leading-snug">
-              Renny Strips Ltd.
-              {/* <br />
-              <span className="text-base md:text-lg font-medium">
-                (Furnace Division)
-              </span> */}
+              Near Dholewal Chowk
             </h2>
 
             <p className="text-sm leading-relaxed text-gray-600">
-              Village Mangarh, Machhiwara Road, Kohara,
+              Industrial Area-B,
               <br />
-              District Ludhiana, Punjab – 141112, India.
+              Ludhiana, Punjab 141003
             </p>
           </motion.div>
         </motion.div>

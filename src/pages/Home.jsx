@@ -7,8 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 import HomepageBanner from '../assets/HomepageBanner.mp4';
 
-import AboutUs from '../assets/AboutUs.png';
-
 import MS from '../assets/MS-Billets.jpeg';
 import Scaffolding from '../assets/Scaffolding-Formwork.png';
 import ERW from '../assets/ERW-Black-Galvanized-Pipes.jpeg';
@@ -29,15 +27,61 @@ import blog2 from '../assets/blog2.jpeg';
 import blog3 from '../assets/blog3.jpeg';
 import blog4 from '../assets/blog4.jpeg';
 
-import bs from '../assets/bs.png';
-import et from '../assets/et.jfif';
-import mc from '../assets/mc.jfif';
-import bt from '../assets/bt.jfif';
+import bs from '../assets/bs.webp';
+import et from '../assets/et.webp';
+import mc from '../assets/mc.webp';
+import bt from '../assets/bt.webp';
+import newsimg from '../assets/newsimg.webp';
+
+import emission from '../assets/emmisionSection.webm';
+
+import { AnimatePresence } from 'framer-motion';
+import aboutusVideo from '../assets/newsvideo.webm';
 
 import SustainabilitySlider from '../components/SustainabilitySlider';
 const Home = () => {
   const navigate = useNavigate();
-
+  const newsData = [
+    {
+      id: 1,
+      title:
+        'Renny Strips Limited, manufacturer of structural steel products has officially filed its Draft Red Herring Prospectus (DRHP) for a Main Board IPO.',
+      desc: 'Company operates a vertically integrated, sustainability-focused structural products business manufacturing MS billets, wire rods, HR coils, ERW pipes and tubes, and engineered scaffolding and formwork systems. Our energy-efficient cascading production model reduces costs and enhances quality, supported by automation and digital quality monitoring. ',
+      link: 'https://www.linkedin.com/posts/credalis-capital_ipo-mainboardipo-rennystripslimited-activity-7405536132534415360-AJFL?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFHfNUUBjQFe8h87fXxTHlZAp0_QWM5CAk4',
+      img: newsimg,
+    },
+    {
+      id: 2,
+      title:
+        'Renny Strips files IPO papers with SEBI, seeks to raise up to Rs 300 crore via fresh issue',
+      desc: 'Renny Strips IPO | The company proposed to raise Rs 300 crore by issuing fresh shares, while promoters Dev Raj Gupta, and Usha Gupta plan to offload 1.2 crore equity shares via offer-for-sale.',
+      link: 'https://www.moneycontrol.com/news/business/ipo/renny-strips-files-ipo-papers-with-sebi-seeks-to-raise-up-to-rs-300-crore-via-fresh-issue-13726597.html',
+      img: mc,
+    },
+    {
+      id: 3,
+      title:
+        'Renny Strips files DRHP to launch its IPO with Sebi, check details',
+      desc: 'Renny Strips files DRHP for IPO with Rs 300 crore fresh issue and 12 million shares OFS; Pantomath Capital Advisors is sole lead manager. Book building, BSE/NSE listing planned.',
+      link: 'https://www.businesstoday.in/markets/ipo-corner/story/renny-strips-files-drhp-to-launch-its-ipo-with-sebi-check-details-506711-2025-12-15',
+      img: bt,
+    },
+    {
+      id: 4,
+      title: 'Renny Strips Ltd IPO Details',
+      desc: 'Funding the capital expenditure requirements of the Company. Prepayment or re-payment, in full or in part, of certain outstanding borrowings availed by its Company. General corporate purposes.',
+      link: 'https://www.business-standard.com/markets/ipo/renny-strips-ltd-ipo-35303',
+      img: bs,
+    },
+    {
+      id: 5,
+      title:
+        'Structural products maker Renny Strips files DRHP for IPO; seeks Rs 300 crore via fresh equity sale',
+      desc: 'Structural products manufacturer Renny Strips has taken the first formal step toward the capital markets, filing its draft red herring prospectus with the capital markets Sebi India for an IPO. The Ludhiana-based company plans to raise up to Rs 300 crore through a fresh issue of equity shares, along with an offer for sale of up to 1.2 crore shares by existing shareholders.',
+      link: 'https://economictimes.indiatimes.com/markets/ipos/fpos/structural-products-maker-renny-strips-files-drhp-for-ipo-seeks-rs-300-crore-via-fresh-equity-sale/articleshow/125978899.cms?from=mdr',
+      img: et,
+    },
+  ];
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.3,
@@ -71,46 +115,36 @@ const Home = () => {
   ];
 
   const [openIndex, setOpenIndex] = useState(null);
-
+  const [hoverIndex, setHoverIndex] = useState(null);
   const toggleCard = index => {
     setOpenIndex(openIndex === index ? null : index);
   };
-  const newsData = [
-    {
-      id: 1,
-      title:
-        'Structural products maker Renny Strips files DRHP for IPO; seeks Rs 300 crore via fresh equity sale',
-      desc: 'Structural products manufacturer Renny Strips has taken the first formal step toward the capital markets, filing its draft red herring prospectus with the capital markets Sebi India for an IPO. The Ludhiana-based company plans to raise up to Rs 300 crore through a fresh issue of equity shares, along with an offer for sale of up to 1.2 crore shares by existing shareholders.',
-      link: 'https://economictimes.indiatimes.com/markets/ipos/fpos/structural-products-maker-renny-strips-files-drhp-for-ipo-seeks-rs-300-crore-via-fresh-equity-sale/articleshow/125978899.cms?from=mdr',
-      img: et,
+
+  const staggerContainer = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.12 },
     },
-    {
-      id: 2,
-      title:
-        'Renny Strips files IPO papers with SEBI, seeks to raise up to Rs 300 crore via fresh issue',
-      desc: 'Renny Strips IPO | The company proposed to raise Rs 300 crore by issuing fresh shares, while promoters Dev Raj Gupta, and Usha Gupta plan to offload 1.2 crore equity shares via offer-for-sale.',
-      link: 'https://www.moneycontrol.com/news/business/ipo/renny-strips-files-ipo-papers-with-sebi-seeks-to-raise-up-to-rs-300-crore-via-fresh-issue-13726597.html',
-      img: mc,
-    },
-    {
-      id: 3,
-      title:
-        'Renny Strips files DRHP to launch its IPO with Sebi, check details',
-      desc: 'Renny Strips files DRHP for IPO with Rs 300 crore fresh issue and 12 million shares OFS; Pantomath Capital Advisors is sole lead manager. Book building, BSE/NSE listing planned.',
-      link: 'https://www.businesstoday.in/markets/ipo-corner/story/renny-strips-files-drhp-to-launch-its-ipo-with-sebi-check-details-506711-2025-12-15',
-      img: bt,
-    },
-    {
-      id: 4,
-      title: 'Renny Strips Ltd IPO Details',
-      desc: 'Funding the capital expenditure requirements of the Company. Prepayment or re-payment, in full or in part, of certain outstanding borrowings availed by its Company. General corporate purposes.',
-      link: 'https://www.business-standard.com/markets/ipo/renny-strips-ltd-ipo-35303',
-      img: bs,
-    },
-  ];
+  };
+
+  const listItem = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const scaleFade = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { opacity: 1, scale: 1 },
+  };
+  const [activeNews, setActiveNews] = useState(newsData[0]);
 
   return (
-    <div className="relative flex flex-col  font-helvetica">
+    <div className="relative flex flex-col  font-helvetica ">
       {/* Banner */}
       <section className="w-full relative h-125 flex flex-col md:flex-row items-center mt-15 ">
         {/* Left Text Column */}
@@ -145,9 +179,9 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* About Us */}
+      {/* Emmission Section */}
       <motion.section
-        className="flex flex-col items-center font-helvetica justify-center mt-10"
+        className="flex flex-col items-center font-helvetica justify-center mt-30"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -156,19 +190,101 @@ const Home = () => {
           visible: {},
         }}
       >
-        <div className="relative w-full h-125 overflow-hidden">
-          {/* Background Image */}
-          <img
-            src={AboutUs}
-            alt="About Us"
-            className="w-full h-full object-cover"
+        <div className="relative w-full h-145 overflow-hidden">
+          {/* Background Video */}
+          <video
+            src={emission}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0  w-full h-full object-cover z-0"
           />
 
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/50"></div>
 
           {/* Text Content */}
-          <div className="absolute  inset-0 flex flex-col items-center justify-center text-center px-6">
+          <div className="absolute  inset-0 flex flex-col items-center justify-center text-center  px-6">
+            {/* Heading */}
+            <motion.h1
+              className="text-4xl md:text-5xl font-bold text-white mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              viewport={{ once: true }}
+            >
+              <span className="text-green-600">40% Lower Emissions</span>
+              Compared to Industry Average
+            </motion.h1>
+            <motion.h3
+              className="text-xl md:text-3xl font-bold text-white mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              viewport={{ once: true }}
+            >
+              Lower Emissions Stronger Foundations
+            </motion.h3>
+
+            {/* Paragraph 1 */}
+            <motion.p
+              className="text-white max-w-3xl mb-4 leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
+              viewport={{ once: true }}
+            >
+              At Renny Strips, sustainability is built into our manufacturing
+              process. Through energy-efficient production, optimized material
+              usage, and modern automation, we generate up to 40% lower
+              emissions compared to conventional construction material
+              manufacturers.
+            </motion.p>
+
+            {/* Paragraph 2 */}
+            <motion.p
+              className="text-white max-w-3xl leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              Our vertically integrated model allows us to reduce waste,
+              minimize energy loss, and maintain consistent quality—without
+              compromising strength or scale.
+            </motion.p>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* About Us */}
+      <motion.section
+        className="flex flex-col items-center font-helvetica justify-center mt-30"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={{
+          hidden: {},
+          visible: {},
+        }}
+      >
+        <div className="relative w-full h-145 overflow-hidden">
+          {/* Background Video */}
+          <video
+            src={aboutusVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0  w-full h-full object-cover z-0"
+          />
+
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/50"></div>
+
+          {/* Text Content */}
+          <div className="absolute  inset-0 flex flex-col items-center justify-center text-center  px-6">
             {/* Heading */}
             <motion.h1
               className="text-4xl md:text-5xl font-bold text-white mb-6"
@@ -209,6 +325,7 @@ const Home = () => {
           </div>
         </div>
       </motion.section>
+
       {/* Our Products */}
       <motion.section
         className="flex flex-col items-center font-helvetica justify-center px-6 py-16"
@@ -217,10 +334,10 @@ const Home = () => {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
       >
-        <h1 className="text-[37px] font-bold ml-20 mb-10 w-full text-left">
+        <h1 className="text-[37px] font-bold ml-20 mb-10 w-full  text-center">
           Our Products
+          <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </h1>
-
         <div className="flex min-h-[400px] overflow-hidden w-full max-w-7xl">
           {products.map((item, index) => (
             <div
@@ -294,12 +411,13 @@ const Home = () => {
       >
         {/* Heading */}
         <motion.h1
-          className="text-[37px] font-bold ml-20 mb-10 w-full text-left"
+          className="text-[37px] font-bold ml-20 mb-10 w-full text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           Our Network
+          <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 
         {/* Video */}
@@ -366,8 +484,9 @@ const Home = () => {
           ))}
         </motion.div>
       </motion.section>
+
       {/* Features Section */}
-      <section className="flex justify-center px-6 py-16 font-helvetica">
+      <section className="flex justify-center px-6 py-16 font-helvetica bg-[#f0f6ff]">
         <motion.section
           className="flex justify-center w-full"
           initial={{ opacity: 0, y: 50 }}
@@ -375,57 +494,39 @@ const Home = () => {
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl w-full"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              visible: {
-                transition: { staggerChildren: 0.15 },
-              },
-            }}
-          >
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl w-full">
             {/* CARD 1 */}
             <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              className={`
-          rounded-2xl border overflow-hidden transition-all duration-500
+              className={`rounded-2xl border overflow-hidden transition-all duration-500 cursor-pointer
           ${
             openIndex === 0
-              ? 'bg-[#0C183E] border-[#0C183E] shadow-xl'
-              : 'bg-white border-gray-200 shadow-md hover:shadow-lg'
+              ? 'bg-blue text-white shadow-xl'
+              : 'bg-white text-gray-800 border-gray-200 shadow-md hover:bg-blue hover:text-white hover:shadow-lg'
           }
         `}
+              onClick={() => toggleCard(0)}
             >
-              <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center">
+              <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center relative">
                 <img
                   src={icons1}
                   className={`h-18 w-18 mb-6 transition-all duration-500 ${
                     openIndex === 0 ? 'scale-110 brightness-0 invert' : ''
                   }`}
                 />
-                <h3
-                  className={`text-lg font-semibold mb-6 ${
-                    openIndex === 0 ? 'text-white' : 'text-gray-800'
-                  }`}
-                >
+                <h3 className="text-lg font-semibold mb-4">
                   Precision Engineering and Manufacturing
                 </h3>
-                <button onClick={() => toggleCard(0)}>
-                  <i
-                    className={`ri-arrow-${
-                      openIndex === 0 ? 'up' : 'down'
-                    }-s-line text-2xl transition-transform ${
-                      openIndex === 0 ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
+
+                {/* Arrow Icon */}
+                <i
+                  className={`ri-arrow-down-s-line text-2xl transition-transform absolute bottom-4`}
+                  style={{
+                    transform:
+                      openIndex === 0 ? 'rotate(180deg)' : 'rotate(0deg)',
+                  }}
+                />
               </div>
+
               <div
                 className={`px-8 overflow-hidden transition-all duration-500 ${
                   openIndex === 0
@@ -433,8 +534,8 @@ const Home = () => {
                     : 'max-h-0 opacity-0'
                 }`}
               >
-                <p className="text-sm text-gray-200">
-                  Specializes in manufacturing high precision, safety-critical
+                <p className="text-sm text-white">
+                  Specializes in manufacturing high-precision, safety-critical
                   components as per specifications.
                 </p>
               </div>
@@ -442,43 +543,36 @@ const Home = () => {
 
             {/* CARD 2 */}
             <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              className={`
-          rounded-2xl border overflow-hidden transition-all duration-500
+              className={`rounded-2xl border overflow-hidden transition-all duration-500 cursor-pointer
           ${
             openIndex === 1
-              ? 'bg-[#0C183E] border-[#0C183E] shadow-xl'
-              : 'bg-white border-gray-200 shadow-md hover:shadow-lg'
+              ? 'bg-blue text-white shadow-xl'
+              : 'bg-white text-gray-800 border-gray-200 shadow-md hover:bg-blue hover:text-white hover:shadow-lg'
           }
         `}
+              onClick={() => toggleCard(1)}
             >
-              <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center">
+              <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center relative">
                 <img
                   src={icons2}
                   className={`h-18 w-18 mb-6 transition-all duration-500 ${
                     openIndex === 1 ? 'scale-110 brightness-0 invert' : ''
                   }`}
                 />
-                <h3
-                  className={`text-lg font-semibold mb-7 ${
-                    openIndex === 1 ? 'text-white' : 'text-gray-800'
-                  }`}
-                >
+                <h3 className="text-lg font-semibold mb-4 px-2">
                   Fabrication and Forging
                 </h3>
-                <button onClick={() => toggleCard(1)}>
-                  <i
-                    className={`ri-arrow-${
-                      openIndex === 1 ? 'up' : 'down'
-                    }-s-line text-2xl transition-transform ${
-                      openIndex === 1 ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
+
+                {/* Arrow Icon */}
+                <i
+                  className={`ri-arrow-down-s-line text-2xl transition-transform absolute bottom-1`}
+                  style={{
+                    transform:
+                      openIndex === 1 ? 'rotate(180deg)' : 'rotate(0deg)',
+                  }}
+                />
               </div>
+
               <div
                 className={`px-8 overflow-hidden transition-all duration-500 ${
                   openIndex === 1
@@ -486,7 +580,7 @@ const Home = () => {
                     : 'max-h-0 opacity-0'
                 }`}
               >
-                <p className="text-sm text-gray-200">
+                <p className="text-sm text-white">
                   Advanced sheet metal processing with EN 1090 & ISO 3834
                   compliance.
                 </p>
@@ -495,43 +589,36 @@ const Home = () => {
 
             {/* CARD 3 */}
             <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              className={`
-          rounded-2xl border overflow-hidden transition-all duration-500
+              className={`rounded-2xl border overflow-hidden transition-all duration-500 cursor-pointer
           ${
             openIndex === 2
-              ? 'bg-[#0C183E] border-[#0C183E] shadow-xl'
-              : 'bg-white border-gray-200 shadow-md hover:shadow-lg'
+              ? 'bg-blue text-white shadow-xl'
+              : 'bg-white text-gray-800 border-gray-200 shadow-md hover:bg-blue hover:text-white hover:shadow-lg'
           }
         `}
+              onClick={() => toggleCard(2)}
             >
-              <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center">
+              <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center relative">
                 <img
                   src={icons3}
                   className={`h-18 w-18 mb-6 transition-all duration-500 ${
                     openIndex === 2 ? 'scale-110 brightness-0 invert' : ''
                   }`}
                 />
-                <h3
-                  className={`text-lg font-semibold mb-14 ${
-                    openIndex === 2 ? 'text-white' : 'text-gray-800'
-                  }`}
-                >
+                <h3 className="text-lg font-semibold mb-10">
                   Customized Excellence
                 </h3>
-                <button onClick={() => toggleCard(2)}>
-                  <i
-                    className={`ri-arrow-${
-                      openIndex === 2 ? 'up' : 'down'
-                    }-s-line text-2xl transition-transform ${
-                      openIndex === 2 ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
+
+                {/* Arrow Icon */}
+                <i
+                  className={`ri-arrow-down-s-line text-2xl transition-transform absolute bottom-1`}
+                  style={{
+                    transform:
+                      openIndex === 2 ? 'rotate(180deg)' : 'rotate(0deg)',
+                  }}
+                />
               </div>
+
               <div
                 className={`px-8 overflow-hidden transition-all duration-500 ${
                   openIndex === 2
@@ -539,7 +626,7 @@ const Home = () => {
                     : 'max-h-0 opacity-0'
                 }`}
               >
-                <p className="text-sm text-gray-200">
+                <p className="text-sm text-white">
                   Tailored solutions backed by an in-house raw material
                   ecosystem.
                 </p>
@@ -548,43 +635,36 @@ const Home = () => {
 
             {/* CARD 4 */}
             <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              className={`
-          rounded-2xl border overflow-hidden transition-all duration-500
+              className={`rounded-2xl border overflow-hidden transition-all duration-500 cursor-pointer
           ${
             openIndex === 3
-              ? 'bg-[#0C183E] border-[#0C183E] shadow-xl'
-              : 'bg-white border-gray-200 shadow-md hover:shadow-lg'
+              ? 'bg-blue text-white shadow-xl'
+              : 'bg-white text-gray-800 border-gray-200 shadow-md hover:bg-blue hover:text-white hover:shadow-lg'
           }
         `}
+              onClick={() => toggleCard(3)}
             >
-              <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center">
+              <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center relative">
                 <img
                   src={icons1}
                   className={`h-18 w-18 mb-6 transition-all duration-500 ${
                     openIndex === 3 ? 'scale-110 brightness-0 invert' : ''
                   }`}
                 />
-                <h3
-                  className={`text-lg font-semibold mb-6 ${
-                    openIndex === 3 ? 'text-white' : 'text-gray-800'
-                  }`}
-                >
+                <h3 className="text-lg font-semibold mb-4">
                   CNC Machining and Finishing
                 </h3>
-                <button onClick={() => toggleCard(3)}>
-                  <i
-                    className={`ri-arrow-${
-                      openIndex === 3 ? 'up' : 'down'
-                    }-s-line text-2xl transition-transform ${
-                      openIndex === 3 ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
+
+                {/* Arrow Icon */}
+                <i
+                  className={`ri-arrow-down-s-line text-2xl transition-transform absolute bottom-1`}
+                  style={{
+                    transform:
+                      openIndex === 3 ? 'rotate(180deg)' : 'rotate(0deg)',
+                  }}
+                />
               </div>
+
               <div
                 className={`px-8 overflow-hidden transition-all duration-500 ${
                   openIndex === 3
@@ -592,7 +672,7 @@ const Home = () => {
                     : 'max-h-0 opacity-0'
                 }`}
               >
-                <p className="text-sm text-gray-200">
+                <p className="text-sm text-white">
                   Automated precision machining for consistent, high-quality
                   output.
                 </p>
@@ -601,98 +681,117 @@ const Home = () => {
           </motion.div>
         </motion.section>
       </section>
-      {/* News Section */}
+
+      {/* News and investor Section */}
       <section className="font-helvetica bg-gray-100 py-20 px-6">
-        <motion.div
-          className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start justify-between"
-          initial={{ opacity: 0, y: 40 }}
+        {/* Heading */}
+        <motion.h1
+          className="text-[37px] font-bold ml-20 mb-10 w-full text-center"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          transition={{ duration: 0.5 }}
         >
-          {/* ================= News Section ================= */}
-          <div className="w-full lg:w-3/4 flex flex-col items-center">
-            <motion.h1
-              className="text-[37px] font-bold mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              News
-            </motion.h1>
+          News & Investor Relations
+          <div className="w-100 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+        </motion.h1>
 
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-xl"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={{
-                visible: { transition: { staggerChildren: 0.15 } },
-              }}
-            >
-              {newsData.map(news => (
-                <motion.div
-                  key={news.id}
-                  className="bg-white rounded-xl shadow-sm overflow-hidden group hover:shadow-lg transition"
-                  variants={{
-                    hidden: { opacity: 0, y: 30 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                  transition={{ duration: 0.5, ease: 'easeOut' }}
-                >
-                  <img
-                    src={news.img}
-                    alt={news.title}
-                    className="w-full h-40 object-fill"
-                    loading="lazy"
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* ================= NEWS LIST (LEFT) ================= */}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="lg:w-1/4 bg-white rounded-2xl shadow p-4 space-y-3"
+          >
+            {newsData.map(news => (
+              <motion.button
+                key={news.id}
+                variants={listItem}
+                onClick={() => setActiveNews(news)}
+                whileHover={{ scale: 1.02 }}
+                className={`group relative flex items-center gap-4 w-full p-3 rounded-2xl text-left transition
+        ${activeNews.id === news.id ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
+              >
+                {activeNews.id === news.id && (
+                  <motion.span
+                    layoutId="active-indicator"
+                    className="absolute left-0 top-0 h-full w-1 bg-black rounded-r"
                   />
+                )}
 
-                  <div className="p-6 flex flex-col">
-                    <h3 className="text-base font-semibold mb-3 line-clamp-2">
-                      {news.title}
-                    </h3>
+                <img
+                  src={news.img}
+                  alt={news.title}
+                  className="w-14 h-14 object-cover rounded"
+                />
 
-                    <p className="text-sm text-gray-600 line-clamp-3">
-                      {news.desc}
-                    </p>
+                <p className="text-sm font-medium line-clamp-2">{news.title}</p>
+              </motion.button>
+            ))}
+          </motion.div>
 
-                    <a
-                      href={news.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-block font-medium text-blue group-hover:text-blue-800 transition"
-                    >
-                      Read More →
-                    </a>
-                  </div>
+          {/* ================= NEWS PREVIEW (CENTER) ================= */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="lg:w-2/4 bg-white rounded-2xl shadow p-6"
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeNews.id}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className="flex flex-col items-center text-center"
+              >
+                <motion.img
+                  variants={scaleFade}
+                  src={activeNews.img}
+                  alt={activeNews.title}
+                  className="w-64 h-64 object-contain rounded-2xl mb-6"
+                />
+
+                <motion.h2 variants={fadeUp} className="text-xl font-bold mb-4">
+                  {activeNews.title}
+                </motion.h2>
+
+                <motion.p
+                  variants={fadeUp}
+                  className="text-gray-700 mb-6 leading-relaxed"
+                >
+                  {activeNews.desc}
+                </motion.p>
+
+                <motion.div variants={fadeUp}>
+                  <Link
+                    to={activeNews.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition"
+                  >
+                    Read Full Article →
+                  </Link>
                 </motion.div>
-              ))}
-            </motion.div>
-          </div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
 
-          {/* ================= Investor Relations ================= */}
-          <div className="w-full lg:w-1/2 flex flex-col items-center">
-            <motion.h1
-              className="text-[37px] font-bold mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
+          {/* ================= INVESTOR RELATIONS (RIGHT) ================= */}
+          <motion.div
+            className="lg:w-1/4 bg-white rounded-2xl shadow p-6 flex flex-col"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
+          >
+            <h2 className="text-xl font-bold mb-6 text-center">
               Investor Relations
-            </motion.h1>
+            </h2>
 
-            {/* Investor Cards */}
-            <motion.div
-              className="flex flex-col gap-6 w-full max-w-xl mb-12"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={{
-                visible: { transition: { staggerChildren: 0.15 } },
-              }}
-            >
+            <div className="flex flex-col gap-4 mb-6">
               {[
                 { title: 'Financials', path: '/financials/' },
                 { title: 'Industry Report', path: '/industry-report/' },
@@ -704,43 +803,35 @@ const Home = () => {
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className="bg-white border-gray-100 rounded-xl p-6 flex items-center justify-between shadow-sm hover:shadow-lg transition"
+                  className="flex items-center justify-between bg-gray-50 rounded-xl p-4 hover:shadow transition"
                   variants={{
-                    hidden: { opacity: 0, x: 40 },
+                    hidden: { opacity: 0, x: 20 },
                     visible: { opacity: 1, x: 0 },
                   }}
-                  transition={{ duration: 0.45, ease: 'easeOut' }}
                 >
-                  <h3 className="text-lg font-semibold">{item.title}</h3>
-
+                  <span className="text-sm font-medium">{item.title}</span>
                   <Link to={item.path}>
-                    <button className="bg-blue text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-800 transition">
+                    <button className="bg-blue text-white px-4 py-2 rounded-lg text-xs hover:bg-blue-800 transition">
                       View
                     </button>
                   </Link>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Stock Prices */}
-            <motion.div
-              className="bg-white w-full max-w-xl rounded-xl p-6 flex justify-around shadow-sm"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
-            >
+            <div className="mt-auto flex justify-around border-t pt-4">
               <div className="text-center">
-                <p className="text-sm text-gray-500 mb-1">BSE</p>
-                <p className="text-lg font-semibold">₹93.90</p>
+                <p className="text-xs text-gray-500">BSE</p>
+                <p className="text-sm font-semibold">₹93.90</p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-500 mb-1">NSE</p>
-                <p className="text-lg font-semibold">₹93.63</p>
+                <p className="text-xs text-gray-500">NSE</p>
+                <p className="text-sm font-semibold">₹93.63</p>
               </div>
-            </motion.div>
-          </div>
-        </motion.div>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Sustainability Section */}

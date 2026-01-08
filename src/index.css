@@ -29,10 +29,36 @@ body {
 }
 /* Add this to your global CSS file */
 .no-scrollbar::-webkit-scrollbar {
-    display: none; /* Safely hides scrollbar while allowing scrolling */
+  display: none; /* Safely hides scrollbar while allowing scrolling */
 }
 
 .no-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: #292c44;
+  width: 44px;
+  height: 44px;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  opacity: 0.8;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }

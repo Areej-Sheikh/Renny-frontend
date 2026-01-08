@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import Navbar from '../../components/Navbar';
 import InvestorSidebar from '../../components/InvestorSidebar';
-import financialsHero from '../../assets/investorbanner.jpeg';
+import financialsHero from '../../assets/investorbanner.webp';
 
 /* -------------------- TABS & DATA -------------------- */
 const TABS = [

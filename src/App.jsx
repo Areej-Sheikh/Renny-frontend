@@ -29,7 +29,6 @@ import EC from './pages/EC/EC';
 
 /* Sustainability */
 import Sustainability from './pages/Sustainability/Sustainability';
-import Community from './pages/Sustainability/Community';
 
 /* Media */
 import News from './pages/Media/News';
@@ -71,7 +70,7 @@ import Parallax from './components/ParallaxSection';
 import ScrollToTop from './components/ScrollToTop.jsx';
 const App = () => {
   return (
-    <div className="App relative min-h-screen overflow-x-hidden">
+    <div className="App relative min-h-screen overflow-x-hidden scroll-smooth no-scrollbar ml-5 mr-5">
       <ScrollToTop />
       <Navbar />
       <Routes>
@@ -104,7 +103,6 @@ const App = () => {
 
         {/* Sustainability */}
         <Route path="/sustainability/" element={<Sustainability />} />
-        <Route path="/community-development/" element={<Community />} />
 
         {/* Media */}
         <Route path="/news-room/" element={<News />} />

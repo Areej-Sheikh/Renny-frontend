@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MdWorkOutline, MdCurrencyRupee } from 'react-icons/md';
-import banner from '../../assets/careerbanner.png';
+import banner from '../../assets/careerBanner.webp';
 
 /* ================= JOB DATA ================= */
 const jobsData = {

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import Navbar from '../../components/Navbar';
 import InvestorSidebar from '../../components/InvestorSidebar';
-import policiesHero from '../../assets/investorbanner.jpeg';
+import policiesHero from '../../assets/investorbanner.webp';
 
 const Policies = () => {
   const [policies, setPolicies] = useState([]);

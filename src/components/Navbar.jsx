@@ -58,14 +58,20 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link className="dropdown-item">Manufacturing Process</Link>
+              <Link to="/manufacturing-units/" className="dropdown-item">
+                Manufacturing Process
+              </Link>
             </li>
 
             <li>
-              <Link className="dropdown-item">Quality & Standard</Link>
+              <Link to="/quality-standard/" className="dropdown-item">
+                Quality & Standard
+              </Link>
             </li>
             <li>
-              <Link className="dropdown-item">Design Centre</Link>
+              <Link to="/design-centre/" className="dropdown-item">
+                Design Centre
+              </Link>
             </li>
           </ul>
         </li>
@@ -155,7 +161,7 @@ const Navbar = () => {
           </span>
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-64 z-50">
             <li>
-              <Link className="dropdown-item">Sustainability</Link>
+              <Link className="dropdown-item">ESG</Link>
             </li>
           </ul>
         </li>

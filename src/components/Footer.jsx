@@ -68,9 +68,11 @@ const Footer = () => {
         <motion.div variants={item} className="space-y-3">
           <h3 className="font-semibold">About Us</h3>
           <FooterLink to="/company-overview-2">Company Overview</FooterLink>
-          <FooterLink>Manufacturing Process</FooterLink>
-          <FooterLink>Quality & Standard</FooterLink>
-          <FooterLink>Design Centre</FooterLink>
+          <FooterLink to="/manufacturing-units">
+            Manufacturing Process
+          </FooterLink>
+          <FooterLink to="/quality-standard">Quality & Standard</FooterLink>
+          <FooterLink to="/design-centre">Design Centre</FooterLink>
         </motion.div>
 
         {/* COL 3 */}
@@ -113,6 +115,7 @@ const Footer = () => {
 
           <div className="space-y-3">
             <h3 className="font-semibold">Media</h3>
+            <FooterLink to="/news-room">News Room</FooterLink>
             <FooterLink to="/blog">Blog</FooterLink>
             <FooterLink to="/events">Events</FooterLink>
           </div>

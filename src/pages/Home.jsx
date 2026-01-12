@@ -5,15 +5,15 @@ import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import HomepageBanner from '../assets/HomepageBanner.mp4';
+import HomepageBanner from '../assets/HomepageBanner.webm';
 
-import MS from '../assets/MS-Billets.jpeg';
-import Scaffolding from '../assets/Scaffolding-Formwork.png';
-import ERW from '../assets/ERW-Black-Galvanized-Pipes.jpeg';
-import Coil from '../assets/Narrow-width-Coils.png';
-import rods from '../assets/Wire-Rods.png';
+import MS from '../assets/MS-Billets.webp';
+import Scaffolding from '../assets/Scaffolding-Formwork.webp';
+import ERW from '../assets/ERW-Black-Galvanized-Pipes.webp';
+import Coil from '../assets/Narrow-width-Coils.webp';
+import rods from '../assets/Wire-Rods.webp';
 
-import sustainability2 from '../assets/Sustainability2.jpg';
+import sustainability2 from '../assets/Sustainability2.webp';
 
 import CountUp from 'react-countup';
 import worldmap from '../assets/World-Map.webm';
@@ -22,10 +22,10 @@ import icons1 from '../assets/1a-about.svg';
 import icons2 from '../assets/2a-about.svg';
 import icons3 from '../assets/3a-about.svg';
 
-import blog1 from '../assets/blog1.jpeg';
-import blog2 from '../assets/blog2.jpeg';
-import blog3 from '../assets/blog3.jpeg';
-import blog4 from '../assets/blog4.jpeg';
+import blog1 from '../assets/blog1.webp';
+import blog2 from '../assets/blog2.webp';
+import blog3 from '../assets/blog3.webp';
+import blog4 from '../assets/blog4.webp';
 
 import bs from '../assets/bs.webp';
 import et from '../assets/et.webp';
@@ -44,7 +44,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 import SustainabilitySlider from '../components/SustainabilitySlider';
-
+import RENNY from '../assets/RENNY-removebg-preview.webp';
 const Home = () => {
   ScrollTrigger.normalizeScroll(true);
   useEffect(() => {
@@ -53,9 +53,9 @@ const Home = () => {
     ScrollTrigger.create({
       trigger: sections[0],
       start: 'top top',
-      end: () => '+=' + window.innerHeight * (sections.length - 1),
+      end: () => '+=' + window.innerHeight * sections.length,
       snap: {
-        snapTo: 1 / (sections.length - 1),
+        snapTo: 1 / (sections.length + 1),
         duration: 0.6,
         ease: 'power2.out',
       },
@@ -168,25 +168,28 @@ const Home = () => {
   const [activeNews, setActiveNews] = useState(newsData[0]);
 
   return (
-    <div className="relative flex flex-col  font-helvetica ">
+    <div className="relative flex flex-col  font-helvetica bg-blue-50">
       {/* Banner */}
-      <section className=" panel  w-full relative h-125 flex flex-col md:flex-row items-center mt-18 ">
+      <section className=" panel  w-full relative h-125 flex flex-col md:flex-row items-center mt-20 mb-5 ">
         {/* Left Text Column */}
         <motion.div
-          className="md:w-1/2 flex flex-col justify-center px-6 md:px-12 h-full"
+          className="flex flex-col px-5 justify-center h-full "
           initial={{ opacity: 0, x: -80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          <h1 className="text-8xl font-semibold text-black mb-4 font-jost">
+          <h1 className="text-8xl font-semibold text-black font-jost">
             Building <br /> A Future <br /> Together
           </h1>
+          <div className='ml-8 mt-5 w-xs '>
+            <img src={RENNY} className=" object-center overflow-hidden " />
+          </div>
         </motion.div>
 
         {/* Right Video Column */}
         <motion.div
-          className="md:w-3/2 h-full relative overflow-hidden"
+          className="md:w-3/2 h-[530px] mr-1 relative overflow-hidden"
           initial={{ opacity: 0, x: 80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
@@ -205,7 +208,7 @@ const Home = () => {
 
       {/* Emmission Section */}
       <motion.section
-        className="flex flex-col items-center font-helvetica justify-center mt-40 panel h-screen"
+        className="flex flex-col items-center font-helvetica justify-center panel"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -284,7 +287,7 @@ const Home = () => {
 
       {/* About Us */}
       <motion.section
-        className="flex flex-col items-center font-helvetica justify-center  panel h-screen"
+        className="flex flex-col items-center font-helvetica  justify-center  panel"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -293,7 +296,11 @@ const Home = () => {
           visible: {},
         }}
       >
-        <div className="relative w-full h-145 overflow-hidden">
+        <h1 className="text-[37px] font-bold ml-20 mt-8  w-full  text-center">
+          About Us
+          <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+        </h1>
+        <div className="relative w-full  h-145 overflow-hidden">
           {/* Background Video */}
           <video
             src={aboutusVideo}
@@ -309,20 +316,31 @@ const Home = () => {
 
           {/* Text Content */}
           <div className="absolute  inset-0 flex flex-col items-center justify-center text-center  px-6">
-            {/* Heading */}
-            <motion.h1
-              className="text-4xl md:text-5xl font-bold text-white mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              viewport={{ once: true }}
-            >
-              About Us
-            </motion.h1>
-
             {/* Paragraph 1 */}
             <motion.p
-              className="text-white max-w-3xl mb-4 leading-relaxed"
+              className="text-white max-w-4xl mb-4 leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
+              viewport={{ once: true }}
+            >
+              In 1996, Renny Strips Ltd embarked on its dynamic journey. Renny
+              Strips Ltd. aimed to carve a niche in producing Innovative,
+              Sustainable & Industry-fit Steel Products at Competitive Prices.
+            </motion.p>
+            <motion.p
+              className="text-white max-w-4xl mb-4 leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
+              viewport={{ once: true }}
+            >
+              In 1996, Renny Strips Ltd embarked on its dynamic journey. Renny
+              Strips Ltd. aimed to carve a niche in producing Innovative,
+              Sustainable & Industry-fit Steel Products at Competitive Prices.
+            </motion.p>
+            <motion.p
+              className="text-white max-w-4xl mb-4 leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
@@ -335,7 +353,7 @@ const Home = () => {
 
             {/* Paragraph 2 */}
             <motion.p
-              className="text-white max-w-3xl leading-relaxed"
+              className="text-white max-w-4xl leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
@@ -352,13 +370,13 @@ const Home = () => {
 
       {/* Our Products */}
       <motion.section
-        className="flex flex-col items-center font-helvetica justify-center px-6 py-16 panel h-screen "
+        className="flex flex-col items-center font-helvetica  justify-center  panel  mt-5"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
       >
-        <h1 className="text-[37px] font-bold ml-20 mb-10 w-full  text-center">
+        <h1 className="text-[37px] font-bold ml-20  w-full  text-center">
           Our Products
           <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </h1>
@@ -427,7 +445,7 @@ const Home = () => {
 
       {/* Our Networks*/}
       <motion.section
-        className="flex flex-col items-center font-helvetica justify-center px-6 py-16 panel  "
+        className="flex flex-col items-center font-helvetica bg-white justify-center px-6 py-16 panel  "
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -862,14 +880,15 @@ const Home = () => {
       <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16 bg-white panel h-screen ">
         {/* Heading */}
         <motion.h1
-          className="text-[37px] ml-20 font-bold mb-10 w-full text-left"
+          className="text-[37px] ml-20 font-bold mb-10 w-full text-center"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          Engineering a{' '}
-          <span className="text-green-700">Sustainable Tomorrow</span>
+          Engineering a
+          <span className="text-green-700"> Sustainable Tomorrow</span>
+          <div className="w-140 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 
         {/* Content */}
@@ -907,6 +926,7 @@ const Home = () => {
           </motion.div>
         </motion.div>
       </section>
+
       {/* Blog Section */}
       <motion.section
         className="bg-gray-100 px-6 py-16 font-helvetica  panel"

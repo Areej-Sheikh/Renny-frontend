@@ -14,7 +14,7 @@ import blog9 from '../../assets/blog9.webp';
 import blog10 from '../../assets/blog10.webp';
 import blog11 from '../../assets/blog11.webp';
 import blog12 from '../../assets/blog12.webp';
-import blog13 from '../../assets/blog13.webp';
+import blog13 from '../../assets/blog13.webp'; 
 import blog14 from '../../assets/blog14.webp';
 import blog15 from '../../assets/blog15.webp';
 import blog16 from '../../assets/blog16.webp';

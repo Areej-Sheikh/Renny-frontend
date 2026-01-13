@@ -158,7 +158,7 @@ const Home = () => {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          <h1 className="text-8xl font-semibold text-black mt-30 font-jost">
+          <h1 className="text-8xl font-semibold text-black mt-30 font-jost ">
             Building <br /> A<span className="text-green-600"> Future</span>{' '}
             <br /> Together
           </h1>

@@ -31,8 +31,21 @@ const Contact = () => {
           Contact Us
         </motion.h1>
       </motion.section>
-      <section className="w-full bg-white text-black px-6 md:px-20 py-16">
+
+      <section className="w-full bg-white text-black px-6 md:px-20 ">
+            {/* Heading */}
+                  <motion.h1
+                    className="text-[37px] font-bold mb-5 w-full text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                  Get In Touch With Us
+                    <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-20" />
+                  </motion.h1>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          
           {/* LEFT SIDE */}
           <motion.div
             className="flex flex-col gap-6 max-w-xl"
@@ -48,7 +61,7 @@ const Contact = () => {
               transition={{ duration: 0.6, ease: 'easeOut' }}
               viewport={{ once: true }}
             >
-              Get In Touch With Us
+       
             </motion.h2>
 
             <motion.p

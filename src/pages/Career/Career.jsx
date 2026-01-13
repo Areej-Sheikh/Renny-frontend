@@ -65,7 +65,7 @@ const Career = () => {
         </motion.h1>
       </motion.section>
       {/* Career Section */}
-      <div className="px-6 md:px-20 py-16 h-screen  mb-10">
+      <div className="px-6 md:px-20 py-16 h-screen">
         <motion.div
           className="flex flex-wrap items-center gap-8 mb-12 "
           initial={{ opacity: 0, y: 20 }}
@@ -177,10 +177,16 @@ const Career = () => {
       {/* Success Stories */}
       <section className="bg-[#eff6ff] py-10">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-4xl font-semibold text-center text-[#292c44] mb-18">
+          {/* Heading */}
+          <motion.h1
+            className="text-[37px] font-bold mb-5 w-full text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             Success Stories
-          </h2>
-
+            <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          </motion.h1>
           <h1 className="text-2xl text-center font-bold text-[#292c44] mb-3">
             Where careers are built to last
           </h1>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import Banner1 from "../assets/Banner1.webp";
-import Banner2 from "../assets/Banner2.webp";
-import Banner3 from "../assets/Banner3.webp";
-import Banner4 from "../assets/Banner4.webp";
+import Banner1 from '../assets/Banner1.webp';
+import Banner2 from '../assets/Banner2.webp';
+import Banner3 from '../assets/Banner3.webp';
+import Banner4 from '../assets/Banner4.webp';
 
 const Slider = () => {
   const images = [Banner1, Banner2, Banner3, Banner4];

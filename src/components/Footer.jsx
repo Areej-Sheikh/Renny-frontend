@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import RennyLogo from "../assets/RennyLogo.webp"
+import RennyLogo from '../assets/RennyLogo.webp';
 import {
   FaXTwitter,
   FaFacebookF,
@@ -78,15 +78,11 @@ const Footer = () => {
         {/* COL 3 */}
         <motion.div variants={item} className="space-y-3">
           <h3 className="font-semibold">Products</h3>
-          <FooterLink to="/MS-billets">MS Billets</FooterLink>
-          <FooterLink to="/wire-rods-2">Wire Rods</FooterLink>
-          <FooterLink to="/narrow-hrcoil">Narrow-width HR Coils</FooterLink>
-          <FooterLink to="/erw-pipes-and-tubes">
-            ERW Black & Galvanized Pipes & Tubes
-          </FooterLink>
-          <FooterLink to="/scaffolding-formwork/">
-            Scaffolding & Formwork
-          </FooterLink>
+          <FooterLink>MS Billets</FooterLink>
+          <FooterLink>Wire Rods</FooterLink>
+          <FooterLink>Narrow-width HR Coils</FooterLink>
+          <FooterLink>ERW Black & Galvanized Pipes & Tubes</FooterLink>
+          <FooterLink>Scaffolding & Formwork</FooterLink>
         </motion.div>
 
         {/* COL 4 */}
@@ -114,21 +110,19 @@ const Footer = () => {
 
           <div className="space-y-3">
             <h3 className="font-semibold">Sustainability</h3>
-            <FooterLink to="/community-development">
-              Community Development
-            </FooterLink>
-            <FooterLink to="/sustainability">Sustainability</FooterLink>
+            <FooterLink>Sustainability</FooterLink>
           </div>
 
           <div className="space-y-3">
             <h3 className="font-semibold">Media</h3>
+            <FooterLink to="/news-room/">News Room</FooterLink>
             <FooterLink to="/blog">Blog</FooterLink>
             <FooterLink to="/events">Events</FooterLink>
           </div>
 
           <div className="space-y-3">
             <h3 className="font-semibold">Career</h3>
-            <FooterLink to="/careers">Career</FooterLink>
+            <FooterLink to="/career">Career</FooterLink>
           </div>
         </motion.div>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import RennyLogo from "../assets/RennyLogo.webp"
+import RennyLogo from '../assets/RennyLogo.webp';
+
 const Navbar = () => {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,11 +40,13 @@ const Navbar = () => {
       {/* Navigation */}
       <ul
         className={`flex items-center gap-3 transition-all duration-300
-    ${isScrolled ? 'text-gray-700 font-medium' : 'text-gray-700 font-normal'}
+    ${
+      isScrolled ? 'text-gray-700 font-semibold' : 'font-semibold text-gray-400'
+    }
   `}
       >
         {/* About Us */}
-        <li className="relative group">
+         <li className="relative group">
           <span className="cursor-pointer hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
             About Us
           </span>
@@ -73,6 +76,7 @@ const Navbar = () => {
           </ul>
         </li>
 
+
         {/* Products */}
         <li className="relative group">
           <span className="cursor-pointer hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
@@ -80,29 +84,19 @@ const Navbar = () => {
           </span>
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-72 z-50">
             <li>
-              <Link to="/MS-billets/" className="dropdown-item">
-                MS Billets
-              </Link>
+              <Link className="dropdown-item">MS Billets</Link>
             </li>
             <li>
-              <Link to="/wire-rods-2/" className="dropdown-item">
-                Wire Rods
-              </Link>
+              <Link className="dropdown-item">Wire Rods</Link>
             </li>
             <li>
-              <Link to="/narrow-hrcoil/" className="dropdown-item">
-                Narrow-width HR Coils
-              </Link>
+              <Link className="dropdown-item">Narrow-width HR Coils</Link>
             </li>
             <li>
-              <Link to="/erw-pipes-and-tubes/" className="dropdown-item">
-                ERW Pipes & Tubes
-              </Link>
+              <Link className="dropdown-item">ERW Pipes & Tubes</Link>
             </li>
             <li>
-              <Link to="/scaffolding-formwork/" className="dropdown-item">
-                Scaffolding & Formwork
-              </Link>
+              <Link className="dropdown-item">Scaffolding & Formwork</Link>
             </li>
           </ul>
         </li>
@@ -168,14 +162,7 @@ const Navbar = () => {
           </span>
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-64 z-50">
             <li>
-              <Link to="/community-development/" className="dropdown-item">
-                Community Development
-              </Link>
-            </li>
-            <li>
-              <Link to="/sustainability/" className="dropdown-item">
-                Sustainability
-              </Link>
+              <Link className="dropdown-item">ESG</Link>
             </li>
           </ul>
         </li>

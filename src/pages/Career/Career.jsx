@@ -1,44 +1,42 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MdLocationOn, MdSearch } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import careerBanner from "../../assets/careerBanner.webp";
 
-
 const jobsData = [
   {
-    id: 'web-dev',
-    title: 'Web Developer',
-    department: 'IT',
-    location: 'India',
-    type: 'Full Time',
+    id: "web-dev",
+    title: "Web Developer",
+    department: "IT",
+    location: "India",
+    type: "Full Time",
   },
   {
-    id: 'product-manager',
-    title: 'Product Manager',
-    department: 'Engineering',
-    location: 'India',
-    type: 'Full Time',
+    id: "product-manager",
+    title: "Product Manager",
+    department: "Engineering",
+    location: "India",
+    type: "Full Time",
   },
 ];
 
-const jobTypes = ['Full Time', 'Part Time', 'Contract', 'Temporary', 'Trainee'];
+const jobTypes = ["Full Time", "Part Time", "Contract", "Temporary", "Trainee"];
 
 const Career = () => {
-  const [activeDepartment, setActiveDepartment] = useState('IT');
-  const [activeType, setActiveType] = useState('Full Time');
-  const [search, setSearch] = useState('');
+  const [activeDepartment, setActiveDepartment] = useState("IT");
+  const [activeType, setActiveType] = useState("Full Time");
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
   const filteredJobs = jobsData
-    .filter(job => job.type === activeType)
-    .filter(job => job.title.toLowerCase().includes(search.toLowerCase()));
+    .filter((job) => job.type === activeType)
+    .filter((job) => job.title.toLowerCase().includes(search.toLowerCase()));
 
-  const handleDepartmentChange = dept => {
+  const handleDepartmentChange = (dept) => {
     setActiveDepartment(dept);
-    setActiveType('Full Time'); // reset job type
-    setSearch(''); // reset search
+    setActiveType("Full Time"); // reset job type
+    setSearch(""); // reset search
   };
 
   return (
@@ -48,10 +46,10 @@ const Career = () => {
         className="relative h-[70vh] w-full overflow-hidden  mb-12"
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.4, ease: 'easeOut' }}
+        transition={{ duration: 1.4, ease: "easeOut" }}
       >
         <img
-          src={banner}
+          src={careerBanner}
           alt="Blogs Banner"
           className="absolute inset-0 w-full h-full  object-cover"
         />
@@ -59,14 +57,14 @@ const Career = () => {
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
+          transition={{ delay: 0.6, duration: 0.6, ease: "easeOut" }}
           className="relative z-10 text-white text-6xl md:text-7xl font-bold 
            flex items-end justify-start h-full py-10 px-10"
         >
           Career
         </motion.h1>
       </motion.section>
-      <div className="px-6 md:px-20 py-16 h-screen mb-12">
+      <div className="px-6 md:px-20 py-16  min-h-screen mb-12">
         <motion.div
           className="flex flex-wrap items-center gap-8 mb-12 "
           initial={{ opacity: 0, y: 20 }}
@@ -79,22 +77,22 @@ const Career = () => {
             <span className="font-medium text-gray-700">Department</span>
 
             <button
-              onClick={() => handleDepartmentChange('IT')}
+              onClick={() => handleDepartmentChange("IT")}
               className={`text-lg font-semibold transition ${
-                activeDepartment === 'IT'
-                  ? 'text-[#292c44] border-b-2 border-[#292c44]'
-                  : 'text-gray-400'
+                activeDepartment === "IT"
+                  ? "text-[#292c44] border-b-2 border-[#292c44]"
+                  : "text-gray-400"
               }`}
             >
               IT
             </button>
 
             <button
-              onClick={() => handleDepartmentChange('Engineering')}
+              onClick={() => handleDepartmentChange("Engineering")}
               className={`text-lg font-semibold transition ${
-                activeDepartment === 'Engineering'
-                  ? 'text-[#292c44] border-b-2 border-[#292c44]'
-                  : 'text-gray-400'
+                activeDepartment === "Engineering"
+                  ? "text-[#292c44] border-b-2 border-[#292c44]"
+                  : "text-gray-400"
               }`}
             >
               Engineering
@@ -107,14 +105,14 @@ const Career = () => {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            {jobTypes.map(type => (
+            {jobTypes.map((type) => (
               <button
                 key={type}
                 onClick={() => setActiveType(type)}
                 className={`px-4 py-1.5 rounded-full text-sm transition ${
                   activeType === type
-                    ? 'bg-[#292c44] text-white'
-                    : 'bg-white border border-gray-300 text-gray-500'
+                    ? "bg-[#292c44] text-white"
+                    : "bg-white border border-gray-300 text-gray-500"
                 }`}
               >
                 {type}
@@ -128,7 +126,7 @@ const Career = () => {
               type="text"
               placeholder="Search jobs"
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
               className="pl-10 pr-4 py-2 border rounded-lg outline-none"
             />
           </div>
@@ -148,7 +146,7 @@ const Career = () => {
               No jobs available for this selection.
             </p>
           ) : (
-            filteredJobs.map(job => (
+            filteredJobs.map((job) => (
               <motion.div
                 key={job.id}
                 variants={{

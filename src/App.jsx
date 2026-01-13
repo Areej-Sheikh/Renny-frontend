@@ -1,72 +1,73 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 /* Pages */
-import Home from './pages/Home';
+import Home from "./pages/Home";
 
 /* About */
-import About from './pages/About/About';
-import Manufacturing from './pages/About/Manufacturing';
-import Quality from './pages/About/Quality';
-import DesignCentre from './pages/About/DesignCentre';
+import About from "./pages/About/About";
+import Manufacturing from "./pages/About/Manufacturing";
+import Quality from "./pages/About/Quality";
+import DesignCentre from "./pages/About/DesignCentre";
 
 /* Products */
-import MSBillets from './pages/Products/MSBillets';
-import WireRods from './pages/Products/WireRods';
-import HRCoils from './pages/Products/HRCoils';
-import ERW from './pages/Products/ERW';
-import Scaffolding from './pages/Products/Scaffolding';
+import MSBillets from "./pages/Products/MSBillets";
+import WireRods from "./pages/Products/WireRods";
+import HRCoils from "./pages/Products/HRCoils";
+import ERW from "./pages/Products/ERW";
+import Scaffolding from "./pages/Products/Scaffolding";
 
 /* Investor Relations */
-import Financials from './pages/Investors/Financials';
-import Governance from './pages/Investors/Governance';
-import Industry from './pages/Investors/Industry';
-import IPODocs from './pages/Investors/IPODocs';
-import IPOAV from './pages/Investors/IPOAV';
-import Shareholding from './pages/Investors/Shareholding';
-import Policies from './pages/Investors/Policies';
+import Financials from "./pages/Investors/Financials";
+import Governance from "./pages/Investors/Governance";
+import Industry from "./pages/Investors/Industry";
+import IPODocs from "./pages/Investors/IPODocs";
+import IPOAV from "./pages/Investors/IPOAV";
+import Shareholding from "./pages/Investors/Shareholding";
+import Policies from "./pages/Investors/Policies";
 
 /* EC */
-import EC from './pages/EC/EC';
+import EC from "./pages/EC/EC";
 
 /* Sustainability */
-import Sustainability from './pages/Sustainability/Sustainability';
-import Community from './pages/Sustainability/Community';
+import Sustainability from "./pages/Sustainability/Sustainability";
+import Community from "./pages/Sustainability/Community";
 
 /* Media */
-import News from './pages/Media/News';
-import Blogs from './pages/Media/Blogs';
-import Events from './pages/Media/Events';
+import News from "./pages/Media/News";
+import Blogs from "./pages/Media/Blogs";
+import Events from "./pages/Media/Events";
 
 /* Career */
-import Career from './pages/Career/Career';
+import Career from "./pages/Career/Career";
 import JobDetails from "./pages/Career/JobDetails";
+//import JobApply from "./pages/Career/JobApply";
 /* Contact */
-import Contact from './pages/Contact/Contact';
+import Contact from "./pages/Contact/Contact";
 /* Media Blogs */
-import KwikstageScaffolding from './pages/Media/Blogs/KwikstageScaffolding';
-import ScaffoldingFormworksInnovation from './pages/Media/Blogs/ScaffoldingFormworksInnovation';
-import ScaffoldingSteelPropsJacks from './pages/Media/Blogs/ScaffoldingSteelPropsJacks';
-import WireRodManufacturersIndia from './pages/Media/Blogs/WireRodManufacturersIndia';
-import TopRinglockScaffolding from './pages/Media/Blogs/TopRinglockScaffolding';
-import SquareHollowPipe from './pages/Media/Blogs/SquareHollowPipe';
-import ForgingBillets from './pages/Media/Blogs/ForgingBillets';
-import DesignCentreBlog from './pages/Media/Blogs/DesignCentreBlog';
-import ScaffoldingFormworkCompany from './pages/Media/Blogs/ScaffoldingFormworkCompany';
-import ERWPipeManufacturer from './pages/Media/Blogs/ERWPipeManufacturer';
-import SustainableFuture from './pages/Media/Blogs/SustainableFuture';
-import BestScaffoldingFormwork from './pages/Media/Blogs/BestScaffoldingFormwork';
-import GIPipesTubes from './pages/Media/Blogs/GIPipesTubes';
-import NarrowHRCoilManufacturing from './pages/Media/Blogs/NarrowHRCoilManufacturing';
-import MSBlackRoundPipes from './pages/Media/Blogs/MSBlackRoundPipes';
-import GlobalScaffolding from './pages/Media/Blogs/GlobalScaffolding';
-import PrecisionEngineering from './pages/Media/Blogs/PrecisionEngineering';
-import ForgingBilletsPrecision from './pages/Media/Blogs/ForgingBilletsPrecision';
-import WireRodsPrecision from './pages/Media/Blogs/WireRodsPrecision';
-import ERWPipesTrends from './pages/Media/Blogs/ERWPipesTrends';
-import ConstructionRevolution from './pages/Media/Blogs/ConstructionRevolution';
-import GlobalERWPipes from './pages/Media/Blogs/GlobalERWPipes';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
-import Parallax from './components/ParallaxSection';
+import KwikstageScaffolding from "./pages/Media/Blogs/KwikstageScaffolding";
+import ScaffoldingFormworksInnovation from "./pages/Media/Blogs/ScaffoldingFormworksInnovation";
+import ScaffoldingSteelPropsJacks from "./pages/Media/Blogs/ScaffoldingSteelPropsJacks";
+import WireRodManufacturersIndia from "./pages/Media/Blogs/WireRodManufacturersIndia";
+import TopRinglockScaffolding from "./pages/Media/Blogs/TopRinglockScaffolding";
+import SquareHollowPipe from "./pages/Media/Blogs/SquareHollowPipe";
+import ForgingBillets from "./pages/Media/Blogs/ForgingBillets";
+import DesignCentreBlog from "./pages/Media/Blogs/DesignCentreBlog";
+import ScaffoldingFormworkCompany from "./pages/Media/Blogs/ScaffoldingFormworkCompany";
+import ERWPipeManufacturer from "./pages/Media/Blogs/ERWPipeManufacturer";
+import SustainableFuture from "./pages/Media/Blogs/SustainableFuture";
+import BestScaffoldingFormwork from "./pages/Media/Blogs/BestScaffoldingFormwork";
+import GIPipesTubes from "./pages/Media/Blogs/GIPipesTubes";
+import NarrowHRCoilManufacturing from "./pages/Media/Blogs/NarrowHRCoilManufacturing";
+import MSBlackRoundPipes from "./pages/Media/Blogs/MSBlackRoundPipes";
+import GlobalScaffolding from "./pages/Media/Blogs/GlobalScaffolding";
+import PrecisionEngineering from "./pages/Media/Blogs/PrecisionEngineering";
+import ForgingBilletsPrecision from "./pages/Media/Blogs/ForgingBilletsPrecision";
+import WireRodsPrecision from "./pages/Media/Blogs/WireRodsPrecision";
+import ERWPipesTrends from "./pages/Media/Blogs/ERWPipesTrends";
+import ConstructionRevolution from "./pages/Media/Blogs/ConstructionRevolution";
+import GlobalERWPipes from "./pages/Media/Blogs/GlobalERWPipes";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import Parallax from "./components/ParallaxSection";
 const App = () => {
   return (
     <div className="App relative min-h-screen overflow-x-hidden">
@@ -186,12 +187,12 @@ const App = () => {
           element={<GlobalERWPipes />}
         />
 
-        {/* Career */}
-        <Route path="/career/" element={<Career />} />
-
         {/* Contact */}
         <Route path="/contact-us/" element={<Contact />} />
+        {/* Career */}
+        <Route path="/careers" element={<Career />} />
         <Route path="/careers/:jobId" element={<JobDetails />} />
+        {/* <Route path="/careers/:jobId/apply" element={<JobApply />} /> */}
       </Routes>
       <Parallax />
       <Footer />

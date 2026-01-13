@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import sustainability1 from '../assets/Sustainability1.jpg';
-import sustainability3 from '../assets/Sustainability3.jpg';
-import sustainability4 from '../assets/Sustainability4.jpg';
+import sustainability1 from '../assets/Sustainability1.webp';
+import sustainability3 from '../assets/Sustainability3.webp';
+import sustainability4 from '../assets/Sustainability4.webp';
 
 const SustainabilitySlider = () => {
   const [current, setCurrent] = useState(0);
@@ -47,49 +47,45 @@ const SustainabilitySlider = () => {
         </div>
 
         {/* ===== CARD 2 ===== */}
+
         <div className="w-full shrink-0">
           <div className="flex flex-col lg:flex-row bg-white  shadow-lg overflow-hidden">
             <div className="lg:w-3/5 p-10 flex flex-col justify-center">
               <h3 className="text-2xl font-semibold mb-6">
-                Low-Emission Manufacturing Excellence
+                Industry-Best Low-Emission Standards
               </h3>
               <p className="text-gray-700 leading-relaxed">
-                With vertically integrated facilities, Renny tracks emissions
-                from raw materials to finished goods. In-house HR coils, tubes,
-                and wire rods reduce logistics emissions, control costs, and
-                ensure complete carbon accountability.
+                Renny Strips Ltd. tracks emissions from raw materials to
+                finished products, thanks to fully integrated production
+                facilities. In-house manufacturing of HR coils, tubes, and wire
+                rods reduces logistical emissions and ensures comprehensive
+                carbon accountability.
               </p>
             </div>
-
             <div className="lg:w-2/5 h-72 lg:h-auto">
               <img
                 src={sustainability3}
-                alt="Low Emission Manufacturing"
+                alt="CBAM Sustainability"
                 className="w-full h-full object-cover"
               />
             </div>
           </div>
         </div>
-
         {/* ===== CARD 3 ===== */}
         <div className="w-full shrink-0">
           <div className="flex flex-col lg:flex-row bg-white  shadow-lg overflow-hidden">
             <div className="lg:w-3/5 p-10 flex flex-col justify-center">
               <h3 className="text-2xl font-semibold mb-6">
-                Circular Economy & Green Stewardship
+                Circular Economy and Environmental Stewardship
               </h3>
               <p className="text-gray-700 leading-relaxed">
-                Committed to circular economy principles, Renny prioritizes
-                waste optimization and partners with government bodies to expand
-                green cover. These initiatives support ecological restoration
-                and long-term environmental resilience.
+             Renny Strips Ltd. prioritizes effective waste management and collaborates with local authorities, including the Department of Forest, Punjab, and the National Highway Authority, to expand green cover.Renny’s commitment to fostering a more sustainable  ecosystem.
               </p>
             </div>
-
             <div className="lg:w-2/5 h-72 lg:h-auto">
               <img
                 src={sustainability4}
-                alt="Circular Economy"
+                alt="CBAM Sustainability"
                 className="w-full h-full object-cover"
               />
             </div>

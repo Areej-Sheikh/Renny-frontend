@@ -36,34 +36,13 @@ import newsimg from '../assets/newsimg.webp';
 import emission from '../assets/emmisionSection.webm';
 
 import { AnimatePresence } from 'framer-motion';
-import aboutusVideo from '../assets/newsvideo.webm';
-
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import AboutUs from '../assets/AboutUs.png';
 
 import SustainabilitySlider from '../components/SustainabilitySlider';
 import RENNY from '../assets/RENNY-removebg-preview.webp';
+import { image } from 'framer-motion/client';
+import rennyimg from '../assets/RENNY-removebg-preview.webp';
 const Home = () => {
-  ScrollTrigger.normalizeScroll(true);
-  useEffect(() => {
-    const sections = gsap.utils.toArray('.panel');
-
-    ScrollTrigger.create({
-      trigger: sections[0],
-      start: 'top top',
-      end: () => '+=' + window.innerHeight * sections.length,
-      snap: {
-        snapTo: 1 / (sections.length + 1),
-        duration: 0.6,
-        ease: 'power2.out',
-      },
-    });
-
-    return () => ScrollTrigger.getAll().forEach(t => t.kill());
-  }, []);
-
   const navigate = useNavigate();
   const newsData = [
     {
@@ -170,45 +149,62 @@ const Home = () => {
   return (
     <div className="relative flex flex-col  font-helvetica bg-blue-50">
       {/* Banner */}
-      <section className=" panel  w-full relative h-125 flex flex-col md:flex-row items-center mt-20 mb-5 ">
+      <section className=" panel  w-full relative h-125 flex flex-col md:flex-row items-center mt-20 mb-25 ">
         {/* Left Text Column */}
         <motion.div
-          className="flex flex-col px-5 justify-center h-full "
+          className="flex flex-col px-5 justify-center h-full mb-30 "
           initial={{ opacity: 0, x: -80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          <h1 className="text-8xl font-semibold text-black font-jost">
-            Building <br /> A Future <br /> Together
+          <h1 className="text-8xl font-semibold text-black mt-30 font-jost">
+            Building <br /> A<span className="text-green-600"> Future</span>{' '}
+            <br /> Together
           </h1>
-          <div className='ml-8 mt-5 w-xs '>
-            <img src={RENNY} className=" object-center overflow-hidden " />
+          <div>
+            <img src={rennyimg} alt="" className="w-xs mt-5 ml-10" />
           </div>
         </motion.div>
 
         {/* Right Video Column */}
         <motion.div
-          className="md:w-3/2 h-[530px] mr-1 relative overflow-hidden"
+          className="md:w-3/2 mr-1 relative overflow-hidden flex flex-col items-start"
           initial={{ opacity: 0, x: 80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
           viewport={{ once: true }}
         >
           <video
-            className="w-full h-full rounded-4xl object-cover"
+            className="w-125 h-80 ml-80 mb-10  rounded-4xl object-cover mask-origin-fill transition-all duration-700 ease-out hover:scale-110 hover:w-180 hover:mt-20 hover:ml-20 "
             src={HomepageBanner}
             autoPlay
             loop
             muted
             playsInline
           />
+
+          {/* Emissions */}
+          <div className=" max-w-full">
+            <h1 className="text-2xl font-semibold text-gray-900 mb-6 leading-tight">
+              <span className="text-green-600 font-bold">
+                40% Lower Emissions 
+              </span>
+               Compared to Industry Average
+            </h1>
+
+            <p className="text-gray-600 text-base leading-relaxed">
+              Our vertically integrated model reduces waste, minimizes energy
+              loss, and ensures consistent quality. We believe in lower
+              emissions and building a stronger foundation for the future.
+            </p>
+          </div>
         </motion.div>
       </section>
 
-      {/* Emmission Section */}
+      {/* About Us */}
       <motion.section
-        className="flex flex-col items-center font-helvetica justify-center panel"
+        className="flex flex-col items-center font-helvetica justify-center h-full  overflow-hidden"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -217,22 +213,19 @@ const Home = () => {
           visible: {},
         }}
       >
-        <div className="relative w-full h-145 overflow-hidden">
-          {/* Background Video */}
-          <video
-            src={emission}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0  w-full h-full object-cover z-0"
+        <div className="relative w-full h-full overflow-hidden">
+          {/* Background Image */}
+          <img
+            src={AboutUs}
+            alt="About Us"
+            className="w-full h-full object-cover"
           />
 
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/50"></div>
 
           {/* Text Content */}
-          <div className="absolute  inset-0 flex flex-col items-center justify-center text-center  px-6">
+          <div className="absolute  inset-0 flex flex-col items-center justify-center text-center px-6">
             {/* Heading */}
             <motion.h1
               className="text-4xl md:text-5xl font-bold text-white mb-6"
@@ -241,18 +234,8 @@ const Home = () => {
               transition={{ duration: 0.6, ease: 'easeOut' }}
               viewport={{ once: true }}
             >
-              <span className="text-green-600">40% Lower Emissions</span>
-              Compared to Industry Average
+              About Us
             </motion.h1>
-            <motion.h3
-              className="text-xl md:text-3xl font-bold text-white mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              viewport={{ once: true }}
-            >
-              Lower Emissions Stronger Foundations
-            </motion.h3>
 
             {/* Paragraph 1 */}
             <motion.p
@@ -262,98 +245,14 @@ const Home = () => {
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
               viewport={{ once: true }}
             >
-              At Renny Strips, sustainability is built into our manufacturing
-              process. Through energy-efficient production, optimized material
-              usage, and modern automation, we generate up to 40% lower
-              emissions compared to conventional construction material
-              manufacturers.
+              In 1996, Renny Strips Ltd embarked on its dynamic journey. Renny
+              Strips Ltd. aimed to carve a niche in producing Innovative,
+              Sustainable & Industry-fit Steel Products at Competitive Prices.
             </motion.p>
 
             {/* Paragraph 2 */}
             <motion.p
               className="text-white max-w-3xl leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              Our vertically integrated model allows us to reduce waste,
-              minimize energy loss, and maintain consistent quality—without
-              compromising strength or scale.
-            </motion.p>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* About Us */}
-      <motion.section
-        className="flex flex-col items-center font-helvetica  justify-center  panel"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={{
-          hidden: {},
-          visible: {},
-        }}
-      >
-        <h1 className="text-[37px] font-bold ml-20 mt-8  w-full  text-center">
-          About Us
-          <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
-        </h1>
-        <div className="relative w-full  h-145 overflow-hidden">
-          {/* Background Video */}
-          <video
-            src={aboutusVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0  w-full h-full object-cover z-0"
-          />
-
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/50"></div>
-
-          {/* Text Content */}
-          <div className="absolute  inset-0 flex flex-col items-center justify-center text-center  px-6">
-            {/* Paragraph 1 */}
-            <motion.p
-              className="text-white max-w-4xl mb-4 leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
-              viewport={{ once: true }}
-            >
-              In 1996, Renny Strips Ltd embarked on its dynamic journey. Renny
-              Strips Ltd. aimed to carve a niche in producing Innovative,
-              Sustainable & Industry-fit Steel Products at Competitive Prices.
-            </motion.p>
-            <motion.p
-              className="text-white max-w-4xl mb-4 leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
-              viewport={{ once: true }}
-            >
-              In 1996, Renny Strips Ltd embarked on its dynamic journey. Renny
-              Strips Ltd. aimed to carve a niche in producing Innovative,
-              Sustainable & Industry-fit Steel Products at Competitive Prices.
-            </motion.p>
-            <motion.p
-              className="text-white max-w-4xl mb-4 leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
-              viewport={{ once: true }}
-            >
-              In 1996, Renny Strips Ltd embarked on its dynamic journey. Renny
-              Strips Ltd. aimed to carve a niche in producing Innovative,
-              Sustainable & Industry-fit Steel Products at Competitive Prices.
-            </motion.p>
-
-            {/* Paragraph 2 */}
-            <motion.p
-              className="text-white max-w-4xl leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
@@ -370,16 +269,23 @@ const Home = () => {
 
       {/* Our Products */}
       <motion.section
-        className="flex flex-col items-center font-helvetica  justify-center  panel  mt-5"
+        className="flex flex-col items-center font-helvetica justify-center px-6 py-10"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
       >
-        <h1 className="text-[37px] font-bold ml-20  w-full  text-center">
+        {/* Heading */}
+        <motion.h1
+          className="text-[37px] font-bold mb-5 w-full text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           Our Products
           <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
-        </h1>
+        </motion.h1>
+
         <div className="flex min-h-[400px] overflow-hidden w-full max-w-7xl">
           {products.map((item, index) => (
             <div
@@ -444,8 +350,9 @@ const Home = () => {
       </motion.section>
 
       {/* Our Networks*/}
-      <motion.section
-        className="flex flex-col items-center font-helvetica bg-white justify-center px-6 py-16 panel  "
+
+
+      <motion.section         className="flex flex-col items-center font-helvetica bg-white justify-center px-6 py-16 panel  "
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}

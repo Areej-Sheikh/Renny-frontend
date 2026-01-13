@@ -183,8 +183,17 @@ const About = () => {
                 structural products manufacturer headquartered in Ludhiana,
                 Punjab. The Company operates 3 integrated manufacturing units,
                 providing end-to-end finished products. Renny operates three
-                induction furnaces with a total melting capacity of 199,200 TPA,
-                supported by two continuous casting lines and two rolling mills.
+                induction furnaces with a total melting capacity of 199,200 TPA
+                (versus an industry average of 65,000–75,000 TPA), supported by
+                two continuous casting lines and two rolling mills producing MS
+                billets, wire rods, and narrow-width HR coils. A downstream unit
+                manufactures ERW black and galvanized pipes and tubes, along
+                with scaffolding and formwork systems, using largely in-house
+                inputs, positioning Renny among the few vertically integrated
+                players in India across this value chain. The Company’s
+                scaffolding and formwork portfolio exceeds 1,000 SKUs, supplied
+                to customers across 5 continents and serves the construction,
+                automotive, water, oil & gas, and fabrication sectors.
               </motion.p>
 
               <motion.ol
@@ -238,15 +247,15 @@ const About = () => {
       <section className="bg-[#F8F8F8] py-24 text-black">
         <div className="max-w-7xl mx-auto px-6 md:px-16">
           {/* HEADING */}
-          <motion.h2
-            className="text-4xl font-semibold mb-16"
-            initial={{ opacity: 0, y: 30 }}
+          <motion.h1
+            className="text-[48px] font-bold mb-5 w-full text-center"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            Renny’s Journey
-          </motion.h2>
+            Renny's Journey
+            <div className="w-66 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          </motion.h1>
 
           {/* TIMELINE */}
           <div className="relative mb-20">
@@ -337,13 +346,13 @@ const About = () => {
       <section className="bg-white py-24 text-black">
         <div className="max-w-7xl mx-auto px-6 md:px-16">
           <motion.h1
-            className="text-4xl md:text-5xl font-semibold mb-12"
+            className="text-[48px] font-bold mb-5 w-full text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
             Our Network
+            <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
           </motion.h1>
 
           <motion.video

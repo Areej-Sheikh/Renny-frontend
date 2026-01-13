@@ -152,7 +152,7 @@ const Home = () => {
       <section className=" panel  w-full relative h-125 flex flex-col md:flex-row items-center mt-20 mb-25 ">
         {/* Left Text Column */}
         <motion.div
-          className="flex flex-col px-5 justify-center h-full mb-30 "
+          className="flex flex-col px-5 justify-center h-full ml-10 mb-30 "
           initial={{ opacity: 0, x: -80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -176,7 +176,7 @@ const Home = () => {
           viewport={{ once: true }}
         >
           <video
-            className="w-125 h-80 ml-80 mb-10  rounded-4xl object-cover mask-origin-fill transition-all duration-700 ease-out hover:scale-110 hover:w-180 hover:mt-20 hover:ml-20 "
+            className="w-125 h-80 ml-70 mb-10  rounded-4xl object-cover mask-origin-fill transition-all duration-700 ease-out hover:scale-110 hover:w-180 hover:mt-20 hover:ml-10 "
             src={HomepageBanner}
             autoPlay
             loop
@@ -189,7 +189,7 @@ const Home = () => {
             <h1 className="text-2xl font-semibold text-gray-900 mb-6 leading-tight">
               <span className="text-green-600 font-bold">
                 40% Lower Emissions
-              </span>
+              </span> {" "}
               Compared to Industry Average
             </h1>
 
@@ -269,7 +269,7 @@ const Home = () => {
 
       {/* Our Products */}
       <motion.section
-        className="flex flex-col items-center font-helvetica justify-center px-6 py-10"
+        className="flex flex-col items-center font-helvetica w-full justify-center py-10"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}

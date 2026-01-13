@@ -98,12 +98,12 @@ const Manufacturing = () => {
       >
         <motion.h1
           variants={fadeUp}
-          className="text-[37px] font-bold ml-20 w-full text-center"
+          className="text-[48px] font-bold ml-20 w-full text-center"
         >
           Integrated Manufacturing
           <motion.div
             variants={fadeUp}
-            className="w-96 h-0.5 bg-blue mx-auto rounded-full mb-10"
+            className="w-125 h-0.5 bg-blue mx-auto rounded-full mb-10"
           />
         </motion.h1>
 
@@ -236,12 +236,12 @@ const Manufacturing = () => {
       >
         <motion.h1
           variants={fadeUp}
-          className="text-[37px] font-bold ml-20 w-full text-center"
+          className="text-[48px] font-bold ml-20 w-full text-center"
         >
           Our Manufacturing Process
           <motion.div
             variants={fadeUp}
-            className="w-96 h-0.5 bg-blue mx-auto rounded-full mb-10"
+            className="w-140 h-0.5 bg-blue mx-auto rounded-full mb-10"
           />
         </motion.h1>
 
@@ -270,12 +270,12 @@ const Manufacturing = () => {
       >
         <motion.h1
           variants={fadeUp}
-          className="text-[37px] font-bold ml-20 w-full text-center"
+          className="text-[48px] font-bold ml-20 w-full text-center"
         >
           From Raw to Remarkable
           <motion.div
             variants={fadeUp}
-            className="w-96 h-0.5 bg-blue mx-auto rounded-full mb-10"
+            className="w-130 h-0.5 bg-blue mx-auto rounded-full mb-10"
           />
         </motion.h1>
 

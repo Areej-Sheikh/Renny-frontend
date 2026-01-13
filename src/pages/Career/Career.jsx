@@ -179,7 +179,7 @@ const Career = () => {
         <div className="max-w-7xl mx-auto px-6">
           {/* Heading */}
           <motion.h1
-            className="text-[37px] font-bold mb-5 w-full text-center"
+            className="text-[48px] font-bold mb-5 w-full text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}

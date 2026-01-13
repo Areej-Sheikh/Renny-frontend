@@ -254,7 +254,7 @@ const About = () => {
             transition={{ duration: 0.5 }}
           >
             Renny's Journey
-            <div className="w-66 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+            <div className="w-80 h-0.5 bg-blue mx-auto rounded-full mb-10" />
           </motion.h1>
 
           {/* TIMELINE */}
@@ -352,7 +352,7 @@ const About = () => {
             transition={{ duration: 0.5 }}
           >
             Our Network
-            <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+            <div className="w-60 h-0.5 bg-blue mx-auto rounded-full mb-10" />
           </motion.h1>
 
           <motion.video

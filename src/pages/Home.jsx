@@ -188,9 +188,9 @@ const Home = () => {
           <div className=" max-w-full">
             <h1 className="text-2xl font-semibold text-gray-900 mb-6 leading-tight">
               <span className="text-green-600 font-bold">
-                40% Lower Emissions 
+                40% Lower Emissions
               </span>
-               Compared to Industry Average
+              Compared to Industry Average
             </h1>
 
             <p className="text-gray-600 text-base leading-relaxed">
@@ -277,13 +277,13 @@ const Home = () => {
       >
         {/* Heading */}
         <motion.h1
-          className="text-[37px] font-bold mb-5 w-full text-center"
+          className="text-[48px] font-bold mb-5 w-full text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           Our Products
-          <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          <div className="w-65 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 
         <div className="flex min-h-[400px] overflow-hidden w-full max-w-7xl">
@@ -351,8 +351,8 @@ const Home = () => {
 
       {/* Our Networks*/}
 
-
-      <motion.section         className="flex flex-col items-center font-helvetica bg-white justify-center px-6 py-16 panel  "
+      <motion.section
+        className="flex flex-col items-center font-helvetica bg-white justify-center px-6 py-16 panel  "
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -360,13 +360,13 @@ const Home = () => {
       >
         {/* Heading */}
         <motion.h1
-          className="text-[37px] font-bold ml-20 mb-10 w-full text-center"
+          className="text-[48px] font-bold ml-20 mb-10 w-full text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           Our Network
-          <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          <div className="w-60 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 
         {/* Video */}
@@ -635,13 +635,13 @@ const Home = () => {
       <section className="font-helvetica bg-gray-100 py-20 px-6 panel  ">
         {/* Heading */}
         <motion.h1
-          className="text-[37px] font-bold ml-20 mb-10 w-full text-center"
+          className="text-[48px] font-bold ml-20 mb-10 w-full text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           News & Investor Relations
-          <div className="w-100 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          <div className="w-140 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -787,7 +787,7 @@ const Home = () => {
       <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16 bg-white panel h-screen ">
         {/* Heading */}
         <motion.h1
-          className="text-[37px] ml-20 font-bold mb-10 w-full text-center"
+          className="text-[48px] ml-20 font-bold mb-10 w-full text-center"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.4 }}
@@ -795,7 +795,7 @@ const Home = () => {
         >
           Engineering a
           <span className="text-green-700"> Sustainable Tomorrow</span>
-          <div className="w-140 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          <div className="w-200 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 
         {/* Content */}

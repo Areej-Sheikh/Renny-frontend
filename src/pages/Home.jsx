@@ -169,7 +169,7 @@ const Home = () => {
 
         {/* Right Video Column */}
         <motion.div
-          className="md:w-3/2 mr-1 relative overflow-hidden flex flex-col items-start"
+          className="mr-1 relative overflow-hidden flex flex-col items-start"
           initial={{ opacity: 0, x: 80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}

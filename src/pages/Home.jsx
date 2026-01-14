@@ -175,7 +175,7 @@ const Home = () => {
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
           viewport={{ once: true }}
         >
-        <div className="min-w-[100%] flex justify-end pr-[5%]">
+          <div className="min-w-[100%] flex justify-end pr-[5%]">
             <video
               className="w-130 h-80 ml-70 mb-10  rounded-4xl object-cover mask-origin-fill transition-all duration-700 ease-out hover:scale-110 hover:w-180 hover:mt-20 hover:ml-10 "
               src={HomepageBanner}
@@ -191,7 +191,7 @@ const Home = () => {
             <h1 className="text-2xl font-semibold text-gray-900 mb-6 leading-tight">
               <span className="text-green-600 font-bold">
                 40% Lower Emissions
-              </span> {" "}
+              </span>{' '}
               Compared to Industry Average
             </h1>
 
@@ -371,17 +371,19 @@ const Home = () => {
           <div className="w-60 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 
-        {/* Video */}
-        <motion.video
-          src={worldmap}
-          className="w-full  max-h-[75vh] object-cover"
-          autoPlay
-          loop
-          muted
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-        />
+        <div className='w-full'>
+          {/* Video */}
+          <motion.video
+            src={worldmap}
+            className="w-full object-cover border-none "
+            autoPlay
+            loop
+            muted
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          />
+        </div>
 
         {/* Stats */}
         <motion.div
@@ -796,7 +798,7 @@ const Home = () => {
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           Engineering a
-          <span className="text-green-700"> Sustainable Tomorrow</span>
+          <span className="text-green-600"> Sustainable Tomorrow</span>
           <div className="w-200 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 

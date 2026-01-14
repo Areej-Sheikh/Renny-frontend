@@ -66,7 +66,7 @@ const Manufacturing = () => {
         whileInView="visible"
         viewport={{ once: true }}
         variants={imageZoom}
-        className="relative h-[90vh] w-full overflow-hidden mb-10"
+        className="relative h-[100vh] w-full overflow-hidden mb-10"
       >
         <video
           src={aboutVideo}
@@ -119,7 +119,7 @@ const Manufacturing = () => {
           built for precision, performance and sustainability. Our process
           begins with raw material melting, billet casting and hot rolling to
           produce narrow HR coils and wire rods, forming the base for ERW pipes,
-          scaffolding systems, formwork components and forged parts. Advanced
+          scaffolding systems, formwork components and <br />  forged parts. Advanced
           tubing mills, coating lines and multi-stage processing ensure
           consistent mechanical properties, durability and high structural
           integrity.
@@ -143,22 +143,22 @@ const Manufacturing = () => {
             through custom component development, 3D CAD modelling, structural
             analysis, reverse engineering and rapid prototyping. Powered by
             AutoCAD, SolidWorks and CAM tools for CNC/VMC programming, we ensure
-            seamless integration from design to production.
+            seamless integration from design <br /> to production.
           </motion.p>
 
           <motion.p variants={fadeUp} className="text-left mb-5">
             With a robust technology backbone, induction furnaces, CCM, rolling
             mills, CNC machines, robotic welding, electro-galvanizing facilities
-            and DiFOC-enabled digital furnace control—we manufacture products
+            and DiFOC-enabled <br /> digital furnace control we manufacture products
             across diverse grades (235–460 MPa), thicknesses, diameters and
-            profiles. This enables high customizability and fast scale-up for
+            profiles. This enables high customizability  <br /> and fast scale-up for
             varied industry needs.
           </motion.p>
 
           <motion.p variants={fadeUp} className="text-left mb-5">
             Our integrated framework, internal logistics and stringent quality
             controls ensure efficient processing, precise forming, secure
-            packaging and timely dispatch, delivering high-performance steel
+            packaging and timely dispatch, <br /> delivering high-performance steel
             solutions for global markets.
           </motion.p>
         </motion.div>
@@ -177,9 +177,9 @@ const Manufacturing = () => {
             <button
               key={key}
               onClick={() => setActiveUnit(key)}
-              className={`px-6 py-3 rounded-full font-medium transition-all ${
+              className={`px-6 py-3 rounded-full font-medium transition-all  ${
                 activeUnit === key
-                  ? 'bg-black text-white'
+                  ? 'bg-blue text-white'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
@@ -206,7 +206,7 @@ const Manufacturing = () => {
           </AnimatePresence>
         </motion.div>
 
-        <motion.div variants={fadeUp} className="text-left mb-10">
+        <motion.div variants={fadeUp} className="text-left border-2 w-[55%] bg-blue text-white px-5 py-3 rounded-4xl mb-10">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentUnit.title}
@@ -218,7 +218,7 @@ const Manufacturing = () => {
               <h3 className="text-2xl font-semibold mb-2">
                 {currentUnit.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-white leading-relaxed">
                 {currentUnit.address}
               </p>
             </motion.div>
@@ -288,13 +288,13 @@ const Manufacturing = () => {
       </motion.section>
 
       {/*=================  Carbon Footprint  ================= */}
-      <section className="flex flex-col md:flex-row items-center justify-center w-full min-h-screen ">
+      <section className="flex flex-col md:flex-row bg-gray-200 items-center justify-center w-full min-h-screen ">
         {/* Left Content */}
-        <div className="md:w-[40%] w-full h-[450px] bg-gray-200 flex items-center justify-center px-10 py-16">
+        <div className="md:w-[40%] w-full h-[450px]  flex items-center justify-center px-10 py-16">
           <div className="space-y-16">
-            <h1 className="text-4xl font-bold text-gray-900">Capacity</h1>
+            <h1 className="text-4xl  w-[350px] font-bold text-gray-900 border-2 px-5 py-7 rounded-4xl hover:bg-blue hover:text-white ">Total Capacity</h1>
 
-            <h1 className="text-4xl text-black font-bold leading-relaxed">
+            <h1 className="text-4xl w-[350px]  text-black font-bold leading-relaxed border-2 px-5 py-7 rounded-4xl hover:bg-blue hover:text-white ">
               Carbon Footprint
             </h1>
 

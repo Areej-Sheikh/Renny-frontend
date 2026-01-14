@@ -161,7 +161,7 @@ const Navbar = () => {
           </span>
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-64 z-50">
             <li>
-              <Link className="dropdown-item">ESG</Link>
+              <Link to="/sustainability/" className="dropdown-item">ESG</Link>
             </li>
           </ul>
         </li>

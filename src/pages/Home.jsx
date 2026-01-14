@@ -158,10 +158,19 @@ const Home = () => {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          <h1 className="text-8xl font-semibold text-black mt-30 font-jost ">
-            Building <br /> A<span className="text-green-600"> Future</span>{' '}
-            <br /> Together
+          <h1 className="text-8xl font-semibold text-black mt-32 font-jost leading-tight">
+            Building <br />A
+            <span
+              className="font-semibold bg-gradient-to-r from-[#04ad4a] via-[#089a45] to-[#023f18] bg-clip-text text-transparent"
+             
+            >
+              {' '}
+              Future
+            </span>
+            <br />
+            Together
           </h1>
+
           <div>
             <img src={rennyimg} alt="" className="w-xs mt-5 ml-10" />
           </div>
@@ -175,9 +184,9 @@ const Home = () => {
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
           viewport={{ once: true }}
         >
-          <div className="min-w-[100%] flex justify-end pr-[5%]">
+          <div className="min-w-[100%] flex items-center justify-center pr-[5%]">
             <video
-              className="w-130 h-80 ml-70 mb-10  rounded-4xl object-cover mask-origin-fill transition-all duration-700 ease-out hover:scale-110 hover:w-180 hover:mt-20 hover:ml-10 "
+              className="  w-130  lg:w-[calc(100vw-720px)]  h-80  ml-20  mb-10  rounded-4xl  object-cover mask-origin-fill  transition-all duration-700 ease-out  hover:scale-110  lg:hover:w-[calc(100vw-460px)]  hover:mt-20  hover:ml-10  "
               src={HomepageBanner}
               autoPlay
               loop
@@ -187,9 +196,12 @@ const Home = () => {
           </div>
 
           {/* Emissions */}
-          <div className=" max-w-full">
+          <div className="max-w-full">
             <h1 className="text-2xl font-semibold text-gray-900 mb-6 leading-tight">
-              <span className="text-green-600 font-bold">
+              <span
+                className="font-semibold bg-gradient-to-r from-[#04ad4a] via-[#089a45] to-[#023f18] bg-clip-text text-transparent"
+               
+              >
                 40% Lower Emissions
               </span>{' '}
               Compared to Industry Average
@@ -197,7 +209,7 @@ const Home = () => {
 
             <p className="text-gray-600 text-base leading-relaxed">
               Our vertically integrated model reduces waste, minimizes energy
-              loss, and ensures consistent quality. We believe in lower
+              loss, and ensures consistent quality. <br /> We believe in lower
               emissions and building a stronger foundation for the future.
             </p>
           </div>
@@ -799,7 +811,10 @@ const Home = () => {
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           Engineering a
-          <span className="text-green-600"> Sustainable Tomorrow</span>
+          <span className="font-semibold bg-gradient-to-r from-[#04ad4a] via-[#089a45] to-[#023f18] bg-clip-text text-transparent">
+            {' '}
+            Sustainable Tomorrow
+          </span>
           <div className="w-200 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 

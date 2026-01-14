@@ -49,7 +49,7 @@ const JobDetails = () => {
     <section className="w-full bg-gray-100 ">
       {/* Banner */}
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden  mb-12"
+        className="relative h-[100vh] w-full overflow-hidden  mb-12"
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}

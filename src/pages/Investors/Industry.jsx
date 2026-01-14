@@ -30,7 +30,7 @@ const IndustryReport = () => {
       <Navbar />
 
       {/* -------------------- HERO SECTION -------------------- */}
-      <section className="relative w-full h-[70vh] overflow-hidden">
+      <section className="relative w-full h-[100vh] overflow-hidden">
         <img
           src={industryHero}
           alt="Industry Report"

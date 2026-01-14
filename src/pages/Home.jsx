@@ -371,14 +371,15 @@ const Home = () => {
           <div className="w-60 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 
-        <div className='w-full'>
-          {/* Video */}
+        {/* Video Section */}
+        <div className="w-full">
           <motion.video
             src={worldmap}
-            className="w-full object-cover border-none "
+            className="w-full object-cover border-none"
             autoPlay
             loop
             muted
+            playsInline
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}

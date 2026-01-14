@@ -69,6 +69,8 @@ const Quality = () => {
     },
   ];
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeCert, setActiveCert] = useState(null);
+
   const totalSlides = specificationsData.length;
   useEffect(() => {
     const timer = setInterval(() => {
@@ -114,13 +116,13 @@ const Quality = () => {
         <div className="max-w-7xl mx-auto">
           {/* Heading */}
           <motion.h1
-            className="text-[37px] font-bold mb-10 w-full text-center"
+            className="text-[48px] font-bold mb-5 w-full text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             Quality & Standard
-            <div className="w-75 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+            <div className="w-95 h-0.5 bg-blue mx-auto rounded-full mb-10" />
           </motion.h1>
           {/* Top Paragraph */}
           <motion.p
@@ -128,7 +130,7 @@ const Quality = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
-            className="text-black-700"
+            className="text-black-700 md:text-[17px] leading-relaxed md:leading-[28px] text-justify"
           >
             At Renny Strips, quality is at the heart of everything we do. Our
             robust Quality Management System (QMS) is aligned with globally
@@ -165,7 +167,7 @@ const Quality = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-black-700 "
+            className="text-black-700 text-base md:text-[17px] leading-relaxed md:leading-[28px] text-justify"
           >
             Our in-house Quality Centre is equipped with a comprehensive suite
             of advanced testing systems, including spectrometers for chemical
@@ -192,13 +194,13 @@ const Quality = () => {
           {/*======== Title ======= */}
           {/* Heading */}
           <motion.h1
-            className="text-[37px] font-bold mb-10 w-full text-center"
+            className="text-[48px] font-bold mb-5 w-full text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             Quality Assurance & Global Standards
-            <div className="w-170 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+            <div className="w-215 h-0.5 bg-blue mx-auto rounded-full mb-10" />
           </motion.h1>
 
           {/* ================= GRID : 2 ROW × 3 COLUMN ================= */}
@@ -368,10 +370,6 @@ const Quality = () => {
 
               {/* Controls */}
               <div className="flex items-center justify-center gap-6 mt-8">
-                <button onClick={prevSlide} className="text-white text-4xl">
-                  <MdChevronLeft />
-                </button>
-
                 <div className="flex gap-3">
                   {specificationsData.map((_, i) => (
                     <button
@@ -383,19 +381,14 @@ const Quality = () => {
                     />
                   ))}
                 </div>
-
-                <button onClick={nextSlide} className="text-white text-4xl">
-                  <MdChevronRight />
-                </button>
               </div>
             </div>
 
             {/* RIGHT : CONTENT */}
-            {/* RIGHT : CONTENT */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
-                className="text-white flex flex-col justify-center"
+                className="text-white flex flex-col justify-center -mt-19"
                 initial={{ opacity: 0, x: 60 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -60 }}
@@ -457,16 +450,16 @@ const Quality = () => {
       <section className="w-full bg-white my-24">
         <div className="max-w-7xl mx-auto">
           {/* ===== Title ===== */}
-          {/* Heading */}
           <motion.h1
-            className="text-[37px] font-bold mb-10 w-full text-center"
+            className="text-[48px] font-bold mb-5 w-full text-center -mt-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             Our Certificates
-            <div className="w-60 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+            <div className="w-75 h-0.5 bg-blue mx-auto rounded-full mb-10" />
           </motion.h1>
+
           {/* ===== Certificates Grid ===== */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {[
@@ -477,29 +470,34 @@ const Quality = () => {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.12 }}
-                className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+                whileHover={{
+                  scale: 1.08,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20,
+                }}
+                className="bg-white rounded-xl shadow-md cursor-pointer"
+                style={{ willChange: "transform" }}
               >
                 {/* Certificate Image */}
                 <div className="p-4">
                   <img
                     src={item.img}
                     alt={item.title}
-                    className="w-full h-auto border rounded-md"
+                    className="w-full h-auto rounded-xl border"
                   />
                 </div>
 
                 {/* Footer */}
-                <div className="bg-gray-100 text-[#292C44] flex items-center justify-between px-4 py-3 rounded-b-lg">
+                <div className="bg-[#292c44] text-white flex items-center justify-between px-4 py-3 rounded-b-lg">
                   <span className="text-sm font-semibold">{item.title}</span>
 
                   <a
                     href={item.img}
                     download
-                    className="text-sm font-medium border border-[#292C44] px-3 py-1.5 rounded-md hover:bg-[#292C44] hover:text-white transition"
+                    className="text-sm font-medium border border-white px-3 py-1.5 rounded-md hover:bg-white hover:text-[#292c44] transition"
                   >
                     View
                   </a>

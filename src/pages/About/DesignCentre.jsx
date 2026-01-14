@@ -31,71 +31,71 @@ const DesignCentre = () => {
       </motion.section>
       <section className="w-full bg-gray-100 py-10">
         <div className="max-w-7xl mx-auto">
-        {/* Heading */}
-        <motion.h1
-          className="text-[37px] font-bold mb-10 w-full text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          Design Center
-          <div className="w-55 h-0.5 bg-blue mx-auto rounded-full mb-10" />
-        </motion.h1>
+          {/* Heading */}
+          <motion.h1
+            className="text-[48px] font-bold mb-10 w-full text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Design Center
+            <div className="w-70 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          </motion.h1>
 
-        {/* Top Paragraph */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1, duration: 0.5 }}
-          className="text-black-700 leading-relaxed max-w-7xl mx-auto"
-        >
-          The Design Centre at Renny Strips Ltd is the nucleus of our
-          engineering innovation, enabling the development of highly customized,
-          project-specific solutions in scaffolding, formwork systems, steel
-          structures, solar frameworks, livestock enclosures, and precision
-          tubes. Our in-house design team undertakes a wide spectrum of
-          functions, including custom component development, 3D CAD modeling,
-          structural load and stress analysis, reverse engineering, die and
-          fixture design, as well as product validation through prototyping and
-          pilot runs.
-        </motion.p>
+          {/* Top Paragraph */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+            className="text-black-700 md:text-[17px] leading-relaxed md:leading-[28px] text-justify"
+          >
+            The Design Centre at Renny Strips Ltd is the nucleus of our
+            engineering innovation, enabling the development of highly
+            customized, project-specific solutions in scaffolding, formwork
+            systems, steel structures, solar frameworks, livestock enclosures,
+            and precision tubes. Our in-house design team undertakes a wide
+            spectrum of functions, including custom component development, 3D
+            CAD modeling, structural load and stress analysis, reverse
+            engineering, die and fixture design, as well as product validation
+            through prototyping and pilot runs.
+          </motion.p>
 
-        {/* Image with proper spacing & size */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="my-8"
-        >
-          <img
-            src={designCenterImage}
-            alt="Quality Centre Inspection Process"
-            className="w-full h-auto object-contain"
-          />
-        </motion.div>
+          {/* Image with proper spacing & size */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="my-8"
+          >
+            <img
+              src={designCenterImage}
+              alt="Quality Centre Inspection Process"
+              className="w-full h-auto object-contain"
+            />
+          </motion.div>
 
-        {/* Bottom Paragraph */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-black-700 leading-relaxed max-w-7xl mx-auto"
-        >
-          Equipped with advanced design platforms such as AutoCAD, SolidWorks,
-          and CAM tools for CNC/VMC programming, the centre ensures precise
-          design execution and seamless integration with manufacturing. Our
-          flexible design process allows us to modify material grades (ranging
-          from 235 MPa to 460 MPa), wall thicknesses, diameters, profiles,
-          finishes, and connection mechanisms—delivering fully engineered
-          systems rather than off-the-shelf components. Close collaboration with
-          in-house forging, fabrication, and tube-forming teams ensures rapid
-          transition from concept to production, while custom-developed
-          Poka-Yoke fixtures and gauges guarantee quality, consistency, and
-          repeatability in every solution we deliver.
-        </motion.p>
+          {/* Bottom Paragraph */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-black-700 md:text-[17px] leading-relaxed md:leading-[28px] text-justify"
+          >
+            Equipped with advanced design platforms such as AutoCAD, SolidWorks,
+            and CAM tools for CNC/VMC programming, the centre ensures precise
+            design execution and seamless integration with manufacturing. Our
+            flexible design process allows us to modify material grades (ranging
+            from 235 MPa to 460 MPa), wall thicknesses, diameters, profiles,
+            finishes, and connection mechanisms—delivering fully engineered
+            systems rather than off-the-shelf components. Close collaboration
+            with in-house forging, fabrication, and tube-forming teams ensures
+            rapid transition from concept to production, while custom-developed
+            Poka-Yoke fixtures and gauges guarantee quality, consistency, and
+            repeatability in every solution we deliver.
+          </motion.p>
         </div>
       </section>
       <section className="w-full bg-white py-12">
@@ -163,8 +163,17 @@ const DesignCentre = () => {
               <h1 className="text-4xl md:text-5xl font-semibold text-black mb-6">
                 Strive to be Pioneer in Innovation
               </h1>
+              {/* <motion.h1
+                className="text-[48px] font-bold  mb-5 w-full text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                Strive to be Pioneer in Innovation
+                <div className="w-180 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+              </motion.h1> */}
 
-              <p className="text-gray-700 leading-relaxed max-w-3xl mb-8">
+              <p className=" text-gray-700 text-base md:text-[17px] leading-7 md:leading-[30px] text-justify max-w-3xl mb-8">
                 Equipped with advanced design platforms such as AutoCAD,
                 SolidWorks, and CAM tools for CNC/VMC programming, the centre
                 ensures precise design execution and seamless integration with

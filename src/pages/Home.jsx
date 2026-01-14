@@ -362,7 +362,7 @@ const Home = () => {
       >
         {/* Heading */}
         <motion.h1
-          className="text-[48px] font-bold ml-20 mb-10 w-full text-center"
+          className="text-[48px] font-bold ml-20 w-full text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

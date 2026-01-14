@@ -169,20 +169,22 @@ const Home = () => {
 
         {/* Right Video Column */}
         <motion.div
-          className="mr-1 relative overflow-hidden flex flex-col items-start"
+          className="mr-1 max-w-full relative overflow-hidden flex flex-col items-start"
           initial={{ opacity: 0, x: 80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
           viewport={{ once: true }}
         >
-          <video
-            className="w-125 h-80 ml-70 mb-10  rounded-4xl object-cover mask-origin-fill transition-all duration-700 ease-out hover:scale-110 hover:w-180 hover:mt-20 hover:ml-10 "
-            src={HomepageBanner}
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
+        <div className="min-w-[100%] flex justify-end pr-[5%]">
+            <video
+              className="w-130 h-80 ml-70 mb-10  rounded-4xl object-cover mask-origin-fill transition-all duration-700 ease-out hover:scale-110 hover:w-180 hover:mt-20 hover:ml-10 "
+              src={HomepageBanner}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          </div>
 
           {/* Emissions */}
           <div className=" max-w-full">

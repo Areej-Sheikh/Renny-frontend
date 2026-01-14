@@ -89,7 +89,7 @@ const Quality = () => {
     <section className="w-full bg-white">
       {/* ================= Banner Section ================= */}
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden"
+        className="relative h-[45vh] sm:h-[55vh] lg:h-[70vh] w-full overflow-hidden"
         initial={{ opacity: 0, scale: 1.15 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
@@ -106,23 +106,26 @@ const Quality = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="relative z-10 text-white text-6xl md:text-7xl font-bold flex items-end h-full px-10 py-10"
+          className="relative z-10 h-full flex items-end
+                     text-white font-bold
+                     text-4xl sm:text-5xl lg:text-6xl
+                     px-4 sm:px-6 lg:px-10 py-8"
         >
           Quality
         </motion.h1>
       </motion.section>
 
-      <section className="w-full bg-gray-100 py-16">
-        <div className="max-w-7xl mx-auto">
+      <section className="bg-gray-100 py-10 sm:py-14 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Heading */}
           <motion.h1
-            className="text-[48px] font-bold mb-5 w-full text-center"
+            className="text-center font-bold mb-6 text-3xl sm:text-4xl lg:text-[48px]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             Quality & Standard
-            <div className="w-95 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+            <div className="w-90 h-0.5 bg-blue mx-auto mt-4" />
           </motion.h1>
           {/* Top Paragraph */}
           <motion.p
@@ -189,22 +192,27 @@ const Quality = () => {
           </motion.p>
         </div>
       </section>
-      <section className="w-full bg-white my-10">
-        <div className="max-w-7xl mx-auto">
+      <section className="bg-white py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/*======== Title ======= */}
           {/* Heading */}
           <motion.h1
-            className="text-[48px] font-bold mb-5 w-full text-center"
+            className="text-center font-bold mb-12
+                       text-3xl sm:text-4xl lg:text-[48px]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             Quality Assurance & Global Standards
-            <div className="w-215 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+            <div className="w-215 h-0.5 bg-blue mx-auto mt-4" />
           </motion.h1>
 
           {/* ================= GRID : 2 ROW × 3 COLUMN ================= */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-16 gap-y-20 items-start">
+          <div
+            className="grid grid-cols-1 lg:grid-cols-3
+                          gap-x-8 md:gap-x-12 lg:gap-x-16
+                          gap-y-10 md:gap-y-16"
+          >
             {/* ========== COLUMN 1 ========== */}
             <div className="space-y-20">
               {/* Icon 1 */}
@@ -220,7 +228,7 @@ const Quality = () => {
                   <h3 className="font-semibold text-lg mb-2">
                     Global Quality Certifications
                   </h3>
-                  <p className="text-black-800 text-xs md:text-sm leading-relaxed">
+                  <p className="text-sm sm:text-base leading-relaxed">
                     Renny Strips operates under globally accepted quality
                     frameworks including ISO 9001:2015, EN 1090 (Execution Class
                     2), ISO 3834-2 and CE Marking. These certifications reflect
@@ -243,7 +251,7 @@ const Quality = () => {
                   <h3 className="font-semibold text-lg mb-2">
                     Three-Stage Inspection Protocol
                   </h3>
-                  <p className="text-black-800 text-xs md:text-sm leading-relaxed">
+                  <p className="text-sm sm:text-base leading-relaxed">
                     Every batch passes through a structured inspection flow—raw
                     material testing, in-process monitoring and final product
                     approval. This system ensures defect prevention, dimensional
@@ -275,12 +283,12 @@ const Quality = () => {
                 transition={{ duration: 0.6 }}
                 className="flex gap-6"
               >
-                <img src={icon4} alt="" className="w-14 h-14 mt-2" />
+                <img src={icon4} alt="" className="w-14 h-14 mt-26" />
                 <div>
-                  <h3 className="font-semibold text-lg mb-2 mt-2">
+                  <h3 className="font-semibold text-lg mb-2 mt-26">
                     Error-Proofing & Process Control
                   </h3>
-                  <p className="text-black-700 text-xs md:text-sm leading-relaxed">
+                  <p className="text-sm sm:text-base leading-relaxed">
                     We implement Poka-Yoke systems with in-house engineered
                     fixtures to eliminate human error during production. Pilot
                     batches precede mass manufacturing to validate stability,
@@ -306,7 +314,7 @@ const Quality = () => {
                   <h3 className="font-semibold text-lg mb-2">
                     Quality Management System (QMS)
                   </h3>
-                  <p className="text-black-700 text-xs md:text-sm leading-relaxed">
+                  <p className="text-sm sm:text-base leading-relaxed">
                     Our digitally integrated QMS ensures complete process
                     control from raw material intake to final dispatch. With
                     real-time documentation and traceability across every stage,
@@ -329,7 +337,7 @@ const Quality = () => {
                   <h3 className="font-semibold text-lg mb-2">
                     Skilled Technical Team
                   </h3>
-                  <p className="text-black-700 text-xs md:text-sm leading-relaxed">
+                  <p className="text-sm sm:text-base leading-relaxed">
                     Our quality workforce includes certified welding inspectors,
                     NDT Level-II experts, metallurgists and process auditors.
                     Their expertise drives continuous improvement and supports
@@ -342,7 +350,7 @@ const Quality = () => {
         </div>
       </section>
 
-      <section className="relative w-full min-h-[75vh]  my-24 overflow-hidden">
+      <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden">
         {/* Background */}
         <img
           src={bgImage}
@@ -351,8 +359,8 @@ const Quality = () => {
         />
         <div className="absolute inset-0 bg-gray-900/80" />
 
-        <div className="relative max-w-7xl mx-auto min-h-[75vh] flex items-center">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center h-full">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* LEFT : IMAGE SLIDER */}
             <div className="relative">
               <AnimatePresence mode="wait">
@@ -364,12 +372,12 @@ const Quality = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -60 }}
                   transition={{ duration: 0.6 }}
-                  className="w-full h-auto object-contain"
+                  className="w-full h-auto max-h-[420px] sm:max-h-[480px] lg:max-h-[520px] object-contain mx-auto"
                 />
               </AnimatePresence>
 
               {/* Controls */}
-              <div className="flex items-center justify-center gap-6 mt-8">
+              <div className="flex justify-center gap-3 mt-6">
                 <div className="flex gap-3">
                   {specificationsData.map((_, i) => (
                     <button
@@ -388,7 +396,7 @@ const Quality = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
-                className="text-white flex flex-col justify-center -mt-19"
+                className="text-white flex flex-col justify-center"
                 initial={{ opacity: 0, x: 60 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -60 }}
@@ -396,7 +404,7 @@ const Quality = () => {
               >
                 {/* Heading */}
                 <motion.h2
-                  className="text-5xl font-semibold mb-6"
+                  className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.5 }}
@@ -406,7 +414,7 @@ const Quality = () => {
 
                 {/* Sub Heading */}
                 <motion.h3
-                  className="text-4xl font-semibold mb-6"
+                  className="text-xl sm:text-2xl lg:text-3xl font-semibold mb-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
@@ -416,7 +424,7 @@ const Quality = () => {
 
                 {/* Points List */}
                 <motion.ul
-                  className="space-y-6 text-gray-200 text-sm"
+                  className="space-y-4 text-sm sm:text-base text-gray-200"
                   initial="hidden"
                   animate="visible"
                   variants={{
@@ -447,62 +455,63 @@ const Quality = () => {
           </div>
         </div>
       </section>
-      <section className="w-full bg-white my-24">
-        <div className="max-w-7xl mx-auto">
+      <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* ===== Title ===== */}
-          <motion.h1
-            className="text-[48px] font-bold mb-5 w-full text-center -mt-10"
+          <motion.h2
+            className="text-center font-bold mb-12
+                 text-3xl sm:text-4xl lg:text-[48px]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
           >
             Our Certificates
-            <div className="w-75 h-0.5 bg-blue mx-auto rounded-full mb-10" />
-          </motion.h1>
+            <div className="w-75 h-0.5 bg-blue mx-auto mt-4" />
+          </motion.h2>
 
           {/* ===== Certificates Grid ===== */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4
+                    gap-6 sm:gap-8 lg:gap-10"
+          >
             {[
               { img: cert1, title: "IS 1239-1:2004" },
               { img: cert2, title: "IS 1161:2014" },
               { img: cert3, title: "IS 3601:2006" },
               { img: cert4, title: "IS 4923:2017" },
             ].map((item, index) => (
-              <motion.div
+              <motion.a
                 key={index}
-                whileHover={{
-                  scale: 1.08,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 260,
-                  damping: 20,
-                }}
-                className="bg-white rounded-xl shadow-md cursor-pointer"
-                style={{ willChange: "transform" }}
+                href={item.img}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-white rounded-xl shadow-md overflow-hidden
+                     cursor-pointer"
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 220, damping: 18 }}
               >
                 {/* Certificate Image */}
                 <div className="p-4">
                   <img
                     src={item.img}
                     alt={item.title}
-                    className="w-full h-auto rounded-xl border"
+                    className="w-full h-auto rounded-lg border"
                   />
                 </div>
 
                 {/* Footer */}
-                <div className="bg-[#292c44] text-white flex items-center justify-between px-4 py-3 rounded-b-lg">
+                <div
+                  className="bg-[#292c44] text-white
+                          flex items-center justify-between
+                          px-4 py-3"
+                >
                   <span className="text-sm font-semibold">{item.title}</span>
 
-                  <a
-                    href={item.img}
-                    download
-                    className="text-sm font-medium border border-white px-3 py-1.5 rounded-md hover:bg-white hover:text-[#292c44] transition"
-                  >
-                    View
-                  </a>
+                  <span className="text-xs font-medium opacity-80">View</span>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
         </div>

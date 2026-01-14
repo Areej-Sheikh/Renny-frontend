@@ -286,7 +286,7 @@ const Home = () => {
           <div className="w-65 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 
-        <div className="flex min-h-[400px] overflow-hidden w-full max-w-7xl">
+        <div className="flex min-h-[400px] overflow-hidden w-full ">
           {products.map((item, index) => (
             <div
               key={index}
@@ -372,7 +372,7 @@ const Home = () => {
         {/* Video */}
         <motion.video
           src={worldmap}
-          className="w-full max-w-7xl max-h-[75vh] object-cover"
+          className="w-full  max-h-[75vh] object-cover"
           autoPlay
           loop
           muted
@@ -443,7 +443,7 @@ const Home = () => {
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
-          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl w-full">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10  w-full">
             {/* CARD 1 */}
             <motion.div
               className={`rounded-2xl border overflow-hidden transition-all duration-500 cursor-pointer
@@ -800,7 +800,7 @@ const Home = () => {
 
         {/* Content */}
         <motion.div
-          className="flex flex-col lg:flex-row items-center justify-center gap-10 max-w-7xl w-full"
+          className="flex flex-col lg:flex-row items-center justify-center gap-10  w-full"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
@@ -853,7 +853,7 @@ const Home = () => {
         viewport={{ once: true, amount: 0.25 }}
       >
         <motion.div
-          className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10"
+          className=" mx-auto flex flex-col lg:flex-row gap-10"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}

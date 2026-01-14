@@ -143,7 +143,7 @@ const About = () => {
         <div className="absolute inset-0 bg-black/60"></div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-[65%_35%] gap-16 px-6 md:px-16 py-20 text-white">
+        <div className="relative z-10  mx-auto grid lg:grid-cols-[65%_35%] gap-16 px-6 md:px-16 py-20 text-white">
           {/* LEFT CONTENT */}
           <motion.div
             className="space-y-6"
@@ -245,7 +245,7 @@ const About = () => {
 
       {/* ================= TIMELINE ================= */}
       <section className="bg-[#F8F8F8] py-24 text-black">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
+        <div className=" mx-auto px-6 md:px-16">
           {/* HEADING */}
           <motion.h1
             className="text-[48px] font-bold mb-5 w-full text-center"
@@ -344,7 +344,7 @@ const About = () => {
 
       {/* ================= OUR NETWORK ================= */}
       <section className="bg-white py-24 text-black">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
+        <div className=" mx-auto px-6 md:px-16">
           <motion.h1
             className="text-[48px] font-bold mb-5 w-full text-center"
             initial={{ opacity: 0, y: 20 }}

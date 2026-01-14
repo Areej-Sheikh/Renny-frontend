@@ -49,7 +49,7 @@ const Footer = () => {
     <footer className="bg-gray-200 font-helvetica text-gray-800">
       {/* ================= MAIN FOOTER ================= */}
       <motion.div
-        className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10"
+        className=" mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10"
         variants={container}
         initial="hidden"
         whileInView="show"
@@ -167,7 +167,7 @@ const Footer = () => {
         viewport={{ once: true }}
         className="border-t border-gray-300"
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between text-sm text-gray-600 gap-2">
+        <div className=" mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between text-sm text-gray-600 gap-2">
           <div>© Renny</div>
           <div className="flex gap-4">
             <Link to="/privacy-policy" className="hover:text-blue-800">

@@ -99,7 +99,7 @@ const successStories = [
 const CareerCarousel = () => {
   return (
     <section className="bg-[#eff6ff] h-3xl  py-20">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className=" mx-auto px-6">
         {/* Swiper */}
         <Swiper
           modules={[Autoplay, Navigation]}

@@ -159,7 +159,7 @@ const Events = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="max-w-7xl mx-auto px-6 py-24"
+        className=" mx-auto px-6 py-24"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {eventsData.map(event => (

@@ -176,7 +176,7 @@ const Career = () => {
       </div>
       {/* Success Stories */}
       <section className="bg-[#eff6ff] py-10">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className=" mx-auto px-6">
           {/* Heading */}
           <motion.h1
             className="text-[48px] font-bold mb-5 w-full text-center"

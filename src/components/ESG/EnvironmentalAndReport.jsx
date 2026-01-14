@@ -70,79 +70,88 @@ const EnvironmentalAndReport = () => {
   return (
     <div className="bg-white overflow-hidden">
       
-      {/* 7. Environmental Stewardship Section - Restored 3/5 vs 2/5 Alignment */}
-      <section className="py-20 px-6 md:px-16 lg:px-24 max-w-[1440px] mx-auto">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
-          
-          {/* Text Left - Wider width to keep heading in one line */}
-          <div className="w-full lg:w-3/5">
-            <AnimatedSection xValue={-100}>
-              <div className="mb-10 w-fit">
-                <h2 
-                  className="font-bold pb-2 whitespace-nowrap"
-                  style={{ 
-                    fontFamily: 'var(--font-helvetica)', 
-                    fontSize: '48px',
-                    background: "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text"
-                  }}
-                >
-                  Environmental Stewardship
-                </h2>
-                <div className="w-full h-0.5 bg-blue mx-auto rounded-full mt-1" />
-              </div>
-
-              <div className="space-y-4">
-                {stewardshipData.map((item, index) => {
-                  const isActive = activeBox === index;
-                  return (
-                    <motion.div
-                      key={index}
-                      onClick={() => setActiveBox(index)}
-                      className={`group p-6 rounded-xl border transition-all duration-300 cursor-pointer shadow-sm ${
-                        isActive 
-                          ? 'bg-[#292c44] border-[#292c44]' 
-                          : 'bg-[#f8faff] border-gray-200 hover:bg-[#292c44]'
-                      }`}
-                    >
-                      <h3 className={`text-[18px] font-bold mb-2 transition-colors duration-300 ${
-                          isActive ? 'text-white' : 'text-black group-hover:text-white'
-                        }`}
-                        style={{ fontFamily: 'var(--font-helvetica)' }}
-                      >
-                        {item.title}
-                      </h3>
-                      <p className={`text-[15px] leading-relaxed transition-colors duration-300 ${
-                          isActive ? 'text-gray-200' : 'text-gray-600 group-hover:text-gray-200'
-                        }`}
-                        style={{ fontFamily: 'var(--font-helvetica)' }}
-                      >
-                        {item.desc}
-                      </p>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </AnimatedSection>
-          </div>
-
-          {/* Image Right */}
-          <div className="w-full lg:w-2/5">
-            <AnimatedSection xValue={100} delay={1}>
-              <div className="overflow-hidden rounded-2xl shadow-xl">
-                <motion.img 
-                  whileHover={{ scale: 1.05 }}
-                  src={envSustainabilityImg} 
-                  alt="Environmental Sustainability" 
-                  className="w-full h-[550px] object-cover cursor-pointer"
-                />
-              </div>
-            </AnimatedSection>
-          </div>
+      {/* 7. Environmental Stewardship Section - Reference Layout Matching */}
+<section className="px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40 py-12 bg-white">
+  <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row gap-8 lg:gap-12 items-start">
+    
+    {/* Left Side: Content Box (Locked to 50% width like reference) */}
+    <div className="w-full md:w-1/2">
+      <AnimatedSection xValue={-100}>
+        <div className="mb-4">
+          <h2 
+           className="font-bold pb-4 whitespace-nowrap tracking-tight"
+            style={{ 
+              fontFamily: 'var(--font-helvetica)', 
+              fontSize: '48px', 
+              background: "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              lineHeight: "1.2",
+              width: "max-content" 
+            }}
+          >
+            Environmental Stewardship
+          </h2>
+          {/* Reference Underline Style */}
+         <div className="w-full h-0.5 bg-blue mx-auto rounded-full mt-1" />
         </div>
-      </section>
+
+        <div className="space-y-4">
+          {stewardshipData.map((item, index) => {
+            const isActive = activeBox === index;
+            return (
+              <motion.div
+                key={index}
+                onClick={() => setActiveBox(index)}
+                className={`group p-4 rounded-lg border transition-all duration-300 cursor-pointer shadow-sm ${
+                  isActive 
+                    ? 'bg-[#292c44] border-[#292c44]' 
+                    : 'bg-[#f8faff] border-gray-200 hover:bg-[#292c44]'
+                }`}
+              >
+                <h3 className={`text-[17px] font-bold mb-2 transition-colors duration-300 ${
+                    isActive ? 'text-white' : 'text-black group-hover:text-white'
+                  }`}
+                  style={{ fontFamily: 'var(--font-helvetica)' }}
+                >
+                  {item.title}
+                </h3>
+                <p className={`text-[14px] leading-relaxed transition-colors duration-300 ${
+                    isActive ? 'text-gray-200' : 'text-gray-600 group-hover:text-gray-200'
+                  }`}
+                  style={{ fontFamily: 'var(--font-helvetica)' }}
+                >
+                  {item.desc}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </AnimatedSection>
+    </div>
+
+    {/* Right Side: Image Container (Locked to 50% width + Reference Height) */}
+    <div className="w-full md:w-1/2">
+      <AnimatedSection xValue={100} delay={1}>
+        <div 
+          className="overflow-hidden rounded-lg shadow-md"
+          style={{
+            width: "100%",
+            height: "clamp(400px, 50vw, 550px)", // Reference height clamp
+          }}
+        >
+          <motion.img 
+            whileHover={{ scale: 1.05 }}
+            src={envSustainabilityImg} 
+            alt="Environmental Sustainability" 
+            className="w-full h-full object-cover cursor-pointer"
+          />
+        </div>
+      </AnimatedSection>
+    </div>
+  </div>
+</section>
 
       {/* 8. Download Emission Report Section */}
       <section className="py-20 px-6 md:px-16 lg:px-24 max-w-[1440px] mx-auto">

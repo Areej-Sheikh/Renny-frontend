@@ -80,46 +80,46 @@ const SustainabilityContent = () => {
           </ScrollReveal>
         </div>
       </section>
-
-      {/* 2. RENNY'S JOURNEY SECTION */}
-      <section className="py-20 px-6 md:px-16 lg:px-24 max-w-[1440px] mx-auto">
+{/* 2. Renny's Journey Section */}
+<section className="py-20 px-6 md:px-16 lg:px-24 max-w-[1440px] mx-auto bg-white flex flex-col items-center">
+  
+  {/* Centered Header with Blend and Full Underline */}
+  <ScrollReveal direction="up">
+    <div className="mb-10 flex flex-col items-center">
+      <div className="relative w-fit">
+        <h2 
+          className="font-bold pb-3 whitespace-nowrap text-center"
+          style={{ 
+            fontFamily: 'var(--font-helvetica)', 
+            fontSize: '48px',
+            lineHeight: '1.2',
+            // Fix for visibility: Use a tighter gradient and explicit color
+            background: "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            display: "inline-block" 
+          }}
+        >
+          Renny's Journey
+        </h2>
         
-        {/* Header: Helvetica 48px, Animated from Left */}
-        <ScrollReveal direction="left">
-          <div className="inline-block border border-[#7e84a3] px-6 py-2 mb-10">
-            <h2 
-              className="font-normal uppercase" 
-              style={{ 
-                fontFamily: 'var(--font-helvetica)', 
-                fontSize: '48px', 
-                lineHeight: '1.1' 
-              }}
-            >
-              <span style={{ color: 'var(--color-blue)' }}>Renny's </span>
-              <span className="text-[#00A63E]">Journey</span>
-            </h2>
-          </div>
-        </ScrollReveal>
+        {/* Continuous Underline for all text */}
+         <div className="w-full h-0.5 bg-blue mx-auto rounded-full mt-1" />
+      </div>
+    </div>
+  </ScrollReveal>
 
-        {/* Content Paragraph: Helvetica, Animated from Bottom */}
-        <ScrollReveal direction="up" delay={2}>
-          <p 
-            className="text-[16px] md:text-[18px] leading-[1.8] text-[#333] text-left max-w-6xl"
-            style={{ fontFamily: 'var(--font-helvetica)', letterSpacing: '-0.01em' }}
-          >
-            Lorem ipsum dolor sit amet consectetur. Sapien eget amet nunc ornare turpis enim. 
-            Tempor tortor dictum eu vel nec aliquam. Mi tristique ullamcorper aliquet amet 
-            viverra eu lectus elit. Amet nunc sit elementum penatibus ultrices tortor. 
-            Elementum et sollicitudin a vel massa massa at tellus. Vestibulum amet quis 
-            nulla imperdiet scelerisque porttitor nulla. Ut a quam feugiat quis dui habitasse 
-            turpis. In in non consectetur aliquam. Lectus condimentum pellentesque nisl elit. 
-            Eu amet dolor id sit cursus egestas tempus nunc. Facilisis porta interdum etiam 
-            habitant blandit ligula. Velit quam morbi at bibendum purus. Pulvinar elementum 
-            adipiscing elementum viverra molestie mauris.
-          </p>
-        </ScrollReveal>
-      </section>
-
+  {/* Content Paragraph - Kept exactly as previous */}
+  <ScrollReveal direction="up" delay={2}>
+    <p 
+      className="text-[16px] md:text-[18px] leading-[1.8] text-[#333] text-left max-w-6xl"
+      style={{ fontFamily: 'var(--font-helvetica)', letterSpacing: '-0.01em' }}
+    >
+      Lorem ipsum dolor sit amet consectetur. Sapien eget amet nunc ornare turpis enim. Tempor tortor dictum eu vel nec aliquam. Mi tristique ullamcorper aliquet amet viverra eu lectus elit. Amet nunc sit elementum penatibus ultrices tortor. Elementum et sollicitudin a vel massa massa at tellus. Vestibulum amet quis nulla imperdiet scelerisque porttitor nulla. Ut a quam feugiat quis dui habitasse turpis. In in non consectetur aliquam. Lectus condimentum pellentesque nisl elit. Eu amet dolor id sit cursus egestas tempus nunc. Facilisis porta interdum etiam habitant blandit ligula. Velit quam morbi at bibendum purus. Pulvinar elementum adipiscing elementum viverra molestie mauris.
+    </p>
+  </ScrollReveal>
+</section>
     </div>
   );
 };

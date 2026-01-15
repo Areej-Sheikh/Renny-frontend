@@ -1,114 +1,240 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Asset Imports
-import adoptionSchool from '../../assets/Adoption_School.webp';
-import infrastructure from '../../assets/Infrastructure.webp';
-import medicalSupport from '../../assets/Medical.webp';
-import publicPond from '../../assets/Public_Pond.webp';
+import adoptionSchool from "../../assets/Adoption_School.webp";
+import medicalSupport from "../../assets/Medical.webp";
+import publicPond from "../../assets/Public_Pond.webp";
 
 const FeaturedProjects = () => {
+  const [selectedProject, setSelectedProject] = useState(null);
+
   const projects = [
-    { img: adoptionSchool, title: "Adoption of School" },
-    { img: infrastructure, title: "Infrastructure Development" },
-    { img: medicalSupport, title: "Medical Support by Conducting Medical Camps" },
-    { img: publicPond, title: "Adoption of Public Pond" }
+    {
+      img: adoptionSchool,
+      title: "Adoption of School",
+      content:
+        "Renny Strips Ltd. has adopted a Primary Boys School in Raian Village to support quality education and holistic student development.",
+      // New Infrastructure Data
+      infrastructure: [
+        "Constructed boundary wall for school security",
+        "Installed green boards for better learning",
+        "Built toilet shed for improved hygiene",
+        "Developed stage shed for school activities",
+        "Installed water cooler tanks for safe drinking water",
+      ],
+    },
+    {
+      img: medicalSupport,
+      title: "Medical Support by Conducting Medical Camps",
+      content:
+        "In rural areas like Kohora, BPL families often face significant barriers to accessing healthcare. Renny Strips Ltd. is actively addressing this issue by organizing health check-up camps, offering services such as eye check-ups, women and children’s nutrition assessments & gynecological check-ups for women. Along with these services, Renny Strips Ltd. distributes free medicines and works to raise awareness about healthcare, improving access to essential medical care and promoting better health practices in these",
+      infrastructure: [],
+    },
+    {
+      img: publicPond,
+      title: "Rainwater Harvesting",
+      content:
+        "A rainwater harvesting project was initiated through the adoption of a village pond in Raian Village. Another step towards community development. Renny Strips Ltd. has adopted a public pond. Renny is doing complete maintenance of the pond along with Rain Water Harvestation, so that the villagers can get easy access to water for agriculture, irrigation and daily use.",
+      infrastructure: [],
+    },
   ];
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.6, ease: "easeOut" } 
-    }
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
   };
 
-return (
-  <>
-    {/* 6. Featured Projects Section */}
-    <section className="py-20 px-6 md:px-16 lg:px-24 max-w-[1440px] mx-auto bg-white">
-  
-  {/* Header Section */}
-  <motion.div 
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: false, amount: 0.3 }}
-    variants={{
-      hidden: { opacity: 0, y: 30 },
-      visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-    }}
-    className="mb-16 flex flex-col items-center"
-  >
-    {/* Heading: Centered with Color Blend and Full Underline */}
-    <div className="mb-6 w-fit flex flex-col items-center">
-      <h2 
-        className="font-bold pb-2 whitespace-nowrap text-center"
-        style={{ 
-          fontFamily: 'var(--font-helvetica)', 
-          fontSize: '48px',
-          lineHeight: '1.2',
-          background: "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
-          WebkitBackgroundClip: "text",
-          backgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          display: "inline-block"
-        }}
-      >
-        Featured Projects
-      </h2>
-      {/* Continuous Underline matched to text width */}
-      <div className="w-full h-0.5 bg-blue mx-auto rounded-full mt-1" />
-    </div>
-    
-    {/* Single Line Description */}
-    <p 
-      className="text-[16px] md:text-[18px] text-[#333] whitespace-nowrap text-center"
-      style={{ fontFamily: 'var(--font-helvetica)' }}
-    >
-      Our featured projects showcase real-world actions that involve sustainability, empower communities, and promote responsible growth.
-    </p>
-  </motion.div>
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
 
-  {/* Projects Grid with Staggered Animation */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-    {projects.map((project, index) => (
-      <motion.div 
-        key={index}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.2 }}
-        transition={{ 
-          type: "spring", 
-          stiffness: 100, 
-          damping: 15, 
-          delay: index * 0.1 
+  return (
+    <section className="py-20 px-6 md:px-16 lg:px-24 max-w-[1440px] mx-auto bg-white">
+      {/* Header Section */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, ease: "easeOut" },
+          },
         }}
-        className="flex flex-col items-center text-center"
+        className="mb-16 flex flex-col items-center"
       >
-        {/* Image Container with Hover */}
-        <div className="w-full overflow-hidden rounded-2xl mb-6 shadow-md border border-gray-100">
-          <motion.img 
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            src={project.img} 
-            alt={project.title} 
-            className="w-full h-[220px] object-cover cursor-pointer"
-          />
+        <div className="mb-6 w-fit flex flex-col items-center">
+          <h2
+            className="font-bold pb-2 whitespace-nowrap text-center"
+            style={{
+              fontFamily: "var(--font-helvetica)",
+              fontSize: "48px",
+              lineHeight: "1.2",
+              background: "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              display: "inline-block",
+            }}
+          >
+            Featured Projects
+          </h2>
+          <div className="w-full h-0.5 bg-blue mx-auto rounded-full mt-1" />
         </div>
 
-        {/* Project Title */}
-        <h4 
-          className="text-[18px] md:text-[20px] font-bold leading-snug px-2"
-          style={{ color: '#000', fontFamily: 'var(--font-helvetica)' }}
+        <p
+          className="text-[16px] md:text-[18px] text-[#333] text-center max-w-4xl"
+          style={{ fontFamily: "var(--font-helvetica)" }}
         >
-          {project.title}
-        </h4>
+          Our featured projects showcase real-world actions that involve
+          sustainability, empower communities, and promote responsible growth.
+        </p>
       </motion.div>
-    ))}
-  </div>
-      </section>
-    </>
+
+      {/* Grid */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16 w-full"
+      >
+        {projects.map((project, index) => (
+          <motion.div
+            key={index}
+            variants={cardVariants}
+            className="w-full flex flex-col cursor-pointer group"
+            onClick={() => setSelectedProject(project)}
+            whileHover={{ y: -8 }}
+          >
+            {/* ... inside the projects.map loop ... */}
+            <div className="relative w-full aspect-[4/3] overflow-hidden rounded-[2rem] mb-6 shadow-xl bg-gray-100">
+              <img
+                src={project.img}
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                style={{
+                  /* FIX: This ensures the top of the image is visible in the card */
+                  objectPosition: project.title.includes("Medical")
+                    ? "top"
+                    : "center",
+                }}
+              />
+
+              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-6 right-6 bg-white/20 backdrop-blur-md border border-white/30 px-5 py-2 rounded-full text-white font-bold tracking-wider text-[12px] shadow-xl">
+                  READ MORE
+                </div>
+              </div>
+            </div>
+            {/* ... rest of the code ... */}
+            <h4
+              className="text-[20px] font-bold text-center px-4 leading-snug group-hover:text-[#00A63E] transition-colors duration-300"
+              style={{ fontFamily: "var(--font-helvetica)" }}
+            >
+              {project.title}
+            </h4>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      {/* Pop-up Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 md:p-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-[12px]"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 30 }}
+              className="relative bg-white w-full max-w-5xl max-h-[90vh] overflow-hidden rounded-[2.5rem] shadow-2xl flex flex-col md:flex-row"
+            >
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-6 right-6 z-50 w-10 h-10 bg-black/5 hover:bg-black/10 rounded-full flex items-center justify-center transition-all group"
+              >
+                <span className="text-2xl font-light group-hover:rotate-90 transition-transform duration-300">
+                  ✕
+                </span>
+              </button>
+
+              {/* Left Side: 50% Image (Original/Clear) */}
+              <div className="w-full md:w-1/2 h-[350px] md:h-auto overflow-hidden">
+                <img
+                  src={selectedProject.img}
+                  alt={selectedProject.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Right Side: 50% Content Area */}
+              <div className="w-full md:w-1/2 p-8 md:p-14 overflow-y-auto">
+                <div className="w-fit mb-8">
+                  <h3
+                    className="text-3xl md:text-4xl font-bold leading-tight"
+                    style={{
+                      fontFamily: "var(--font-helvetica)",
+                      background:
+                        "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    {selectedProject.title}
+                  </h3>
+                  <div className="w-full h-0.5 bg-blue mx-auto rounded-full mt-1" />
+                </div>
+
+                <div
+                  className="text-gray-600 text-lg leading-relaxed space-y-6"
+                  style={{ fontFamily: "var(--font-helvetica)" }}
+                >
+                  <p>{selectedProject.content}</p>
+
+                  {/* Infrastructure List with Black Bullets */}
+                  {selectedProject.infrastructure &&
+                    selectedProject.infrastructure.length > 0 && (
+                      <div className="pt-2">
+                        <h4 className="text-black font-bold mb-4 text-xl">
+                          Infrastructure Development
+                        </h4>
+                        <ul className="space-y-3">
+                          {selectedProject.infrastructure.map((item, i) => (
+                            <li
+                              key={i}
+                              className="flex items-start gap-3 text-[16px]"
+                            >
+                              {/* Black Bullet Point */}
+                              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-black shrink-0" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </section>
   );
 };
 

@@ -49,16 +49,20 @@ const EnvironmentalAndReport = () => {
 
   const stewardshipData = [
     {
-      title: "CBAM",
-      desc: "Lorem ipsum dolor sit amet consectetur. Quis fames est habitasse eget sit pretium. Dui rhoncus id gravida arcu in blandit. Nibh tempor pharetra.",
+      title: "Go Green with Solar",
+      desc: "At Renny Strips, sustainability is more than a goal—it’s a responsibility. Our 22MW solar power setup helps minimize conventional energy use and supports our journey towards a greener tomorrow.",
     },
     {
-      title: "Industry-Best Low-Emission Standards and Vertical Integration",
-      desc: "Lorem ipsum dolor sit amet consectetur. Id libero mollis felis habitant.",
+      title: "CBAM & Sustainable Market Access",
+      desc: " Renny Strips Ltd. strengthens its European presence through CBAM-aligned practices, delivering high-quality steel productswith strong ROI. Fully in-house production enables rapid execution while maintaining a significantly lower carbon footprint than industry standards.",
     },
     {
-      title: "Circular Economy and Environmental Stewardship",
-      desc: "Lorem ipsum dolor sit amet consectetur. Ac ut sit amet quis tortor tempus.",
+      title: "Low-Emission Manufacturing Excellence",
+      desc: "With vertically integrated facilities, Renny tracks emission from raw materials to finished goods. In-house HR coils, tubes, and wire rods reduce logistics emissions,control costs,and ensure complete carbon accountability",
+    },
+    {
+      title: "Circular Economy & Green Stewardship",
+      desc: "Committed to circular economy principles, Renny prioritize waste optimization and partners with government bodies to expandgreen cover. These initiatives support ecological restoration and long-term environmental resilience.",
     },
   ];
 
@@ -74,94 +78,93 @@ const EnvironmentalAndReport = () => {
 
   return (
     <div className="bg-white overflow-hidden">
-      {/* 7. Environmental Stewardship Section */}
-      <section className="px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40 py-12 bg-white overflow-hidden">
-        <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
-          {/* Left Side: Content Box - Set to 60% to ensure one-line title at 1260px */}
-          <div className="w-full lg:w-[60%] shrink-0">
-            <AnimatedSection xValue={-100}>
-              <div className="mb-6 w-fit">
-                <h2
-                  className="font-bold pb-4 tracking-tight"
-                  style={{
-                    fontFamily: "var(--font-helvetica)",
-                    fontSize: "48px",
-                    background:
-                      "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    lineHeight: "1.2",
-                    whiteSpace: "nowrap", // Forces one line
-                    display: "block",
-                  }}
+   {/* 7. Environmental Stewardship Section */}
+ <section className="px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-16 bg-white overflow-hidden">
+    <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+      
+      {/* Left Side: Restored to original compact card sizes */}
+      <div className="w-full lg:w-1/2 shrink-0 ">
+        <AnimatedSection xValue={-100}>
+          <div className="mb-8 relative w-fit m">
+            <h2
+              className="font-bold pb-4 tracking-tight"
+              style={{
+                fontFamily: "var(--font-helvetica)",
+                fontSize: "48px",
+                background: "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                lineHeight: "1.2",
+                whiteSpace: "nowrap",
+                display: "block",
+              }}
+            >
+              Environmental Stewardship
+            </h2>
+            <div className="w-full h-0.5 bg-blue mx-auto rounded-full mt-1" />
+          </div>
+
+          {/* space-y-4 restored for tighter vertical spacing */}
+          <div className="space-y-4">
+            {stewardshipData.map((item, index) => {
+              const isActive = activeBox === index;
+              return (
+                <motion.div
+                  key={index}
+                  onClick={() => setActiveBox(index)}
+                  /* p-4 and rounded-lg restored for previous card height */
+                  className={`group p-4 rounded-lg border transition-all duration-300 cursor-pointer shadow-sm ${
+                    isActive
+                      ? "bg-[#292c44] border-[#292c44]"
+                      : "bg-[#f8faff] border-gray-200 hover:bg-[#292c44]"
+                  }`}
                 >
-                  Environmental Stewardship
-                </h2>
-                {/* Underline matched to the text container width */}
-                <div className="w-full h-0.5 bg-blue mx-auto rounded-full mt-1" />
-              </div>
-
-              <div className="space-y-4">
-                {stewardshipData.map((item, index) => {
-                  const isActive = activeBox === index;
-                  return (
-                    <motion.div
-                      key={index}
-                      onClick={() => setActiveBox(index)}
-                      className={`group p-4 rounded-lg border transition-all duration-300 cursor-pointer shadow-sm ${
-                        isActive
-                          ? "bg-[#292c44] border-[#292c44]"
-                          : "bg-[#f8faff] border-gray-200 hover:bg-[#292c44]"
-                      }`}
-                    >
-                      <h3
-                        className={`text-[17px] font-bold mb-2 transition-colors duration-300 ${
-                          isActive
-                            ? "text-white"
-                            : "text-black group-hover:text-white"
-                        }`}
-                        style={{ fontFamily: "var(--font-helvetica)" }}
-                      >
-                        {item.title}
-                      </h3>
-                      <p
-                        className={`text-[14px] leading-relaxed transition-colors duration-300 ${
-                          isActive
-                            ? "text-gray-200"
-                            : "text-gray-600 group-hover:text-gray-200"
-                        }`}
-                        style={{ fontFamily: "var(--font-helvetica)" }}
-                      >
-                        {item.desc}
-                      </p>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </AnimatedSection>
+                  <h3
+                    /* text-[17px] restored */
+                    className={`text-[17px] font-bold mb-2 transition-colors duration-300 ${
+                      isActive ? "text-white" : "text-black group-hover:text-white"
+                    }`}
+                    style={{ fontFamily: "var(--font-helvetica)" }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    /* text-[14px] restored */
+                    className={`text-[14px] leading-relaxed transition-colors duration-300 ${
+                      isActive ? "text-gray-200" : "text-gray-600 group-hover:text-gray-200"
+                    }`}
+                    style={{ fontFamily: "var(--font-helvetica)" }}
+                  >
+                    {item.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
+        </AnimatedSection>
+      </div>
 
-          {/* Right Side: Image Container - Set to 40% */}
-          <div className="w-full lg:w-[40%] flex justify-end">
-            <AnimatedSection xValue={100} delay={1}>
-              <div
-                className="overflow-hidden rounded-lg shadow-md w-full"
-                style={{
-                  height: "clamp(400px, 40vw, 550px)",
-                }}
-              >
-                <motion.img
-                  whileHover={{ scale: 1.05 }}
-                  src={envSustainabilityImg}
-                  alt="Environmental Sustainability"
-                  className="w-full h-full object-cover cursor-pointer"
-                />
-              </div>
-            </AnimatedSection>
+      {/* Right Side: Remains large and square to fill the section space */}
+      <div className="w-full lg:w-1/2 flex justify-end">
+        <AnimatedSection xValue={100} delay={1}>
+          <div
+            className="overflow-hidden rounded-[2.5rem] shadow-2xl w-full"
+            style={{
+              height: "clamp(500px, 50vw, 650px)",
+            }}
+          >
+            <motion.img
+              whileHover={{ scale: 1.05 }}
+              src={envSustainabilityImg}
+              alt="Environmental Sustainability"
+              className="w-full h-full object-cover cursor-pointer"
+            />
           </div>
-        </div>
-      </section>
+        </AnimatedSection>
+      </div>
+    </div>
+  </section>
       {/* 8. Download Emission Report Section */}
       <section className="py-20 px-6 md:px-16 lg:px-24 max-w-[1440px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">

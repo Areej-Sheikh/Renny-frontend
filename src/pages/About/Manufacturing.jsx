@@ -4,11 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import aboutVideo from '../../assets/01-aboutVideo.webm';
 import unit1 from '../../assets/Unit-1.webp';
 import unit2 from '../../assets/Unit-3.webp';
-import image from '../../assets/ManufacturingImg.webp';
+import image from '../../assets/Manufacturing1.webp';
 import video from '../../assets/Our-Manufacturing-Process-8.webm';
 import rawimg from '../../assets/RawtoRemarkable.webp';
-import carbonFootprint from '../../assets/carbonFootprint.webp';
-
+import TotalCapacity from '../../assets/carbonFootprint.webp';
+import carbonfootprint from '../../assets/Environmental Sustainability.webp';
+import CountUp from 'react-countup';
+import { useInView } from 'react-intersection-observer';
 const Manufacturing = () => {
   const [activeUnit, setActiveUnit] = useState('unit1');
 
@@ -26,9 +28,24 @@ const Manufacturing = () => {
       image: unit2,
     },
   };
+  const metricData = {
+    capacity: {
+      title: 'Total Capacity',
+      image: TotalCapacity,
+    },
+    carbon: {
+      title: 'Carbon Footprint',
+      image: carbonfootprint,
+    },
+  };
+  const [activeMetric, setActiveMetric] = useState('capacity');
+  const currentMetric = metricData[activeMetric];
 
   const currentUnit = unitData[activeUnit];
-
+  const { ref, inView } = useInView({
+    threshold: 0.4,
+    triggerOnce: true,
+  });
   /* ================= ANIMATIONS ================= */
 
   const container = {
@@ -77,8 +94,6 @@ const Manufacturing = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
-
         <motion.h1
           variants={fadeUp}
           className="relative z-10 text-white text-6xl md:text-7xl font-bold
@@ -87,7 +102,6 @@ const Manufacturing = () => {
           Manufacturing Process
         </motion.h1>
       </motion.section>
-
       {/* ================= INTEGRATED MANUFACTURING ================= */}
       <motion.section
         variants={container}
@@ -119,8 +133,8 @@ const Manufacturing = () => {
           built for precision, performance and sustainability. Our process
           begins with raw material melting, billet casting and hot rolling to
           produce narrow HR coils and wire rods, forming the base for ERW pipes,
-          scaffolding systems, formwork components and <br />  forged parts. Advanced
-          tubing mills, coating lines and multi-stage processing ensure
+          scaffolding systems, formwork components and <br /> forged parts.
+          Advanced tubing mills, coating lines and multi-stage processing ensure
           consistent mechanical properties, durability and high structural
           integrity.
         </motion.p>
@@ -149,21 +163,20 @@ const Manufacturing = () => {
           <motion.p variants={fadeUp} className="text-left mb-5">
             With a robust technology backbone, induction furnaces, CCM, rolling
             mills, CNC machines, robotic welding, electro-galvanizing facilities
-            and DiFOC-enabled <br /> digital furnace control we manufacture products
-            across diverse grades (235–460 MPa), thicknesses, diameters and
-            profiles. This enables high customizability  <br /> and fast scale-up for
-            varied industry needs.
+            and DiFOC-enabled <br /> digital furnace control we manufacture
+            products across diverse grades (235–460 MPa), thicknesses, diameters
+            and profiles. This enables high customizability <br /> and fast
+            scale-up for varied industry needs.
           </motion.p>
 
           <motion.p variants={fadeUp} className="text-left mb-5">
             Our integrated framework, internal logistics and stringent quality
             controls ensure efficient processing, precise forming, secure
-            packaging and timely dispatch, <br /> delivering high-performance steel
-            solutions for global markets.
+            packaging and timely dispatch, <br /> delivering high-performance
+            steel solutions for global markets.
           </motion.p>
         </motion.div>
       </motion.section>
-
       {/* ================= UNITS ================= */}
       <motion.section
         variants={container}
@@ -206,7 +219,10 @@ const Manufacturing = () => {
           </AnimatePresence>
         </motion.div>
 
-        <motion.div variants={fadeUp} className="text-left border-2 w-[55%] bg-blue text-white px-5 py-3 rounded-4xl mb-10">
+        <motion.div
+          variants={fadeUp}
+          className="text-left border-2 w-[55%] bg-blue text-white px-5 py-3 rounded-4xl mb-10"
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={currentUnit.title}
@@ -225,7 +241,6 @@ const Manufacturing = () => {
           </AnimatePresence>
         </motion.div>
       </motion.section>
-
       {/* ================= MANUFACTURING PROCESS VIDEO ================= */}
       <motion.section
         variants={container}
@@ -259,7 +274,6 @@ const Manufacturing = () => {
           />
         </motion.div>
       </motion.section>
-
       {/* ================= RAW TO REMARKABLE ================= */}
       <motion.section
         variants={container}
@@ -286,29 +300,86 @@ const Manufacturing = () => {
           <img src={rawimg} alt="" className="w-full h-full object-cover" />
         </motion.div>
       </motion.section>
-
-      {/*=================  Carbon Footprint  ================= */}
-      <section className="flex flex-col md:flex-row bg-gray-200 items-center justify-center w-full min-h-screen ">
+      {/*=================  Carbon Footprint  ================= */}(
+      <section
+        ref={ref}
+        className="flex flex-col md:flex-row bg-gray-200 items-center justify-center w-full min-h-screen overflow-hidden"
+      >
         {/* Left Content */}
-        <div className="md:w-[40%] w-full h-[450px]  flex items-center justify-center px-10 py-16">
+        <motion.div
+          initial={{ opacity: 0, x: -80 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.9, ease: 'easeOut' }}
+          className="md:w-[40%] w-full h-[450px] flex items-center justify-center px-10 py-16"
+        >
           <div className="space-y-16">
-            <h1 className="text-4xl  w-[350px] font-bold text-gray-900 border-2 px-5 py-7 rounded-4xl hover:bg-blue hover:text-white ">Total Capacity</h1>
+            {/* Total Capacity */}
+            <motion.div
+              onClick={() => setActiveMetric('capacity')}
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 200 }}
+              className={`text-4xl text-center w-[350px] font-bold border-2 px-5 py-7 rounded-4xl cursor-pointer transition-all
+              ${
+                activeMetric === 'capacity'
+                  ? 'bg-blue text-white'
+                  : 'text-gray-900 hover:bg-blue hover:text-white'
+              }
+            `}
+            >
+              Total Capacity
+              <p className="mt-2 text-3xl">
+                +
+                {inView && activeMetric === 'capacity' && (
+                  <CountUp
+                    key={activeMetric}
+                    start={0}
+                    end={199200}
+                    duration={1.8}
+                    separator=","
+                  />
+                )}{' '}
+                TPA
+              </p>
+            </motion.div>
 
-            <h1 className="text-4xl w-[350px]  text-black font-bold leading-relaxed border-2 px-5 py-7 rounded-4xl hover:bg-blue hover:text-white ">
+            {/* Carbon Footprint */}
+            <motion.h1
+              onClick={() => setActiveMetric('carbon')}
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 200 }}
+              className={`text-4xl w-[350px] font-bold leading-relaxed border-2 px-5 py-7 rounded-4xl cursor-pointer transition-all
+              ${
+                activeMetric === 'carbon'
+                  ? 'bg-blue text-white'
+                  : 'text-black hover:bg-blue hover:text-white'
+              }
+            `}
+            >
               Carbon Footprint
-            </h1>
-
+            </motion.h1>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Image */}
-        <div className="md:w-3/4 w-full h-full overflow-hidden mr-1">
-          <img
-            src={carbonFootprint}
-            alt="Carbon Footprint"
-            className="w-220 h-125 rounded-4xl object-cover"
-          />
-        </div>
+        <motion.div
+          initial={{ opacity: 0, x: 80 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 1 }}
+          className="md:w-3/4 w-full h-full overflow-hidden mr-1"
+        >
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentMetric.image}
+              src={currentMetric.image}
+              alt={currentMetric.title}
+              className="w-full h-full rounded-4xl object-cover"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            />
+          </AnimatePresence>
+        </motion.div>
       </section>
     </div>
   );

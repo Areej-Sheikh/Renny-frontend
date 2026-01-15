@@ -149,7 +149,7 @@ const Home = () => {
   return (
     <div className="relative flex flex-col  font-helvetica bg-blue-50">
       {/* Banner */}
-      <section className=" panel  w-full relative h-125 flex flex-col md:flex-row items-center mt-20 mb-25 ">
+      <section className=" panel w-full relative h-125 flex flex-col md:flex-row items-center mt-20 mb-25 ">
         {/* Left Text Column */}
         <motion.div
           className="flex flex-col px-5 justify-center h-full ml-10 mb-30 "
@@ -159,11 +159,9 @@ const Home = () => {
           viewport={{ once: true }}
         >
           <h1 className="text-8xl font-semibold text-black mt-32 font-jost leading-tight">
-            Building <br />A
-            <span
-              className="font-semibold bg-gradient-to-r from-[#04ad4a] via-[#089a45] to-[#023f18] bg-clip-text text-transparent"
-             
-            >
+            Building <br />
+            <span> A</span>
+            <span className="font-semibold bg-gradient-to-r from-[#000000] via-[#089a45] to-[#00A63E] bg-clip-text text-transparent">
               {' '}
               Future
             </span>
@@ -196,20 +194,16 @@ const Home = () => {
           </div>
 
           {/* Emissions */}
-          <div className="max-w-full">
-            <h1 className="text-2xl font-semibold text-gray-900 mb-6 leading-tight">
-              <span
-                className="font-semibold bg-gradient-to-r from-[#04ad4a] via-[#089a45] to-[#023f18] bg-clip-text text-transparent"
-               
-              >
+          <div className=" flex flex-col items-start transition-all duration-700 ease-out w-full xl:w-[calc(100vw-500px)] 2xl:w-[calc(100vw-500px)] group-hover:xl:w-[calc(100vw-760px)] group-hover:2xl:w-[calc(100vw-760px)] ">
+            <h1 className="text-3xl font-semibold text-gray-900 mt-6 mb-6 leading-tight ">
+              <span className="font-semibold bg-gradient-to-r from-[#000000] via-[#089a45] to-[#00a13b] bg-clip-text text-transparent">
                 40% Lower Emissions
               </span>{' '}
               Compared to Industry Average
             </h1>
-
-            <p className="text-gray-600 text-base leading-relaxed">
+            <p className="text-gray-600 text-lg leading-relaxed ">
               Our vertically integrated model reduces waste, minimizes energy
-              loss, and ensures consistent quality. <br /> We believe in lower
+              loss, and ensures consistent quality. We believe in lower
               emissions and building a stronger foundation for the future.
             </p>
           </div>

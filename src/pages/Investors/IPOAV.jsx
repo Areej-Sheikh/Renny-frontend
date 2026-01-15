@@ -12,7 +12,7 @@ const IPOAV = () => {
 
   const brandColor = '#292C44';
   const mainHeadingFont =
-    "font-['Helvetica','Arial',sans-serif] text-[37px] font-semibold";
+    "font-['Helvetica','Arial',sans-serif] text-[48px] font-semibold";
   const subHeadingFont =
     "font-['Helvetica','Arial',sans-serif] text-[18px] font-semibold";
 
@@ -55,6 +55,7 @@ const IPOAV = () => {
           alt="IPO Audio Visual"
           className="absolute inset-0 w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 bg-black/50" />
 
         {/* Heading positioned at the bottom left */}

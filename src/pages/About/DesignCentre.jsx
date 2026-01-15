@@ -7,7 +7,7 @@ const DesignCentre = () => {
   return (
     <section className="w-full bg-gray-100">
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden"
+        className="relative h-[100vh] w-full overflow-hidden"
         initial={{ opacity: 0, scale: 1.15 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
@@ -18,7 +18,6 @@ const DesignCentre = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -38,7 +37,7 @@ const DesignCentre = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Design Center
+            Design Centre
             <div className="w-70 h-0.5 bg-blue mx-auto rounded-full mb-10" />
           </motion.h1>
 
@@ -116,14 +115,11 @@ const DesignCentre = () => {
 
                 {/* Front layer */}
                 <div className="relative bg-[#292c44] text-white px-8 py-10">
-                  <h3 className="text-6xl font-semibold mb-4">46</h3>
-                  <p className="uppercase text-sm tracking-wide mb-4">
-                    Innovation Rewards Received
+                  <p className="uppercase text-lg font-bold tracking-wide mb-4">
+                    Total Number of Engineers
                   </p>
                   <p className="text-sm leading-relaxed text-white/80">
-                    Our dedication to innovation has been recognized with 46
-                    prestigious awards, solidifying our position as industry
-                    leaders.
+                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo nulla deserunt error incidunt sint repellendus. Sunt quidem voluptatibus doloribus nostrum.
                   </p>
                 </div>
               </motion.div>
@@ -141,13 +137,11 @@ const DesignCentre = () => {
 
                 {/* Front layer */}
                 <div className="relative bg-[#292c44] text-white px-8 py-10">
-                  <h3 className="text-6xl font-semibold mb-4">98%</h3>
-                  <p className="uppercase text-sm tracking-wide mb-4">
-                    Client Satisfaction Rate
+                  <p className="uppercase text-lg font-bold tracking-wide mb-4">
+                    Total number of Products
                   </p>
                   <p className="text-sm leading-relaxed text-white/80">
-                    Client satisfaction is our priority, reflected in an
-                    impressive 98% satisfaction rate among our valued clients.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto illo veniam enim culpa reiciendis perferendis dolorem tenetur assumenda blanditiis reprehenderit.
                   </p>
                 </div>
               </motion.div>

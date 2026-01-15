@@ -26,7 +26,7 @@ const Governance = () => {
 
   const brandColor = '#292C44';
   const mainHeadingFont =
-    "font-['Helvetica','Arial',sans-serif] text-[37px] font-semibold";
+    "font-['Helvetica','Arial',sans-serif] text-[48px] font-semibold";
   const subHeadingFont =
     "font-['Helvetica','Arial',sans-serif] text-[18px] font-semibold";
   const btnClass =
@@ -247,7 +247,6 @@ const Governance = () => {
           alt="Hero"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/50" />
 
         {/* Heading positioned at the bottom left */}
         <div className="absolute bottom-16 left-0 w-full px-6 lg:px-20 z-10">

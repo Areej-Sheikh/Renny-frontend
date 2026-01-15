@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
-import qualityBanner from "../../assets/Quality-Section-1.webp";
+import qualityBanner from "../../assets/qualityBanner.webp";
 import qualityImage from "../../assets/Quality-Section-1.webp";
 
 import bgImage from "../../assets/Quality-Background.webp";
@@ -89,7 +89,7 @@ const Quality = () => {
     <section className="w-full bg-white">
       {/* ================= Banner Section ================= */}
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden"
+        className="relative h-[100vh] w-full overflow-hidden"
         initial={{ opacity: 0, scale: 1.15 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
@@ -100,7 +100,6 @@ const Quality = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -108,7 +107,7 @@ const Quality = () => {
           transition={{ delay: 0.6, duration: 0.6 }}
           className="relative z-10 text-white text-6xl md:text-7xl font-bold flex items-end h-full px-10 py-10"
         >
-          Quality
+          Quality & Standard
         </motion.h1>
       </motion.section>
 

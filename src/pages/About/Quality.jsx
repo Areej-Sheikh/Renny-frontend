@@ -483,6 +483,7 @@ const Quality = () => {
               { id: 4, img: cert4, title: "IS 4923:2017", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
             ].map((item, index) => (
               <CertificateCard certificateDetails={item} key={item.id} />
+
             ))}
           </div>
         </div>

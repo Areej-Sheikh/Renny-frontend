@@ -31,6 +31,7 @@ import cert1 from "../../assets/Certificate-1.webp";
 import cert2 from "../../assets/Certificate-2.webp";
 import cert3 from "../../assets/Certificate-3.webp";
 import cert4 from "../../assets/Certificate-4.webp";
+import CertificateCard from "../../components/CertificateCard";
 
 const Quality = () => {
   const specificationsData = [
@@ -79,6 +80,7 @@ const Quality = () => {
 
     return () => clearInterval(timer);
   }, [totalSlides]);
+
 
   const prevSlide = () =>
     setActiveIndex((i) => (i === 0 ? totalSlides - 1 : i - 1));
@@ -383,9 +385,8 @@ const Quality = () => {
                     <button
                       key={i}
                       onClick={() => setActiveIndex(i)}
-                      className={`w-3 h-3 rounded-full ${
-                        activeIndex === i ? "bg-white" : "bg-gray-400/60"
-                      }`}
+                      className={`w-3 h-3 rounded-full ${activeIndex === i ? "bg-white" : "bg-gray-400/60"
+                        }`}
                     />
                   ))}
                 </div>
@@ -476,42 +477,13 @@ const Quality = () => {
                     gap-6 sm:gap-8 lg:gap-10"
           >
             {[
-              { img: cert1, title: "IS 1239-1:2004" },
-              { img: cert2, title: "IS 1161:2014" },
-              { img: cert3, title: "IS 3601:2006" },
-              { img: cert4, title: "IS 4923:2017" },
+              { id: 1, img: cert1, title: "IS 1239-1:2004", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+              { id: 2, img: cert2, title: "IS 1161:2014", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+              { id: 3, img: cert3, title: "IS 3601:2006", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+              { id: 4, img: cert4, title: "IS 4923:2017", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
             ].map((item, index) => (
-              <motion.a
-                key={index}
-                href={item.img}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block bg-white rounded-xl shadow-md overflow-hidden
-                     cursor-pointer"
-                whileHover={{ scale: 1.06 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 220, damping: 18 }}
-              >
-                {/* Certificate Image */}
-                <div className="p-4">
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className="w-full h-auto rounded-lg border"
-                  />
-                </div>
+              <CertificateCard certificateDetails={item} key={item.id} />
 
-                {/* Footer */}
-                <div
-                  className="bg-[#292c44] text-white
-                          flex items-center justify-between
-                          px-4 py-3"
-                >
-                  <span className="text-sm font-semibold">{item.title}</span>
-
-                  <span className="text-xs font-medium opacity-80">View</span>
-                </div>
-              </motion.a>
             ))}
           </div>
         </div>

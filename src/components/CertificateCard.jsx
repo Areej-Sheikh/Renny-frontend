@@ -7,6 +7,7 @@ const CertificateCard = ({ certificateDetails }) => {
     setViewClicked(prev => !prev);
   };
 
+
   return (
     <div className="h-90 flex bg-gray-100 flex-col rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-2xl
 ">

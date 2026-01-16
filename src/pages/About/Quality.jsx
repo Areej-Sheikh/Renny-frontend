@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
@@ -30,7 +30,11 @@ import icon5 from "../../assets/Icon-5.webp";
 import cert1 from "../../assets/Certificate-1.webp";
 import cert2 from "../../assets/Certificate-2.webp";
 import cert3 from "../../assets/Certificate-3.webp";
+import cert3_1 from "../../assets/Certificate-3-1.webp";
 import cert4 from "../../assets/Certificate-4.webp";
+import cert5 from "../../assets/Certificate-5.webp";
+import cert6 from "../../assets/Certificate-6.webp";
+import cert7 from "../../assets/Certificate-7.webp";
 import CertificateCard from "../../components/CertificateCard";
 
 const Quality = () => {
@@ -87,6 +91,19 @@ const Quality = () => {
 
   const nextSlide = () =>
     setActiveIndex((i) => (i === totalSlides - 1 ? 0 : i + 1));
+  const sliderRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (!sliderRef.current) return;
+
+    const scrollAmount = sliderRef.current.offsetWidth * 0.8;
+    sliderRef.current.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+
   return (
     <section className="w-full bg-white">
       {/* ================= Banner Section ================= */}
@@ -470,21 +487,63 @@ const Quality = () => {
             Our Certificates
             <div className="w-75 h-0.5 bg-blue mx-auto mt-4" />
           </motion.h2>
+          {/* ===== Slider Wrapper ===== */}
+          <div className="relative">
 
-          {/* ===== Certificates Grid ===== */}
-          <div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4
-                    gap-6 sm:gap-8 lg:gap-10"
-          >
-            {[
-              { id: 1, img: cert1, title: "IS 1239-1:2004", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-              { id: 2, img: cert2, title: "IS 1161:2014", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-              { id: 3, img: cert3, title: "IS 3601:2006", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-              { id: 4, img: cert4, title: "IS 4923:2017", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-            ].map((item, index) => (
-              <CertificateCard certificateDetails={item} key={item.id} />
+            {/* Left Arrow */}
+            <button
+              onClick={() => scroll("left")}
+              className="absolute -left-4 top-1/2 -translate-y-1/2 z-10
+                       bg-white shadow-md rounded-full p-2
+                       hover:bg-gray-100 transition"
+              aria-label="Scroll Left"
+            >
+              <MdChevronLeft size={28} />
+            </button>
 
-            ))}
+            {/* Right Arrow */}
+            <button
+              onClick={() => scroll("right")}
+              className="absolute -right-4 top-1/2 -translate-y-1/2 z-10
+                       bg-white shadow-md rounded-full p-2
+                       hover:bg-gray-100 transition"
+              aria-label="Scroll Right"
+            >
+              <MdChevronRight size={28} />
+            </button>
+
+
+            {/* ===== Certificates Grid ===== */}
+            <div
+              ref={sliderRef}
+              className="flex gap-6 sm:gap-8 lg:gap-10
+             overflow-x-auto overflow-y-visible
+             scroll-smooth no-scrollbar pb-6"
+            >
+
+
+              {[
+                { id: 1, img: cert1, title: "IS 7887 : 1992", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 2, img: cert2, title: "IS 14650 : 1999", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 3, img: cert3, title: "IS 10748 : 2004", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 4, img: cert3_1, title: "IS 1239 - 1 : 2004", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 5, img: cert4, title: "IS 3601 : 2006", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 6, img: cert5, title: "IS 2062 : 2011", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 7, img: cert6, title: "IS 1161:2014", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 8, img: cert7, title: "IS 4923 : 2017", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+              ].map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  className="min-w-[260px] sm:min-w-[300px] lg:min-w-[320px]"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  <CertificateCard certificateDetails={item} key={item.id} />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

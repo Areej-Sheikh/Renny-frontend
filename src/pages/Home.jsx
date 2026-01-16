@@ -1025,7 +1025,7 @@ const Home = () => {
                   </span>
 
                   <p className="text-sm text-gray-600 mt-2 line-clamp-2">
-                    Industry professionals look beyond availability — they seek
+                    Industry professionals look beyond availability  they seek
                     precision and performance...
                   </p>
 

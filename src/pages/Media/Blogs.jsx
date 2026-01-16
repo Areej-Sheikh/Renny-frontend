@@ -64,7 +64,7 @@ const blogsData = [
       'Explore the Leading Wire Rod Manufacturers in India for Superior Industrial Applications',
     date: 'November 14, 2025',
     excerpt:
-      'Industry professionals look beyond availability — they seek precision in manufacturing and steel solutions that genuinely perform.',
+      'Industry professionals look beyond availability they seek precision in manufacturing and steel solutions that genuinely perform.',
     image: blog4,
     link: '/wire-rod-manufacturers-india/',
   },
@@ -132,7 +132,7 @@ const blogsData = [
       'India Rising: Renny’s Role in Building a Strong, Sustainable Future',
     date: 'August 22, 2025',
     excerpt:
-      'India is still young, vibrant, and evolving—its ambitions stretching as far as its horizons. Every day, the nation grows stronger, driven by an unshakable vision of progress.',
+      'India is still young, vibrant, and evolving its ambitions stretching as far as its horizons. Every day, the nation grows stronger, driven by an unshakable vision of progress.',
     image: blog11,
     link: '/building-a-strong-sustainable-future',
   },
@@ -161,7 +161,7 @@ const blogsData = [
     title: 'Renny: Key Narrow HR Coil Manufacturing in India',
     date: 'July 17, 2025',
     excerpt:
-      'In today’s dynamic industrial landscape, the demand for high-performance steel coils is evolving rapidly. Industries are no longer satisfied with basic functionality—they require materials that offer precision, strength and adaptability to meet modern design complexities and production efficiencies. ',
+      'In today’s dynamic industrial landscape, the demand for high-performance steel coils is evolving rapidly. Industries are no longer satisfied with basic functionality they require materials that offer precision, strength and adaptability to meet modern design complexities and production efficiencies. ',
     image: blog14,
     link: '/key-narrow-hr-coil-manufacturing',
   },
@@ -199,14 +199,14 @@ const blogsData = [
     title: 'Renny Forging Billets: Precision-Engineered for Performance',
     date: 'June 14, 2025',
     excerpt:
-      'Renny Strips stands among the foremost manufacturers of forging billets in India, delivering high-performance billets and blooms that meet the stringent demands of global industries. Our premium-grade billets are engineered for exceptional forgeability, strength, and structural integrity—making them the preferred choice across sectors such as automotive, railways, construction, oil & gas & heavy engineering.',
+      'Renny Strips stands among the foremost manufacturers of forging billets in India, delivering high-performance billets and blooms that meet the stringent demands of global industries. Our premium-grade billets are engineered for exceptional forgeability, strength, and structural integrity making them the preferred choice across sectors such as automotive, railways, construction, oil & gas & heavy engineering.',
     image: blog18,
     link: '/forging-billets-precision-engineered',
   },
   {
     id: 19,
     title:
-      'Renny Wire Rods: Precision, Performance & Trust — Engineered for the Future of Industry',
+      'Renny Wire Rods: Precision, Performance & Trust Engineered for the Future of Industry',
     date: 'May 16, 2025',
     excerpt:
       'In today’s rapidly evolving industrial ecosystem, wire rods play a pivotal role as a foundational material across sectors like automotive, construction, engineering, and electricals. The demand for wire rods is driven by increasing production volumes, tighter tolerance requirements, greater mechanical consistency and cost-efficiency across manufacturing lines.',

@@ -88,7 +88,7 @@ const DesignCentre = () => {
             design execution and seamless integration with manufacturing. Our
             flexible design process allows us to modify material grades (ranging
             from 235 MPa to 460 MPa), wall thicknesses, diameters, profiles,
-            finishes, and connection mechanisms—delivering fully engineered
+            finishes, and connection mechanisms delivering fully engineered
             systems rather than off-the-shelf components. Close collaboration
             with in-house forging, fabrication, and tube-forming teams ensures
             rapid transition from concept to production, while custom-developed
@@ -174,7 +174,7 @@ const DesignCentre = () => {
                 manufacturing. Our flexible design process allows us to modify
                 material grades (ranging from 235 MPa to 460 MPa), wall
                 thicknesses, diameters, profiles, finishes, and connection
-                mechanisms—delivering fully engineered systems rather than
+                mechanisms delivering fully engineered systems rather than
                 off-the-shelf components. Close collaboration with in-house
                 forging, fabrication, and tube-forming teams ensures rapid
                 transition from concept to production, while custom-developed

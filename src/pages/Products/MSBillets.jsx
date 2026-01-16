@@ -58,7 +58,7 @@ const MSBillets = () => {
 
             <p className="leading-relaxed font-normal mb-6">
               Renny’s MS billet range is designed for superior internal soundness,
-              uniform composition, and high structural integrity—ideal for
+              uniform composition, and high structural integrity ideal for
               critical applications in automotive, industrial, and heavy
               engineering sectors.
             </p>
@@ -70,7 +70,7 @@ const MSBillets = () => {
 
             <p className="leading-relaxed font-normal">
               Renny MS Billets are manufactured with controlled chemistry, uniform
-              microstructure, and excellent surface quality—ensuring optimal forge
+              microstructure, and excellent surface quality ensuring optimal forge
               response and mechanical properties for critical applications.
             </p>
           </div>

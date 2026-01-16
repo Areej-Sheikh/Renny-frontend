@@ -243,7 +243,7 @@ const Quality = () => {
                     Three-Stage Inspection Protocol
                   </h3>
                   <p className="text-black-800 text-xs md:text-sm leading-relaxed">
-                    Every batch passes through a structured inspection flow—raw
+                    Every batch passes through a structured inspection flow raw
                     material testing, in-process monitoring and final product
                     approval. This system ensures defect prevention, dimensional
                     accuracy and consistent mechanical properties across

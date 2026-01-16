@@ -62,7 +62,7 @@ const WireRods = () => {
             <p className="leading-[1.7] font-normal mb-6">
               We manufacture various grades of wire rods including low carbon,
               cold heading (CHQ), medium carbon, and other alloy grades such as
-              free-cutting steel and ball-bearing steel—tailored to meet diverse
+              free-cutting steel and ball-bearing steel tailored to meet diverse
               customer requirements.
             </p>
 

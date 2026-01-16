@@ -50,7 +50,7 @@ const EnvironmentalAndReport = () => {
   const stewardshipData = [
     {
       title: "Go Green with Solar",
-      desc: "At Renny Strips, sustainability is more than a goal—it’s a responsibility. Our 22MW solar power setup helps minimize conventional energy use and supports our journey towards a greener tomorrow.",
+      desc: "At Renny Strips, sustainability is more than a goal it’s a responsibility. Our 22MW solar power setup helps minimize conventional energy use and supports our journey towards a greener tomorrow.",
     },
     {
       title: "CBAM & Sustainable Market Access",

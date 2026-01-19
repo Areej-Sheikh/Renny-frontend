@@ -149,7 +149,7 @@ const Home = () => {
   return (
     <div className="relative flex flex-col  font-helvetica bg-blue-50">
       {/* Banner */}
-      <section className=" panel w-full relative h-125 flex flex-col md:flex-row items-center mt-20 mb-25 ">
+      <section className=" panel w-full relative h-125 flex flex-col md:flex-row items-center mt-20 mb-20 ">
         {/* Left Text Column */}
         <motion.div
           className="flex flex-col px-5 justify-center h-full ml-10 mb-30 "
@@ -201,6 +201,11 @@ const Home = () => {
               </span>{' '}
               Compared to Industry Average
             </h1>
+            <p className="text-gray-600 text-lg leading-relaxed ">
+              Our vertically integrated model reduces waste, minimizes energy
+              loss, and ensures consistent quality. We believe in lower
+              emissions and building a stronger foundation for the future.
+            </p>
             <p className="text-gray-600 text-lg leading-relaxed ">
               Our vertically integrated model reduces waste, minimizes energy
               loss, and ensures consistent quality. We believe in lower
@@ -277,7 +282,7 @@ const Home = () => {
 
       {/* Our Products */}
       <motion.section
-        className="flex flex-col items-center font-helvetica w-full justify-center py-10"
+        className="flex flex-col items-center font-helvetica w-full justify-center "
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -285,16 +290,16 @@ const Home = () => {
       >
         {/* Heading */}
         <motion.h1
-          className="text-[48px] font-bold mb-5 w-full text-center"
+          className="text-[48px] font-bold mb-10 w-full text-center mt-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           Our Products
-          <div className="w-65 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          <div className="w-65 h-0.5 bg-blue mx-auto rounded-full " />
         </motion.h1>
 
-        <div className="flex min-h-[400px] overflow-hidden w-full ">
+        <div className="flex min-h-[500px] overflow-hidden w-full ">
           {products.map((item, index) => (
             <div
               key={index}

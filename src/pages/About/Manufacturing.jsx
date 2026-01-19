@@ -5,8 +5,8 @@ import aboutVideo from '../../assets/01-aboutVideo.webm';
 import unit1 from '../../assets/Unit-1.webp';
 import unit2 from '../../assets/Unit-3.webp';
 import image from '../../assets/Manufacturing1.webp';
-import video from '../../assets/Our-Manufacturing-Process-8.webm';
-import rawimg from '../../assets/RawtoRemarkable.webp';
+import video from '../../assets/new235.webm';
+import rawimg from '../../assets/RawToRemarkable.webm';
 import TotalCapacity from '../../assets/carbonFootprint.webp';
 import carbonfootprint from '../../assets/Environmental Sustainability.webp';
 import CountUp from 'react-countup';
@@ -262,7 +262,7 @@ const Manufacturing = () => {
 
         <motion.div
           variants={imageZoom}
-          className="w-full rounded-4xl overflow-hidden mb-10"
+          className="w-full h-[650px] rounded-4xl overflow-hidden mb-10"
         >
           <video
             muted
@@ -295,9 +295,9 @@ const Manufacturing = () => {
 
         <motion.div
           variants={imageZoom}
-          className="w-full h-[550px] rounded-4xl overflow-hidden mb-10"
+          className="w-full h-[650px] rounded-4xl overflow-hidden mb-10"
         >
-          <img src={rawimg} alt="" className="w-full h-full object-cover" />
+          <video src={rawimg} alt="" autoPlay loop muted className="w-full h-full object-fill" />
         </motion.div>
       </motion.section>
       {/*=================  Carbon Footprint  ================= */}(

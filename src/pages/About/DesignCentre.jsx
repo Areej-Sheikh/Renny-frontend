@@ -28,7 +28,7 @@ const DesignCentre = () => {
           Design Centre
         </motion.h1>
       </motion.section>
-      <section className="w-full bg-gray-100 py-10">
+      <section className="w-full bg-gray-100 p-10">
         <div className="max-w-7xl mx-auto">
           {/* Heading */}
           <motion.h1
@@ -47,7 +47,7 @@ const DesignCentre = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
-            className="text-black-700 md:text-[17px] leading-relaxed md:leading-[28px] text-justify"
+            className="text-black-700  leading-relaxed md:leading-[28px] text-justify px-18"
           >
             The Design Centre at Renny Strips Ltd is the nucleus of our
             engineering innovation, enabling the development of highly
@@ -66,7 +66,7 @@ const DesignCentre = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="my-8"
+            className="my-8 px-18"
           >
             <img
               src={designCenterImage}
@@ -81,7 +81,7 @@ const DesignCentre = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-black-700 md:text-[17px] leading-relaxed md:leading-[28px] text-justify"
+            className="text-black-700 md:text-[17px] leading-relaxed px-18 md:leading-[28px] text-justify"
           >
             Equipped with advanced design platforms such as AutoCAD, SolidWorks,
             and CAM tools for CNC/VMC programming, the centre ensures precise
@@ -99,7 +99,7 @@ const DesignCentre = () => {
       </section>
       <section className="w-full bg-white py-12">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-16 items-start px-22">
             {/* LEFT SIDE – CUBE STAT BOXES */}
             <div className="flex flex-col gap-20">
               {/* STAT BOX 1 */}
@@ -154,7 +154,7 @@ const DesignCentre = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="text-4xl md:text-5xl font-semibold text-black mb-6">
+              <h1 className="text-[42px]  font-semibold text-black mb-6">
                 Strive to be Pioneer in Innovation
               </h1>
               {/* <motion.h1
@@ -167,7 +167,7 @@ const DesignCentre = () => {
                 <div className="w-180 h-0.5 bg-blue mx-auto rounded-full mb-10" />
               </motion.h1> */}
 
-              <p className=" text-gray-700 text-base md:text-[17px] leading-7 md:leading-[30px] text-justify max-w-3xl mb-8">
+              <p className=" text-gray-700 text-base md:text-[17px] leading-7 md:leading-[30px] text-justify max-w-3xl mb-8 mr-18">
                 Equipped with advanced design platforms such as AutoCAD,
                 SolidWorks, and CAM tools for CNC/VMC programming, the centre
                 ensures precise design execution and seamless integration with

@@ -77,7 +77,7 @@ const timelineData = [
 
 const About = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const [isManual, setIsManual] = useState(false);
   /* ===== AUTO TIMELINE ===== */
   useEffect(() => {
     const interval = setInterval(() => {
@@ -95,13 +95,14 @@ const About = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    const slider = setInterval(() => {
-      setCurrentSlide(prev =>
-        prev === galleryImages.length - 1 ? 0 : prev + 1
-      );
-    }, 2000);
-    return () => clearInterval(slider);
-  }, []);
+    if (isManual) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex(prev => (prev === timelineData.length - 1 ? 0 : prev + 1));
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [isManual]);
 
   return (
     <div className="w-full bg-black text-white font-helvetica">
@@ -267,29 +268,35 @@ const About = () => {
                 const isActive = index === activeIndex;
 
                 return (
-                  // ✅ UPDATED: made relative
-                  <div
+                  <button
                     key={index}
-                    className="relative flex flex-col items-center"
+                    type="button"
+                    onClick={() => {
+                      setActiveIndex(index);
+                      setIsManual(true); // stop auto-rotation after click
+                    }}
+                    className="relative flex flex-col items-center focus:outline-none group"
                   >
                     {/* YEAR */}
                     <span
-                      className={`mb-10 text-lg font-semibold transition ${
-                        isActive ? 'text-blue' : 'text-gray-400'
+                      className={`mb-10 text-lg font-semibold transition-colors duration-300 ${
+                        isActive
+                          ? 'text-blue'
+                          : 'text-gray-400 group-hover:text-blue'
                       }`}
                     >
                       {item.year}
                     </span>
 
-                    {/* DOT – NOW ON THE LINE */}
+                    {/* DOT – ON THE LINE */}
                     <motion.div
-                      className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full ${
-                        isActive ? 'bg-blue' : 'bg-gray-400'
+                      className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full transition-colors duration-300 ${
+                        isActive ? 'bg-blue' : 'bg-gray-400 group-hover:bg-blue'
                       }`}
                       animate={{ scale: isActive ? 1.4 : 1 }}
                       transition={{ duration: 0.4 }}
                     />
-                  </div>
+                  </button>
                 );
               })}
             </div>

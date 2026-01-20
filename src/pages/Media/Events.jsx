@@ -65,7 +65,6 @@ const itemVariants = {
 };
 
 const Events = () => {
-  // ✅ Hooks MUST be inside the component
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-20% 0px' });
 

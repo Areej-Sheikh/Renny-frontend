@@ -253,7 +253,7 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Renny's Journey
+            Renny's Timeline
             <div className="w-80 h-0.5 bg-blue mx-auto rounded-full mb-10" />
           </motion.h1>
 

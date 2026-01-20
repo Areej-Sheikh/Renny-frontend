@@ -855,7 +855,7 @@ const Home = () => {
 
       {/* Blog Section */}
       <motion.section
-        className="bg-gray-100 px-6 py-16 font-helvetica  panel"
+        className="bg-gray-100 px-6 py-10 font-helvetica  panel"
         variants={{
           hidden: { opacity: 0, y: 40 },
           visible: {
@@ -871,6 +871,16 @@ const Home = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.25 }}
       >
+         {/* Heading */}
+        <motion.h1
+          className="text-[48px] font-bold  w-full text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Blogs
+          <div className="w-25 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+        </motion.h1>
         <motion.div
           className=" mx-auto flex flex-col lg:flex-row gap-10"
           initial={{ opacity: 0, scale: 0.95 }}

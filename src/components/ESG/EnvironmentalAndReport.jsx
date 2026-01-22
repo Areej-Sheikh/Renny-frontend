@@ -50,7 +50,7 @@ const EnvironmentalAndReport = () => {
   const stewardshipData = [
     {
       title: "Go Green with Solar",
-      desc: "At Renny Strips, sustainability is more than a goal—it’s a responsibility. Our 22MW solar power setup helps minimize conventional energy use and supports our journey towards a greener tomorrow.",
+      desc: "At Renny Strips, sustainability is more than a goal it’s a responsibility. Our 22MW solar power setup helps minimize conventional energy use and supports our journey towards a greener tomorrow.",
     },
     {
       title: "CBAM & Sustainable Market Access",
@@ -80,12 +80,12 @@ const EnvironmentalAndReport = () => {
     <div className="bg-white overflow-hidden">
    {/* 7. Environmental Stewardship Section */}
  <section className="px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-16 bg-white overflow-hidden">
-    <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+    <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
       
       {/* Left Side: Restored to original compact card sizes */}
-      <div className="w-full lg:w-1/2 shrink-0">
+      <div className="w-full lg:w-1/2 shrink-0 ">
         <AnimatedSection xValue={-100}>
-          <div className="mb-8 relative w-fit">
+          <div className="mb-8 relative w-fit m">
             <h2
               className="font-bold pb-4 tracking-tight"
               style={{

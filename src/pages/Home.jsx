@@ -36,34 +36,13 @@ import newsimg from '../assets/newsimg.webp';
 import emission from '../assets/emmisionSection.webm';
 
 import { AnimatePresence } from 'framer-motion';
-import aboutusVideo from '../assets/newsvideo.webm';
-
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import AboutUs from '../assets/AboutUs.webp';
 
 import SustainabilitySlider from '../components/SustainabilitySlider';
 import RENNY from '../assets/RENNY-removebg-preview.webp';
+import { image } from 'framer-motion/client';
+import rennyimg from '../assets/RENNY-removebg-preview.webp';
 const Home = () => {
-  ScrollTrigger.normalizeScroll(true);
-  useEffect(() => {
-    const sections = gsap.utils.toArray('.panel');
-
-    ScrollTrigger.create({
-      trigger: sections[0],
-      start: 'top top',
-      end: () => '+=' + window.innerHeight * sections.length,
-      snap: {
-        snapTo: 1 / (sections.length + 1),
-        duration: 0.6,
-        ease: 'power2.out',
-      },
-    });
-
-    return () => ScrollTrigger.getAll().forEach(t => t.kill());
-  }, []);
-
   const navigate = useNavigate();
   const newsData = [
     {
@@ -170,45 +149,75 @@ const Home = () => {
   return (
     <div className="relative flex flex-col  font-helvetica bg-blue-50">
       {/* Banner */}
-      <section className=" panel  w-full relative h-125 flex flex-col md:flex-row items-center mt-20 mb-5 ">
+      <section className=" panel w-full relative h-125 flex flex-col md:flex-row items-center mt-20 mb-20 ">
         {/* Left Text Column */}
         <motion.div
-          className="flex flex-col px-5 justify-center h-full "
+          className="flex flex-col px-5 justify-center h-full ml-10 mb-30 "
           initial={{ opacity: 0, x: -80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          <h1 className="text-8xl font-semibold text-black font-jost">
-            Building <br /> A Future <br /> Together
+          <h1 className="text-8xl font-semibold text-black mt-32 font-jost leading-tight">
+            Building <br />
+            <span> A</span>
+            <span className="font-semibold bg-gradient-to-r from-[#000000] via-[#089a45] to-[#00A63E] bg-clip-text text-transparent">
+              {' '}
+              Future
+            </span>
+            <br />
+            Together
           </h1>
-          <div className='ml-8 mt-5 w-xs '>
-            <img src={RENNY} className=" object-center overflow-hidden " />
+
+          <div>
+            <img src={rennyimg} alt="" className="w-xs mt-5 ml-10" />
           </div>
         </motion.div>
 
         {/* Right Video Column */}
         <motion.div
-          className="md:w-3/2 h-[530px] mr-1 relative overflow-hidden"
+          className="mr-1 max-w-full relative overflow-hidden flex flex-col items-start"
           initial={{ opacity: 0, x: 80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
           viewport={{ once: true }}
         >
-          <video
-            className="w-full h-full rounded-4xl object-cover"
-            src={HomepageBanner}
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
+          <div className="min-w-[100%] flex items-center justify-center pr-[5%]">
+            <video
+              className="  w-130  lg:w-[calc(100vw-720px)]  h-80  ml-20  mb-4  rounded-4xl  object-cover mask-origin-fill  transition-all duration-700 ease-out  hover:scale-110  lg:hover:w-[calc(100vw-460px)]  hover:mt-20  hover:ml-10  "
+              src={HomepageBanner}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          </div>
+
+          {/* Emissions */}
+          <div className=" flex flex-col items-start transition-all duration-700 ease-out w-full xl:w-[calc(100vw-500px)] 2xl:w-[calc(100vw-500px)] group-hover:xl:w-[calc(100vw-760px)] group-hover:2xl:w-[calc(100vw-760px)] ">
+            <h1 className="text-3xl font-semibold text-gray-900 mt-6 mb-6 leading-tight ">
+              <span className="font-semibold bg-gradient-to-r from-[#000000] via-[#089a45] to-[#00a13b] bg-clip-text text-transparent">
+                40% Lower Emissions
+              </span>{' '}
+              Compared to Industry Average
+            </h1>
+            <p className="text-gray-600 text-lg leading-relaxed ">
+              Our vertically integrated model reduces waste, minimizes energy
+              loss, and ensures consistent quality. We believe in lower
+              emissions and building a stronger foundation for the future.
+            </p>
+            <p className="text-gray-600 text-lg leading-relaxed ">
+              Our vertically integrated model reduces waste, minimizes energy
+              loss, and ensures consistent quality. We believe in lower
+              emissions and building a stronger foundation for the future.
+            </p>
+          </div>
         </motion.div>
       </section>
 
-      {/* Emmission Section */}
+      {/* About Us */}
       <motion.section
-        className="flex flex-col items-center font-helvetica justify-center panel"
+        className="flex flex-col items-center font-helvetica justify-center h-full  overflow-hidden"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -217,22 +226,19 @@ const Home = () => {
           visible: {},
         }}
       >
-        <div className="relative w-full h-145 overflow-hidden">
-          {/* Background Video */}
-          <video
-            src={emission}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0  w-full h-full object-cover z-0"
+        <div className="relative w-full h-full overflow-hidden">
+          {/* Background Image */}
+          <img
+            src={AboutUs}
+            alt="About Us"
+            className="w-full h-full object-cover"
           />
 
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/50"></div>
 
           {/* Text Content */}
-          <div className="absolute  inset-0 flex flex-col items-center justify-center text-center  px-6">
+          <div className="absolute  inset-0 flex flex-col items-center justify-center text-center px-6">
             {/* Heading */}
             <motion.h1
               className="text-4xl md:text-5xl font-bold text-white mb-6"
@@ -241,18 +247,8 @@ const Home = () => {
               transition={{ duration: 0.6, ease: 'easeOut' }}
               viewport={{ once: true }}
             >
-              <span className="text-green-600">40% Lower Emissions</span>
-              Compared to Industry Average
+              About Us
             </motion.h1>
-            <motion.h3
-              className="text-xl md:text-3xl font-bold text-white mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              viewport={{ once: true }}
-            >
-              Lower Emissions Stronger Foundations
-            </motion.h3>
 
             {/* Paragraph 1 */}
             <motion.p
@@ -262,98 +258,14 @@ const Home = () => {
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
               viewport={{ once: true }}
             >
-              At Renny Strips, sustainability is built into our manufacturing
-              process. Through energy-efficient production, optimized material
-              usage, and modern automation, we generate up to 40% lower
-              emissions compared to conventional construction material
-              manufacturers.
+              In 1996, Renny Strips Ltd embarked on its dynamic journey. Renny
+              Strips Ltd. aimed to carve a niche in producing Innovative,
+              Sustainable & Industry-fit Steel Products at Competitive Prices.
             </motion.p>
 
             {/* Paragraph 2 */}
             <motion.p
               className="text-white max-w-3xl leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              Our vertically integrated model allows us to reduce waste,
-              minimize energy loss, and maintain consistent quality—without
-              compromising strength or scale.
-            </motion.p>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* About Us */}
-      <motion.section
-        className="flex flex-col items-center font-helvetica  justify-center  panel"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={{
-          hidden: {},
-          visible: {},
-        }}
-      >
-        <h1 className="text-[37px] font-bold ml-20 mt-8  w-full  text-center">
-          About Us
-          <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
-        </h1>
-        <div className="relative w-full  h-145 overflow-hidden">
-          {/* Background Video */}
-          <video
-            src={aboutusVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0  w-full h-full object-cover z-0"
-          />
-
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/50"></div>
-
-          {/* Text Content */}
-          <div className="absolute  inset-0 flex flex-col items-center justify-center text-center  px-6">
-            {/* Paragraph 1 */}
-            <motion.p
-              className="text-white max-w-4xl mb-4 leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
-              viewport={{ once: true }}
-            >
-              In 1996, Renny Strips Ltd embarked on its dynamic journey. Renny
-              Strips Ltd. aimed to carve a niche in producing Innovative,
-              Sustainable & Industry-fit Steel Products at Competitive Prices.
-            </motion.p>
-            <motion.p
-              className="text-white max-w-4xl mb-4 leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
-              viewport={{ once: true }}
-            >
-              In 1996, Renny Strips Ltd embarked on its dynamic journey. Renny
-              Strips Ltd. aimed to carve a niche in producing Innovative,
-              Sustainable & Industry-fit Steel Products at Competitive Prices.
-            </motion.p>
-            <motion.p
-              className="text-white max-w-4xl mb-4 leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
-              viewport={{ once: true }}
-            >
-              In 1996, Renny Strips Ltd embarked on its dynamic journey. Renny
-              Strips Ltd. aimed to carve a niche in producing Innovative,
-              Sustainable & Industry-fit Steel Products at Competitive Prices.
-            </motion.p>
-
-            {/* Paragraph 2 */}
-            <motion.p
-              className="text-white max-w-4xl leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
@@ -370,17 +282,24 @@ const Home = () => {
 
       {/* Our Products */}
       <motion.section
-        className="flex flex-col items-center font-helvetica  justify-center  panel  mt-5"
+        className="flex flex-col items-center font-helvetica w-full justify-center "
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
       >
-        <h1 className="text-[37px] font-bold ml-20  w-full  text-center">
+        {/* Heading */}
+        <motion.h1
+          className="text-[48px] font-bold mb-10 w-full text-center mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           Our Products
-          <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
-        </h1>
-        <div className="flex min-h-[400px] overflow-hidden w-full max-w-7xl">
+          <div className="w-65 h-0.5 bg-blue mx-auto rounded-full " />
+        </motion.h1>
+
+        <div className="flex min-h-[500px] overflow-hidden w-full ">
           {products.map((item, index) => (
             <div
               key={index}
@@ -453,26 +372,29 @@ const Home = () => {
       >
         {/* Heading */}
         <motion.h1
-          className="text-[37px] font-bold ml-20 mb-10 w-full text-center"
+          className="text-[48px] font-bold ml-20 w-full text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           Our Network
-          <div className="w-46 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          <div className="w-60 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 
-        {/* Video */}
-        <motion.video
-          src={worldmap}
-          className="w-full max-w-7xl max-h-[75vh] object-cover"
-          autoPlay
-          loop
-          muted
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-        />
+        {/* Video Section */}
+        <div className="w-full">
+          <motion.video
+            src={worldmap}
+            className="w-full object-cover border-none"
+            autoPlay
+            loop
+            muted
+            playsInline
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          />
+        </div>
 
         {/* Stats */}
         <motion.div
@@ -536,7 +458,7 @@ const Home = () => {
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
-          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl w-full">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10  w-full">
             {/* CARD 1 */}
             <motion.div
               className={`rounded-2xl border overflow-hidden transition-all duration-500 cursor-pointer
@@ -728,13 +650,13 @@ const Home = () => {
       <section className="font-helvetica bg-gray-100 py-20 px-6 panel  ">
         {/* Heading */}
         <motion.h1
-          className="text-[37px] font-bold ml-20 mb-10 w-full text-center"
+          className="text-[48px] font-bold ml-20 mb-10 w-full text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           News & Investor Relations
-          <div className="w-100 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          <div className="w-140 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -877,23 +799,26 @@ const Home = () => {
       </section>
 
       {/* Sustainability Section */}
-      <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16 bg-white panel h-screen ">
+        <section className="flex flex-col items-center font-helvetica justify-center px-6 py-16 bg-white panel h-screen ">
         {/* Heading */}
         <motion.h1
-          className="text-[37px] ml-20 font-bold mb-10 w-full text-center"
+          className="text-[48px] ml-20 font-bold mb-10 w-full text-center"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           Engineering a
-          <span className="text-green-700"> Sustainable Tomorrow</span>
-          <div className="w-140 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          <span className="font-semibold bg-gradient-to-r from-[#04ad4a] via-[#089a45] to-[#023f18] bg-clip-text text-transparent">
+            {' '}
+            Sustainable Tomorrow
+          </span>
+          <div className="w-200 h-0.5 bg-blue mx-auto rounded-full mb-10" />
         </motion.h1>
 
         {/* Content */}
         <motion.div
-          className="flex flex-col lg:flex-row items-center justify-center gap-10 max-w-7xl w-full"
+          className="flex flex-col lg:flex-row items-center justify-center gap-10  w-full"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
@@ -929,7 +854,7 @@ const Home = () => {
 
       {/* Blog Section */}
       <motion.section
-        className="bg-gray-100 px-6 py-16 font-helvetica  panel"
+        className="bg-gray-100 px-6 py-10 font-helvetica  panel"
         variants={{
           hidden: { opacity: 0, y: 40 },
           visible: {
@@ -945,8 +870,18 @@ const Home = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.25 }}
       >
+         {/* Heading */}
+        <motion.h1
+          className="text-[48px] font-bold  w-full text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Blogs
+          <div className="w-25 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+        </motion.h1>
         <motion.div
-          className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10"
+          className=" mx-auto flex flex-col lg:flex-row gap-10"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -1104,7 +1039,7 @@ const Home = () => {
                   </span>
 
                   <p className="text-sm text-gray-600 mt-2 line-clamp-2">
-                    Industry professionals look beyond availability — they seek
+                    Industry professionals look beyond availability  they seek
                     precision and performance...
                   </p>
 

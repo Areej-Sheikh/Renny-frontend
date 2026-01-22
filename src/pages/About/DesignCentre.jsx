@@ -7,7 +7,7 @@ const DesignCentre = () => {
   return (
     <section className="w-full bg-gray-100">
       <motion.section
-        className="relative h-[45vh] sm:h-[55vh] lg:h-[70vh] w-full overflow-hidden"
+        className="relative h-[100vh] w-full overflow-hidden"
         initial={{ opacity: 0, scale: 1.15 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
@@ -18,32 +18,27 @@ const DesignCentre = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="relative z-10 h-full flex items-end
-                     text-white font-bold
-                     text-4xl sm:text-5xl lg:text-6xl
-                     px-4 sm:px-6 lg:px-10 py-8 "
+          className="relative z-10 text-white text-6xl md:text-7xl font-bold flex items-end h-full px-10 py-10 "
         >
           Design Centre
         </motion.h1>
       </motion.section>
-      <section className="bg-gray-100 py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="w-full bg-gray-100 p-10">
+        <div className="max-w-7xl mx-auto">
           {/* Heading */}
           <motion.h1
-            className="text-center font-bold mb-8
-                       text-3xl sm:text-4xl lg:text-[48px]"
+            className="text-[48px] font-bold mb-10 w-full text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             Design Centre
-            <div className="w-40 sm:w-56 lg:w-64 h-0.5 bg-blue mx-auto mt-4" />
+            <div className="w-70 h-0.5 bg-blue mx-auto rounded-full mb-10" />
           </motion.h1>
 
           {/* Top Paragraph */}
@@ -52,9 +47,7 @@ const DesignCentre = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.5 }}
-            className="text-base sm:text-[17px]
-                       leading-relaxed sm:leading-[28px]
-                       text-justify text-gray-700"
+            className="text-black-700  leading-relaxed md:leading-[28px] text-justify px-18"
           >
             The Design Centre at Renny Strips Ltd is the nucleus of our
             engineering innovation, enabling the development of highly
@@ -73,12 +66,12 @@ const DesignCentre = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="my-10"
+            className="my-8 px-18"
           >
             <img
               src={designCenterImage}
               alt="Quality Centre Inspection Process"
-              className="w-full h-auto max-h-[520px] object-contain mx-auto"
+              className="w-full h-auto object-contain"
             />
           </motion.div>
 
@@ -88,16 +81,14 @@ const DesignCentre = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-base sm:text-[17px]
-                       leading-relaxed sm:leading-[28px]
-                       text-justify text-gray-700"
+            className="text-black-700 md:text-[17px] leading-relaxed px-18 md:leading-[28px] text-justify"
           >
             Equipped with advanced design platforms such as AutoCAD, SolidWorks,
             and CAM tools for CNC/VMC programming, the centre ensures precise
             design execution and seamless integration with manufacturing. Our
             flexible design process allows us to modify material grades (ranging
             from 235 MPa to 460 MPa), wall thicknesses, diameters, profiles,
-            finishes, and connection mechanisms—delivering fully engineered
+            finishes, and connection mechanisms delivering fully engineered
             systems rather than off-the-shelf components. Close collaboration
             with in-house forging, fabrication, and tube-forming teams ensures
             rapid transition from concept to production, while custom-developed
@@ -106,36 +97,29 @@ const DesignCentre = () => {
           </motion.p>
         </div>
       </section>
-      <section className="bg-white py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className="grid grid-cols-1 lg:grid-cols-[30%_70%]
-                    gap-10 sm:gap-12 lg:gap-16 items-start"
-          >
-            {/* ================= LEFT : STATS (30%) ================= */}
-            <div className="flex flex-col gap-8 sm:gap-10 lg:gap-12">
+      <section className="w-full bg-white py-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[30%_70%] gap-16 items-start px-22">
+            {/* LEFT SIDE – CUBE STAT BOXES */}
+            <div className="flex flex-col gap-20">
               {/* STAT BOX 1 */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="relative w-full max-w-sm"
+                className="relative w-full max-w-xs"
               >
-                {/* Back layer */}
-                <div className="absolute -bottom-3 -left-3 w-full h-full bg-[#292c44]" />
+                {/* Back layer – LEFT + BOTTOM */}
+                <div className="absolute -bottom-4 -left-4 w-full h-full bg-[#292c44]"></div>
 
                 {/* Front layer */}
-                <div className="relative bg-[#292c44] text-white px-6 sm:px-8 py-8 sm:py-10">
-                  <h3 className="text-4xl sm:text-5xl lg:text-6xl font-semibold mb-3">
-                    46
-                  </h3>
-                  <p className="uppercase text-xs sm:text-sm tracking-wide mb-3">
-                    Innovation Rewards Received
+                <div className="relative bg-[#292c44] text-white px-8 py-10">
+                  <p className="uppercase text-lg font-bold tracking-wide mb-4">
+                    Total Number of Engineers
                   </p>
                   <p className="text-sm leading-relaxed text-white/80">
-                    Our dedication to innovation has been recognized with 46
-                    prestigious awards, reinforcing our leadership.
+                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo nulla deserunt error incidunt sint repellendus. Sunt quidem voluptatibus doloribus nostrum.
                   </p>
                 </div>
               </motion.div>
@@ -146,50 +130,51 @@ const DesignCentre = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="relative w-full max-w-sm"
+                className="relative w-full max-w-xs"
               >
-                {/* Back layer */}
-                <div className="absolute -bottom-3 -left-3 w-full h-full bg-[#292c44]" />
+                {/* Back layer – LEFT + BOTTOM */}
+                <div className="absolute -bottom-4 -left-4 w-full h-full bg-[#292c44]"></div>
 
                 {/* Front layer */}
-                <div className="relative bg-[#292c44] text-white px-6 sm:px-8 py-8 sm:py-10">
-                  <h3 className="text-4xl sm:text-5xl lg:text-6xl font-semibold mb-3">
-                    98%
-                  </h3>
-                  <p className="uppercase text-xs sm:text-sm tracking-wide mb-3">
-                    Client Satisfaction Rate
+                <div className="relative bg-[#292c44] text-white px-8 py-10">
+                  <p className="uppercase text-lg font-bold tracking-wide mb-4">
+                    Total number of Products
                   </p>
                   <p className="text-sm leading-relaxed text-white/80">
-                    Reflected in an outstanding satisfaction rate among our
-                    clients.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto illo veniam enim culpa reiciendis perferendis dolorem tenetur assumenda blanditiis reprehenderit.
                   </p>
                 </div>
               </motion.div>
             </div>
 
-            {/* ================= RIGHT : CONTENT (70%) ================= */}
+            {/* RIGHT SIDE – CONTENT */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6">
+              <h1 className="text-[42px]  font-semibold text-black mb-6">
                 Strive to be Pioneer in Innovation
-              </h2>
-
-              <p
-                className="text-gray-700 text-base sm:text-[17px]
-                     leading-relaxed sm:leading-[30px]
-                     text-justify max-w-3xl mb-8"
+              </h1>
+              {/* <motion.h1
+                className="text-[48px] font-bold  mb-5 w-full text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
               >
+                Strive to be Pioneer in Innovation
+                <div className="w-180 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+              </motion.h1> */}
+
+              <p className=" text-gray-700 text-base md:text-[17px] leading-7 md:leading-[30px] text-justify max-w-3xl mb-8 mr-18">
                 Equipped with advanced design platforms such as AutoCAD,
                 SolidWorks, and CAM tools for CNC/VMC programming, the centre
                 ensures precise design execution and seamless integration with
                 manufacturing. Our flexible design process allows us to modify
                 material grades (ranging from 235 MPa to 460 MPa), wall
                 thicknesses, diameters, profiles, finishes, and connection
-                mechanisms—delivering fully engineered systems rather than
+                mechanisms delivering fully engineered systems rather than
                 off-the-shelf components. Close collaboration with in-house
                 forging, fabrication, and tube-forming teams ensures rapid
                 transition from concept to production, while custom-developed
@@ -197,11 +182,7 @@ const DesignCentre = () => {
                 and repeatability in every solution we deliver.
               </p>
 
-              <button
-                className="border border-black px-6 py-2 text-sm
-                     uppercase tracking-wide
-                     hover:bg-black hover:text-white transition"
-              >
+              <button className="border border-black px-6 py-2 text-sm uppercase tracking-wide hover:bg-black hover:text-white transition">
                 Read More
               </button>
             </motion.div>

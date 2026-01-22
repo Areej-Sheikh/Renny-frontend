@@ -10,7 +10,7 @@ const Contact = () => {
     <>
       {/* Banner */}
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden  mb-12"
+        className="relative h-[100vh] w-full overflow-hidden  mb-12"
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
@@ -31,7 +31,19 @@ const Contact = () => {
           Contact Us
         </motion.h1>
       </motion.section>
-      <section className="w-full bg-white text-black px-6 md:px-20 py-16">
+
+      <section className="w-full bg-white text-black px-6 md:px-20 ">
+        {/* Heading */}
+        <motion.h1
+          className="text-[48px] font-bold mb-5 w-full text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Get In Touch With Us
+          <div className="w-86 h-0.5 bg-blue mx-auto rounded-full mb-20" />
+        </motion.h1>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           {/* LEFT SIDE */}
           <motion.div
@@ -47,9 +59,7 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
               viewport={{ once: true }}
-            >
-              Get In Touch With Us
-            </motion.h2>
+            ></motion.h2>
 
             <motion.p
               className="text-base md:text-lg text-gray-700 leading-relaxed"
@@ -159,6 +169,8 @@ const Contact = () => {
           </motion.div>
         </div>
       </section>
+
+
       {/* Get in touch with us */}
       <section className="w-full px-6 md:px-20 py-20 bg-gradient-to-t to-[#262731] from-[#879cefe6]">
         <motion.div
@@ -266,17 +278,19 @@ const Contact = () => {
         </motion.div>
       </section>
 
+
+
       <section className="w-full bg-blue-50  md:px-10  relative">
-        {/* Heading */}
-        <motion.h2
-          className="text-4xl md:text-5xl font-semibold text-center mt-20 mb-24 text-[#292c44] tracking-wide"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          viewport={{ once: true }}
-        >
-          Industrial Plant
-        </motion.h2>
+         {/* Heading */}
+          <motion.h1
+            className="text-[48px] font-bold mt-10 mb-10 w-full text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Industrial plant
+            <div className="w-68 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          </motion.h1>
         <section className="relative overflow-hidden ">
           {/* ================= UNIT I & II ================= */}
           <div className="grid grid-cols-1  md:grid-cols-2 gap-70 items-center mb-28">

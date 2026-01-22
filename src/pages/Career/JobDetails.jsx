@@ -1,11 +1,10 @@
-import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MdWorkOutline, MdCurrencyRupee } from 'react-icons/md';
 import banner from '../../assets/careerBanner.webp';
 
 /* ================= JOB DATA ================= */
-
 const jobsData = {
   'web-dev': {
     title: 'Web Developer',
@@ -41,8 +40,6 @@ With a commitment to the highest industry standards and a visionary approach, Re
 const JobDetails = () => {
   const { jobId } = useParams();
   const job = jobsData[jobId];
-  const navigate = useNavigate();
-
 
   if (!job) {
     return <div className="p-10 text-center">Job not found</div>;
@@ -52,7 +49,7 @@ const JobDetails = () => {
     <section className="w-full bg-gray-100 ">
       {/* Banner */}
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden  mb-12"
+        className="relative h-[100vh] w-full overflow-hidden  mb-12"
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
@@ -62,7 +59,6 @@ const JobDetails = () => {
           alt="Blogs Banner"
           className="absolute inset-0 w-full h-full  object-cover"
         />
-        <div className="absolute inset-0  bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -143,7 +139,6 @@ const JobDetails = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-                onClick={() => navigate(`/careers/${jobId}/apply`)}
               className="w-full md:w-auto px-9 py-3 bg-black text-white rounded-md font-medium transition"
             >
               Apply Now

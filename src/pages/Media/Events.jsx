@@ -11,6 +11,7 @@ import newsvideo from '../../assets/newsvideo.webm';
 
 import EventCard from '../../components/EventCard';
 
+
 const eventsData = [
   {
     id: 1,
@@ -65,7 +66,6 @@ const itemVariants = {
 };
 
 const Events = () => {
-  // ✅ Hooks MUST be inside the component
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-20% 0px' });
 
@@ -76,7 +76,7 @@ const Events = () => {
     <motion.div className="font-helvetica overflow-hidden min-h-screen">
       {/* Banner */}
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden mb-12"
+        className="relative h-[100vh] w-full overflow-hidden mb-12"
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
@@ -87,7 +87,6 @@ const Events = () => {
           style={{ y: bannerY }}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -159,7 +158,7 @@ const Events = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="max-w-7xl mx-auto px-6 py-24"
+        className=" mx-auto px-6 py-24"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {eventsData.map(event => (
@@ -167,6 +166,8 @@ const Events = () => {
           ))}
         </div>
       </motion.section>
+
+      
     </motion.div>
   );
 };

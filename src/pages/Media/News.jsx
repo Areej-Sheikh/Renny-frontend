@@ -125,7 +125,7 @@ const [activeNews, setActiveNews] = useState(newsData[0]);
     <div className=" min-h-screen font-helvetica">
       {/* Banner */}
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden "
+        className="relative h-[100vh] w-full overflow-hidden "
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
@@ -135,7 +135,6 @@ const [activeNews, setActiveNews] = useState(newsData[0]);
           alt="News Banner"
           className="absolute inset-0 w-full h-full  object-cover"
         />
-        <div className="absolute inset-0  bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}

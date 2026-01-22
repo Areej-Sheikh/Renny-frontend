@@ -46,7 +46,7 @@ const Navbar = () => {
   `}
       >
         {/* About Us */}
-         <li className="relative group">
+        <li className="relative group">
           <span className="cursor-pointer hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
             About Us
           </span>
@@ -75,7 +75,6 @@ const Navbar = () => {
             </li>
           </ul>
         </li>
-
 
         {/* Products */}
         <li className="relative group">
@@ -162,7 +161,7 @@ const Navbar = () => {
           </span>
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-64 z-50">
             <li>
-              <Link className="dropdown-item">ESG</Link>
+              <Link to="/sustainability/" className="dropdown-item">ESG</Link>
             </li>
           </ul>
         </li>
@@ -194,7 +193,7 @@ const Navbar = () => {
         {/* Career */}
         <li>
           <Link
-            to="/career/"
+            to="/careers/"
             className="hover:bg-blue hover:text-white px-4 py-3 rounded-xl"
           >
             Career

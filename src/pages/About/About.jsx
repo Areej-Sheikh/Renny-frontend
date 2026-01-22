@@ -7,7 +7,6 @@ import aboutVideo from '../../assets/01-aboutVideo.webm';
 import worldmap from '../../assets/World-Map.webm';
 import { image } from 'framer-motion/client';
 //images
-import bgCompanyOverview from '../../assets/BG-companyoverview.webp';
 import t1996 from '../../assets/1996.webp'; //changing part of images
 import t2005 from '../../assets/2005.webp'; //changing part of images
 import t2016 from '../../assets/2016.webp'; //changing part of images
@@ -16,15 +15,15 @@ import t2019 from '../../assets/2019.webp'; //changing part of images
 import t2021 from '../../assets/2021.webp'; //changing part of images
 import t2023 from '../../assets/2023.webp'; //changing part of images
 import t2024 from '../../assets/2024.webp'; //changing part of images
-import t2025 from '../../assets/2025.webp'; //changing part of images
-
-import banner from '../../assets/Image.webp';
+import t2025 from '../../assets/2025.webp';
 
 import g1 from '../../assets/g1.webp'; //changing part of images
 import g2 from '../../assets/g2.webp'; //changing part of images
 import g3 from '../../assets/g3.webp'; //changing part of images
 import g4 from '../../assets/g4.webp'; //changing part of images
 
+import banner from '../../assets/Image.webp';
+/* ================= TIMELINE DATA ================= */
 const timelineData = [
   {
     year: '1996',
@@ -78,7 +77,8 @@ const timelineData = [
 
 const About = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const [isManual, setIsManual] = useState(false);
+  /* ===== AUTO TIMELINE ===== */
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex(prev => (prev === timelineData.length - 1 ? 0 : prev + 1));
@@ -86,24 +86,36 @@ const About = () => {
     return () => clearInterval(interval);
   }, []);
 
+  /* ===== COUNTUP ===== */
   const { ref: statsRef, inView } = useInView({
     triggerOnce: true,
     threshold: 0.3,
   });
   const galleryImages = [g1, g2, g3, g4];
   const [currentSlide, setCurrentSlide] = useState(0);
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentSlide(prev =>
+      prev === galleryImages.length - 1 ? 0 : prev + 1
+    );
+  }, 3500);
+
+  return () => clearInterval(interval);
+}, [galleryImages.length]);
 
   useEffect(() => {
-    const slider = setInterval(() => {
-      setCurrentSlide(prev =>
-        prev === galleryImages.length - 1 ? 0 : prev + 1
-      );
-    }, 2000);
-    return () => clearInterval(slider);
-  }, []);
+    if (isManual) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex(prev => (prev === timelineData.length - 1 ? 0 : prev + 1));
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [isManual]);
 
   return (
     <div className="w-full bg-black text-white font-helvetica">
+      {/* ================= HERO ================= */}
       <section className="relative w-screen h-screen overflow-hidden">
         <video
           className="absolute inset-0 w-full h-full object-cover"
@@ -128,6 +140,7 @@ const About = () => {
         </div>
       </section>
 
+      {/* ================= COMPANY OVERVIEW ================= */}
       <section className="relative min-h-screen overflow-hidden">
         {/* Background Image */}
         <img
@@ -140,7 +153,7 @@ const About = () => {
         <div className="absolute inset-0 bg-black/60"></div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-[65%_35%] gap-16 px-6 md:px-16 py-20 text-white">
+        <div className="relative z-10  mx-auto grid lg:grid-cols-[65%_35%] gap-16 px-6 md:px-16 py-20 text-white">
           {/* LEFT CONTENT */}
           <motion.div
             className="space-y-6"
@@ -180,8 +193,17 @@ const About = () => {
                 structural products manufacturer headquartered in Ludhiana,
                 Punjab. The Company operates 3 integrated manufacturing units,
                 providing end-to-end finished products. Renny operates three
-                induction furnaces with a total melting capacity of 199,200 TPA,
-                supported by two continuous casting lines and two rolling mills.
+                induction furnaces with a total melting capacity of 199,200 TPA
+                (versus an industry average of 65,000–75,000 TPA), supported by
+                two continuous casting lines and two rolling mills producing MS
+                billets, wire rods, and narrow-width HR coils. A downstream unit
+                manufactures ERW black and galvanized pipes and tubes, along
+                with scaffolding and formwork systems, using largely in-house
+                inputs, positioning Renny among the few vertically integrated
+                players in India across this value chain. The Company’s
+                scaffolding and formwork portfolio exceeds 1,000 SKUs, supplied
+                to customers across 5 continents and serves the construction,
+                automotive, water, oil & gas, and fabrication sectors.
               </motion.p>
 
               <motion.ol
@@ -231,19 +253,23 @@ const About = () => {
         </div>
       </section>
 
+      {/* ================= TIMELINE ================= */}
       <section className="bg-[#F8F8F8] py-24 text-black">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
-          <motion.h2
-            className="text-4xl font-semibold mb-16"
-            initial={{ opacity: 0, y: 30 }}
+        <div className=" mx-auto px-6 md:px-16">
+          {/* HEADING */}
+          <motion.h1
+            className="text-[48px] font-bold mb-5 w-full text-center"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            Renny’s Journey
-          </motion.h2>
+            Renny's Timeline
+            <div className="w-80 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          </motion.h1>
 
+          {/* TIMELINE */}
           <div className="relative mb-20">
+            {/* HORIZONTAL LINE */}
             <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gray-300" />
 
             <div className="flex justify-between relative">
@@ -251,32 +277,41 @@ const About = () => {
                 const isActive = index === activeIndex;
 
                 return (
-                  <div
+                  <button
                     key={index}
-                    className="relative flex flex-col items-center"
+                    type="button"
+                    onClick={() => {
+                      setActiveIndex(index);
+                      setIsManual(true); // stop auto-rotation after click
+                    }}
+                    className="relative flex flex-col items-center focus:outline-none group"
                   >
+                    {/* YEAR */}
                     <span
-                      className={`mb-10 text-lg font-semibold transition ${
-                        isActive ? 'text-[#292c44]' : 'text-gray-500'
+                      className={`mb-10 text-lg font-semibold transition-colors duration-300 ${
+                        isActive
+                          ? 'text-blue'
+                          : 'text-gray-400 group-hover:text-blue'
                       }`}
                     >
                       {item.year}
                     </span>
 
-                    {/* DOT  */}
+                    {/* DOT – ON THE LINE */}
                     <motion.div
-                      className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full ${
-                        isActive ? 'bg-[#292c44]' : 'bg-gray-400'
+                      className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full transition-colors duration-300 ${
+                        isActive ? 'bg-blue' : 'bg-gray-400 group-hover:bg-blue'
                       }`}
                       animate={{ scale: isActive ? 1.4 : 1 }}
                       transition={{ duration: 0.4 }}
                     />
-                  </div>
+                  </button>
                 );
               })}
             </div>
           </div>
 
+          {/* CONTENT */}
           <motion.div
             key={activeIndex}
             initial={{ opacity: 0, y: 30 }}
@@ -309,8 +344,11 @@ const About = () => {
           </motion.div>
         </div>
       </section>
+      
+      {/* Image slider */}
 
-      <section className="relative w-screen h-[600px] overflow-hidden">
+      <section className="relative w-screen h-[550px] overflow-hidden">
+        {/* IMAGE */}
         <motion.img
           key={currentSlide}
           src={galleryImages[currentSlide]}
@@ -322,16 +360,17 @@ const About = () => {
         />
       </section>
 
+      {/* ================= OUR NETWORK ================= */}
       <section className="bg-white py-24 text-black">
-        <div className="max-w-7xl mx-auto px-6 md:px-16">
+        <div className=" mx-auto px-6 md:px-16">
           <motion.h1
-            className="text-4xl md:text-5xl font-semibold mb-12"
+            className="text-[48px] font-bold mb-5 w-full text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
             Our Network
+            <div className="w-60 h-0.5 bg-blue mx-auto rounded-full mb-10" />
           </motion.h1>
 
           <motion.video
@@ -346,22 +385,6 @@ const About = () => {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             viewport={{ once: true }}
           />
-          <motion.p
-            className="mt-12 text-sm md:text-base text-black leading-relaxed w-full"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            viewport={{ once: true }}
-          >
-            Renny Strips Ltd. boasts a strong Pan-India footprint and a growing
-            global presence, proudly exporting to 5 continents. Recognized for
-            its expertise in high-precision, safety-critical components for
-            scaffolding and  formwork systems and ERW black and galvanized pipes
-            and tubes, Renny has established itself as a leading exporter. With
-            a commitment to customization, quality & timely delivery, Renny
-            continues to serve both domestic & international markets with
-            distinction.  
-          </motion.p>
         </div>
       </section>
     </div>

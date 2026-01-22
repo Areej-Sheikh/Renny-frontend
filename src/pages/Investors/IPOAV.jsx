@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import Navbar from '../../components/Navbar';
-import ipoHero from '../../assets/Financials.webp';
+import ipoHero from '../../assets/investorbanner.webp';
 import InvestorSidebar from '../../components/InvestorSidebar';
 
 const IPOAV = () => {
@@ -12,7 +12,7 @@ const IPOAV = () => {
 
   const brandColor = '#292C44';
   const mainHeadingFont =
-    "font-['Helvetica','Arial',sans-serif] text-[37px] font-semibold";
+    "font-['Helvetica','Arial',sans-serif] text-[48px] font-semibold";
   const subHeadingFont =
     "font-['Helvetica','Arial',sans-serif] text-[18px] font-semibold";
 
@@ -49,13 +49,13 @@ const IPOAV = () => {
       <Navbar />
 
       {/* -------------------- HERO SECTION -------------------- */}
-      <section className="relative w-full h-[55vh] overflow-hidden">
+      <section className="relative w-full h-[100vh] overflow-hidden">
         <img
           src={ipoHero}
           alt="IPO Audio Visual"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/50" />
+   
 
         {/* Heading positioned at the bottom left */}
         <div className="absolute bottom-16 left-0 w-full px-6 lg:px-20 z-10">

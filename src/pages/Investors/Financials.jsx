@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import Navbar from '../../components/Navbar';
 import InvestorSidebar from '../../components/InvestorSidebar';
-import financialsHero from '../../assets/Financials.webp';
+import financialsHero from '../../assets/investorbanner.webp';
 
 /* -------------------- TABS & DATA -------------------- */
 const TABS = [
@@ -62,7 +62,7 @@ const Financials = () => {
   // Design Constants
   const brandColor = '#292C44';
   const mainHeadingFont =
-    "font-['Helvetica','Arial',sans-serif] text-[37px] font-semibold";
+    "font-['Helvetica','Arial',sans-serif] text-[48px] font-semibold";
   const subHeadingFont =
     "font-['Helvetica','Arial',sans-serif] text-[18px] font-semibold";
   const btnClass =
@@ -73,16 +73,15 @@ const Financials = () => {
       <Navbar />
 
       {/* HERO SECTION */}
-      <section className="relative w-full h-[60vh] overflow-hidden">
+      <section className="relative w-full h-[100vh] overflow-hidden">
         <img
           src={financialsHero}
           alt="Financials"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40" />
 
         {/* Heading positioned at the bottom left */}
-        <div className="absolute bottom-16 left-0 w-full px-10 md:px-20 z-10">
+        <div className="absolute bottom-16 text-[48px] left-0 w-full px-10 md:px-20 z-10">
           <motion.h1
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}

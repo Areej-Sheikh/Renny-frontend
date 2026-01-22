@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 /* -------------------- CARD ANIMATION -------------------- */
 
@@ -24,21 +24,27 @@ const cardVariants = {
 
 const EventCard = ({ event }) => {
   const ref = useRef(null);
+  const videoRef = useRef(null);
+  const [userInteracted, setUserInteracted] = useState(false);
+
   const inView = useInView(ref, {
     margin: '-20% 0px',
     once: false,
   });
 
   useEffect(() => {
-    const video = ref.current?.querySelector('video');
+    const video = videoRef.current;
     if (!video) return;
 
-    if (inView) {
-      video.play().catch(() => {});
-    } else {
-      video.pause();
+    // Only auto-play/pause if the user has NOT interacted
+    if (!userInteracted) {
+      if (inView) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
     }
-  }, [inView]);
+  }, [inView, userInteracted]);
 
   return (
     <motion.article
@@ -47,12 +53,15 @@ const EventCard = ({ event }) => {
       className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
     >
       <video
+        ref={videoRef}
         src={event.video}
-        muted
-        loop
-        playsInline
+        controls
         preload="metadata"
+        playsInline
+        muted
         className="w-full h-[260px] object-cover"
+        onPlay={() => setUserInteracted(true)}
+        onPause={() => setUserInteracted(true)}
       />
 
       <div className="p-6">

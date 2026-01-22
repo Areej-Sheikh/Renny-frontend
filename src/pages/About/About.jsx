@@ -213,9 +213,15 @@ const About = () => {
       {/* ================= TIMELINE ================= */}
       <section className="bg-[#F8F8F8] py-24 text-black">
         <div className="mx-auto px-6 md:px-16">
-          <h1 className="text-4xl font-bold text-center mb-16">
-            Renny's Timeline
-          </h1>
+                <motion.h1
+          className="text-[48px] font-bold ml-20 w-full text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Renny's Timeline 
+          <div className="w-80 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+        </motion.h1>
 
           <div className="relative mb-20">
             <div className="relative w-full mt-16">

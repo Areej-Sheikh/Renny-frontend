@@ -34,6 +34,7 @@ import Sustainability from './pages/Sustainability/Sustainability';
 /* Media */
 import News from "./pages/Media/News";
 import Blogs from "./pages/Media/Blogs";
+import BlogDetail from "./pages/Media/BlogDetail";
 import Events from "./pages/Media/Events";
 
 /* Career */
@@ -110,6 +111,8 @@ const App = () => {
         {/* Media */}
         <Route path="/news-room/" element={<News />} />
         <Route path="/blog/" element={<Blogs />} />
+        <Route path="/blog/:slug" element={<BlogDetail />} />
+        
         <Route path="/events/" element={<Events />} />
 
         {/* Media Blogs */}

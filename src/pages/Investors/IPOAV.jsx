@@ -1,63 +1,61 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { motion } from "framer-motion";
 
-import Navbar from '../../components/Navbar';
-import ipoHero from '../../assets/investorbanner.webp';
-import InvestorSidebar from '../../components/InvestorSidebar';
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import ipoHero from "../../assets/investorbanner.webp";
+import InvestorSidebar from "../../components/InvestorSidebar";
 
 const IPOAV = () => {
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const brandColor = '#292C44';
+  const brandColor = "#292C44";
   const mainHeadingFont =
-    "font-['Helvetica','Arial',sans-serif] text-[48px] font-semibold";
-  const subHeadingFont =
-    "font-['Helvetica','Arial',sans-serif] text-[18px] font-semibold";
+    "font-['Helvetica','Arial',sans-serif] text-[37px] font-semibold";
 
-  // LOGIC TO CONVERT DRIVE LINK TO EMBED LINK
-  const getEmbedUrl = driveUrl => {
-    if (!driveUrl) return '';
-    return driveUrl.replace(/\/view.*$/, '/preview');
+  const getDrivePreviewUrl = (url) => {
+    if (!url) return "";
+
+    // Match common Drive formats
+    const match =
+      url.match(/\/d\/([a-zA-Z0-9_-]+)/) || // /file/d/ID/
+      url.match(/id=([a-zA-Z0-9_-]+)/); // open?id=ID
+
+    if (!match || !match[1]) return "";
+
+    return `https://drive.google.com/file/d/${match[1]}/preview`;
   };
 
+  // ---------------- FETCH VIDEOS ----------------
   useEffect(() => {
     const fetchVideos = async () => {
-      const data = [
-        {
-          title: 'DRHP Statutory AV - English',
-          driveUrl:
-            'https://drive.google.com/file/d/1aTuU8Kj31PcgptbbV7yk-Mgo6VpPMYMa/view',
-        },
-        {
-          title: 'DRHP Statutory AV - Hindi',
-          driveUrl:
-            'https://drive.google.com/file/d/1wrHiuYyk-CN_7PxuqRAWTzhqw07O058P/view',
-        },
-      ];
-      setVideos(data);
-      setIsLoading(false);
+      try {
+        const response = await axios.get("http://localhost:3000/api/ipo-av");
+        setVideos(Array.isArray(response.data) ? response.data : []);
+      } catch (error) {
+        console.error("Error fetching IPO videos:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchVideos();
   }, []);
-
-  if (isLoading) return null;
 
   return (
     <div className="font-['Helvetica','Arial',sans-serif]">
       <Navbar />
 
-      {/* -------------------- HERO SECTION -------------------- */}
-      <section className="relative w-full h-[100vh] overflow-hidden">
+      {/* ---------------- HERO ---------------- */}
+      <section className="relative w-full h-[55vh] overflow-hidden">
         <img
           src={ipoHero}
           alt="IPO Audio Visual"
           className="absolute inset-0 w-full h-full object-cover"
         />
-   
+        <div className="absolute inset-0 bg-black/50" />
 
-        {/* Heading positioned at the bottom left */}
         <div className="absolute bottom-16 left-0 w-full px-6 lg:px-20 z-10">
           <motion.h1
             initial={{ opacity: 0, x: -20 }}
@@ -70,7 +68,7 @@ const IPOAV = () => {
         </div>
       </section>
 
-      {/* -------------------- MAIN CONTENT SECTION -------------------- */}
+      {/* ---------------- CONTENT ---------------- */}
       <motion.section
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -85,47 +83,86 @@ const IPOAV = () => {
             >
               INVESTOR RELATIONS
             </div>
+
             <h2 className={`${mainHeadingFont} mb-12 text-gray-900`}>
               IPO Audio Visual
             </h2>
 
-            {/* VIDEO GRID */}
+            {/* ---------------- VIDEO GRID ---------------- */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {videos.map((video, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex flex-col"
-                >
-                  <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-gray-100">
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={getEmbedUrl(video.driveUrl)}
-                      title={video.title}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full"
-                    ></iframe>
-                  </div>
-                  <h3 className="mt-5 text-center text-[16px] font-bold text-gray-800 leading-snug">
-                    {video.title}
-                  </h3>
-                </motion.div>
-              ))}
+              {isLoading ? (
+                <div className="col-span-full text-gray-400 animate-pulse">
+                  Loading library...
+                </div>
+              ) : videos.length > 0 ? (
+                videos.map((video, i) => {
+                  const url = video?.videoUrl || "";
+                  const type = video?.type;
+
+                  return (
+                    <motion.div
+                      key={video?._id || i}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="flex flex-col"
+                    >
+                      <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-black">
+                        {/* ===== FILE UPLOAD (S3 / LOCAL) ===== */}
+                        {type === "file" && url ? (
+                          <video
+                            controls
+                            preload="metadata"
+                            playsInline
+                            className="w-full h-full object-cover"
+                          >
+                            <source src={url} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        ) : type === "link" && url ? (
+                          /* ===== EXTERNAL LINK ===== */
+                          <iframe
+                            src={
+                              url.includes("drive.google.com")
+                                ? getDrivePreviewUrl(url)
+                                : url
+                            }
+                            title={video?.title || "Video"}
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media"
+                            allowFullScreen
+                            className="w-full h-full"
+                          />
+                        ) : (
+                          <div className="flex items-center justify-center h-full text-gray-500 italic text-sm">
+                            Video link unavailable
+                          </div>
+                        )}
+                      </div>
+
+                      <h3 className="mt-5 text-center text-[16px] font-bold text-gray-800 leading-snug">
+                        {video?.title || "Untitled Video"}
+                      </h3>
+                    </motion.div>
+                  );
+                })
+              ) : (
+                <div className="col-span-full p-10 text-center text-gray-400 italic bg-gray-50 rounded-xl border border-dashed border-gray-200">
+                  No audio-visual materials have been uploaded yet.
+                </div>
+              )}
             </div>
           </div>
 
-          {/* REUSABLE STICKY SIDEBAR */}
+          {/* ---------------- SIDEBAR ---------------- */}
           <div className="col-span-12 lg:col-span-4 sticky top-28">
             <InvestorSidebar />
           </div>
         </div>
       </motion.section>
+
+      <Footer />
     </div>
   );
 };

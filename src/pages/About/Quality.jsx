@@ -30,11 +30,16 @@ import icon5 from "../../assets/Icon-5.webp";
 import cert1 from "../../assets/Certificate-1.webp";
 import cert2 from "../../assets/Certificate-2.webp";
 import cert3 from "../../assets/Certificate-3.webp";
-import cert3_1 from "../../assets/Certificate-3-1.webp";
 import cert4 from "../../assets/Certificate-4.webp";
 import cert5 from "../../assets/Certificate-5.webp";
 import cert6 from "../../assets/Certificate-6.webp";
 import cert7 from "../../assets/Certificate-7.webp";
+import cert8 from "../../assets/Certificate-8.webp";
+import cert9 from "../../assets/Certificate-9.webp";
+import cert10 from "../../assets/Certificate-10.webp";
+import cert11 from "../../assets/Certificate-11.webp";
+import cert12 from "../../assets/Certificate-12.webp";
+import cert13 from "../../assets/Certificate-13.webp";
 import CertificateCard from "../../components/CertificateCard";
 
 const Quality = () => {
@@ -108,7 +113,7 @@ const Quality = () => {
     <section className="w-full bg-white">
       {/* ================= Banner Section ================= */}
       <motion.section
-        className="relative h-[45vh] sm:h-[55vh] lg:h-[100vh] w-full overflow-hidden"
+        className="relative h-[100vh] w-full overflow-hidden"
         initial={{ opacity: 0, scale: 1.15 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
@@ -395,7 +400,7 @@ const Quality = () => {
               </AnimatePresence>
 
               {/* Controls */}
-              <div className="flex justify-center gap-3 mt-6">
+              <div className="flex justify-center   gap-3 mt-6">
                 <div className="flex gap-3">
                   {specificationsData.map((_, i) => (
                     <button
@@ -472,7 +477,7 @@ const Quality = () => {
           </div>
         </div>
       </section>
-      <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
+      <section className="w-full  bg-white py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* ===== Title ===== */}
           <motion.h2
@@ -487,7 +492,7 @@ const Quality = () => {
             <div className="w-75 h-0.5 bg-blue mx-auto mt-4" />
           </motion.h2>
           {/* ===== Slider Wrapper ===== */}
-          <div className="relative">
+          <div className="relative pt-10  h-[460px]">
 
             {/* Left Arrow */}
             <button
@@ -517,23 +522,28 @@ const Quality = () => {
               ref={sliderRef}
               className="flex gap-6 sm:gap-8 lg:gap-10
              overflow-x-auto overflow-y-visible
-             scroll-smooth no-scrollbar pb-6"
+             scroll-smooth no-scrollbar pb-6  "
             >
 
 
               {[
-                { id: 1, img: cert1, title: "IS 7887 : 1992", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 2, img: cert2, title: "IS 14650 : 1999", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 3, img: cert3, title: "IS 10748 : 2004", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 4, img: cert3_1, title: "IS 1239 - 1 : 2004", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 5, img: cert4, title: "IS 3601 : 2006", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 6, img: cert5, title: "IS 2062 : 2011", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 7, img: cert6, title: "IS 1161:2014", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 8, img: cert7, title: "IS 4923 : 2017", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 1, img: cert1, title: "IS 9001 : 2015 ", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 2, img: cert2, title: "IS 3834-2 : 2021", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 3, img: cert3, title: "EN 1090-1 : 2009", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 4, img: cert4, title: "EN 1090-2 : 2018", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 5, img: cert5, title: "IS 2062 : 2011", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 6, img: cert6, title: "IS 10478 : 2004", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 7, img: cert7, title: "IS 14650 : 1999", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 8, img: cert8, title: "IS 7887 : 1992", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 9, img: cert9, title: "IS 1239-1 : 2004", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 10, img: cert10, title: "IS 1161 : 2014", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 11, img: cert11, title: "IS 3601 : 2006", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 12, img: cert12, title: "IS 4923 : 2017", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
+                { id: 13, img: cert13, title: "IS 18573 : 2024", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
               ].map((item, index) => (
                 <motion.div
                   key={item.id}
-                  className="min-w-[260px] sm:min-w-[300px] lg:min-w-[320px]"
+                  className="min-w-[260px] sm:min-w-[300px] lg:min-w-[320px] h-full"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}

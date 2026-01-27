@@ -1,51 +1,10 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
-import events1 from '../../assets/events1.webm';
-import events2 from '../../assets/events2.webm';
-import events3 from '../../assets/events3.webm';
-import events4 from '../../assets/events4.webm';
 import banner from '../../assets/eventsbanner.webp';
 import newsvideo from '../../assets/newsvideo.webm';
 
 import EventCard from '../../components/EventCard';
-
-
-const eventsData = [
-  {
-    id: 1,
-    title: 'Renny @ bauma CONEXPO INDIA 2024',
-    date: 'December 21, 2024',
-    video: events1,
-    desc: `Renny marked a strong presence at bauma CONEXPO INDIA 2024 by unveiling 
-    its latest innovations in scaffolding and formwork systems.`,
-  },
-  {
-    id: 2,
-    title: 'Strengthening Tomorrow',
-    date: 'October 19, 2024',
-    video: events2,
-    desc: `The “Strengthening Tomorrow” initiative focused on quality benchmarks 
-    and evolving construction standards.`,
-  },
-  {
-    id: 3,
-    title: 'World Nature Conservation Day',
-    date: 'October 19, 2024',
-    video: events3,
-    desc: `Renny emphasized environmental responsibility through sustainability 
-    initiatives and awareness programs.`,
-  },
-  {
-    id: 4,
-    title: 'Diwali Celebration',
-    date: 'October 20, 2025',
-    video: events4,
-    desc: `The Diwali celebration brought employees together in a vibrant display 
-    of culture and unity.`,
-  },
-];
 
 const containerVariants = {
   hidden: {},
@@ -66,17 +25,55 @@ const itemVariants = {
 };
 
 const Events = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-20% 0px' });
+  const [eventsData, setEventsData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  // Banner parallax
   const { scrollYProgress } = useScroll();
   const bannerY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
+
+  // ---------------- FETCH EVENTS ----------------
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/api/events');
+        const json = await res.json();
+
+        if (!json.success) throw new Error('Failed to fetch events');
+
+        const formatted = json.data.map(item => ({
+          id: item._id,
+          title: item.title,
+          date: item.date,
+          video: item.videoUrl,
+          desc: item.description,
+          order: item.order,
+        }));
+
+        setEventsData(formatted);
+      } catch (err) {
+        console.error('EVENT FETCH ERROR:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center font-helvetica">
+        <p className="text-lg">Loading events...</p>
+      </div>
+    );
+  }
 
   return (
     <motion.div className="font-helvetica overflow-hidden min-h-screen">
       {/* Banner */}
       <motion.section
-        className="relative h-[100vh] w-full overflow-hidden mb-12"
+        className="relative h-[70vh] w-full overflow-hidden mb-12"
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
@@ -87,6 +84,7 @@ const Events = () => {
           style={{ y: bannerY }}
           className="absolute inset-0 w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -101,7 +99,7 @@ const Events = () => {
 
       {/* Spotlight section */}
       <section className="flex items-center justify-center">
-        <div className="relative h-[550px] w-6xl mt-20 rounded-4xl overflow-hidden ">
+        <div className="relative h-[550px] w-6xl mt-20 rounded-4xl overflow-hidden">
           {/* Background Video */}
           <video
             src={newsvideo}
@@ -109,18 +107,18 @@ const Events = () => {
             loop
             muted
             playsInline
-            className="absolute inset-0  w-full h-full object-cover z-0"
+            className="absolute inset-0 w-full h-full object-cover z-0"
           />
 
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/60 z-10" />
 
-          {/* Content */}
-          <section ref={ref} className="relative z-20  p-20 md:p-16">
+          {/* Content (FIXED: animate on mount) */}
+          <section className="relative z-20 p-20 md:p-16">
             <motion.div
               variants={containerVariants}
               initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
+              animate="visible"
               className="space-y-6"
             >
               <motion.h2
@@ -158,7 +156,7 @@ const Events = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className=" mx-auto px-6 py-24"
+        className="max-w-7xl mx-auto px-6 py-24"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {eventsData.map(event => (
@@ -166,8 +164,6 @@ const Events = () => {
           ))}
         </div>
       </motion.section>
-
-      
     </motion.div>
   );
 };

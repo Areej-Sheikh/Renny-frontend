@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MdWorkOutline, MdCurrencyRupee } from 'react-icons/md';
 import banner from '../../assets/careerBanner.webp';
+import { Link } from 'react-router-dom';
+
 
 /* ================= JOB DATA ================= */
 const jobsData = {
@@ -108,13 +110,18 @@ const JobDetails = () => {
             </div>
           </div>
 
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 bg-black text-white rounded-md font-medium transition justify-self-center md:justify-self-end"
+          <Link
+            to={`/careers/${jobId}/apply`}
+            className="justify-self-center md:justify-self-end"
           >
-            Apply Now
-          </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 bg-black text-white rounded-md font-medium transition"
+            >
+              Apply Now
+            </motion.button>
+          </Link>
         </motion.div>
 
         {/* ================= GRID 2 : CONTENT ================= */}
@@ -136,13 +143,18 @@ const JobDetails = () => {
 
           {/* Bottom Apply Button */}
           <div className="flex justify-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full md:w-auto px-9 py-3 bg-black text-white rounded-md font-medium transition"
+            <Link
+              to={`/careers/${jobId}/apply`}
+              className="justify-self-center md:justify-self-end"
             >
-              Apply Now
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-black text-white rounded-md font-medium transition"
+              >
+                Apply Now
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
       </div>

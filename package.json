@@ -22,6 +22,7 @@
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^10.0.0",
     "react-parallax": "^3.5.2",
+    "react-phone-input-2": "^2.15.1",
     "react-router-dom": "^7.10.1",
     "react-toastify": "^11.0.5",
     "swiper": "^12.0.3",

@@ -28,13 +28,13 @@ const KwikstageScaffolding = () => {
   return (
     <div className="font-helvetica">
       <div className="flex flex-col items-center font-poppins justify-center px-6 py-16 bg-white">
-        <h1 className="text-[65px] text-blue font-semibold text-center">
-          Kwikstage Scaffolding Expert <br /> Insights for Better <br />{' '}
+        <h1 className="text-4xl md:text-[65px] text-blue font-semibold text-center leading-tight">
+          Kwikstage Scaffolding Expert <br className="hidden md:block" /> Insights for Better <br className="hidden md:block" />{' '}
           Construction Performance
         </h1>
         <span className="font-semibold text-center mb-9">December 9, 2025</span>
-        <img src={blog1} alt="" className="w-5xl" />
-        <div className="px-6 py-16">
+        <img src={blog1} alt="" className="w-full max-w-5xl rounded-lg" />
+        <div className="px-6 py-16 w-full max-w-5xl">
           <p className="mb-5 leading-relaxed text-gray-700">
             Construction projects demand dependable systems that can adapt to
             diverse site challenges while ensuring productivity and worker
@@ -381,10 +381,10 @@ const KwikstageScaffolding = () => {
             </p>
           </div>
         </div>
-        <div className="border-t w-full pt-6 flex items-center justify-between">
-          <Link to="/scaffolding-formworks-innovation/">Previous </Link>
-          <div className="flex gap-4">
-            <Link className="ml-4"> Share This Post</Link>
+        <div className="border-t w-full pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <Link to="/scaffolding-formworks-innovation/" className="text-gray-600 hover:text-blue transition font-medium">Previous </Link>
+          <div className="flex gap-4 items-center">
+            <span className="text-gray-600">Share This Post</span>
             {socialLinks.map((item, index) => (
               <Link
                 key={index}
@@ -403,7 +403,7 @@ const KwikstageScaffolding = () => {
           <h1 className="text-xl font-semibold text-blue text-center hover:text-blue-800 m-10 ">
             Related Posts
           </h1>
-          <div className="flex gap-6 items-center justify-center w-4xl rounded-lg shadow-md">
+          <div className="flex flex-col md:flex-row gap-6 items-center justify-center w-full max-w-4xl rounded-lg shadow-md">
             {' '}
             {/* Blog 2 */}
             <BlogCard

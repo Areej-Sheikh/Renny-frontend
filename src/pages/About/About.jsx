@@ -130,7 +130,7 @@ const About = () => {
   return (
     <div className="w-full bg-black text-white font-helvetica">
       {/* ================= HERO ================= */}
-      <section className="relative w-screen h-screen overflow-hidden">
+      <section className="relative w-full h-[50vh] md:h-screen overflow-hidden">
         <video
           className="absolute inset-0 w-full h-full object-cover"
           src={aboutVideo}
@@ -162,7 +162,7 @@ const About = () => {
         />
         <div className="absolute inset-0 bg-black/60"></div>
 
-        <div className="relative z-10 mx-auto grid lg:grid-cols-[65%_35%] gap-16 px-6 md:px-16 py-20">
+        <div className="relative z-10 mx-auto grid grid-cols-1 lg:grid-cols-[65%_35%] gap-16 px-6 md:px-16 py-20">
           <motion.div
             className="space-y-6"
             initial={{ opacity: 0, x: -80 }}
@@ -175,10 +175,7 @@ const About = () => {
             </h1>
 
             <p className="text-gray-200 leading-relaxed">
-              Founded in 1996, Renny Strips Limited is a fully integrated
-              structural products manufacturer headquartered in Ludhiana,
-              Punjab. The Company operates 3 integrated manufacturing units,
-              providing end-to-end finished products across global markets.
+             Founded in 1996, Renny Strips Limited is a fully integrated structural products manufacturer headquartered in Ludhiana, Punjab. The Company operates 3 integrated manufacturing units, providing end-to-end finished products. Renny operates three induction furnaces with a total melting capacity of 199,200 TPA (versus an industry average of 65,000–75,000 TPA), supported by two continuous casting lines and two rolling mills producing MS billets, wire rods, and narrow-width HR coils. A downstream unit manufactures ERW black and galvanized pipes and tubes, along with scaffolding and formwork systems, using largely in-house inputs, positioning Renny among the few vertically integrated players in India across this value chain. The Company’s scaffolding and formwork portfolio exceeds 1,000 SKUs, supplied to customers across 5 continents and serves the construction, automotive, water, oil & gas, and fabrication sectors.
             </p>
           </motion.div>
 
@@ -195,7 +192,7 @@ const About = () => {
               { value: 1000, label: 'Workforce' },
             ].map((item, i) => (
               <div key={i} className="text-center">
-                <p className="text-5xl text-sky-400">
+                <p className="text-3xl md:text-5xl text-sky-400">
                   {inView ? (
                     <CountUp end={item.value} separator={item.separator} />
                   ) : (
@@ -214,13 +211,12 @@ const About = () => {
       <section className="bg-[#F8F8F8] py-24 text-black">
         <div className="mx-auto px-6 md:px-16">
                 <motion.h1
-          className="text-[48px] font-bold ml-20 w-full text-center"
+          className="text-[32px] md:text-[48px] font-bold w-full text-center mb-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Renny's Timeline 
-          <div className="w-80 h-0.5 bg-blue mx-auto rounded-full mb-10" />
+          Timeline 
         </motion.h1>
 
           <div className="relative mb-20">
@@ -229,12 +225,12 @@ const About = () => {
               <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gray-300 -translate-y-1/2" />
 
               {/* Timeline items */}
-              <div className="relative flex justify-between items-center">
+              <div className="relative flex justify-between items-center overflow-x-auto pb-4 gap-8 min-w-[800px] md:min-w-0">
                 {timelineData.map((item, index) => (
                   <button
                     key={index}
                     onClick={() => handleTimelineClick(index)}
-                    className="flex flex-col items-center relative"
+                    className="flex flex-col items-center relative shrink-0"
                   >
                     {/* Year */}
                     <span
@@ -263,7 +259,7 @@ const About = () => {
 
           <motion.div
             key={activeIndex}
-            className="grid lg:grid-cols-2 gap-20"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -279,14 +275,14 @@ const About = () => {
             <img
               src={timelineData[activeIndex].image}
               alt=""
-              className="h-[420px] w-full object-cover bg-amber-500 rounded-xl"
+              className="h-[300px] md:h-[420px] w-full object-cover bg-amber-500 rounded-xl"
             />
           </motion.div>
         </div>
       </section>
 
       {/* ================= GALLERY ================= */}
-      <section className="relative w-screen h-[550px] overflow-hidden">
+      <section className="relative w-full h-[300px] md:h-[550px] overflow-hidden">
         <motion.img
           key={currentSlide}
           src={galleryImages[currentSlide]}

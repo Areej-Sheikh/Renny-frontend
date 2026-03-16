@@ -1,8 +1,9 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import banner from '../../assets/eventsbanner.webp';
 import newsvideo from '../../assets/newsvideo.webm';
+import MobileMediaVideo from '../../assets/MobileMediaVideo.webm'
 
 import EventCard from '../../components/EventCard';
 
@@ -36,7 +37,7 @@ const Events = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/events');
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/events`);
         const json = await res.json();
 
         if (!json.success) throw new Error('Failed to fetch events');
@@ -73,7 +74,7 @@ const Events = () => {
     <motion.div className="font-helvetica overflow-hidden min-h-screen">
       {/* Banner */}
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden mb-12"
+        className="relative h-[50vh] md:h-[100vh] w-full overflow-hidden mb-12"
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
@@ -90,16 +91,16 @@ const Events = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="relative z-10 text-white text-6xl md:text-7xl font-bold 
-                     flex items-end h-full py-10 px-10"
+          className="relative z-10 text-white text-4xl md:text-6xl lg:text-7xl font-bold 
+                     flex items-end h-full py-10 px-6 md:px-10"
         >
           Events
         </motion.h1>
       </motion.section>
 
       {/* Spotlight section */}
-      <section className="flex items-center justify-center">
-        <div className="relative h-[550px] w-6xl mt-20 rounded-4xl overflow-hidden">
+      <section className="flex items-center justify-center px-6">
+        <div className="relative h-[400px] md:h-[550px] w-full max-w-6xl mt-12 md:mt-20 rounded-4xl overflow-hidden">
           {/* Background Video */}
           <video
             src={newsvideo}
@@ -114,16 +115,16 @@ const Events = () => {
           <div className="absolute inset-0 bg-black/60 z-10" />
 
           {/* Content (FIXED: animate on mount) */}
-          <section className="relative z-20 p-20 md:p-16">
+          <section className="relative z-20 p-8 md:p-16">
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="space-y-6"
+              className="space-y-4 md:space-y-6"
             >
               <motion.h2
                 variants={itemVariants}
-                className="text-4xl md:text-5xl mt-20 font-bold text-white text-center"
+                className="text-2xl md:text-5xl mt-10 md:mt-20 font-bold text-white text-center"
               >
                 Celebrating Moments That Matter
               </motion.h2>

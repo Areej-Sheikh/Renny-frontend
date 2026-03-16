@@ -2,32 +2,28 @@ import BlogCard from '../../components/BlogCard.jsx';
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import axios from 'axios'; // Import Axios
-import { useScroll, useTransform, useInView } from 'framer-motion';
+import axios from 'axios';
 
 // Assets
 import blogsbanner from '../../assets/blogsbanner.webp';
+import MobileMediaVideo from '../../assets/MobileMediaVideo.webm'
 import newsvideo from '../../assets/newsvideo.webm';
 
 const Blogs = () => {
-  // 1. State for Dynamic Data
   const [blogsData, setBlogsData] = useState([]);
   const [activeBlog, setActiveBlog] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   const [sortType, setSortType] = useState('All');
   const [dateSortOrder, setDateSortOrder] = useState('newest');
   const [open, setOpen] = useState(false);
-  
-  const leftRefs = useRef([]);
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-20% 0px' });
 
-  // 2. Fetch Data from Backend
+  const leftRefs = useRef([]);
+
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/api/blogs');
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs`);
         const fetchedBlogs = res.data.data || [];
         setBlogsData(fetchedBlogs);
         if (fetchedBlogs.length > 0) {
@@ -46,7 +42,7 @@ const Blogs = () => {
     hidden: {},
     visible: { transition: { staggerChildren: 0.2 } },
   };
-  
+
   const itemVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
@@ -56,16 +52,16 @@ const Blogs = () => {
     },
   };
 
-  // 3. Updated Filter Logic
   const filteredBlogs = blogsData
     .filter(blog => {
-      const blogDate = blog.publishedAt || blog.createdAt;
+      // Prioritize display date field
+      const blogDate = blog.date || blog.publishedAt || blog.createdAt;
       if (sortType === 'All') return true;
       return new Date(blogDate).getFullYear().toString() === sortType;
     })
     .sort((a, b) => {
-      const dateA = new Date(a.publishedAt || a.createdAt);
-      const dateB = new Date(b.publishedAt || b.createdAt);
+      const dateA = new Date(a.date || a.publishedAt || a.createdAt);
+      const dateB = new Date(b.date || b.publishedAt || b.createdAt);
       return dateSortOrder === 'newest' ? dateB - dateA : dateA - dateB;
     });
 
@@ -94,7 +90,7 @@ const Blogs = () => {
     <div className="font-helvetica overflow-hidden min-h-screen">
       {/* Banner */}
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden mb-12"
+        className="relative h-[50vh] md:h-[100vh] w-full overflow-hidden mb-12"
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
@@ -105,27 +101,31 @@ const Blogs = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
-          className="relative z-10 text-white text-6xl md:text-7xl font-bold flex items-end justify-start h-full py-10 px-10"
+          className="relative z-10 text-white text-4xl md:text-6xl lg:text-7xl font-bold flex items-end justify-start h-full py-10 px-6 md:px-10"
         >
           Blogs
         </motion.h1>
       </motion.section>
 
-      {/* Spotlight section */}
-      <section className="flex items-center justify-center">
-        <div className="relative h-[550px] w-6xl mt-20 rounded-4xl overflow-hidden ">
+      <section className="flex items-center justify-center px-6">
+        <div className="relative h-[400px] md:h-[550px] w-full max-w-6xl mt-12 md:mt-20 rounded-4xl overflow-hidden">
           <video src={newsvideo} autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0" />
           <div className="absolute inset-0 bg-black/60 z-10" />
-          <section ref={ref} className="relative z-20 p-20 md:p-16">
-            <motion.div variants={containerVariants} initial="hidden" animate={inView ? 'visible' : 'hidden'} className="space-y-6">
-              <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl mt-20 font-bold text-white text-center">
+          <section className="relative z-20 p-8 md:p-16">
+            <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-4 md:space-y-6">
+              <motion.h2 variants={itemVariants} className="text-2xl md:text-5xl mt-10 md:mt-20 font-bold text-white text-center">
                 Sharing Ideas That Matter
               </motion.h2>
               <motion.h3 variants={itemVariants} className="text-2xl md:text-3xl font-semibold text-white/90 text-center">
                 Through Industry Insights
               </motion.h3>
               <motion.p variants={itemVariants} className="text-white/80 text-center md:text-lg leading-relaxed max-w-3xl mx-auto">
-                Our blog is a space where knowledge meets experience. At Renny Strips, we share insights...
+                Our blog is a space where knowledge meets experience. At Renny
+                Strips, we share insights on industry trends, innovations,
+                leadership perspectives, and company milestones. Each article
+                reflects our commitment to excellence, continuous learning, and
+                contributing meaningful thought leadership to the evolving steel
+                industry.
               </motion.p>
             </motion.div>
           </section>
@@ -133,7 +133,7 @@ const Blogs = () => {
       </section>
 
       <motion.div
-        className="flex flex-col lg:flex-row mb-20 mt-20 gap-8"
+        className="flex flex-col lg:flex-row mb-20 mt-12 md:mt-20 gap-8 px-6"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
@@ -211,7 +211,7 @@ const Blogs = () => {
                 <img src={activeBlog.mainImage} alt={activeBlog.title} className="w-full h-72 object-cover rounded-2xl mb-6" />
                 <h2 className="text-2xl font-bold mb-2 text-center">{activeBlog.title}</h2>
                 <p className="text-gray-500 mb-4">
-                   {new Date(activeBlog.publishedAt || activeBlog.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                  {new Date(activeBlog.date || activeBlog.publishedAt || activeBlog.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                 </p>
                 <p className="text-gray-700 mb-6 leading-relaxed text-center max-w-3xl">
                   {activeBlog.excerpt}

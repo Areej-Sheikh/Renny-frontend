@@ -3,28 +3,27 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-import Navbar from "../../components/Navbar"; 
-import Footer from "../../components/Footer"; 
-import ipoHero from "../../assets/investorbanner.webp"; 
+
+import ipoHero from "../../assets/investorbanner.webp";
 import InvestorSidebar from "../../components/InvestorSidebar";
 
 const IPODocs = () => {
   const [docs, setDocs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   // Modal States
   const [showModal, setShowModal] = useState(false);
   const [selectedUrl, setSelectedUrl] = useState("");
 
   const brandColor = "#292C44";
-  const mainHeadingFont = "font-['Helvetica','Arial',sans-serif] text-[37px] font-semibold";
+  const mainHeadingFont = "font-['Helvetica','Arial',sans-serif] text-2xl lg:text-[37px] font-semibold";
   const subHeadingFont = "font-['Helvetica','Arial',sans-serif] text-[18px] font-semibold";
   const btnClass = "text-white px-5 py-2.5 rounded-lg text-[14px] font-medium hover:opacity-90 transition-all duration-300 font-['Helvetica','Arial',sans-serif]";
 
   useEffect(() => {
     const fetchIpoDocs = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/ipo-documents");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/ipo-documents`);
         setDocs(response.data);
       } catch (error) {
         console.error("Error fetching IPO Docs:", error);
@@ -55,60 +54,68 @@ const IPODocs = () => {
 
   return (
     <div className="font-['Helvetica','Arial',sans-serif]">
-      <Navbar />
-      
-      {/* HERO SECTION */}
-      <section className="relative w-full h-[55vh] overflow-hidden">
-        <img src={ipoHero} alt="IPO Documents" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute bottom-16 left-0 w-full px-6 lg:px-20 z-10">
-          <motion.h1 
-            initial={{ opacity: 0, x: -20 }} 
-            animate={{ opacity: 1, x: 0 }} 
-            transition={{ duration: 0.8 }} 
-            className={`text-white ${mainHeadingFont}`}
-          >
-            IPO Documents
-          </motion.h1>
-        </div>
-      </section>
+
+      {/* Banner */}
+      <motion.section
+        className="relative h-[50vh] md:h-[100vh] w-full overflow-hidden mb-12"
+        initial={{ opacity: 0, scale: 1.2 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.4, ease: 'easeOut' }}
+      >
+        <img
+          src={ipoHero}
+          alt="IPO Documents Banner"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
+          className="relative z-10 text-white text-4xl md:text-6xl lg:text-7xl font-bold flex items-end justify-start h-full py-10 px-6 md:px-10"
+        >
+          IPO Documents
+        </motion.h1>
+      </motion.section>
 
       {/* MAIN CONTENT SECTION */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="pt-20 pb-32 bg-white px-6"
       >
-        <div className="max-w-[1400px] mx-auto grid grid-cols-12 gap-12">
-          <div className="col-span-12 lg:col-span-8">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          <div className="col-span-1 lg:col-span-8">
             <div className="inline-block text-white px-5 py-1.5 rounded-md mb-6 font-semibold text-[13px] tracking-wide" style={{ backgroundColor: brandColor }}>
               INVESTOR RELATIONS
             </div>
             <h2 className={`${mainHeadingFont} mb-12 text-gray-900`}>IPO Documents</h2>
 
             <div className="mb-8">
-               <button className="text-white px-6 py-2 rounded font-bold text-[14px] shadow-sm cursor-default" style={{ backgroundColor: brandColor }}>
-                  Offer Documents
-               </button>
+              <button className="text-white px-6 py-2 rounded font-bold text-[14px] shadow-sm cursor-default" style={{ backgroundColor: brandColor }}>
+                Offer Documents
+              </button>
             </div>
-            
+
             <div className="space-y-4">
               {isLoading ? (
                 <div className="text-gray-400 animate-pulse">Loading documents...</div>
               ) : docs.length > 0 ? (
                 docs.map((doc, i) => (
-                  <motion.div 
+                  <motion.div
                     key={doc._id || i}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="flex justify-between items-center p-6 bg-gray-50 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                    className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 p-6 bg-gray-50 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
                   >
                     <span className={subHeadingFont}>{doc.title}</span>
-                    <button 
+                    <button
                       onClick={() => handleOpenDisclaimer(doc.url)}
-                      className={btnClass} 
+                      className={`${btnClass} w-full md:w-auto`}
                       style={{ backgroundColor: brandColor }}
                     >
                       Click here
@@ -121,8 +128,8 @@ const IPODocs = () => {
             </div>
           </div>
 
-          <div className="col-span-12 lg:col-span-4 sticky top-28">
-             <InvestorSidebar />
+          <div className="col-span-1 lg:col-span-4">
+            <InvestorSidebar />
           </div>
         </div>
       </motion.section>
@@ -131,7 +138,7 @@ const IPODocs = () => {
       <AnimatePresence>
         {showModal && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -143,7 +150,7 @@ const IPODocs = () => {
               </div>
 
               {/* Modal Body (Scrollable) */}
-              <div className="p-8 overflow-y-auto text-gray-700 text-[14px] leading-relaxed space-y-4 text-justify">
+              <div className="p-4 md:p-8 overflow-y-auto text-gray-700 text-xs md:text-[14px] leading-relaxed space-y-4 text-justify">
                 <p className="font-bold text-gray-900 uppercase">
                   PLEASE READ THIS NOTICE CAREFULLY. IT APPLIES TO ALL PERSONS WHO VIEW THIS WEBSITE. THESE MATERIALS ARE NOT DIRECTED AT OR INTENDED TO BE ACCESSED BY PERSONS LOCATED OUTSIDE INDIA.
                 </p>
@@ -178,13 +185,13 @@ const IPODocs = () => {
 
               {/* Modal Footer (Buttons) */}
               <div className="p-6 border-t border-gray-100 bg-gray-50 flex flex-col sm:flex-row justify-end gap-3">
-                <button 
+                <button
                   onClick={handleCancel}
                   className="px-8 py-2.5 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
                 >
                   I Do Not Confirm
                 </button>
-                <button 
+                <button
                   onClick={handleConfirm}
                   className="px-8 py-2.5 text-white rounded-lg font-semibold hover:opacity-90 transition-opacity"
                   style={{ backgroundColor: "#0066b2" }} // Standard blue from image
@@ -197,7 +204,7 @@ const IPODocs = () => {
         )}
       </AnimatePresence>
 
-    
+
     </div>
   );
 };

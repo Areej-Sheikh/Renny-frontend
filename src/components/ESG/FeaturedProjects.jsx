@@ -10,6 +10,7 @@ const FeaturedProjects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
+
     {
       img: adoptionSchool,
       title: "Adoption of School",
@@ -74,10 +75,9 @@ const FeaturedProjects = () => {
       >
         <div className="mb-6 w-fit flex flex-col items-center">
           <h2
-            className="font-bold pb-2 whitespace-nowrap text-center"
+            className="font-bold pb-2 whitespace-nowrap text-center text-3xl md:text-5xl lg:text-[48px]"
             style={{
               fontFamily: "var(--font-helvetica)",
-              fontSize: "48px",
               lineHeight: "1.2",
               background: "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
               WebkitBackgroundClip: "text",
@@ -95,8 +95,7 @@ const FeaturedProjects = () => {
           className="text-[16px] md:text-[18px] text-[#333] text-center max-w-4xl"
           style={{ fontFamily: "var(--font-helvetica)" }}
         >
-          Our featured projects showcase real-world actions that involve
-          sustainability, empower communities, and promote responsible growth.
+          Our featured projects showcase real-world actions that involve sustainability, empower communities, and promote responsible growth.
         </p>
       </motion.div>
 
@@ -130,7 +129,7 @@ const FeaturedProjects = () => {
                 }}
               />
 
-              <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-black/20 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-6 right-6 bg-white/20 backdrop-blur-md border border-white/30 px-5 py-2 rounded-full text-white font-bold tracking-wider text-[12px] shadow-xl">
                   READ MORE
                 </div>
@@ -138,7 +137,7 @@ const FeaturedProjects = () => {
             </div>
             {/* ... rest of the code ... */}
             <h4
-              className="text-[20px] font-bold text-center px-4 leading-snug group-hover:text-[#00A63E] transition-colors duration-300"
+              className="text-lg md:text-[20px] font-bold text-center px-4 leading-snug group-hover:text-[#00A63E] transition-colors duration-300"
               style={{ fontFamily: "var(--font-helvetica)" }}
             >
               {project.title}

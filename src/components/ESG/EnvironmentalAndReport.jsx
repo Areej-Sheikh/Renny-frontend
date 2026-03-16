@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import ReCAPTCHA from "react-google-recaptcha";
+import axios from "axios"; // Added for API connection
 
 // Asset Imports
 import envSustainabilityImg from "../../assets/Environmental Sustainability.webp";
@@ -8,7 +9,7 @@ import sustainableDevImg from "../../assets/Sustainable_Development.webp";
 import greenLeafBG from "../../assets/GreenLeaf.webp";
 
 /* --------------------------------------------------------------------------
-   Animation Components (Reference-based)
+   Animation Components
    -------------------------------------------------------------------------- */
 const AnimatedSection = ({ children, xValue = 0, yValue = 0, delay = 0 }) => {
   const ref = useRef(null);
@@ -40,12 +41,17 @@ const AnimatedSection = ({ children, xValue = 0, yValue = 0, delay = 0 }) => {
   );
 };
 
-/* --------------------------------------------------------------------------
-   Main Component
-   -------------------------------------------------------------------------- */
 const EnvironmentalAndReport = () => {
   const [activeBox, setActiveBox] = useState(0);
   const recaptchaRef = useRef();
+
+  // --- BACKEND INTEGRATION STATE ---
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: ""
+  });
 
   const stewardshipData = [
     {
@@ -66,109 +72,123 @@ const EnvironmentalAndReport = () => {
     },
   ];
 
-  const handleDownload = (e) => {
+  // --- HANDLE INPUT CHANGES ---
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // --- SUBMIT TO BACKEND ---
+  const handleDownload = async (e) => {
     e.preventDefault();
     const token = recaptchaRef.current.getValue();
+
     if (!token) {
       alert("Please verify that you are not a robot.");
       return;
     }
-    alert("Captcha Verified! Download starting...");
+
+    setLoading(true);
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/sustainability/submit`, {
+        ...formData,
+        captchaToken: token
+      });
+
+      if (response.data.success) {
+        alert("Success! Your interest has been recorded and the report download is starting.");
+        // Optional: Trigger actual file download here
+        // window.open("/path-to-your-pdf.pdf", "_blank");
+
+        // Reset form
+        setFormData({ name: "", email: "", phone: "" });
+        recaptchaRef.current.reset();
+      }
+    } catch (error) {
+      alert(error.response?.data?.message || "Failed to submit. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="bg-white overflow-hidden">
-   {/* 7. Environmental Stewardship Section */}
- <section className="px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-16 bg-white overflow-hidden">
-    <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
-      
-      {/* Left Side: Restored to original compact card sizes */}
-      <div className="w-full lg:w-1/2 shrink-0 ">
-        <AnimatedSection xValue={-100}>
-          <div className="mb-8 relative w-fit m">
-            <h2
-              className="font-bold pb-4 tracking-tight"
-              style={{
-                fontFamily: "var(--font-helvetica)",
-                fontSize: "48px",
-                background: "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                lineHeight: "1.2",
-                whiteSpace: "nowrap",
-                display: "block",
-              }}
-            >
-              Environmental Stewardship
-            </h2>
-            <div className="w-full h-0.5 bg-blue mx-auto rounded-full mt-1" />
-          </div>
-
-          {/* space-y-4 restored for tighter vertical spacing */}
-          <div className="space-y-4">
-            {stewardshipData.map((item, index) => {
-              const isActive = activeBox === index;
-              return (
-                <motion.div
-                  key={index}
-                  onClick={() => setActiveBox(index)}
-                  /* p-4 and rounded-lg restored for previous card height */
-                  className={`group p-4 rounded-lg border transition-all duration-300 cursor-pointer shadow-sm ${
-                    isActive
-                      ? "bg-[#292c44] border-[#292c44]"
-                      : "bg-[#f8faff] border-gray-200 hover:bg-[#292c44]"
-                  }`}
+      {/* 7. Environmental Stewardship Section */}
+      <section className="px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-16 bg-white overflow-hidden">
+        <div className="max-w-[1440px] mx-auto flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+          <div className="w-full lg:w-1/2 shrink-0 ">
+            <AnimatedSection xValue={-100}>
+              <div className="mb-8 relative w-fit m">
+                <h2
+                  className="font-bold pb-4 tracking-tight text-3xl md:text-5xl lg:text-[48px]"
+                  style={{
+                    fontFamily: "var(--font-helvetica)",
+                    background: "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    lineHeight: "1.2",
+                    whiteSpace: "nowrap",
+                    display: "block",
+                  }}
                 >
-                  <h3
-                    /* text-[17px] restored */
-                    className={`text-[17px] font-bold mb-2 transition-colors duration-300 ${
-                      isActive ? "text-white" : "text-black group-hover:text-white"
-                    }`}
-                    style={{ fontFamily: "var(--font-helvetica)" }}
-                  >
-                    {item.title}
-                  </h3>
-                  <p
-                    /* text-[14px] restored */
-                    className={`text-[14px] leading-relaxed transition-colors duration-300 ${
-                      isActive ? "text-gray-200" : "text-gray-600 group-hover:text-gray-200"
-                    }`}
-                    style={{ fontFamily: "var(--font-helvetica)" }}
-                  >
-                    {item.desc}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </AnimatedSection>
-      </div>
+                  Environmental Stewardship
+                </h2>
+                <div className="w-full h-0.5 bg-blue mx-auto rounded-full mt-1" />
+              </div>
 
-      {/* Right Side: Remains large and square to fill the section space */}
-      <div className="w-full lg:w-1/2 flex justify-end">
-        <AnimatedSection xValue={100} delay={1}>
-          <div
-            className="overflow-hidden rounded-[2.5rem] shadow-2xl w-full"
-            style={{
-              height: "clamp(500px, 50vw, 650px)",
-            }}
-          >
-            <motion.img
-              whileHover={{ scale: 1.05 }}
-              src={envSustainabilityImg}
-              alt="Environmental Sustainability"
-              className="w-full h-full object-cover cursor-pointer"
-            />
+              <div className="space-y-4">
+                {stewardshipData.map((item, index) => {
+                  const isActive = activeBox === index;
+                  return (
+                    <motion.div
+                      key={index}
+                      onClick={() => setActiveBox(index)}
+                      className={`group p-4 rounded-lg border transition-all duration-300 cursor-pointer shadow-sm ${isActive
+                          ? "bg-[#292c44] border-[#292c44]"
+                          : "bg-[#f8faff] border-gray-200 hover:bg-[#292c44]"
+                        }`}
+                    >
+                      <h3
+                        className={`text-[17px] font-bold mb-2 transition-colors duration-300 ${isActive ? "text-white" : "text-black group-hover:text-white"
+                          }`}
+                        style={{ fontFamily: "var(--font-helvetica)" }}
+                      >
+                        {item.title}
+                      </h3>
+                      <p
+                        className={`text-[14px] leading-relaxed transition-colors duration-300 ${isActive ? "text-gray-200" : "text-gray-600 group-hover:text-gray-200"
+                          }`}
+                        style={{ fontFamily: "var(--font-helvetica)" }}
+                      >
+                        {item.desc}
+                      </p>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </AnimatedSection>
           </div>
-        </AnimatedSection>
-      </div>
-    </div>
-  </section>
+
+          <div className="w-full lg:w-1/2 flex justify-end">
+            <AnimatedSection xValue={100} delay={1}>
+              <div
+                className="overflow-hidden rounded-[2.5rem] shadow-2xl w-full h-[300px] md:h-[500px] lg:h-[650px]"
+              >
+                <motion.img
+                  whileHover={{ scale: 1.05 }}
+                  src={envSustainabilityImg}
+                  alt="Environmental Sustainability"
+                  className="w-full h-full object-cover cursor-pointer"
+                />
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
       {/* 8. Download Emission Report Section */}
       <section className="py-20 px-6 md:px-16 lg:px-24 max-w-[1440px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
-          {/* Left: SDG Grid Image */}
           <div className="w-full lg:w-3/5">
             <AnimatedSection xValue={-50}>
               <img
@@ -179,9 +199,7 @@ const EnvironmentalAndReport = () => {
             </AnimatedSection>
           </div>
 
-          {/* Right: Background Leaf Image with Centered Form */}
           <div className="w-full lg:w-2/5 relative min-h-[650px] flex items-center justify-center rounded-[32px] overflow-hidden shadow-2xl">
-            {/* Background Image Container */}
             <div
               className="absolute inset-0 z-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${greenLeafBG})` }}
@@ -189,7 +207,6 @@ const EnvironmentalAndReport = () => {
               <div className="absolute inset-0 bg-black/10 backdrop-blur-[1px]" />
             </div>
 
-            {/* Perfect Center Centering for Form */}
             <div className="relative z-10 w-full flex items-center justify-center p-6">
               <AnimatedSection yValue={50} delay={2}>
                 <div className="w-full max-w-[400px] bg-white/85 backdrop-blur-lg rounded-[24px] p-8 shadow-xl border border-white/50">
@@ -216,6 +233,9 @@ const EnvironmentalAndReport = () => {
                       </label>
                       <input
                         type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
                         required
                         placeholder="Enter Name"
                         className="w-full p-3 rounded-lg border border-gray-200 bg-white focus:ring-2 focus:ring-[#19d366] outline-none transition-all"
@@ -228,6 +248,9 @@ const EnvironmentalAndReport = () => {
                       </label>
                       <input
                         type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         required
                         placeholder="email@company.com"
                         className="w-full p-3 rounded-lg border border-gray-200 bg-white focus:ring-2 focus:ring-[#19d366] outline-none transition-all"
@@ -240,6 +263,9 @@ const EnvironmentalAndReport = () => {
                       </label>
                       <input
                         type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
                         required
                         placeholder="+91 00000 00000"
                         className="w-full p-3 rounded-lg border border-gray-200 bg-white focus:ring-2 focus:ring-[#19d366] outline-none transition-all"
@@ -249,16 +275,17 @@ const EnvironmentalAndReport = () => {
                     <div className="py-2 flex justify-center scale-[0.8] origin-center">
                       <ReCAPTCHA
                         ref={recaptchaRef}
-                        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                        sitekey="6Lfg_FosAAAAAEsMqJ27TMIAO15FZ50wjREx_Gac"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full bg-[#3d6b3d] hover:bg-[#2a4d2a] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-md"
+                      disabled={loading}
+                      className={`w-full bg-[#3d6b3d] hover:bg-[#2a4d2a] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-md ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                       style={{ fontFamily: "var(--font-helvetica)" }}
                     >
-                      DOWNLOAD REPORT <span className="text-xl">›</span>
+                      {loading ? "PROCESSING..." : "DOWNLOAD REPORT"} <span className="text-xl">›</span>
                     </button>
                   </form>
                 </div>

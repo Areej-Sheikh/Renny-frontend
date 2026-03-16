@@ -1,9 +1,10 @@
 import newsbanner from '../../assets/newsbanner.webp';
 import newsvideo from '../../assets/newsvideo.webm';
+import MobileMediaVideo from '../../assets/MobileMediaVideo.webm'
 
 import { Link } from 'react-router-dom';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const News = () => {
   const [newsData, setNewsData] = useState([]);
@@ -14,7 +15,7 @@ const News = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/news');
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/news`);
         const data = await res.json();
 
         const formatted = data.map(item => ({
@@ -72,8 +73,7 @@ const News = () => {
     },
   };
 
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-20% 0px' });
+  /* Removed unused inView */
 
   const containerVariants = {
     hidden: {},
@@ -107,7 +107,7 @@ const News = () => {
     <div className="min-h-screen font-helvetica">
       {/* Banner */}
       <motion.section
-        className="relative h-[70vh] w-full overflow-hidden"
+        className="relative h-[50vh] md:h-[100vh] w-full overflow-hidden"
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
@@ -122,15 +122,15 @@ const News = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
-          className="relative z-10 text-white text-6xl md:text-7xl font-bold flex items-end justify-start h-full py-10 px-10"
+          className="relative z-10 text-white text-4xl md:text-6xl lg:text-7xl font-bold flex items-end justify-start h-full py-10 px-6 md:px-10"
         >
           News
         </motion.h1>
       </motion.section>
 
       {/* Spotlight */}
-      <section className="flex items-center justify-center">
-        <div className="relative h-[550px] w-6xl mt-20 rounded-4xl overflow-hidden">
+      <section className="flex items-center justify-center px-6">
+        <div className="relative h-[400px] md:h-[550px] w-full max-w-6xl mt-12 md:mt-20 rounded-4xl overflow-hidden">
           <video
             src={newsvideo}
             autoPlay
@@ -141,47 +141,47 @@ const News = () => {
           />
           <div className="absolute inset-0 bg-black/60 z-10" />
 
-         <section className="relative z-20 p-20 md:p-16">
-  <motion.div
-    variants={containerVariants}
-    initial="hidden"
-    animate="visible"
-    className="space-y-6"
-  >
-    <motion.h2
-      variants={itemVariants}
-      className="text-4xl md:text-5xl mt-20 font-bold text-white text-center"
-    >
-      Showcasing Our Journey
-    </motion.h2>
+          <section className="relative z-20 p-8 md:p-16">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="space-y-6"
+            >
+              <motion.h2
+                variants={itemVariants}
+                className="text-2xl md:text-5xl mt-10 md:mt-20 font-bold text-white text-center"
+              >
+                Showcasing Our Journey
+              </motion.h2>
 
-    <motion.h3
-      variants={itemVariants}
-      className="text-2xl md:text-3xl font-semibold text-white/90 text-center"
-    >
-      Through the Spotlight
-    </motion.h3>
+              <motion.h3
+                variants={itemVariants}
+                className="text-2xl md:text-3xl font-semibold text-white/90 text-center"
+              >
+                Through the Spotlight
+              </motion.h3>
 
-    <motion.p
-      variants={itemVariants}
-      className="text-white/80 text-center md:text-lg leading-relaxed max-w-3xl mx-auto"
-    >
-      At Renny Strips, our work and leadership continue to inspire
+              <motion.p
+                variants={itemVariants}
+                className="text-white/80 text-center md:text-lg leading-relaxed max-w-3xl mx-auto"
+              >
+                At Renny Strips, our work and leadership continue to inspire
                 stories of growth, innovation, and resilience. From prestigious
                 awards to industry recognitions and leadership features, our
                 journey has been highlighted across respected media platforms.
                 This coverage not only reflects our achievements but also
                 reinforces our commitment to shaping the future of the steel
                 industry with excellence and integrity.
-    </motion.p>
-  </motion.div>
-</section>
+              </motion.p>
+            </motion.div>
+          </section>
 
         </div>
       </section>
 
       {/* NEWS PANEL */}
-      <div className="flex flex-col lg:flex-row gap-8 mb-40 mt-16">
+      <div className="flex flex-col lg:flex-row gap-8 mb-40 mt-16 px-6">
         {/* Left Panel */}
         <motion.div
           variants={staggerContainer}
@@ -196,9 +196,8 @@ const News = () => {
               variants={listItem}
               onClick={() => setActiveNews(news)}
               whileHover={{ scale: 1.02 }}
-              className={`group relative flex items-center gap-4 w-full p-3 rounded-2xl text-left transition ${
-                activeNews.id === news.id ? 'bg-gray-100' : 'hover:bg-gray-50'
-              }`}
+              className={`group relative flex items-center gap-4 w-full p-3 rounded-2xl text-left transition ${activeNews.id === news.id ? 'bg-gray-100' : 'hover:bg-gray-50'
+                }`}
             >
               {activeNews.id === news.id && (
                 <motion.span

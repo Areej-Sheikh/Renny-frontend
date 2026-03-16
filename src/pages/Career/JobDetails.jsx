@@ -1,77 +1,78 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import axios from 'axios';
 import { motion } from 'framer-motion';
-import { MdWorkOutline, MdCurrencyRupee } from 'react-icons/md';
+import { MdWorkOutline, MdCurrencyRupee, MdBusiness } from 'react-icons/md';
 import banner from '../../assets/careerBanner.webp';
-import { Link } from 'react-router-dom';
-
-
-/* ================= JOB DATA ================= */
-const jobsData = {
-  'web-dev': {
-    title: 'Web Developer',
-    department: 'IT',
-    type: 'Full Time',
-    salary: '40,000 INR / Monthly',
-    description: `Renny, headquartered in Ludhiana, is a steel pipes, Formwork & scaffolding manufacturer renowned for its excellence in this dynamic industry landscape. With 3 strategically located, +state-of-the-art manufacturing facilities in Punjab, Renny boasts a production capacity of 250,000 MTPA. Serving both national & international markets through a strong network of distributors, the company is certified with ISO 9001:2015, ISO 14001:2015 & ISO 45001:2018.
-
-Specializing in the production of ERW Pipes & Tubes, Formwork & scaffolding crafted from premium quality HR Coils, Renny, adheres to core values of rigorous standards, excellence in innovation, sustainable manufacturing processes & unwavering customer satisfaction. The company's diverse & cost-effective product portfolio includes over 1,000 SKUs, establishing it as one of the foremost ERW Pipes & Tubes, Formwork & Scaffolding manufacturers in North India.
-
-Renny is at the forefront of driving India's industrial modernization, with a mission to open new markets through cutting-edge, eco-friendly innovations. The company operates across 4 divisions: Coil Division, Pipe division (producing MS black, Galvanized, Hollow sections such as Circular, Square & Rectangular), Formwork & Scaffolding & Industrial Paints. Renny caters to a broad spectrum of domestic & international needs. With a global presence, Renny serves clients in 40 Countries across 6 Continents.
-
-With a commitment to the highest industry standards and a visionary approach, Renny continues to propel forward, shaping the future of the Structural Steel Building Sector. `,
-    key: 'Creating dynamic websites',
-  },
-
-  'product-manager': {
-    title: 'Product Manager',
-    department: 'Engineering',
-    type: 'Full Time',
-    salary: '60,000 INR / Monthly',
-    description: `Renny, headquartered in Ludhiana, is a steel pipes, Formwork & scaffolding manufacturer renowned for its excellence in this dynamic industry landscape. With 3 strategically located, +state-of-the-art manufacturing facilities in Punjab, Renny boasts a production capacity of 250,000 MTPA. Serving both national & international markets through a strong network of distributors, the company is certified with ISO 9001:2015, ISO 14001:2015 & ISO 45001:2018.
-
-Specializing in the production of ERW Pipes & Tubes, Formwork & scaffolding crafted from premium quality HR Coils, Renny, adheres to core values of rigorous standards, excellence in innovation, sustainable manufacturing processes & unwavering customer satisfaction. The company's diverse & cost-effective product portfolio includes over 1,000 SKUs, establishing it as one of the foremost ERW Pipes & Tubes, Formwork & Scaffolding manufacturers in North India.
-
-Renny is at the forefront of driving India's industrial modernization, with a mission to open new markets through cutting-edge, eco-friendly innovations. The company operates across 4 divisions: Coil Division, Pipe division (producing MS black, Galvanized, Hollow sections such as Circular, Square & Rectangular), Formwork & Scaffolding & Industrial Paints. Renny caters to a broad spectrum of domestic & international needs. With a global presence, Renny serves clients in 40 Countries across 6 Continents.
-
-With a commitment to the highest industry standards and a visionary approach, Renny continues to propel forward, shaping the future of the Structural Steel Building Sector.`,
-    key: 'Manage the Product, Analyse the data',
-  },
-};
 
 const JobDetails = () => {
-  const { jobId } = useParams();
-  const job = jobsData[jobId];
+  const { jobId } = useParams(); // This is the MongoDB _id from the URL
+  const [job, setJob] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const CMS_API = `${import.meta.env.VITE_API_URL}/cms/career/jobs`;
+
+  // --- FETCH SPECIFIC JOB DATA ---
+  useEffect(() => {
+    const fetchJobDetails = async () => {
+      try {
+        setLoading(true);
+        // We fetch all jobs and find the one matching the ID 
+        // Or you can create a specific GET /jobs/:id route on your backend
+        const res = await axios.get(CMS_API);
+        if (res.data.success) {
+          const foundJob = res.data.data.find(j => j._id === jobId);
+          setJob(foundJob);
+        }
+      } catch (err) {
+        console.error("Error fetching job details:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchJobDetails();
+  }, [jobId]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="animate-pulse text-[#292c44] font-bold">Loading Position Details...</div>
+      </div>
+    );
+  }
 
   if (!job) {
-    return <div className="p-10 text-center">Job not found</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-400">Position Not Found</h2>
+          <Link to="/careers" className="text-blue-600 underline mt-4 block">Back to Job Board</Link>
+        </div>
+      </div>
+    );
   }
 
   return (
     <section className="w-full bg-gray-100 ">
       {/* Banner */}
       <motion.section
-        className="relative h-[100vh] w-full overflow-hidden  mb-12"
+        className="relative h-[50vh] md:h-[100vh] w-full overflow-hidden mb-12"
         initial={{ opacity: 0, scale: 1.2 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: 'easeOut' }}
       >
-        <img
-          src={banner}
-          alt="Blogs Banner"
-          className="absolute inset-0 w-full h-full  object-cover"
-        />
+        <img src={banner} alt="Career Banner" className="absolute inset-0 w-full h-full object-cover" />
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
-          className="relative z-10 text-white text-6xl md:text-7xl font-bold 
-                 flex items-end justify-start h-full py-10 px-10"
+          className="relative z-10 text-white text-4xl md:text-6xl lg:text-7xl font-bold flex items-end justify-start h-full py-10 px-6 md:px-10"
         >
           Job Details
         </motion.h1>
       </motion.section>
-      <div className="max-w-4xl mx-auto text-center mb-20">
+
+      <div className="max-w-4xl mx-auto text-center mb-20 px-4">
         {/* ================= HEADER ================= */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -79,10 +80,10 @@ const JobDetails = () => {
           transition={{ duration: 0.6 }}
           className="mb-10"
         >
-          <p className="text-sm text-gray-500 uppercase tracking-wide">
+          <p className="text-sm text-gray-500 uppercase tracking-widest font-bold">
             {job.department}
           </p>
-          <h1 className="text-4xl md:text-5xl font-semibold mt-2">
+          <h1 className="text-4xl md:text-5xl font-bold mt-2 text-[#292c44]">
             {job.title}
           </h1>
         </motion.div>
@@ -92,32 +93,29 @@ const JobDetails = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-white rounded-xl shadow-md p-6 md:p-8 grid grid-cols-1 md:grid-cols-3 items-center gap-6 mb-12"
+          className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 md:p-8 grid grid-cols-1 md:grid-cols-3 items-center gap-6 mb-12"
         >
           <div>
-            <p className="text-sm text-gray-500 mb-1">Job Type</p>
-            <div className="flex items-center justify-center  gap-2 font-medium">
+            <p className="text-[10px] font-black uppercase text-gray-400 tracking-widest mb-1">Job Type</p>
+            <div className="flex items-center justify-center gap-2 font-bold text-[#292c44]">
               <MdWorkOutline />
-              {job.type}
+              {job.jobType}
             </div>
           </div>
 
           <div>
-            <p className="text-sm text-gray-500 mb-1">Salary</p>
-            <div className="flex items-center justify-center md:justify-start gap-2 font-medium">
+            <p className="text-[10px] font-black uppercase text-gray-400 tracking-widest mb-1">Salary Range</p>
+            <div className="flex items-center justify-center gap-2 font-bold text-green-600">
               <MdCurrencyRupee />
-              {job.salary}
+              {job.salary || "Disclosed on Interview"}
             </div>
           </div>
 
-          <Link
-            to={`/careers/${jobId}/apply`}
-            className="justify-self-center md:justify-self-end"
-          >
+          <Link to={`/careers/${jobId}/apply`} className="justify-self-center md:justify-self-end">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-black text-white rounded-md font-medium transition"
+              className="px-10 py-3 bg-[#292c44] text-white rounded-xl font-bold transition shadow-lg shadow-[#292c44]/20"
             >
               Apply Now
             </motion.button>
@@ -129,30 +127,37 @@ const JobDetails = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="bg-white rounded-xl shadow-md p-6 md:p-8 text-left w-full"
+          className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 p-8 md:p-12 text-left w-full"
         >
           {/* About Company */}
-          <h2 className="text-lg font-semibold mb-3">About Company</h2>
-          <p className="text-gray-700 leading-relaxed whitespace-pre-line mb-8">
-            {job.description}
-          </p>
+          <div className="mb-10">
+            <h2 className="flex items-center gap-2 text-lg font-bold mb-4 text-[#292c44]">
+              <MdBusiness className="text-blue-500" /> About Company
+            </h2>
+            {/* whitespace-pre-wrap is critical here to show paragraphs */}
+            <p className="text-gray-600 leading-relaxed whitespace-pre-wrap text-sm md:text-base">
+              {job.aboutCompany}
+            </p>
+          </div>
 
-          {/* Key Responsibility */}
-          <h3 className="text-base font-semibold mb-2">Job Description</h3>
-          <p className="text-sm text-gray-600 mb-10">{job.key}</p>
+          {/* Detailed Job Description */}
+          <div className="mb-12">
+            <h3 className="text-lg font-bold mb-4 text-[#292c44]">Position Overview</h3>
+            <p className="text-gray-600 leading-relaxed whitespace-pre-wrap text-sm md:text-base">
+              {job.description}
+            </p>
+          </div>
 
           {/* Bottom Apply Button */}
-          <div className="flex justify-center">
-            <Link
-              to={`/careers/${jobId}/apply`}
-              className="justify-self-center md:justify-self-end"
-            >
+          <div className="flex flex-col items-center pt-8 border-t border-gray-50">
+            <p className="text-sm text-gray-400 mb-6 italic">Ready to make an impact? We're looking for talent like you.</p>
+            <Link to={`/careers/${jobId}/apply`}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-black text-white rounded-md font-medium transition"
+                className="px-12 py-4 bg-[#292c44] text-white rounded-2xl font-black uppercase tracking-widest text-xs transition shadow-xl shadow-[#292c44]/20"
               >
-                Apply Now
+                Send Application
               </motion.button>
             </Link>
           </div>

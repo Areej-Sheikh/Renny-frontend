@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import axios from "axios"; // Added for backend integration
 
-import qualityBanner from "../../assets/Quality-Section-1.webp";
+import qualityBanner from "../../assets/quality.webp";
 import qualityImage from "../../assets/Quality-Section-1.webp";
 
 import bgImage from "../../assets/Quality-Background.webp";
@@ -10,13 +11,6 @@ import bgImage from "../../assets/Quality-Background.webp";
 import img1 from "../../assets/Quality-Section-1.webp";
 import img2 from "../../assets/Quality-Section-1.webp";
 import img3 from "../../assets/Quality-Section-1.webp";
-// import img4 from "../../assets/Quality-Section-1.webp";
-// import img5 from "../../assets/Quality-Section-1.webp";
-// import img6 from "../../assets/Quality-Section-1.webp";
-// import img7 from "../../assets/Quality-Section-1.webp";
-// import img8 from "../../assets/Quality-Section-1.webp";
-// import img9 from "../../assets/Quality-Section-1.webp";
-// import img10 from "../../assets/Quality-Section-1.webp";
 
 import iconMiddle from "../../assets/Icon-Middle.webp";
 
@@ -26,23 +20,31 @@ import icon3 from "../../assets/Icon-3.webp";
 import icon4 from "../../assets/Icon-4.webp";
 import icon5 from "../../assets/Icon-5.webp";
 
-//certificate
-import cert1 from "../../assets/Certificate-1.webp";
-import cert2 from "../../assets/Certificate-2.webp";
-import cert3 from "../../assets/Certificate-3.webp";
-import cert4 from "../../assets/Certificate-4.webp";
-import cert5 from "../../assets/Certificate-5.webp";
-import cert6 from "../../assets/Certificate-6.webp";
-import cert7 from "../../assets/Certificate-7.webp";
-import cert8 from "../../assets/Certificate-8.webp";
-import cert9 from "../../assets/Certificate-9.webp";
-import cert10 from "../../assets/Certificate-10.webp";
-import cert11 from "../../assets/Certificate-11.webp";
-import cert12 from "../../assets/Certificate-12.webp";
-import cert13 from "../../assets/Certificate-13.webp";
+
 import CertificateCard from "../../components/CertificateCard";
 
 const Quality = () => {
+  // --- NEW BACKEND STATE ---
+  const [certificates, setCertificates] = useState([]);
+  const CMS_API = `${import.meta.env.VITE_API_URL}/api/certificates`;
+
+  const fetchCertificates = async () => {
+    try {
+      const res = await axios.get(CMS_API);
+      // Backend returns { success: true, data: [...] }
+      if (res.data.success) {
+        setCertificates(res.data.data);
+      }
+    } catch (err) {
+      console.error("Error fetching certificates:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchCertificates();
+  }, []);
+  // --- END BACKEND INTEGRATION ---
+
   const specificationsData = [
     {
       image: img1,
@@ -113,7 +115,7 @@ const Quality = () => {
     <section className="w-full bg-white">
       {/* ================= Banner Section ================= */}
       <motion.section
-        className="relative h-[100vh] w-full overflow-hidden"
+        className="relative h-[50vh] md:h-[100vh] w-full overflow-hidden  mb-12"
         initial={{ opacity: 0, scale: 1.15 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
@@ -130,9 +132,9 @@ const Quality = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
           className="relative z-10 h-full flex items-end
-                     text-white font-bold
-                     text-4xl sm:text-5xl lg:text-6xl
-                     px-4 sm:px-6 lg:px-10 py-8"
+                       text-white font-bold
+                       text-4xl sm:text-5xl lg:text-6xl
+                       px-6 md:px-10 py-8"
         >
           Quality
         </motion.h1>
@@ -148,7 +150,7 @@ const Quality = () => {
             transition={{ duration: 0.5 }}
           >
             Quality & Standard
-            <div className="w-90 h-0.5 bg-blue mx-auto mt-4" />
+            <div className="w-64 md:w-90 h-0.5 bg-blue mx-auto mt-4" />
           </motion.h1>
           {/* Top Paragraph */}
           <motion.p
@@ -158,18 +160,7 @@ const Quality = () => {
             transition={{ delay: 0.1, duration: 0.5 }}
             className="text-black-700 md:text-[17px] leading-relaxed md:leading-[28px] text-justify"
           >
-            At Renny Strips, quality is at the heart of everything we do. Our
-            robust Quality Management System (QMS) is aligned with globally
-            recognized certifications including ISO 9001:2015 for Quality
-            Management, EN 1090 (Execution Class 2) for Structural Steel, ISO
-            3834-2 for Fusion Welding of Metallic Materials, and CE Marking for
-            compliance with European standards. Every production batch undergoes
-            a rigorous three-stage inspection process. Raw Material Testing,
-            In-Process Inspection & Final Product Verification. Enabled by a
-            digitally integrated QMS, we ensure complete traceability from raw
-            materials like billets, coils & wire rods to the finished product,
-            with real-time documentation of test results, inspection reports,
-            and certifications.
+            At Renny Strips, quality is at the heart of everything we do. Our robust Quality Management System (QMS) is aligned with globally recognized certifications including ISO 9001:2015 for Quality Management, EN 1090 (Execution Class 2) for Structural Steel, ISO 3834-2 for Fusion Welding of Metallic Materials, and CE Marking for compliance with European standards. Every production batch undergoes a rigorous three-stage inspection process. Raw Material Testing, In-Process Inspection & Final Product Verification. Enabled by a digitally integrated QMS, we ensure complete traceability from raw materials like billets, coils & wire rods to the finished product, with real-time documentation of test results, inspection reports, and certifications.
           </motion.p>
 
           {/* Image with proper spacing & size */}
@@ -184,7 +175,7 @@ const Quality = () => {
               src={qualityImage}
               alt="Quality Centre Inspection Process"
               className="w-full h-auto object-contain"
-            />
+             />
           </motion.div>
 
           {/* Bottom Paragraph */}
@@ -195,23 +186,7 @@ const Quality = () => {
             transition={{ duration: 0.5 }}
             className="text-black-700 text-base md:text-[17px] leading-relaxed md:leading-[28px] text-justify"
           >
-            Our in-house Quality Centre is equipped with a comprehensive suite
-            of advanced testing systems, including spectrometers for chemical
-            composition analysis, Universal Testing Machines (UTM) for tensile
-            strength, yield and elongation, Brinell and Rockwell hardness
-            testers, and coating thickness meters. Precision tools such as
-            micrometers, verniers and height gauges ensure dimensional accuracy,
-            while hydrostatic pressure testing machines validate tube integrity.
-            For scaffolding and formwork system, specialized thread gauges and
-            GO/NO-GO fixtures are used to maintain exacting standards. Weld
-            quality is verified through dye penetrant and ultrasonic testing
-            methods. Our Poka-Yoke systems developed jointly by the NPD and
-            Quality teams use customized gauges and fixtures to eliminate human
-            error. Before full scale production, pilot runs are executed to
-            confirm consistency, safety and performance. Supported by certified
-            welding inspectors, NDT Level II technicians, metallurgists and
-            process auditors, Renny Strips consistently upholds the highest
-            standards of quality across every product and process.
+            Our in-house Quality Centre is equipped with a comprehensive suite of advanced testing systems, including spectrometers for chemical composition analysis, Universal Testing Machines (UTM) for tensile strength, yield and elongation, Brinell and Rockwell hardness testers, and coating thickness meters. Precision tools such as micrometers, verniers and height gauges ensure dimensional accuracy, while hydrostatic pressure testing machines validate tube integrity. For scaffolding and formwork system, specialized thread gauges and GO/NO-GO fixtures are used to maintain exacting standards. Weld quality is verified through dye penetrant and ultrasonic testing methods. Our Poka-Yoke systems developed jointly by the NPD and Quality teams use customized gauges and fixtures to eliminate human error. Before full scale production, pilot runs are executed to confirm consistency, safety and performance. Supported by certified welding inspectors, NDT Level II technicians, metallurgists and process auditors, Renny Strips consistently upholds the highest standards of quality across every product and process.
           </motion.p>
         </div>
       </section>
@@ -227,14 +202,14 @@ const Quality = () => {
             transition={{ duration: 0.5 }}
           >
             Quality Assurance & Global Standards
-            <div className="w-215 h-0.5 bg-blue mx-auto mt-4" />
+            <div className="w-64 md:w-215 h-0.5 bg-blue mx-auto mt-4" />
           </motion.h1>
 
           {/* ================= GRID : 2 ROW × 3 COLUMN ================= */}
           <div
             className="grid grid-cols-1 lg:grid-cols-3
-                          gap-x-8 md:gap-x-12 lg:gap-x-16
-                          gap-y-10 md:gap-y-16"
+                           gap-x-8 md:gap-x-12 lg:gap-x-16
+                           gap-y-10 md:gap-y-16"
           >
             {/* ========== COLUMN 1 ========== */}
             <div className="space-y-20">
@@ -252,11 +227,7 @@ const Quality = () => {
                     Global Quality Certifications
                   </h3>
                   <p className="text-sm sm:text-base leading-relaxed">
-                    Renny Strips operates under globally accepted quality
-                    frameworks including ISO 9001:2015, EN 1090 (Execution Class
-                    2), ISO 3834-2 and CE Marking. These certifications reflect
-                    our commitment to delivering products that meet
-                    international norms for safety, reliability and performance.
+                    Renny Strips operates under globally accepted quality frameworks including ISO 9001:2015, EN 1090 (Execution Class 2), ISO 3834-2 and CE Marking. These certifications reflect our commitment to delivering products that meet international norms for safety, reliability and performance.
                   </p>
                 </div>
               </motion.div>
@@ -275,18 +246,14 @@ const Quality = () => {
                     Three-Stage Inspection Protocol
                   </h3>
                   <p className="text-sm sm:text-base leading-relaxed">
-                    Every batch passes through a structured inspection flow—raw
-                    material testing, in-process monitoring and final product
-                    approval. This system ensures defect prevention, dimensional
-                    accuracy and consistent mechanical properties across
-                    production.
+                    Every batch passes through a structured inspection flow—raw material testing, in-process monitoring and final product approval. This system ensures defect prevention, dimensional accuracy and consistent mechanical properties across production.
                   </p>
                 </div>
               </motion.div>
             </div>
 
             {/* ========== COLUMN 2 ========== */}
-            <div className="flex flex-col items-center space-y-17">
+            <div className="flex flex-col items-center space-y-10 md:space-y-17">
               {/* Center Image */}
               <motion.img
                 src={iconMiddle}
@@ -306,17 +273,13 @@ const Quality = () => {
                 transition={{ duration: 0.6 }}
                 className="flex gap-6"
               >
-                <img src={icon4} alt="" className="w-14 h-14 mt-26" />
+                <img src={icon4} alt="" className="w-14 h-14 mt-10 md:mt-26" />
                 <div>
-                  <h3 className="font-semibold text-lg mb-2 mt-26">
+                  <h3 className="font-semibold text-lg mb-2 mt-10 md:mt-26">
                     Error-Proofing & Process Control
                   </h3>
                   <p className="text-sm sm:text-base leading-relaxed">
-                    We implement Poka-Yoke systems with in-house engineered
-                    fixtures to eliminate human error during production. Pilot
-                    batches precede mass manufacturing to validate stability,
-                    safety and repeatability, ensuring zero compromise on
-                    quality.
+                    We implement Poka-Yoke systems with in-house engineered fixtures to eliminate human error during production. Pilot batches precede mass manufacturing to validate stability, safety and repeatability, ensuring zero compromise on quality.
                   </p>
                 </div>
               </motion.div>
@@ -338,11 +301,7 @@ const Quality = () => {
                     Quality Management System (QMS)
                   </h3>
                   <p className="text-sm sm:text-base leading-relaxed">
-                    Our digitally integrated QMS ensures complete process
-                    control from raw material intake to final dispatch. With
-                    real-time documentation and traceability across every stage,
-                    customers receive verified material with full test records
-                    and compliance certificates.
+                    Our digitally integrated QMS ensures complete process control from raw material intake to final dispatch. With real-time documentation and traceability across every stage, customers receive verified material with full test records and compliance certificates.
                   </p>
                 </div>
               </motion.div>
@@ -361,10 +320,7 @@ const Quality = () => {
                     Skilled Technical Team
                   </h3>
                   <p className="text-sm sm:text-base leading-relaxed">
-                    Our quality workforce includes certified welding inspectors,
-                    NDT Level-II experts, metallurgists and process auditors.
-                    Their expertise drives continuous improvement and supports
-                    consistent delivery of high-strength, compliant products.
+                    Our quality workforce includes certified welding inspectors, NDT Level-II experts, metallurgists and process auditors. Their expertise drives continuous improvement and supports consistent delivery of high-strength, compliant products.
                   </p>
                 </div>
               </motion.div>
@@ -395,7 +351,7 @@ const Quality = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -60 }}
                   transition={{ duration: 0.6 }}
-                  className="w-full h-auto max-h-[420px] sm:max-h-[480px] lg:max-h-[520px] object-contain mx-auto"
+                  className="w-full h-auto max-h-[300px] sm:max-h-[480px] lg:max-h-[520px] object-contain mx-auto"
                 />
               </AnimatePresence>
 
@@ -477,7 +433,7 @@ const Quality = () => {
           </div>
         </div>
       </section>
-      <section className="w-full  bg-white py-12 sm:py-16 lg:py-20">
+      <section className="w-full   bg-white py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* ===== Title ===== */}
           <motion.h2
@@ -489,10 +445,10 @@ const Quality = () => {
             viewport={{ once: true }}
           >
             Our Certificates
-            <div className="w-75 h-0.5 bg-blue mx-auto mt-4" />
+            <div className="w-64 md:w-75 h-0.5 bg-blue mx-auto mt-4" />
           </motion.h2>
           {/* ===== Slider Wrapper ===== */}
-          <div className="relative pt-10  h-[460px]">
+          <div className="relative pt-10   h-[460px]">
 
             {/* Left Arrow */}
             <button
@@ -526,30 +482,16 @@ const Quality = () => {
             >
 
 
-              {[
-                { id: 1, img: cert1, title: "IS 9001 : 2015 ", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 2, img: cert2, title: "IS 3834-2 : 2021", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 3, img: cert3, title: "EN 1090-1 : 2009", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 4, img: cert4, title: "EN 1090-2 : 2018", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 5, img: cert5, title: "IS 2062 : 2011", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 6, img: cert6, title: "IS 10478 : 2004", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 7, img: cert7, title: "IS 14650 : 1999", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 8, img: cert8, title: "IS 7887 : 1992", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 9, img: cert9, title: "IS 1239-1 : 2004", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 10, img: cert10, title: "IS 1161 : 2014", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 11, img: cert11, title: "IS 3601 : 2006", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 12, img: cert12, title: "IS 4923 : 2017", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-                { id: 13, img: cert13, title: "IS 18573 : 2024", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt itaque provident exercitationem libero aperiam iste ut maxime placeat velit recusandae." },
-              ].map((item, index) => (
+              {certificates.map((item, index) => (
                 <motion.div
-                  key={item.id}
+                  key={item._id}
                   className="min-w-[260px] sm:min-w-[300px] lg:min-w-[320px] h-full"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4 }}
                   viewport={{ once: true }}
                 >
-                  <CertificateCard certificateDetails={item} key={item.id} />
+                  <CertificateCard certificateDetails={item} key={item._id} />
                 </motion.div>
               ))}
             </div>

@@ -79,10 +79,10 @@ const SustainabilityPillars = () => {
   ];
 
   return (
-    <section className="px-6 md:px-16 lg:px-24 pb-32 w-full bg-white">
+    <section className="px-6 pb-20 md:px-16 lg:px-24 md:pb-32 w-full bg-white">
       <div className="max-w-[1440px] mx-auto">
         <ScrollReveal delay={1}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start p-8 md:p-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start p-0 md:p-12">
             
             {pillars.map((pillar, index) => (
               <motion.div
@@ -99,7 +99,7 @@ const SustainabilityPillars = () => {
                 }}
               >
                 <h3 
-                  className={`${pillar.color} text-[28px] font-medium mb-6`} 
+                  className={`${pillar.color} text-2xl md:text-[28px] font-medium mb-6`} 
                   style={{ fontFamily: 'var(--font-jost)' }}
                 >
                   {pillar.title}
@@ -112,7 +112,7 @@ const SustainabilityPillars = () => {
                   <img 
                     src={pillar.img} 
                     alt={pillar.title} 
-                    className="w-full object-cover h-[450px]" 
+                    className="w-full object-cover h-[300px] md:h-[450px]" 
                   />
                 </motion.div>
               </motion.div>

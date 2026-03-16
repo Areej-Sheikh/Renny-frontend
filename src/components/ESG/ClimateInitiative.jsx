@@ -42,10 +42,9 @@ const ClimateInitiative = () => {
           >
             <div className="mb-8 w-fit">
               <h2 
-                className="font-bold pb-2"
+                className="font-bold pb-2 text-3xl md:text-5xl lg:text-[48px]"
                 style={{ 
                   fontFamily: 'var(--font-helvetica)', 
-                  fontSize: '48px',
                   background: "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -59,12 +58,7 @@ const ClimateInitiative = () => {
             </div>
 
             <p className="text-[16px] md:text-[18px] leading-[1.8] text-[#333] text-justify" style={{ fontFamily: 'var(--font-helvetica)' }}>
-              Lorem ipsum dolor sit amet consectetur. Sapien eget amet nunc ornare turpis enim. 
-              Tempor tortor dictum eu vel nec aliquam. Mi tristique ullamcorper aliquet amet 
-              viverra eu lectus elit. Amet nunc sit elementum penatibus ultrices tortor. 
-              Elementum et sollicitudin a vel massa massa at tellus. Vestibulum amet quis 
-              nulla imperdiet scelerisque porttitor nulla. Ut a quam feugiat quis dui habitasse 
-              turpis. In in non consectetur aliquam. Lectus condimentum pellentesque nisl elit.
+              Renny Strips Limited drives climate action through renewable energy and energy-efficient manufacturing, achieving lower carbon emissions across its operations. The Company’s 22 MW solar power plant and sustainability initiatives have earned it the 5 Star Green Steel Rating from the Ministry of Steel, Government of India. By aligning with global climate frameworks such as the Carbon Border Adjustment Mechanism, Renny Strips continues to support a cleaner and more sustainable industrial future.
             </p>
           </motion.div>
 
@@ -82,7 +76,7 @@ const ClimateInitiative = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 src={initiativeLeaf} 
                 alt="Climate Initiative" 
-                className="w-full object-cover h-[450px] cursor-pointer"
+                className="w-full object-cover h-[300px] md:h-[450px] cursor-pointer"
               />
             </div>
           </motion.div>
@@ -103,10 +97,9 @@ const ClimateInitiative = () => {
           >
             <div className="mb-8 w-fit">
               <h2 
-                className="font-bold pb-2"
+                className="font-bold pb-2 text-3xl md:text-5xl lg:text-[48px]"
                 style={{ 
                   fontFamily: 'var(--font-helvetica)', 
-                  fontSize: '48px',
                   background: "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -120,11 +113,7 @@ const ClimateInitiative = () => {
             </div>
 
             <p className="text-[16px] md:text-[18px] leading-[1.8] text-[#333] text-justify" style={{ fontFamily: 'var(--font-helvetica)' }}>
-              Renny’s commitment to a Better, Greener & Stronger Community is evident through 
-              various initiatives, from public asset building to healthcare. These efforts 
-              reflect Renny’s deep dedication to uplifting the community and fostering 
-              sustainable development. As we grow, our focus remains on providing 
-              meaningful support and creating infrastructure that serves generations to come.
+              Renny’s commitment to a Better, Greener & Stronger Community is evident through various initiatives, from public asset building to healthcare. These efforts reflect Renny’s deep dedication to uplifting the community and fostering sustainable development. As we grow, our focus remains on providing meaningful support and creating infrastructure that serves generations to come.
             </p>
           </motion.div>
 
@@ -142,7 +131,7 @@ const ClimateInitiative = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 src={goodLifeImg} 
                 alt="Shaping Good Life" 
-                className="w-full object-cover h-[450px] cursor-pointer"
+                className="w-full object-cover h-[300px] md:h-[450px] cursor-pointer"
               />
             </div>
           </motion.div>

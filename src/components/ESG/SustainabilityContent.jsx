@@ -55,71 +55,72 @@ const ScrollReveal = ({ children, delay = 0, direction = "up" }) => {
 const SustainabilityContent = () => {
   return (
     <div className="w-full bg-white overflow-x-hidden">
-      
-      {/* 1. HERO BANNER SECTION */}
-      <section className="relative w-full h-[100vh]">
-        <img 
-          src={esgBanner} 
-          alt="ESG Banner" 
-          className="absolute inset-0 w-full h-full object-cover" 
-        />
-        
-        {/* Positioning ESG text at Left Bottom side */}
-        <div className="absolute inset-0 flex items-end justify-start pb-12 pl-10 md:pl-16 lg:pl-24 z-10">
-          <ScrollReveal direction="left">
-            <h1 
-              className="text-white font-bold"
-              style={{ 
-                fontFamily: 'var(--font-helvetica)', 
-                fontSize: '48px',
-                textShadow: '0px 4px 15px rgba(0,0,0,0.6)' 
-              }}
-            >
-              ESG
-            </h1>
-          </ScrollReveal>
-        </div>
-      </section>
-{/* 2. Renny's Journey Section */}
-<section className="py-20 px-6 md:px-16 lg:px-24 max-w-[1440px] mx-auto bg-white flex flex-col items-center">
-  
-  {/* Centered Header with Blend and Full Underline */}
-  <ScrollReveal direction="up">
-    <div className="mb-10 flex flex-col items-center">
-      <div className="relative w-fit">
-        <h2 
-          className="font-bold pb-3 whitespace-nowrap text-center"
-          style={{ 
-            fontFamily: 'var(--font-helvetica)', 
-            fontSize: '48px',
-            lineHeight: '1.2',
-            // Fix for visibility: Use a tighter gradient and explicit color
-            background: "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
-            WebkitBackgroundClip: "text",
-            backgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            display: "inline-block" 
-          }}
-        >
-          Renny's Journey
-        </h2>
-        
-        {/* Continuous Underline for all text */}
-         <div className="w-full h-0.5 bg-blue mx-auto rounded-full mt-1" />
-      </div>
-    </div>
-  </ScrollReveal>
 
-  {/* Content Paragraph - Kept exactly as previous */}
-  <ScrollReveal direction="up" delay={2}>
-    <p 
-      className="text-[16px] md:text-[18px] leading-[1.8] text-[#333] text-left max-w-6xl"
-      style={{ fontFamily: 'var(--font-helvetica)', letterSpacing: '-0.01em' }}
-    >
-      Lorem ipsum dolor sit amet consectetur. Sapien eget amet nunc ornare turpis enim. Tempor tortor dictum eu vel nec aliquam. Mi tristique ullamcorper aliquet amet viverra eu lectus elit. Amet nunc sit elementum penatibus ultrices tortor. Elementum et sollicitudin a vel massa massa at tellus. Vestibulum amet quis nulla imperdiet scelerisque porttitor nulla. Ut a quam feugiat quis dui habitasse turpis. In in non consectetur aliquam. Lectus condimentum pellentesque nisl elit. Eu amet dolor id sit cursus egestas tempus nunc. Facilisis porta interdum etiam habitant blandit ligula. Velit quam morbi at bibendum purus. Pulvinar elementum adipiscing elementum viverra molestie mauris.
-    </p>
-  </ScrollReveal>
-</section>
+      {/* 1. HERO BANNER SECTION */}
+      {/* Banner */}
+      <motion.section
+        className="relative h-[50vh] md:h-[100vh] w-full overflow-hidden mb-12"
+        initial={{ opacity: 0, scale: 1.2 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.4, ease: 'easeOut' }}
+      >
+        <img
+          src={esgBanner}
+          alt="ESG Banner"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
+          className="relative z-10 text-white text-4xl md:text-6xl lg:text-7xl font-bold flex items-end justify-start h-full py-10 px-6 md:px-10"
+        >
+          ESG
+        </motion.h1>
+      </motion.section>
+
+      {/* 2. Renny's Journey Section */}
+      <section className="py-20 px-6 md:px-16 lg:px-24 max-w-[1440px] mx-auto bg-white flex flex-col items-center">
+
+        {/* Centered Header with Blend and Full Underline */}
+        <ScrollReveal direction="up">
+          <div className="mb-10 flex flex-col items-center">
+            <div className="relative w-fit">
+              <h2
+                className="font-bold pb-3 whitespace-nowrap text-center text-3xl md:text-5xl lg:text-[48px]"
+                style={{
+                  fontFamily: 'var(--font-helvetica)',
+                  lineHeight: '1.2',
+                  // Fix for visibility: Use a tighter gradient and explicit color
+                  background: "linear-gradient(90deg, #000000 0%, #00A63E 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  display: "inline-block"
+                }}
+              >
+                Renny's Journey
+              </h2>
+
+              {/* Continuous Underline for all text */}
+              <div className="w-full h-0.5 bg-blue mx-auto rounded-full mt-1" />
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* Content Paragraph - Kept exactly as previous */}
+        <ScrollReveal direction="up" delay={2}>
+          <p
+            className="text-[16px] md:text-[18px] leading-[1.8] text-[#333] text-left max-w-6xl"
+            style={{ fontFamily: 'var(--font-helvetica)', letterSpacing: '-0.01em' }}
+          >
+            Renny Strips Limited is committed to sustainable manufacturing through energy-efficient operations and cleaner technologies, achieving carbon emissions up to 40% lower than the industry average. The Company’s sustainability practices are aligned with global standards, including the Carbon Border Adjustment Mechanism. Beyond environmental performance, Renny Strips Limited supports community development through initiatives in education, medical support, and rainwater harvesting, contributing to a greener, stronger, and more sustainable future.
+          </p>
+        </ScrollReveal>
+      </section>
     </div>
   );
 };

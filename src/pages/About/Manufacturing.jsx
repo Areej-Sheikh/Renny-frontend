@@ -1,46 +1,51 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-import aboutVideo from '../../assets/01-aboutVideo.webm';
-import unit1 from '../../assets/Unit-1.webp';
-import unit2 from '../../assets/Unit-3.webp';
-import image from '../../assets/Manufacturing1.webp';
-import video from '../../assets/new235.webm';
-import rawimg from '../../assets/RawToRemarkable.webm';
-import TotalCapacity from '../../assets/carbonFootprint.webp';
-import carbonfootprint from '../../assets/Environmental Sustainability.webp';
-import CountUp from 'react-countup';
-import { useInView } from 'react-intersection-observer';
-
+import aboutVideo from "../../assets/01-aboutVideo.webm";
+import unit1 from "../../assets/Unit-1.webp";
+import unit2 from "../../assets/Unit-3.webp";
+import image from "../../assets/Manufacturing1.webp";
+import video from "../../assets/new235.webm";
+import rawimg from "../../assets/RawToRemarkable.webm";
+import TotalCapacity from "../../assets/TotalCapacity.webp";
+import carbonfootprint from "../../assets/carbon.webp";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 const Manufacturing = () => {
-  const [activeUnit, setActiveUnit] = useState('unit1');
+  const [activeUnit, setActiveUnit] = useState("unit1");
 
   const unitData = {
     unit1: {
-      title: 'Unit 1',
+      title: "Unit 1",
       address:
-        'Village Mangarh Machiwara Road, Kohara, Ludhiana - 141112, India',
+        "Village Mangarh Machiwara Road, Kohara, Ludhiana - 141112, India",
       image: unit1,
     },
     unit2: {
-      title: 'Unit 2',
+      title: "Unit 2",
       address:
-        'Lakhowal Road, Opposite PSPCL House, Kohara, Ludhiana, Punjab - 141112, India',
+        "lorem100 ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      image: unit2,
+    },
+    unit3: {
+      title: "Unit 3",
+      address:
+        "Lakhowal Road, Opposite PSPCL House, Kohara, Ludhiana, Punjab - 141112, India",
       image: unit2,
     },
   };
   const metricData = {
     capacity: {
-      title: 'Total Capacity',
+      title: "Total Capacity",
       image: TotalCapacity,
     },
     carbon: {
-      title: 'Carbon Footprint',
+      title: "Carbon Footprint",
       image: carbonfootprint,
     },
   };
-  const [activeMetric, setActiveMetric] = useState('capacity');
+  const [activeMetric, setActiveMetric] = useState("capacity");
   const currentMetric = metricData[activeMetric];
 
   const currentUnit = unitData[activeUnit];
@@ -71,7 +76,7 @@ const Manufacturing = () => {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 1, ease: 'easeOut' },
+      transition: { duration: 1, ease: "easeOut" },
     },
   };
 
@@ -98,8 +103,8 @@ const Manufacturing = () => {
 
         <motion.h1
           variants={fadeUp}
-          className="relative z-10 text-white text-6xl md:text-7xl font-bold
-          flex items-end justify-start h-full py-10 px-10"
+          className="relative z-10 text-white text-4xl md:text-7xl font-bold
+          flex items-end justify-start h-full py-10 px-6 md:px-10"
         >
           Manufacturing Process
         </motion.h1>
@@ -111,22 +116,22 @@ const Manufacturing = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="m-10 flex flex-col items-center justify-center"
+        className="m-6 md:m-10 flex flex-col items-center justify-center"
       >
         <motion.h1
           variants={fadeUp}
-          className="text-[48px] font-bold ml-20 w-full text-center"
+          className="text-[32px] md:text-[48px] font-bold w-full text-center"
         >
           Integrated Manufacturing
           <motion.div
             variants={fadeUp}
-            className="w-125 h-0.5 bg-blue mx-auto rounded-full mb-10"
+            className="w-64 md:w-125 h-0.5 bg-blue mx-auto rounded-full mb-10 mt-4"
           />
         </motion.h1>
 
         <motion.h2
           variants={fadeUp}
-          className="text-[27px] font-bold ml-20 mb-5 w-full text-center"
+          className="text-[20px] md:text-[27px] font-bold mb-5 w-full text-center"
         >
           Intelligent Engineering. Infinite Possibilities.
         </motion.h2>
@@ -136,15 +141,15 @@ const Manufacturing = () => {
           built for precision, performance and sustainability. Our process
           begins with raw material melting, billet casting and hot rolling to
           produce narrow HR coils and wire rods, forming the base for ERW pipes,
-          scaffolding systems, formwork components and <br /> forged parts.
-          Advanced tubing mills, coating lines and multi-stage processing ensure
+          scaffolding systems, formwork components and forged parts. Advanced
+          tubing mills, coating lines and multi-stage processing ensure
           consistent mechanical properties, durability and high structural
           integrity.
         </motion.p>
 
         <motion.div
           variants={imageZoom}
-          className="w-full h-[550px] rounded-4xl overflow-hidden mb-10"
+          className="w-full h-[300px] md:h-[550px] rounded-4xl overflow-hidden mb-10"
         >
           <img src={image} alt="" className="w-full h-full object-cover" />
         </motion.div>
@@ -160,16 +165,16 @@ const Manufacturing = () => {
             through custom component development, 3D CAD modelling, structural
             analysis, reverse engineering and rapid prototyping. Powered by
             AutoCAD, SolidWorks and CAM tools for CNC/VMC programming, we ensure
-            seamless integration from design <br /> to production.
+            seamless integration from design to production.
           </motion.p>
 
           <motion.p variants={fadeUp} className="text-left mb-5">
             With a robust technology backbone, induction furnaces, CCM, rolling
             mills, CNC machines, robotic welding, electro-galvanizing facilities
-            and DiFOC-enabled <br /> digital furnace control we manufacture
-            products across diverse grades (235–460 MPa), thicknesses, diameters
-            and profiles. This enables high customizability <br /> and fast
-            scale-up for varied industry needs.
+            and DiFOC-enabled digital furnace control we manufacture products
+            across diverse grades (235–460 MPa), thicknesses, diameters and
+            profiles. This enables high customizability and fast scale-up for
+            varied industry needs.
           </motion.p>
 
           <motion.p variants={fadeUp} className="text-left mb-5">
@@ -187,17 +192,20 @@ const Manufacturing = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="w-full space-y-8 px-10"
+        className="w-full space-y-8 px-6 md:px-10"
       >
-        <motion.div variants={fadeUp} className="flex justify-center gap-4">
-          {Object.keys(unitData).map(key => (
+        <motion.div
+          variants={fadeUp}
+          className="flex flex-wrap justify-center gap-4"
+        >
+          {Object.keys(unitData).map((key) => (
             <button
               key={key}
               onClick={() => setActiveUnit(key)}
               className={`px-6 py-3 rounded-full font-medium transition-all  ${
                 activeUnit === key
-                  ? 'bg-blue text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? "bg-blue text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
               }`}
             >
               {unitData[key].title}
@@ -207,7 +215,7 @@ const Manufacturing = () => {
 
         <motion.div
           variants={imageZoom}
-          className="w-full h-[500px] rounded-4xl overflow-hidden"
+          className="w-full h-[300px] md:h-[500px] rounded-4xl overflow-hidden"
         >
           <AnimatePresence mode="wait">
             <motion.img
@@ -225,7 +233,7 @@ const Manufacturing = () => {
 
         <motion.div
           variants={fadeUp}
-          className="text-left border-2 w-[55%] bg-blue text-white px-5 py-3 rounded-4xl mb-10"
+          className="text-left border-2 w-full md:w-[55%] bg-blue text-white px-5 py-3 rounded-3xl md:rounded-4xl mb-10"
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -252,22 +260,22 @@ const Manufacturing = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="px-10"
+        className="px-6 md:px-10"
       >
         <motion.h1
           variants={fadeUp}
-          className="text-[48px] font-bold ml-20 w-full text-center"
+          className="text-[32px] md:text-[48px] font-bold w-full text-center"
         >
           Our Manufacturing Process
           <motion.div
             variants={fadeUp}
-            className="w-140 h-0.5 bg-blue mx-auto rounded-full mb-10"
+            className="w-64 md:w-140 h-0.5 bg-blue mx-auto rounded-full mb-10 mt-4"
           />
         </motion.h1>
 
         <motion.div
           variants={imageZoom}
-          className="w-full h-[650px] rounded-4xl overflow-hidden mb-10"
+          className="w-full h-[300px] md:h-[650px] rounded-4xl overflow-hidden mb-10"
         >
           <video
             muted
@@ -286,82 +294,107 @@ const Manufacturing = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="px-10"
+        className="px-6 md:px-10"
       >
         <motion.h1
           variants={fadeUp}
-          className="text-[48px] font-bold ml-20 w-full text-center"
+          className="text-[32px] md:text-[48px] font-bold w-full text-center"
         >
           From Raw to Remarkable
           <motion.div
             variants={fadeUp}
-            className="w-130 h-0.5 bg-blue mx-auto rounded-full mb-10"
+            className="w-64 md:w-130 h-0.5 bg-blue mx-auto rounded-full mb-10 mt-4"
           />
         </motion.h1>
 
         <motion.div
           variants={imageZoom}
-          className="w-full h-[650px] rounded-4xl overflow-hidden mb-10"
+          className="w-full h-[300px] md:h-[650px] rounded-4xl overflow-hidden mb-10"
         >
-          <video src={rawimg} alt="" autoPlay loop muted className="w-full h-full object-fill" />
+          <video
+            src={rawimg}
+            alt=""
+            autoPlay
+            loop
+            muted
+            className="w-full h-full object-fill"
+          />
         </motion.div>
       </motion.section>
-      {/*=================  Carbon Footprint  ================= */}(
+      {/*=================  Carbon Footprint  ================= */}
       <section
         ref={ref}
-        className="flex flex-col md:flex-row bg-gray-200 items-center justify-center w-full min-h-screen overflow-hidden"
+        className="flex flex-col lg:flex-row bg-gray-200  items-center justify-center w-full min-h-screen overflow-hidden "
       >
+     
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, x: -80 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.9, ease: 'easeOut' }}
-          className="md:w-[40%] w-full h-[450px] flex items-center justify-center px-10 py-16"
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          className="lg:w-[40%] w-full h-auto lg:h-[450px]  flex items-center justify-center px-6 md:px-10 py-16"
         >
           <div className="space-y-16">
             {/* Total Capacity */}
             <motion.div
-              onClick={() => setActiveMetric('capacity')}
+              onClick={() => setActiveMetric("capacity")}
               whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 200 }}
-              className={`text-4xl text-center w-[350px] font-bold border-2 px-5 py-7 rounded-4xl cursor-pointer transition-all
+              transition={{ type: "spring", stiffness: 200 }}
+              className={`text-2xl md:text-4xl text-center w-full max-w-[350px] font-bold border-2 px-5 py-7 rounded-4xl cursor-pointer transition-all
               ${
-                activeMetric === 'capacity'
-                  ? 'bg-blue text-white'
-                  : 'text-gray-900 hover:bg-blue hover:text-white'
+                activeMetric === "capacity"
+                  ? "bg-blue text-white"
+                  : "text-gray-900 hover:bg-blue hover:text-white"
               }
             `}
             >
               Total Capacity
               <p className="mt-2 text-3xl">
                 +
-                {inView && activeMetric === 'capacity' && (
+                {activeMetric === "capacity" ? (
                   <CountUp
-                    key={activeMetric}
+                    key="capacity"
                     start={0}
                     end={199200}
                     duration={1.8}
                     separator=","
                   />
-                )}{' '}
+                ) : (
+                  "199,200"
+                )}{" "}
                 TPA
               </p>
             </motion.div>
 
             {/* Carbon Footprint */}
             <motion.h1
-              onClick={() => setActiveMetric('carbon')}
+              onClick={() => setActiveMetric("carbon")}
               whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 200 }}
-              className={`text-4xl w-[350px] font-bold leading-relaxed border-2 px-5 py-7 rounded-4xl cursor-pointer transition-all
+              transition={{ type: "spring", stiffness: 200 }}
+              className={`text-2xl md:text-4xl text-center w-full max-w-[350px] font-bold leading-relaxed border-2 px-5 py-7 rounded-4xl cursor-pointer transition-all
               ${
-                activeMetric === 'carbon'
-                  ? 'bg-blue text-white'
-                  : 'text-black hover:bg-blue hover:text-white'
+                activeMetric === "carbon"
+                  ? "bg-blue text-white"
+                  : "text-black hover:bg-blue hover:text-white"
               }
             `}
             >
               Carbon Footprint
+              <p className="mt-2 text-3xl">
+                +
+                {activeMetric === "carbon" ? (
+                  <CountUp
+                    key="carbon"
+                    start={0}
+                    end={7370965}
+                    duration={1.8}
+                    separator=","
+                  />
+                ) : (
+                  "7,370,965"
+                )}{" "}
+                Tons CO₂
+              </p>
             </motion.h1>
           </div>
         </motion.div>
@@ -371,7 +404,7 @@ const Manufacturing = () => {
           initial={{ opacity: 0, x: 80 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 1 }}
-          className="md:w-3/4 w-full h-full overflow-hidden mr-1"
+          className="lg:w-3/4 w-full h-[400px] my-10 lg:h-screen overflow-hidden lg:mr-1"
         >
           <AnimatePresence mode="wait">
             <motion.img

@@ -1,10 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import RennyLogo from '../assets/RennyLogo.webp';
+import { FaBars, FaTimes, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeMobileDropdown, setActiveMobileDropdown] = useState(null);
+
+  const toggleMobileDropdown = (index) => {
+    setActiveMobileDropdown(activeMobileDropdown === index ? null : index);
+  };
+
+  const navLinks = [
+    {
+      title: 'About Us',
+      links: [
+        { name: 'Company Overview', path: '/company-overview-2/' },
+        { name: 'Manufacturing Process', path: '/manufacturing-units/' },
+        { name: 'Quality & Standard', path: '/quality-standard/' },
+        { name: 'Design Centre', path: '/design-centre/' },
+      ],
+    },
+    {
+      title: 'Products',
+      links: [
+        { name: 'MS Billets', path: '/MS-billets/' },
+        { name: 'Wire Rods', path: '/wire-rods-2/' },
+        { name: 'Narrow-width HR Coils', path: '/narrow-hrcoil/' },
+        { name: 'ERW Pipes & Tubes', path: '/erw-pipes-and-tubes/' },
+        { name: 'Scaffolding & Formwork', path: '/scaffolding-formwork/' },
+      ],
+    },
+    {
+      title: 'Investor Relations',
+      links: [
+        { name: 'Financials', path: '/financials/' },
+        { name: 'Corporate Governance', path: '/corporate-governance/' },
+        { name: 'Industry Report', path: '/industry-report/' },
+        { name: 'IPO Documents', path: '/ipo/' },
+        { name: 'IPO Audio Visual', path: '/ipo-audio-visual/' },
+        { name: 'Shareholding Pattern', path: '/Share-holding-pattern/' },
+        { name: 'Our Policies', path: '/our-policies/' },
+      ],
+    },
+    { title: 'EC', path: '/ec/' },
+    {
+      title: 'Sustainability',
+      links: [{ name: 'ESG', path: '/sustainability/' }],
+    },
+    {
+      title: 'Media',
+      links: [
+        { name: 'News Room', path: '/news-room/' },
+        { name: 'Blogs', path: '/blog/' },
+        { name: 'Events', path: '/events/' },
+      ],
+    },
+    { title: 'Career', path: '/careers/' },
+    { title: 'Contact Us', path: '/contact-us/' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,9 +93,9 @@ const Navbar = () => {
         onClick={() => navigate('/')}
       />
 
-      {/* Navigation */}
+      {/* Navigation (Desktop) */}
       <ul
-        className={`flex items-center gap-3 transition-all duration-300
+        className={`hidden lg:flex items-center gap-3 transition-all duration-300
     ${
       isScrolled ? 'text-gray-700 font-semibold' : 'font-semibold text-gray-400'
     }
@@ -210,6 +266,66 @@ const Navbar = () => {
           </Link>
         </li>
       </ul>
+
+      {/* Mobile Menu Toggle */}
+      <button
+        className="lg:hidden text-2xl text-blue-900 focus:outline-none"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        {isMenuOpen ? <FaTimes /> : <FaBars />}
+      </button>
+
+      {/* Mobile Navigation Drawer */}
+      <div
+        className={`fixed top-16 left-0 w-full bg-white shadow-lg transition-all duration-300 ease-in-out transform lg:hidden ${
+          isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
+        }`}
+        style={{ height: 'calc(100vh - 64px)', overflowY: 'auto' }}
+      >
+        <ul className="flex flex-col p-6 space-y-4">
+          {navLinks.map((item, index) => (
+            <li key={index} className="border-b border-gray-100 pb-2 last:border-none">
+              {item.links ? (
+                <>
+                  <div
+                    className="flex justify-between items-center cursor-pointer py-2 text-gray-800 font-semibold hover:text-blue"
+                    onClick={() => toggleMobileDropdown(index)}
+                  >
+                    <span>{item.title}</span>
+                    {activeMobileDropdown === index ? <FaChevronUp /> : <FaChevronDown />}
+                  </div>
+                  {/* Mobile Dropdown */}
+                  <ul
+                    className={`pl-4 mt-2 space-y-2 transition-all duration-300 ${
+                      activeMobileDropdown === index ? 'block' : 'hidden'
+                    }`}
+                  >
+                    {item.links.map((subLink, subIndex) => (
+                      <li key={subIndex}>
+                        <Link
+                          to={subLink.path || '#'}
+                          className="block py-2 text-sm text-gray-600 hover:text-blue"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {subLink.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <Link
+                  to={item.path}
+                  className="block py-2 text-gray-800 font-semibold hover:text-blue"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.title}
+                </Link>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

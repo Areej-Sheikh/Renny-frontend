@@ -3,8 +3,7 @@ import axios from "axios"; // Added axios for backend communication
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import InvestorSidebar from "../../components/InvestorSidebar";
-import Navbar from "../../components/Navbar"; 
-import Footer from "../../components/Footer"; 
+
 import shareholdingHero from "../../assets/investorbanner.webp";
 
 const Shareholding = () => {
@@ -15,7 +14,7 @@ const Shareholding = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const brandColor = "#292C44";
-  const mainHeadingFont = "font-['Helvetica','Arial',sans-serif] text-[37px] font-semibold";
+  const mainHeadingFont = "font-['Helvetica','Arial',sans-serif] text-2xl lg:text-[37px] font-semibold";
   const subHeadingFont = "font-['Helvetica','Arial',sans-serif] text-[18px] font-semibold";
   const btnClass = "text-white px-5 py-2.5 rounded-lg text-[14px] font-medium hover:opacity-90 transition-all duration-300 font-['Helvetica','Arial',sans-serif]";
 
@@ -23,7 +22,7 @@ const Shareholding = () => {
   useEffect(() => {
     const fetchShareholding = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/shareholding-pattern");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/shareholding-pattern`);
         setShareholdingDocs(response.data);
       } catch (error) {
         console.error("Error fetching shareholding pattern:", error);
@@ -36,37 +35,43 @@ const Shareholding = () => {
 
   return (
     <div className="font-['Helvetica','Arial',sans-serif]">
-      <Navbar />
-      
-      {/* -------------------- HERO SECTION -------------------- */}
-      <section className="relative w-full h-[55vh] overflow-hidden">
-        <img src={shareholdingHero} alt="Share Holding Pattern" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/50" />
-        
-        <div className="absolute bottom-16 left-0 w-full px-6 lg:px-20 z-10">
-          <motion.h1 
-            initial={{ opacity: 0, x: -20 }} 
-            animate={{ opacity: 1, x: 0 }} 
-            transition={{ duration: 0.8 }} 
-            className={`text-white ${mainHeadingFont}`}
-          >
-            Share Holding Pattern
-          </motion.h1>
-        </div>
-      </section>
 
+      {/* Banner */}
+      <motion.section
+        className="relative h-[50vh] md:h-[100vh] w-full overflow-hidden mb-12"
+        initial={{ opacity: 0, scale: 1.2 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.4, ease: 'easeOut' }}
+      >
+        <img
+          src={shareholdingHero}
+          alt="Share Holding Pattern Banner"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
+          className="relative z-10 text-white text-4xl md:text-6xl lg:text-7xl font-bold flex items-end justify-start h-full py-10 px-6 md:px-10"
+        >
+          Share Holding Pattern
+        </motion.h1>
+      </motion.section>
       {/* -------------------- MAIN CONTENT SECTION -------------------- */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="pt-20 pb-32 bg-white px-6"
       >
-        <div className="max-w-[1400px] mx-auto grid grid-cols-12 gap-12">
-          
-          <div className="col-span-12 lg:col-span-8">
-            <div 
-              className="inline-block text-white px-5 py-1.5 rounded-md mb-6 font-semibold text-[13px] tracking-wide" 
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+
+          <div className="col-span-1 lg:col-span-8">
+            <div
+              className="inline-block text-white px-5 py-1.5 rounded-md mb-6 font-semibold text-[13px] tracking-wide"
               style={{ backgroundColor: brandColor }}
             >
               INVESTOR RELATIONS
@@ -74,30 +79,30 @@ const Shareholding = () => {
             <h2 className={`${mainHeadingFont} mb-12 text-gray-900`}>Share Holding Pattern</h2>
 
             <div className="mb-8">
-               <button 
-                  className="text-white px-6 py-2 rounded font-bold text-[14px] shadow-sm cursor-default"
-                  style={{ backgroundColor: brandColor }}
-               >
-                  Share Holding Pattern
-               </button>
+              <button
+                className="text-white px-6 py-2 rounded font-bold text-[14px] shadow-sm cursor-default"
+                style={{ backgroundColor: brandColor }}
+              >
+                Share Holding Pattern
+              </button>
             </div>
-            
+
             {/* DOCUMENT LIST - Renders from Backend */}
             <div className="space-y-4">
               {isLoading ? (
                 <div className="text-gray-400 animate-pulse">Loading patterns...</div>
               ) : shareholdingDocs.length > 0 ? (
                 shareholdingDocs.map((doc, i) => (
-                  <motion.div 
+                  <motion.div
                     key={doc._id || i}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="flex justify-between items-center p-6 bg-gray-50 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                    className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 p-6 bg-gray-50 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
                   >
                     <span className={subHeadingFont}>{doc.title}</span>
-                    <a href={doc.url} target="_blank" rel="noreferrer">
-                      <button className={btnClass} style={{ backgroundColor: brandColor }}>
+                    <a href={doc.url} target="_blank" rel="noreferrer" className="w-full md:w-auto">
+                      <button className={`${btnClass} w-full md:w-auto`} style={{ backgroundColor: brandColor }}>
                         Click here
                       </button>
                     </a>
@@ -109,12 +114,12 @@ const Shareholding = () => {
             </div>
           </div>
 
-          <aside className="col-span-12 lg:col-span-4 sticky top-28">
+          <aside className="col-span-1 lg:col-span-4">
             <InvestorSidebar />
           </aside>
         </div>
       </motion.section>
-     
+
     </div>
   );
 };

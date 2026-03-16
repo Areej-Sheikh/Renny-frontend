@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+
 import governanceHero from "../../assets/investorbanner.webp";
 import InvestorSidebar from "../../components/InvestorSidebar";
 
@@ -27,10 +26,10 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  show: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.5, ease: "easeOut" } 
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" }
   },
 };
 
@@ -38,9 +37,10 @@ const Governance = () => {
   const [activeTab, setActiveTab] = useState("board");
   const [governanceData, setGovernanceData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [hoveredMember, setHoveredMember] = useState(null);
 
   const brandColor = "#292C44";
-  const mainHeadingFont = "font-['Helvetica','Arial',sans-serif] text-[37px] font-semibold";
+  const mainHeadingFont = "font-['Helvetica','Arial',sans-serif] text-2xl lg:text-[37px] font-semibold";
 
   const getImageUrl = (url) => {
     if (!url || !url.includes("drive.google.com")) return url;
@@ -54,7 +54,7 @@ const Governance = () => {
   useEffect(() => {
     const fetchGovernance = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/governance");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/governance`);
         setGovernanceData(response.data);
       } catch (error) {
         console.error("Error fetching governance data:", error);
@@ -82,14 +82,17 @@ const Governance = () => {
             key={member._id}
             variants={itemVariants}
             whileHover={{ y: -8, transition: { duration: 0.2 } }}
-            className="flex items-center gap-5 p-5 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-xl transition-shadow group cursor-default"
+            onMouseEnter={() => setHoveredMember(member._id)}
+            onMouseLeave={() => setHoveredMember(null)}
+            className="flex items-center gap-5 p-5 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-xl transition-shadow cursor-default"
           >
             <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-100 flex-shrink-0 bg-gray-50">
               <img
                 src={getImageUrl(member.img)}
                 alt={member.name}
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                className={`w-full h-full object-cover transition-all duration-500 ${hoveredMember === member._id ? "grayscale-0" : "grayscale"
+                  }`}
                 onError={(e) => {
                   e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=292C44&color=fff`;
                 }}
@@ -117,7 +120,7 @@ const Governance = () => {
     }, {});
 
     return (
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="show"
@@ -127,8 +130,8 @@ const Governance = () => {
           <motion.div
             key={i}
             variants={{
-                hidden: { opacity: 0, x: -20 },
-                show: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+              hidden: { opacity: 0, x: -20 },
+              show: { opacity: 1, x: 0, transition: { duration: 0.6 } }
             }}
             className="p-8 bg-gray-50 rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
           >
@@ -169,18 +172,18 @@ const Governance = () => {
     const contacts = contactDoc?.content || [];
 
     return (
-      <motion.div 
-        variants={containerVariants} 
-        initial="hidden" 
-        animate="show" 
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
         className="grid grid-cols-1 gap-8"
       >
         {contacts.map((contact) => (
           <motion.div
             key={contact._id}
             variants={{
-                hidden: { opacity: 0, scale: 0.95 },
-                show: { opacity: 1, scale: 1, transition: { duration: 0.4 } }
+              hidden: { opacity: 0, scale: 0.95 },
+              show: { opacity: 1, scale: 1, transition: { duration: 0.4 } }
             }}
             className="p-10 bg-[#292C44] text-white rounded-2xl shadow-xl relative overflow-hidden"
           >
@@ -200,10 +203,10 @@ const Governance = () => {
                 </div>
               </div>
             </div>
-            <motion.div 
-                animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }} 
-                transition={{ duration: 8, repeat: Infinity }}
-                className="absolute -bottom-10 -right-10 w-60 h-60 bg-white/10 rounded-full blur-3xl" 
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+              transition={{ duration: 8, repeat: Infinity }}
+              className="absolute -bottom-10 -right-10 w-60 h-60 bg-white/10 rounded-full blur-3xl"
             />
           </motion.div>
         ))}
@@ -213,25 +216,34 @@ const Governance = () => {
 
   return (
     <div className="font-['Helvetica','Arial',sans-serif] bg-white min-h-screen">
-      <Navbar />
-      <section className="relative w-full h-[55vh] overflow-hidden">
-        <img src={governanceHero} alt="Hero" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute bottom-16 left-0 w-full px-6 lg:px-20 z-10">
-          <motion.h1
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className={`text-white ${mainHeadingFont}`}
-          >
-            Corporate Governance
-          </motion.h1>
-        </div>
-      </section>
+      {/* Banner */}
+      <motion.section
+        className="relative h-[50vh] md:h-[100vh] w-full overflow-hidden mb-12"
+        initial={{ opacity: 0, scale: 1.2 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.4, ease: 'easeOut' }}
+      >
+        <img
+          src={governanceHero}
+          alt="Corporate Governance Banner"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
+          className="relative z-10 text-white text-4xl md:text-6xl lg:text-7xl font-bold flex items-end justify-start h-full py-10 px-6 md:px-10"
+        >
+          Corporate Governance
+        </motion.h1>
+      </motion.section>
 
       <section className="pt-20 pb-32 px-6">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-12 gap-12">
-          <div className="col-span-12 lg:col-span-8">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          <div className="col-span-1 lg:col-span-8">
             <div className="inline-block text-white px-5 py-1.5 rounded-md mb-6 font-semibold text-[13px] tracking-wide" style={{ backgroundColor: brandColor }}>
               INVESTOR RELATIONS
             </div>
@@ -262,8 +274,8 @@ const Governance = () => {
               >
                 {isLoading ? (
                   <div className="p-20 text-center flex flex-col items-center">
-                     <div className="w-10 h-10 border-4 border-gray-200 border-t-[#292C44] rounded-full animate-spin mb-4" />
-                     <p className="text-gray-400 animate-pulse">Fetching Records...</p>
+                    <div className="w-10 h-10 border-4 border-gray-200 border-t-[#292C44] rounded-full animate-spin mb-4" />
+                    <p className="text-gray-400 animate-pulse">Fetching Records...</p>
                   </div>
                 ) : (
                   <>
@@ -275,12 +287,12 @@ const Governance = () => {
               </motion.div>
             </AnimatePresence>
           </div>
-          <aside className="col-span-12 lg:col-span-4 lg:sticky lg:top-28 h-fit">
+          <aside className="col-span-1 lg:col-span-4">
             <InvestorSidebar />
           </aside>
         </div>
       </section>
-      
+
     </div>
   );
 };

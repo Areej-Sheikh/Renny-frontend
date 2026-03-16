@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+
 import ipoHero from "../../assets/investorbanner.webp";
 import InvestorSidebar from "../../components/InvestorSidebar";
 
@@ -13,7 +12,7 @@ const IPOAV = () => {
 
   const brandColor = "#292C44";
   const mainHeadingFont =
-    "font-['Helvetica','Arial',sans-serif] text-[37px] font-semibold";
+    "font-['Helvetica','Arial',sans-serif] text-2xl lg:text-[37px] font-semibold";
 
   const getDrivePreviewUrl = (url) => {
     if (!url) return "";
@@ -32,7 +31,7 @@ const IPOAV = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/ipo-av");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/ipo-av`);
         setVideos(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error("Error fetching IPO videos:", error);
@@ -45,28 +44,31 @@ const IPOAV = () => {
 
   return (
     <div className="font-['Helvetica','Arial',sans-serif]">
-      <Navbar />
 
-      {/* ---------------- HERO ---------------- */}
-      <section className="relative w-full h-[55vh] overflow-hidden">
+      {/* Banner */}
+      <motion.section
+        className="relative h-[50vh] md:h-[100vh] w-full overflow-hidden mb-12"
+        initial={{ opacity: 0, scale: 1.2 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.4, ease: 'easeOut' }}
+      >
         <img
           src={ipoHero}
-          alt="IPO Audio Visual"
+          alt="IPO Audio Visual Banner"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/50" />
 
-        <div className="absolute bottom-16 left-0 w-full px-6 lg:px-20 z-10">
-          <motion.h1
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className={`text-white ${mainHeadingFont}`}
-          >
-            IPO Audio Visual
-          </motion.h1>
-        </div>
-      </section>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
+          className="relative z-10 text-white text-4xl md:text-6xl lg:text-7xl font-bold flex items-end justify-start h-full py-10 px-6 md:px-10"
+        >
+          IPO Audio Visual
+        </motion.h1>
+      </motion.section>
 
       {/* ---------------- CONTENT ---------------- */}
       <motion.section
@@ -75,8 +77,8 @@ const IPOAV = () => {
         transition={{ duration: 0.8 }}
         className="pt-20 pb-32 bg-white px-6"
       >
-        <div className="max-w-[1400px] mx-auto grid grid-cols-12 gap-12 items-start">
-          <div className="col-span-12 lg:col-span-8">
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          <div className="col-span-1 lg:col-span-8">
             <div
               className="inline-block text-white px-5 py-1.5 rounded-md mb-6 font-semibold text-[13px] tracking-wide"
               style={{ backgroundColor: brandColor }}
@@ -156,13 +158,13 @@ const IPOAV = () => {
           </div>
 
           {/* ---------------- SIDEBAR ---------------- */}
-          <div className="col-span-12 lg:col-span-4 sticky top-28">
+          <div className="col-span-1 lg:col-span-4">
             <InvestorSidebar />
           </div>
         </div>
       </motion.section>
 
-      <Footer />
+
     </div>
   );
 };

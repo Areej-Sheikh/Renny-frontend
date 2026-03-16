@@ -49,15 +49,14 @@ const Footer = () => {
     <footer className="bg-gray-200 font-helvetica text-gray-800">
       {/* ================= MAIN FOOTER ================= */}
       <motion.div
-        className=" mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10"
+        className="mx-auto px-6 md:px-16 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-10"
         variants={container}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
       >
-        {/* COL 1 */}
         <motion.div variants={item} className="space-y-4">
-          <img src={RennyLogo} alt="Renny Logo" className="h-25" />
+          <img src={RennyLogo} alt="Renny Logo" className="h-[100px] w-auto object-contain" />
           <p className="text-sm text-gray-600">
             In 1996, Renny Strips Ltd embarked on its dynamic journey. Founded
             under the prudent leadership of Mr. Binny Gupta, Renny Strips Ltd.
@@ -122,7 +121,7 @@ const Footer = () => {
 
           <div className="space-y-3">
             <h3 className="font-semibold">Career</h3>
-            <FooterLink to="/career">Career</FooterLink>
+            <FooterLink to="/careers">Career</FooterLink>
           </div>
         </motion.div>
 
@@ -167,7 +166,7 @@ const Footer = () => {
         viewport={{ once: true }}
         className="border-t border-gray-300"
       >
-        <div className=" mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between text-sm text-gray-600 gap-2">
+        <div className="mx-auto px-6 md:px-16 py-4 flex flex-col sm:flex-row justify-between text-sm text-gray-600 gap-2">
           <div>© Renny</div>
           <div className="flex gap-4">
             <Link to="/privacy-policy" className="hover:text-blue-800">

@@ -38,7 +38,7 @@ import SustainabilitySlider from "../components/SustainabilitySlider";
 import RENNY from "../assets/RENNY-removebg-preview.webp";
 import { image } from "framer-motion/client";
 import rennyimg from "../assets/RENNY-removebg-preview.webp";
-
+import MapPage from "./MapPage";
 const Home = () => {
   const navigate = useNavigate();
 
@@ -93,8 +93,8 @@ const Home = () => {
   };
 
   const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.3,
+    triggerOnce: false,
+    threshold: 0.5,
   });
 
   const products = [
@@ -130,11 +130,17 @@ const Home = () => {
     hidden: { opacity: 0, scale: 0.95 },
     visible: { opacity: 1, scale: 1 },
   };
+  const [viewKey, setViewKey] = useState(0);
 
+  useEffect(() => {
+    if (inView) {
+      setViewKey((prev) => prev + 1);
+    }
+  }, [inView]);
   return (
     <div className="relative flex flex-col font-helvetica ">
       {/* 1. Banner Section */}
-      <section className="w-full relative flex flex-col md:flex-row items-center mt-12 md:mt-14 mb-12 md:mb-20 px-4 md:px-0">
+      <section className="w-full relative flex flex-col md:flex-row items-center mt-12 md:mt-20  px-4 md:px-0">
         <motion.div
           className="flex flex-col justify-center h-auto md:h-125 ml-0 md:ml-10 mb-10 md:mb-30 text-center md:text-left"
           initial={{ opacity: 0, x: -80 }}
@@ -162,7 +168,7 @@ const Home = () => {
         >
           <div className="w-full flex items-center justify-center pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
             <video
-              className="w-full md:w-130 lg:w-[calc(100vw-720px)] h-56 sm:h-64 md:h-80 ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover transition-all duration-700 ease-out hover:scale-110 lg:hover:w-[calc(100vw-460px)] hover:mt-0 md:hover:mt-20 hover:ml-0 md:hover:ml-10"
+              className="w-full md:w-130 lg:w-[calc(100vw-720px)] h-60 sm:h-68 md:h-90 ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover transition-all duration-700 ease-out hover:scale-110 lg:hover:w-[calc(100vw-460px)] hover:mt-0 md:hover:mt-20 hover:ml-0 md:hover:ml-10"
               src={HomepageBanner}
               autoPlay
               loop
@@ -266,13 +272,13 @@ const Home = () => {
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
         <motion.h1
-          className="text-3xl  text-[#05267e] sm:text-4xl md:text-[48px] font-bold mb-8 md:mb-10 w-full text-center mt-8 md:mt-10"
+          className="text-3xl  text-[#05267e] sm:text-4xl md:text-[48px] font-bold w-full text-center mt-8 md:mt-10 "
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           Our Products
-          <div className="w-40 sm:w-52 md:w-65 h-0.5 bg-[#05267e] mx-auto rounded-full" />
+          <div className="w-40 mb-8 md:mb-10 sm:w-52 md:w-65 h-0.5 bg-[#05267e] mx-auto rounded-full" />
         </motion.h1>
 
         {/* MOBILE: stacked layout | DESKTOP: original flex layout */}
@@ -368,26 +374,14 @@ const Home = () => {
           <div className="w-36 sm:w-48 md:w-60 h-0.5 bg-[#05267e] mx-auto rounded-full mb-8 md:mb-10" />
         </motion.h1>
 
-        <div className="w-full">
-          <motion.video
-            src={worldmap}
-            className="w-full object-cover border-none rounded-lg md:rounded-none"
-            autoPlay
-            loop
-            muted
-            playsInline
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          />
-        </div>
+        <MapPage />
 
         <motion.div
           ref={ref}
           className="flex flex-wrap items-center justify-center gap-6 mt-8 md:mt-10"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.5 }}
           variants={staggerContainer}
         >
           {[
@@ -404,13 +398,14 @@ const Home = () => {
           ].map((item, index) => (
             <motion.div
               key={index}
-              className="border-t-2 border-b-2 px-4 sm:px-6 py-4 text-center w-full sm:w-auto "
+              className="border-t-2 border-b-2 px-4 sm:px-6 py-4 text-center w-full sm:w-auto"
               variants={listItem}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
               <p className="text-3xl sm:text-4xl md:text-5xl font-light text-blue">
                 {inView ? (
                   <CountUp
+                    key={viewKey}
                     end={item.value}
                     duration={item.duration}
                     separator={item.separator}

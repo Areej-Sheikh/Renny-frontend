@@ -112,7 +112,7 @@ const Quality = () => {
 
 
   return (
-    <section className="w-full bg-white">
+    <section className="w-full bg-gray-100">
       {/* ================= Banner Section ================= */}
       <motion.section
         className="relative h-[50vh] md:h-[100vh] w-full overflow-hidden  mb-12"
@@ -433,7 +433,7 @@ const Quality = () => {
           </div>
         </div>
       </section>
-      <section className="w-full   bg-white py-12 sm:py-16 lg:py-20">
+      <section className="w-full   bg-white py-12 sm:py-16 lg:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* ===== Title ===== */}
           <motion.h2
@@ -448,7 +448,7 @@ const Quality = () => {
             <div className="w-64 md:w-75 h-0.5 bg-blue mx-auto mt-4" />
           </motion.h2>
           {/* ===== Slider Wrapper ===== */}
-          <div className="relative pt-10   h-[460px]">
+          <div className="relative pt-2">
 
             {/* Left Arrow */}
             <button
@@ -476,7 +476,7 @@ const Quality = () => {
             {/* ===== Certificates Grid ===== */}
             <div
               ref={sliderRef}
-              className="flex gap-6 sm:gap-8 lg:gap-10
+              className="flex py-1 gap-6 sm:gap-8 lg:gap-10
              overflow-x-auto overflow-y-visible
              scroll-smooth no-scrollbar pb-6  "
             >

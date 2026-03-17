@@ -411,7 +411,7 @@ const Manufacturing = () => {
               key={currentMetric.image}
               src={currentMetric.image}
               alt={currentMetric.title}
-              className="w-full h-full rounded-4xl object-cover"
+              className="w-full h-full rounded-4xl object-fit"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

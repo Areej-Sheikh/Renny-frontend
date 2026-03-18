@@ -16,19 +16,19 @@ const SustainabilitySlider = () => {
   }, []);
 
   return (
-    <div className="relative w-full overflow-hidden rounded-4xl shadow-2xl">
+    <div className="relative w-full overflow-hidden rounded-4xl shadow-2xl h-72 lg:h-80 flex">
       <div
-        className="flex transition-transform duration-700 ease-in-out"
+        className="flex transition-transform duration-700 ease-in-out h-full"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {/* ===== CARD 1 ===== */}
-        <div className="w-full shrink-0">
-          <div className="flex flex-col lg:flex-row bg-white  shadow-lg overflow-hidden">
-            <div className="lg:w-3/5 p-6 lg:p-10 flex flex-col justify-center">
-              <h3 className="text-2xl font-semibold mb-6">
+        <div className="w-full shrink-0 h-full">
+          <div className="flex flex-col lg:flex-row bg-white overflow-hidden h-full">
+            <div className="lg:w-3/5 p-6 lg:p-10 flex flex-col justify-center overflow-hidden h-full">
+              <h3 className="text-2xl font-semibold mb-6 shrink-0">
                 CBAM & Sustainable Market Access
               </h3>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-700 leading-relaxed line-clamp-4 lg:line-clamp-5">
                 Renny Strips Ltd. strengthens its European presence through
                 CBAM-aligned practices, delivering high-quality steel products
                 with strong ROI. Fully in-house production enables rapid
@@ -36,7 +36,7 @@ const SustainabilitySlider = () => {
                 footprint than industry standards.
               </p>
             </div>
-            <div className="lg:w-2/5 h-72 lg:h-auto">
+            <div className="lg:w-2/5 h-72 lg:h-full shrink-0 overflow-hidden">
               <img
                 src={sustainability1}
                 alt="CBAM Sustainability"
@@ -47,17 +47,17 @@ const SustainabilitySlider = () => {
         </div>
 
         {/* ===== CARD 2 ===== */}
-        <div className="w-full shrink-0">
-          <div className="flex flex-col lg:flex-row bg-white  shadow-lg overflow-hidden   ">
-            <div className="lg:w-3/5 p-6 lg:p-10 flex flex-col justify-center">
-              <h3 className="text-2xl font-semibold mb-6">
+        <div className="w-full shrink-0 h-full">
+          <div className="flex flex-col lg:flex-row bg-white overflow-hidden h-full">
+            <div className="lg:w-3/5 p-6 lg:p-10 flex flex-col justify-center overflow-hidden h-full">
+              <h3 className="text-2xl font-semibold mb-6 shrink-0">
                 Industry-Best Low-Emission Standards
               </h3>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-700 leading-relaxed line-clamp-4 lg:line-clamp-5">
                 Renny Strips Ltd. monitors environmental impact across sourcing, processing, and distribution stages through its vertically aligned operations. Internal production of steel inputs and components limits transport reliance, lowers emissions output, and strengthens sustainability oversight.
               </p>
             </div>
-            <div className="lg:w-2/5 h-72 lg:h-auto">
+            <div className="lg:w-2/5 h-72 lg:h-full shrink-0 overflow-hidden">
               <img
                 src={sustainability3}
                 alt="CBAM Sustainability"
@@ -67,19 +67,18 @@ const SustainabilitySlider = () => {
           </div>
         </div>
 
-
         {/* ===== CARD 3 ===== */}
-        <div className="w-full shrink-0">
-          <div className="flex flex-col lg:flex-row bg-white  shadow-lg overflow-hidden">
-            <div className="lg:w-3/5 p-6 lg:p-10 flex flex-col justify-center">
-              <h3 className="text-2xl font-semibold mb-6">
+        <div className="w-full shrink-0 h-full">
+          <div className="flex flex-col lg:flex-row bg-white overflow-hidden h-full">
+            <div className="lg:w-3/5 p-6 lg:p-10 flex flex-col justify-center overflow-hidden h-full">
+              <h3 className="text-2xl font-semibold mb-6 shrink-0">
                 Circular Economy and Environmental Stewardship
               </h3>
-              <p className="text-gray-700 leading-relaxed">
-                Renny Strips Ltd. prioritizes effective waste management and collaborates with local authorities, cover. Renny’s commitment to fostering a more sustainable ecosystem. The company continually invests in innovative recycling solutions and environmentally responsible practices.
+              <p className="text-gray-700 leading-relaxed line-clamp-4 lg:line-clamp-5">
+                Renny Strips Ltd. prioritizes effective waste management and collaborates with local authorities, cover. Renny's commitment to fostering a more sustainable ecosystem. The company continually invests in innovative recycling solutions and environmentally responsible practices.
               </p>
             </div>
-            <div className="lg:w-2/5 h-72 lg:h-auto">
+            <div className="lg:w-2/5 h-72 lg:h-full shrink-0 overflow-hidden">
               <img
                 src={sustainability4}
                 alt="CBAM Sustainability"
@@ -88,7 +87,6 @@ const SustainabilitySlider = () => {
             </div>
           </div>
         </div>
-
 
       </div>
     </div>

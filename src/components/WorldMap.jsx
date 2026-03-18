@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import WorldSVG from "../assets/Map.svg?react";
+import WorldSVG from "../assets/Map3.svg?react";
 import countryLookup from "../data/countriesData";
 import { motion } from "framer-motion";
 
@@ -175,7 +175,7 @@ export default function WorldMapSVG() {
             </button>
           </>
         ) : (
-          <p style={{ color: "#6a7282" }}>Click on a highlighted country</p>
+          <p style={{ color: "#6a7282" }}></p>
         )}
       </div>
     </div>

@@ -4,11 +4,6 @@ export default function MapPage() {
   return (
     <div style={styles.page}>
       
-      {/* HEADER */}
-      <div style={styles.header}>
-        <h1 style={styles.title}>Renny's Global Presence</h1>
-       
-      </div>
 
       {/* MAP SECTION */}
       <div style={styles.mapContainer}>

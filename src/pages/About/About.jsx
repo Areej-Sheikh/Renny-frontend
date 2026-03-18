@@ -235,7 +235,7 @@ const About = () => {
 
       {/* ================= TIMELINE ================= */}
       <section className="bg-[#F8F8F8]  text-black">
-        <div className="mx-auto px-6 md:px-16">
+        <div className="mx-auto px-6 pb-10 md:px-16">
           <motion.h1
             className="text-[32px]  md:text-[48px] font-bold w-full text-center py-3 "
             initial={{ opacity: 0, y: 20 }}
@@ -243,15 +243,16 @@ const About = () => {
             transition={{ duration: 0.5 }}
           >
             Timeline
+             <div className="w-36 sm:w-34 md:w-40 h-0.5 bg-[#000000] mx-auto rounded-full mb-8 md:mb-10" />
           </motion.h1>
 
           <div className="relative mb-20">
             <div className="relative w-full mt-16">
               {/* Horizontal line */}
-              <div className="absolute top-[45%] left-0 w-full h-[2px] bg-gray-300 -translate-y-1/2" />
+              <div className="absolute top-[53px] left-0 w-full h-[2px] bg-gray-300" />
 
               {/* Timeline items */}
-              <div className="relative flex justify-between items-center overflow-x-auto pb-4 gap-8 min-w-[800px] md:min-w-0">
+              <div className="relative flex justify-between items-center  overflow-x-auto md:overflow-visible pb-4 gap-6 w-full">
                 {timelineData.map((item, index) => (
                   <button
                     key={index}

@@ -140,7 +140,7 @@ const Home = () => {
   return (
     <div className="relative flex flex-col font-helvetica ">
       {/* 1. Banner Section */}
-      <section className="w-full relative flex flex-col md:flex-row items-center mt-12 md:mt-20  px-4 md:px-0">
+      <section className="w-full h-screen relative flex flex-col md:flex-row items-center mt-12 md:mt-20  px-4 md:px-0">
         <motion.div
           className="flex flex-col justify-center h-auto md:h-125 ml-0 md:ml-10 mb-10 md:mb-30 text-center md:text-left"
           initial={{ opacity: 0, x: -80 }}
@@ -178,7 +178,7 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col px-10 items-start w-full xl:w-[calc(100vw-500px)] 2xl:w-[calc(100vw-500px)] transition-all duration-700 ease-out group-hover:xl:w-[calc(100vw-760px)] group-hover:2xl:w-[calc(100vw-760px)]">
-            <p className="text-gray-600 text-[20px]  mt-12 md:mt-10 mb-12 md:mb-20 px-4 md:px-0 md:text-[20px] leading-[2] text-center md:text-left">
+            <p className="text-gray-600 text-[20px]  mt-12 md:mt-10 mb-12 md:mb-20 px-4 md:px-0 md:text-[20px] text-center md:text-left">
               Proudly recognized with the prestigious 5-Star Green Steel
               Manufacturing Rating by NISSIT, Ministry of Steel, Government of
               Indian honour that reflects excellence in sustainable steel
@@ -357,7 +357,7 @@ const Home = () => {
       </motion.section>
 
       {/* 4. Our Network Section */}
-      <motion.section
+      {/* <motion.section
         className="flex flex-col items-center font-helvetica bg-white justify-center px-4 sm:px-6 py-12 md:py-16 panel"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -406,6 +406,83 @@ const Home = () => {
                 {inView ? (
                   <CountUp
                     key={viewKey}
+                    end={item.value}
+                    duration={item.duration}
+                    separator={item.separator}
+                  />
+                ) : (
+                  0
+                )}
+                {item.suffix}
+              </p>
+
+              <p className="text-base sm:text-lg md:text-xl text-blue-900 mt-2">
+                {item.label}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.section> */}
+       <motion.section
+        className="flex flex-col items-center font-helvetica bg-white justify-center px-4 sm:px-6 py-12 md:py-16 panel"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
+        <motion.h1
+          className="text-3xl text-[#05267e] sm:text-4xl md:text-[48px] font-bold ml-0 md:ml-20 w-full text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Our Network
+          <div className="w-36 sm:w-48 md:w-60 h-0.5 bg-[#05267e] mx-auto rounded-full mb-8 md:mb-10" />
+        </motion.h1>
+
+        <div className="w-full">
+          <motion.video
+            src={worldmap}
+            className="w-full object-cover border-none rounded-lg md:rounded-none"
+            autoPlay
+            loop
+            muted
+            playsInline
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          />
+        </div>
+
+        <motion.div
+          ref={ref}
+          className="flex flex-wrap items-center justify-center gap-6 mt-8 md:mt-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          {[
+            { value: 1000, suffix: "+", label: "SKUs", duration: 2 },
+            {
+              value: 199200,
+              suffix: " TPA",
+              label: "Annual Production",
+              duration: 3,
+              separator: ",",
+            },
+            { value: 1000, suffix: "+", label: "Work Force", duration: 2 },
+            { value: 22, suffix: " MW", label: "Solar Panel", duration: 2 },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              className="border-t-2 border-b-2 px-4 sm:px-6 py-4 text-center w-full sm:w-auto "
+              variants={listItem}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <p className="text-3xl sm:text-4xl md:text-5xl font-light text-blue">
+                {inView ? (
+                  <CountUp
                     end={item.value}
                     duration={item.duration}
                     separator={item.separator}

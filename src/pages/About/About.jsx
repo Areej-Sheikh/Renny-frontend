@@ -5,6 +5,7 @@ import CountUp from "react-countup";
 
 import aboutVideo from "../../assets/01-aboutVideo.webm";
 import worldmap from "../../assets/World-Map.webm";
+import MapPage from "../MapPage";
 
 // timeline images
 import t1996 from "../../assets/1996.webp";
@@ -83,6 +84,15 @@ const About = () => {
   const [isPaused, setIsPaused] = useState(false);
   const resumeTimeoutRef = useRef(null);
 
+
+   const staggerContainer = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.12 } },
+  };
+  const listItem = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0 },
+  };
   /* ================= AUTO TIMELINE (SAFE) ================= */
   useEffect(() => {
     if (isPaused) return;
@@ -108,7 +118,10 @@ const About = () => {
       setIsPaused(false);
     }, 5000);
   };
-
+  const {  ref: networkRef, inView: networkInView } = useInView({
+    triggerOnce: false,
+    threshold: 0.5,
+  });
   /* ================= COUNTUP ================= */
   const { ref: statsRef, inView } = useInView({
     triggerOnce: false,
@@ -243,7 +256,7 @@ const About = () => {
             transition={{ duration: 0.5 }}
           >
             Timeline
-             <div className="w-36 sm:w-34 md:w-40 h-0.5 bg-[#000000] mx-auto rounded-full mb-8 md:mb-10" />
+            <div className="w-36 sm:w-34 md:w-40 h-0.5 bg-[#000000] mx-auto rounded-full mb-8 md:mb-10" />
           </motion.h1>
 
           <div className="relative mb-20">
@@ -320,20 +333,72 @@ const About = () => {
       </section>
 
       {/* ================= NETWORK ================= */}
-      <section className="bg-white py-3 text-black">
-        <div className="mx-auto px-6 md:px-16">
-          <h1 className="text-4xl font-bold text-center mb-10">Our Network</h1>
+      <motion.section
+        className="flex flex-col items-center font-helvetica bg-white justify-center px-4 sm:px-6 py-12 md:py-16 panel"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
+        <motion.h1
+          className="text-3xl text-[#05267e] sm:text-4xl md:text-[48px] font-bold ml-0 md:ml-20 w-full text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Our Network
+          <div className="w-36 sm:w-48 md:w-60 h-0.5 bg-[#05267e] mx-auto rounded-full" />
+        </motion.h1>
 
-          <video
-            src={worldmap}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full rounded-2xl"
-          />
-        </div>
-      </section>
+        <MapPage />
+
+        <motion.div
+          ref={networkRef}
+          className="flex flex-wrap items-center justify-center gap-6 mt-8 md:mt-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.5 }}
+          variants={staggerContainer}
+        >
+          {[
+            { value: 1000, suffix: "+", label: "SKUs", duration: 2 },
+            {
+              value: 199200,
+              suffix: " TPA",
+              label: "Annual Production",
+              duration: 3,
+              separator: ",",
+            },
+            { value: 1000, suffix: "+", label: "Work Force", duration: 2 },
+            { value: 22, suffix: " MW", label: "Solar Panel", duration: 2 },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              className="border-t-2 border-b-2 px-4 sm:px-6 py-4 text-center w-full sm:w-auto"
+              variants={listItem}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <p className="text-3xl sm:text-4xl md:text-5xl font-light text-blue">
+                {networkInView ? (
+                  <CountUp
+                    key={viewKey}
+                    end={item.value}
+                    duration={item.duration}
+                    separator={item.separator}
+                  />
+                ) : (
+                  0
+                )}
+                {item.suffix}
+              </p>
+
+              <p className="text-base sm:text-lg md:text-xl text-blue-900 mt-2">
+                {item.label}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.section>
     </div>
   );
 };

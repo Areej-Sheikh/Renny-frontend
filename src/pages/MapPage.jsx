@@ -29,7 +29,7 @@ const ID_TO_CONTINENT = Object.fromEntries(
 const continentData = {
   northAmerica: {
     name: "North America",
-    countries: ["Panama", "USA"],
+    countries: ["Panama"],
   },
   southAmerica: {
     name: "South America",

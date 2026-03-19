@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import WorldMap from "../assets/map.svg?react";
+import WorldMap from "../assets/Map.svg?react";
 import countryLookup from "../data/countriesData";
 
 // ─── Derive ID → continent key from countryLookup ────────────────────────────

@@ -140,53 +140,59 @@ const Home = () => {
   return (
     <div className="relative flex flex-col font-helvetica ">
       {/* 1. Banner Section */}
-      <section className="w-full min-h-screen relative flex flex-col md:flex-row items-center mt-8 md:mt-16 px-4 md:px-0">
-        <motion.div
-          className="flex flex-col justify-center h-auto md:h-auto ml-0 md:ml-10 mb-6 md:mb-16 text-center md:text-left"
-          initial={{ opacity: 0, x: -80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <h1 className="text-5xl sm:text-5xl md:text-7xl xl:text-8xl font-semibold text-[#05267e] font-jost leading-tight">
-            Building <br />
-            <span className="font-semibold text-gray-500 bg-clip-text">
-              {" "}
-              A Future
-            </span>
-            <br />
-            <span className="text-[#05267e]">Together</span>
-          </h1>
-        </motion.div>
+      <section className="w-full min-h-screen relative flex items-center ">
+        <div className="w-full flex flex-col md:flex-row items-center mt-8 md:mt-16 px-4 md:px-0">
+          <motion.div
+            className="flex flex-col justify-center h-auto md:h-auto ml-0 md:ml-10 mb-6 md:mb-16 text-center md:text-left"
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <h1 className="text-5xl sm:text-5xl md:text-7xl xl:text-8xl font-semibold text-[#05267e] font-jost leading-tight">
+              Building <br />
+              <span className="font-semibold text-gray-500 bg-clip-text">
+                {" "}
+                A Future
+              </span>
+              <br />
+              <span className="text-[#05267e]">Together</span>
+            </h1>
+          </motion.div>
 
-        <motion.div
-          className="w-full mr-0 md:mr-1 max-w-full relative overflow-hidden flex flex-col items-start mt-4 md:mt-0"
-          initial={{ opacity: 0, x: 80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
-          viewport={{ once: true }}
-        >
-          <div className="w-full flex items-center justify-center pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
-            <video
-              className="w-full md:w-130 lg:w-[calc(100vw-720px)] h-52 sm:h-60 md:h-80 ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover transition-all duration-700 ease-out hover:scale-110 lg:hover:w-[calc(100vw-460px)] hover:mt-0 md:hover:mt-16 hover:ml-0 md:hover:ml-10"
-              src={HomepageBanner}
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
-          </div>
+          <motion.div
+            className="w-full mr-0 md:mr-1 max-w-full relative overflow-hidden flex flex-col items-start"
+            initial={{ opacity: 0, x: 80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
+            viewport={{ once: true }}
+          >
+            <div className="w-full flex items-center justify-center pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
+              <video
+                className="w-full md:w-130 lg:w-[calc(100vw-720px)] h-56 sm:h-64 md:h-85 ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover transition-all duration-700 ease-out hover:scale-110 lg:hover:w-[calc(100vw-460px)] hover:mt-0 md:hover:mt-16 hover:ml-0 md:hover:ml-10"
+                src={HomepageBanner}
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            </div>
 
-          <div className="flex flex-col px-10 items-start w-full xl:w-[calc(100vw-500px)] 2xl:w-[calc(100vw-500px)]">
-            <p className="text-gray-600 text-[18px] md:text-[20px] mt-6 md:mt-8 mb-8 md:mb-12 px-4 md:px-0 text-center md:text-left">
-              Proudly recognized with the prestigious 5-Star Green Steel
-              Manufacturing Rating by NISSIT, Ministry of Steel, Government of
-              Indian honour that reflects excellence in sustainable steel
-              manufacturing.
-            </p>
-          </div>
-        </motion.div>
-      </section>~
+            <div className="flex flex-col px-10 items-start w-full xl:w-[calc(100vw-500px)] 2xl:w-[calc(100vw-500px)]">
+              <p className="text-gray-600 text-[18px] md:text-[20px] mt-6 md:mt-8 mb-8 md:mb-12 px-4 md:px-0 text-center md:text-left">
+                Proudly recognized with the prestigious 5-Star Green Steel
+                Manufacturing Rating by NISSIT, Ministry of Steel, Government of
+                Indian honour that reflects excellence in sustainable steel
+                manufacturing.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+        <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 text-gray-800 text-2xl animate-bounce">
+
+        <i class="ri-arrow-down-line"></i>
+        </div>
+      </section>
 
       {/* 2. About Us Section */}
       <motion.section

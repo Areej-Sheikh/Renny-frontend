@@ -131,7 +131,12 @@ const Home = () => {
     visible: { opacity: 1, scale: 1 },
   };
   const [viewKey, setViewKey] = useState(0);
-
+  const scrollToNext = () => {
+    const nextSection = document.getElementById("next-section");
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   useEffect(() => {
     if (inView) {
       setViewKey((prev) => prev + 1);
@@ -141,9 +146,9 @@ const Home = () => {
     <div className="relative flex flex-col font-helvetica ">
       {/* 1. Banner Section */}
       <section className="w-full min-h-screen relative flex items-center ">
-        <div className="w-full flex flex-col md:flex-row items-center mt-8 md:mt-16 px-4 md:px-0">
+        <div className="w-full flex flex-col mt-4 md:flex-row items-center px-4 md:px-0">
           <motion.div
-            className="flex flex-col justify-center h-auto md:h-auto ml-0 md:ml-10 mb-6 md:mb-16 text-center md:text-left"
+            className="flex flex-col justify-center h-auto md:h-auto ml-0 md:ml-10 mb-6 md:mb-25 text-center md:text-left"
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -167,7 +172,7 @@ const Home = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
             viewport={{ once: true }}
           >
-            <div className="w-full flex items-center justify-center pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
+            <div className="w-full flex items-center justify-center mt-8 pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
               <video
                 className="w-full md:w-130 lg:w-[calc(100vw-720px)] h-56 sm:h-64 md:h-85 ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover transition-all duration-700 ease-out hover:scale-110 lg:hover:w-[calc(100vw-460px)] hover:mt-0 md:hover:mt-16 hover:ml-0 md:hover:ml-10"
                 src={HomepageBanner}
@@ -178,25 +183,29 @@ const Home = () => {
               />
             </div>
 
-            <div className="flex flex-col px-10 items-start w-full xl:w-[calc(100vw-500px)] 2xl:w-[calc(100vw-500px)]">
-              <p className="text-gray-600 text-[18px] md:text-[20px] mt-6 md:mt-8 mb-8 md:mb-12 px-4 md:px-0 text-center md:text-left">
+            <div className="flex flex-col px-10 items-start w-full ">
+              <p className="text-gray-600 text-base sm:text-[24px] md:text-[26px] lg:text-[28px] mt-6 md:mt-8 lg:mt-10 mb-8 md:mb-12 lg:mb-14 px-4 sm:px-6 md:px-0 text-center ml-4.5 md:text-left ">
                 Proudly recognized with the prestigious 5-Star Green Steel
                 Manufacturing Rating by NISSIT, Ministry of Steel, Government of
-                Indian honour that reflects excellence in sustainable steel
+                India an honour that reflects excellence in sustainable steel
                 manufacturing.
+                
               </p>
             </div>
           </motion.div>
         </div>
-        <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 text-gray-800 text-2xl animate-bounce">
-
-        <i class="ri-arrow-down-line"></i>
+        <div
+          onClick={scrollToNext}
+          className="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-gray-800 text-4xl animate-bounce cursor-pointer"
+        >
+          <i className="ri-arrow-down-line"></i>
         </div>
       </section>
 
       {/* 2. About Us Section */}
       <motion.section
         className="flex flex-col h-full items-center justify-center font-helvetica min-h-[100vh] md:h-full overflow-hidden"
+        id="next-section"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}

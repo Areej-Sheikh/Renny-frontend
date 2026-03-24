@@ -75,13 +75,38 @@ const Footer = () => {
         </motion.div>
 
         {/* COL 3 */}
-        <motion.div variants={item} className="space-y-3">
-          <h3 className="font-semibold">Products</h3>
-          <FooterLink>MS Billets</FooterLink>
-          <FooterLink>Wire Rods</FooterLink>
-          <FooterLink>Narrow-width HR Coils</FooterLink>
-          <FooterLink>ERW Black & Galvanized Pipes & Tubes</FooterLink>
-          <FooterLink>Scaffolding & Formwork</FooterLink>
+        <motion.div variants={item} className="space-y-2">
+          <h2 className="font-semibold">Products</h2>
+          <Link
+            to="/MS-billets"
+            className="block hover:translate-x-1 transition-transform text-[13px] uppercase font-medium text-gray-700 "
+          >
+            MS Billets
+          </Link>
+          <Link
+            to="/wire-rods-2"
+            className="block hover:translate-x-1 transition-transform text-[13px] uppercase font-medium text-gray-700 "
+          >
+            Wire Rods
+          </Link>
+          <Link
+            to="/narrow-hrcoil"
+            className="block hover:translate-x-1 transition-transform text-[13px] uppercase font-medium text-gray-700 "
+          >
+            Narrow-width HR Coils
+          </Link>
+          <Link
+            to="/erw-pipes-and-tubes"
+            className="block hover:translate-x-1 transition-transform text-[13px] uppercase font-medium text-gray-700 "
+          >
+            ERW Black & Galvanized Pipes & Tubes
+          </Link>
+          <Link
+            to="/scaffolding-formwork"
+            className="block hover:translate-x-1 transition-transform text-[13px] uppercase font-medium text-gray-700 "
+          >
+            Scaffolding & Formwork System
+          </Link>
         </motion.div>
 
         {/* COL 4 */}

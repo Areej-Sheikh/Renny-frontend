@@ -154,7 +154,7 @@ const Home = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h1 className="text-5xl sm:text-5xl md:text-7xl xl:text-8xl font-semibold text-[#05267e] font-jost leading-tight">
+            <h1 className="text-5xl sm:text-[110px] md:text-[110px] xl:text-[110px] font-semibold text-[#05267e] font-jost leading-tight">
               Building <br />
               <span className="font-semibold text-gray-500 bg-clip-text">
                 {" "}
@@ -184,7 +184,7 @@ const Home = () => {
             </div>
 
             <div className="flex flex-col px-10 items-start w-full ">
-              <p className="text-gray-600 text-base sm:text-[24px] md:text-[26px] lg:text-[28px] mt-6 md:mt-8 lg:mt-10 mb-8 md:mb-12 lg:mb-14 px-4 sm:px-6 md:px-0 text-center ml-4.5 md:text-left ">
+              <p className="text-gray-600 text-base sm:text-[24px] md:text-[22px] lg:text-[20px] mt-6 md:mt-8 lg:mt-10 mb-8 md:mb-12 lg:mb-14 px-4 sm:px-6 md:px-0 text-center ml-4.5 md:text-left ">
                 Proudly recognized with the prestigious 5-Star Green Steel
                 Manufacturing Rating by NISSIT, Ministry of Steel, Government of
                 India an honour that reflects excellence in sustainable steel

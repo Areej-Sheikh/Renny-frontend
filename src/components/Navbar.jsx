@@ -139,19 +139,29 @@ const Navbar = () => {
           </span>
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-72 z-50">
             <li>
-              <Link className="dropdown-item">MS Billets</Link>
+              <Link to="/MS-billets/" className="dropdown-item">
+                MS Billets
+              </Link>
             </li>
             <li>
-              <Link className="dropdown-item">Wire Rods</Link>
+              <Link to="/wire-rods-2/" className="dropdown-item">
+                Wire Rods
+              </Link>
             </li>
             <li>
-              <Link className="dropdown-item">Narrow-width HR Coils</Link>
+              <Link to="/narrow-hrcoil/" className="dropdown-item">
+                Narrow-width HR Coils
+              </Link>
             </li>
             <li>
-              <Link className="dropdown-item">ERW Pipes & Tubes</Link>
+              <Link to="/erw-pipes-and-tubes/" className="dropdown-item">
+                ERW Pipes & Tubes
+              </Link>
             </li>
             <li>
-              <Link className="dropdown-item">Scaffolding & Formwork</Link>
+              <Link to="/scaffolding-formwork/" className="dropdown-item">
+                Scaffolding & Formwork
+              </Link>
             </li>
           </ul>
         </li>

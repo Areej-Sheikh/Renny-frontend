@@ -1,4 +1,4 @@
-import msBilletsBG from "../../assets/msBilletsBG.webp";
+import msBilletsBG from "../../assets/msbilletBanner.webm";
 import msBillets1 from "../../assets/msBillets1.webp";
 
 const MSBillets = () => {
@@ -7,9 +7,11 @@ const MSBillets = () => {
 
       {/* ================= FIXED BACKGROUND IMAGE ================= */}
       <div className="fixed inset-0 -z-10">
-        <img
+        <video
           src={msBilletsBG}
-          alt="MS Billets Background"
+          autoPlay
+          loop
+          muted
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/60" />

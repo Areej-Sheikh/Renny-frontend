@@ -154,7 +154,7 @@ const Home = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h1 className="text-5xl sm:text-[110px] md:text-[110px] xl:text-[110px] font-semibold text-[#05267e] font-jost leading-tight">
+            <h1 className="text-5xl sm:text-[110px] md:text-[110px] xl:text-[110px] font-semibold text-[#05267e] font-jost leading-tight md:mt-10">
               Building <br />
               <span className="font-semibold text-gray-500 bg-clip-text">
                 {" "}

@@ -174,12 +174,7 @@ const Home = () => {
           >
             <div className="w-full flex items-center justify-center mt-8 pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
               <video
-                className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-56 sm:h-64 md:h-65 
-             ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover 
-             transition-all duration-700 ease-out 
-             /* Hover State - Expanding back out */
-             hover:scale-110 lg:hover:w-[calc(100vw-460px)] 
-             hover:mt-0 md:hover:mt-16 hover:ml-0 md:hover:ml-10"
+                className="w-full md:w-130 lg:w-[calc(100vw-720px)] h-56 sm:h-64 md:h-70 ml-0 md:ml-20 mb-4 rounded-2xl mt-10 md:rounded-4xl object-cover transition-all duration-700 ease-out hover:scale-110 lg:hover:w-[calc(100vw-460px)] lg:hover:h-[calc(100vh-350px)] hover:mt-0 md:hover:mt-18 hover:ml-0 md:hover:ml-10"
                 src={HomepageBanner}
                 autoPlay
                 loop
@@ -196,12 +191,12 @@ const Home = () => {
     /* 14-inch PC (~md/lg): roughly 22px-24px */
     md:text-[20px] 
     /* 15-inch+ PC (~xl): scales up to 26px */
-    lg:text-[24px] 
-    xl:text-[24px] 
+    lg:text-[22px] 
+    xl:text-[22px] 
     /* Extra Large monitors: 32px */
     2xl:text-[32px]
     
-    mt-6 md:mt-8 lg:mt-10 
+    mt-4 md:mt-8 lg:mt-10 
     mb-8 md:mb-12 lg:mb-14 
     text-center md:text-left 
     "

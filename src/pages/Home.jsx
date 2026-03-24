@@ -174,7 +174,7 @@ const Home = () => {
           >
             <div className="w-full flex items-center justify-center mt-8 pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
               <video
-                className="w-[90%] md:w-[700px] lg:w-[calc(100vw-850px)] xl:w-[800px] h-56 sm:h-64 md:h-95 
+                className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-56 sm:h-64 md:h-65 
              ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover 
              transition-all duration-700 ease-out 
              /* Hover State - Expanding back out */
@@ -194,17 +194,16 @@ const Home = () => {
     /* Mobile: readable base size */
     text-lg 
     /* 14-inch PC (~md/lg): roughly 22px-24px */
-    md:text-[22px] 
+    md:text-[20px] 
     /* 15-inch+ PC (~xl): scales up to 26px */
     lg:text-[24px] 
-    xl:text-[28px] 
+    xl:text-[24px] 
     /* Extra Large monitors: 32px */
     2xl:text-[32px]
     
     mt-6 md:mt-8 lg:mt-10 
     mb-8 md:mb-12 lg:mb-14 
     text-center md:text-left 
-    leading-relaxed 
     "
               >
                 Proudly recognized with the prestigious 5-Star Green Steel

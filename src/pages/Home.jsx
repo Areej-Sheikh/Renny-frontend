@@ -174,7 +174,12 @@ const Home = () => {
           >
             <div className="w-full flex items-center justify-center mt-8 pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
               <video
-                className="w-full md:w-130 lg:w-[calc(100vw-720px)] h-56 sm:h-64 md:h-85 ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover transition-all duration-700 ease-out hover:scale-110 lg:hover:w-[calc(100vw-460px)] hover:mt-0 md:hover:mt-16 hover:ml-0 md:hover:ml-10"
+                className="w-[90%] md:w-[700px] lg:w-[calc(100vw-850px)] xl:w-[800px] h-56 sm:h-64 md:h-95 
+             ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover 
+             transition-all duration-700 ease-out 
+             /* Hover State - Expanding back out */
+             hover:scale-110 lg:hover:w-[calc(100vw-460px)] 
+             hover:mt-0 md:hover:mt-16 hover:ml-0 md:hover:ml-10"
                 src={HomepageBanner}
                 autoPlay
                 loop
@@ -183,13 +188,29 @@ const Home = () => {
               />
             </div>
 
-            <div className="flex flex-col px-10 items-start w-full ">
-              <p className="text-gray-600 text-base sm:text-[24px] md:text-[22px] lg:text-[20px] mt-6 md:mt-8 lg:mt-10 mb-8 md:mb-12 lg:mb-14 px-4 sm:px-6 md:px-0 text-center ml-4.5 md:text-left ">
+            <div className="flex flex-col w-full items-center md:items-start px-6 md:px-10">
+              <p
+                className="text-gray-600 
+    /* Mobile: readable base size */
+    text-lg 
+    /* 14-inch PC (~md/lg): roughly 22px-24px */
+    md:text-[22px] 
+    /* 15-inch+ PC (~xl): scales up to 26px */
+    lg:text-[24px] 
+    xl:text-[28px] 
+    /* Extra Large monitors: 32px */
+    2xl:text-[32px]
+    
+    mt-6 md:mt-8 lg:mt-10 
+    mb-8 md:mb-12 lg:mb-14 
+    text-center md:text-left 
+    leading-relaxed 
+    "
+              >
                 Proudly recognized with the prestigious 5-Star Green Steel
                 Manufacturing Rating by NISSIT, Ministry of Steel, Government of
                 India an honour that reflects excellence in sustainable steel
                 manufacturing.
-                
               </p>
             </div>
           </motion.div>

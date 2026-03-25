@@ -13,6 +13,7 @@ import Railway from "../../assets/Railway.webp";
 import Areospace from "../../assets/Aerospace.webp";
 import Defence from "../../assets/Defence.webp";
 import Heavy from "../../assets/heavy engineering.webp";
+
 const MSBillets = () => {
   return (
     <div className="relative w-full overflow-x-hidden font-jost">
@@ -75,9 +76,10 @@ const MSBillets = () => {
 
         {/* ================= WINDOW (IMAGE SECTION) ================= */}
         <section className="px-6 md:px-20 pb-20">
+          {/* Added bg-fixed to create the parallax window effect */}
           <div
-            className="w-full h-[70vh] flex items-end justify-center gap-10 text-3xl bg-cover bg-center rounded-[60px] overflow-hidden"
-            style={{ backgroundImage: `url(${msBilletsSection2})` }}
+            className="w-full h-[70vh] flex items-end justify-center gap-10 text-3xl bg-cover bg-center bg-fixed rounded-[60px] overflow-hidden"
+            style={{ backgroundImage: `url("${msBilletsSection2}")` }}
           >
             <div className="border-r-4 border-blue-highlight text-white font-bold w-45 leading-relaxed mb-20 px-4">
               <p>Superior Internal soundness</p>
@@ -85,10 +87,11 @@ const MSBillets = () => {
             <div className="border-r-4 mb-20 border-blue-highlight text-white font-bold w-45 leading-relaxed px-4">
               <p>Precision controlled chemistry</p>
             </div>
-            <div className="border-r-4 mb-20 border-blue-highlight text-white font-bold w-60 px-4">
+            <div className="border-r-4 mb-20 border-blue-highlight   text-white font-bold w-60">
               <p>Uniform Microstructures for better performance</p>
             </div>
-            <div className="mb-20 text-white font-bold w-60 px-4">
+            {/* Kept w-48 and added leading-relaxed for the 3-line look */}
+            <div className=" mb-20  text-white font-bold w-57">
               <p>Wide size range with excellent surface quality</p>
             </div>
           </div>
@@ -107,7 +110,6 @@ const MSBillets = () => {
           <div className="w-36 sm:w-34 md:w-70 h-0.5 bg-black mx-auto rounded-full mb-8 md:mb-10" />
         </motion.h1>
         <div className="grid grid-cols-3">
-          {/* NOW GRAY CARD (was white) */}
           <div className="h-75 flex items-center justify-center  bg-gray-200 text-gray-700  hover:text-white  group hover:bg-gray-700 transition duration-300">
             <div className="px-10 py-20 flex flex-col items-center text-center justify-center">
               <img
@@ -126,7 +128,6 @@ const MSBillets = () => {
             </div>
           </div>
 
-          {/* NOW WHITE CARD (was gray) */}
           <div className="h-75 flex items-center justify-center bg-white group hover:bg-blue transition duration-300">
             <div className="px-10 py-20 flex flex-col items-center justify-center text-center">
               <img
@@ -145,7 +146,6 @@ const MSBillets = () => {
             </div>
           </div>
 
-          {/* NOW GRAY CARD */}
           <div className="h-75 flex items-center justify-center  bg-gray-200 text-gray-700  hover:text-white  group hover:bg-gray-700 transition duration-300">
             <div className="px-10 py-20 flex flex-col items-center justify-center text-center">
               <img
@@ -164,7 +164,6 @@ const MSBillets = () => {
             </div>
           </div>
 
-          {/* NOW WHITE CARD */}
           <div className="h-75 flex items-center justify-center bg-white group hover:bg-blue transition duration-300">
             <div className="px-10 py-20 flex flex-col items-center justify-center text-center">
               <img
@@ -183,7 +182,6 @@ const MSBillets = () => {
             </div>
           </div>
 
-          {/* NOW GRAY CARD */}
           <div className="h-75 flex items-center justify-center  bg-gray-200 text-gray-700  hover:text-white  group hover:bg-gray-700 transition duration-300">
             <div className="px-10 py-20 flex flex-col items-center justify-center text-center">
               <img
@@ -201,7 +199,6 @@ const MSBillets = () => {
             </div>
           </div>
 
-          {/* NOW WHITE CARD */}
           <div className="h-75 flex items-center justify-center bg-white group hover:bg-blue transition duration-300">
             <div className="px-10 py-20 flex flex-col items-center justify-center text-center">
               <img
@@ -242,51 +239,23 @@ const MSBillets = () => {
           that demand superior strength, toughness, and fatigue resistance.
         </p>
         <div className="flex items-center justify-center gap-15">
-          <div
-            className="w-40 h-40 flex items-center justify-center flex-col 
-                hover:scale-110 
-                transition-all duration-300 ease-in-out 
-                hover:shadow-[0_0_30px_rgba(59,130,246,0.9)] 
-                cursor-pointer rounded-xl"
-          >
+          <div className="w-40 h-40 flex items-center justify-center flex-col hover:scale-110 transition-all duration-300 ease-in-out hover:shadow-[0_0_30px_rgba(59,130,246,0.9)] cursor-pointer rounded-xl">
             <img src={Automotive} alt="" className="  w-100 h-100 " />
             <p>Automotive</p>
           </div>
-          <div
-            className="w-40 h-40 flex items-center justify-center flex-col 
-                hover:scale-110 
-                transition-all duration-300 ease-in-out 
-                hover:shadow-[0_0_30px_rgba(59,130,246,0.9)] 
-                cursor-pointer rounded-xl"
-          >
+          <div className="w-40 h-40 flex items-center justify-center flex-col hover:scale-110 transition-all duration-300 ease-in-out hover:shadow-[0_0_30px_rgba(59,130,246,0.9)] cursor-pointer rounded-xl">
             <img src={Railway} alt="" className="  w-40 h-40 " />
             <p>Railway</p>
           </div>
-          <div
-            className="w-40 h-40 flex items-center justify-center flex-col 
-                hover:scale-110 
-                transition-all duration-300 ease-in-out 
-                hover:shadow-[0_0_30px_rgba(59,130,246,0.9)] 
-                cursor-pointer rounded-xl"
-          >
+          <div className="w-40 h-40 flex items-center justify-center flex-col hover:scale-110 transition-all duration-300 ease-in-out hover:shadow-[0_0_30px_rgba(59,130,246,0.9)] cursor-pointer rounded-xl">
             <img src={Areospace} alt="" className="  w-40 h-40 " />
             <p>Aerospace</p>
           </div>
-          <div
-            className="w-40 h-40 flex items-center justify-center flex-col 
-                hover:scale-110 
-                transition-all duration-300 ease-in-out 
-                hover:shadow-[0_0_30px_rgba(59,130,246,0.9)] 
-                cursor-pointer rounded-xl"
-          >
+          <div className="w-40 h-40 flex items-center justify-center flex-col hover:scale-110 transition-all duration-300 ease-in-out hover:shadow-[0_0_30px_rgba(59,130,246,0.9)] cursor-pointer rounded-xl">
             <img src={Defence} alt="" className="  w-40 h-40 " />
             <p>Defence</p>
           </div>
-          <div
-            className="w-40 h-40 flex items-center justify-center flex-col hover:scale-110 hover:scale-110 
-                transition duration-300 
-                hover:shadow-[0_0_25px_rgba(59,130,246,0.8)]"
-          >
+          <div className="w-40 h-40 flex items-center justify-center flex-col hover:scale-110 transition duration-300 hover:shadow-[0_0_25px_rgba(59,130,246,0.8)]">
             <img src={Heavy} alt="" className="  w-40 h-40 " />
             <p>Heavy Engineering</p>
           </div>
@@ -296,25 +265,21 @@ const MSBillets = () => {
       {/* ================= PRODUCT RANGE (RIGHT SIDE) ================= */}
       <div className="relative py-32 text-white">
         <div className="absolute inset-0 bg-black/40" />
-
         <div className="relative px-6 md:px-20 flex justify-end">
           <div className="w-full md:w-1/2">
             <h2 className="text-4xl md:text-5xl font-medium mb-6">
               Product Range & Specification
             </h2>
-
             <p className=" text-sm   leading-relaxed font-normal mb-6">
               Renny’s MS billet range is designed for superior internal
               soundness, uniform composition, and high structural
               integrity—ideal for critical applications in automotive,
               industrial, and heavy engineering sectors.
             </p>
-
             <ol className="list-decimal list-inside space-y-2 font-normal mb-6">
               <li>Billets: 100 × 100 mm to 130 × 130 mm</li>
               <li>Blooms: 250 × 200 mm</li>
             </ol>
-
             <p className=" text-sm   leading-relaxed font-normal">
               Renny MS Billets are manufactured with controlled chemistry,
               uniform microstructure, and excellent surface quality—ensuring
@@ -326,11 +291,9 @@ const MSBillets = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 min-h-[80vh]">
-        {/* LEFT – TEXT */}
         <div className="bg-[#4a4a4a] text-white px-6 md:px-20 py-16 flex items-center">
           <div className="px-10 py-20 flex flex-col items-center justify-center">
             <h2 className="text-4xl font-medium mb-6">Core Strengths</h2>
-
             <ol className="list-decimal list-inside space-y-4 mb-12 leading-relaxed font-normal">
               <li>
                 <strong>Advanced De-Scaling Technology:</strong> <br></br>
@@ -338,7 +301,6 @@ const MSBillets = () => {
                 hydrogen, oxygen, and nitrogen, enhancing steel purity,
                 ductility, and toughness.
               </li>
-
               <li>
                 <strong>Precision Continuous Casting Machines (CCM):</strong>{" "}
                 <br></br>
@@ -346,27 +308,23 @@ const MSBillets = () => {
                 dimensional accuracy, uniform grain structure, and a superior
                 surface finish.
               </li>
-
               <li>
                 <strong>Advanced Refining for Steel Purity:</strong> <br></br>
                 Multi-stage refining with Eccentric Bottom Tapping (EBT) ensures
                 slag-free liquid steel, precise alloy adjustments, and reduced
                 inclusions for cleaner, high-purity output.
               </li>
-
               <li>
                 <strong>Unmatched Production Capacity:</strong> <br></br>
                 Large-scale billet output ensures the ability to meet bulk and
                 urgent requirements across forging, re-rolling, and heavy
                 engineering sectors.
               </li>
-
               <li>
                 <strong>Integrated Logistics Network:</strong> <br></br>
                 Robust supply chain infrastructure ensures on-time delivery to
                 both domestic and international destinations.
               </li>
-
               <li>
                 <strong>Preferred Industry Partner:</strong> <br></br>
                 Trusted by leading fabrication, forging, and infrastructure
@@ -374,9 +332,7 @@ const MSBillets = () => {
                 dependable service.
               </li>
             </ol>
-
             <h2 className="text-4xl font-medium mb-6">Application Arena</h2>
-
             <p className=" text-sm   leading-relaxed font-normal">
               MS billets are essential in the manufacturing of high-strength
               components used across automotive, railway, aerospace, defence,
@@ -388,8 +344,6 @@ const MSBillets = () => {
             </p>
           </div>
         </div>
-
-        {/* RIGHT – IMAGE */}
         <div className="w-full h-full">
           <img
             src={msBillets1}
@@ -398,7 +352,7 @@ const MSBillets = () => {
           />
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
-import msBilletsBG from "../../assets/msbilletBanner.webm";
+import msBilletsBG from "../../assets/msBilletBanner.webm";
+import msBilletsSection2 from "../../assets/ms billets section 2 .jpeg";
 import msBillets1 from "../../assets/msBillets1.webp";
 import { motion } from "framer-motion";
 import AdvancedTechnology from "../../assets/advanced de scaling technology.webp";
@@ -45,12 +46,12 @@ const MSBillets = () => {
       </section>
 
       {/* ================= INTRO SECTION ================= */}
-      <section>
+      <section className="bg-white">
         {/* ================= WHITE INTRO SECTION ================= */}
-        <div className="bg-white text-black pt-10 pb-20">
+        <div className="bg-white text-black pt-10 pb-10">
           <div className="px-6 md:px-20">
             <motion.h1
-              className="text-[32px]  md:text-[48px] font-bold w-full text-center py-3 "
+              className="text-[32px] md:text-[48px] font-bold w-full text-center py-3"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -59,7 +60,7 @@ const MSBillets = () => {
               <div className="w-36 sm:w-24 md:w-40 h-0.5 bg-black mx-auto rounded-full mb-8 md:mb-10" />
             </motion.h1>
 
-            <div className="max-w-[1100px]">
+            <div className="max-w-[1100px] mx-auto text-center md:text-left">
               <span className="block text-gray-600 text-xl font-normal leading-[1.7] tracking-[0.2px]">
                 Renny Strips Ltd. specializes in manufacturing billets and
                 blooms in a wide range of alloy, carbon & mild steel grades,
@@ -71,25 +72,26 @@ const MSBillets = () => {
             </div>
           </div>
         </div>
-        {/* ================= WINDOW ================= */}
-        <section className="relative w-full overflow-hidden ">
-          <div className="bg-transparent w-full h-[70vh] flex items-end justify-center gap-10 text-3xl">
-            <div className="border-r-4 border-blue-highlight   text-white font-bold w-45 leading-relaxed mb-20">
+
+        {/* ================= WINDOW (IMAGE SECTION) ================= */}
+        <section className="px-6 md:px-20 pb-20">
+          <div
+            className="w-full h-[70vh] flex items-end justify-center gap-10 text-3xl bg-cover bg-center rounded-[60px] overflow-hidden"
+            style={{ backgroundImage: `url(${msBilletsSection2})` }}
+          >
+            <div className="border-r-4 border-blue-highlight text-white font-bold w-45 leading-relaxed mb-20 px-4">
               <p>Superior Internal soundness</p>
             </div>
-            <div className="border-r-4 mb-20 border-blue-highlight   text-white font-bold w-45 leading-relaxed">
+            <div className="border-r-4 mb-20 border-blue-highlight text-white font-bold w-45 leading-relaxed px-4">
               <p>Precision controlled chemistry</p>
             </div>
-            <div className="border-r-4 mb-20 border-blue-highlight   text-white font-bold w-60">
+            <div className="border-r-4 mb-20 border-blue-highlight text-white font-bold w-60 px-4">
               <p>Uniform Microstructures for better performance</p>
             </div>
-            <div className=" mb-20  text-white font-bold w-57">
+            <div className="mb-20 text-white font-bold w-60 px-4">
               <p>Wide size range with excellent surface quality</p>
             </div>
           </div>
-          <div className="h-[20vh] bg-white"></div>
-          <div className="absolute right-0 top-[15%] -translate-y-[35%] h-[87vh] w-20 bg-white"></div>
-          <div className="absolute left-0 top-[15%] -translate-y-[35%] h-[87vh] w-20 bg-white"></div>
         </section>
       </section>
 
@@ -396,7 +398,7 @@ const MSBillets = () => {
           />
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

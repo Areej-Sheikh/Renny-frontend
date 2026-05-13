@@ -1,0 +1,25 @@
+{
+  "redirects": [
+    {
+      "source": "/wire-rods-2",
+      "destination": "/wire-rods",
+      "permanent": true
+    },
+    {
+      "source": "/company-overview-2",
+      "destination": "/company-overview",
+      "permanent": true
+    },
+    {
+      "source": "/MS-billets",
+      "destination": "/ms-billets",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/((?!assets|.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

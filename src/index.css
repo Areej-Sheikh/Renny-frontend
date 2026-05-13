@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --color-blue: #292c44;
+  --color-blue-highlight: #05267e;
+  --color-orange: #f5aa32;
+  --color-gray: #6a7282;
+  --font-jost: "Jost", Arial, sans-serif;
+  --font-helvetica: Helvetica, Arial, sans-serif;
+  --font-poppins: "Poppins", Arial, sans-serif;
+}
+
+html,
+body {
+  font-family: var(--font-poppins);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  overflow-x: clip;
+}
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+}
+
+.dropdown-item {
+  @apply block px-4 py-2 hover:bg-blue hover:text-white text-sm text-blue;
+}
+/* Add this to your global CSS file */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Safely hides scrollbar while allowing scrolling */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: #292c44;
+  width: 44px;
+  height: 44px;
+}
+/* Scoped only to the investor map chart – do NOT apply globally as it hides all react-icons */
+.map-chart svg path {
+  fill: #e0e0e0;
+  transition: 0.2s ease;
+}
+
+.map-chart svg path.active {
+  fill: #6a7282;
+  cursor: pointer;
+}
+
+.map-chart svg path.active:hover {
+  fill: #05267e;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  opacity: 0.8;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+@keyframes softFlicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.92;
+  }
+}
+.clip-path-slant {
+  clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+@theme {
+  --animate-scroll: scroll 40s linear infinite;
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.animate-scroll {
+  animation: var(--animate-scroll);
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+} /* global.css */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

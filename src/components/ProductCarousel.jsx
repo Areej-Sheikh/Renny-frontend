@@ -48,17 +48,18 @@ const ProductCarousel = () => {
 
   // 🔹 Buttons
   const nextSlide = () => {
-    const next = Math.min(currentIndex + 1, products.length - 1);
+    const next = currentIndex + 1 >= products.length ? 0 : currentIndex + 1;
+
     setCurrentIndex(next);
     scrollToIndex(next);
   };
 
   const prevSlide = () => {
-    const prev = Math.max(currentIndex - 1, 0);
+    const prev = currentIndex - 1 < 0 ? products.length - 1 : currentIndex - 1;
+
     setCurrentIndex(prev);
     scrollToIndex(prev);
   };
-
   // 🔹 Sync index on manual scroll (optimized)
   useEffect(() => {
     const container = containerRef.current;

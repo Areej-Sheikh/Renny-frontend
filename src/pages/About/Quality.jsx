@@ -216,7 +216,7 @@ const Quality = () => {
     <>
       <SEO
         title="Quality Assurance & Global Standards | Renny Strips Limited"
-        description="Explore Renny Strips Limited’s advanced quality assurance systems, ISO certifications, EN 1090 standards, CE marking compliance, in-house testing laboratories, QMS processes, and globally certified steel manufacturing practices."
+        description="Explore Renny Strips Limited’s ISO-certified quality systems, EN 1090 standards, CE compliance, testing labs, and global steel manufacturing practices."
         keywords="Renny Strips quality assurance, ISO 9001 steel manufacturer, EN 1090 certified company, CE marking steel products, steel quality testing, QMS steel manufacturing, NDT testing, scaffolding quality standards, ERW pipe quality inspection, metallurgical testing India"
         url="https://rennystrips.com/quality-standard"
       />
@@ -276,7 +276,7 @@ const Quality = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="text-black-700 md:text-[17px] text-justify"
+              className="text-black-700 md:text-[17px] "
             >
               At Renny Strips, quality is at the heart of everything we do. Our
               robust Quality Management System (QMS) is aligned with globally
@@ -313,7 +313,7 @@ const Quality = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-black-700 text-base md:text-[17px] text-justify"
+              className="text-black-700 text-base md:text-[17px] "
             >
               Our in-house Quality Centre is equipped with a comprehensive suite
               of advanced testing systems, including spectrometers for chemical

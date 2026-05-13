@@ -193,7 +193,7 @@ const MSBillets = () => {
       : [
           "Billet production begins at our steel melting shop (Unit I), where carefully selected material are charged into high-capacity induction furnaces. The furnaces melt the charge at precisely controlled temperatures, and the molten steel is refined to achieve the target chemical composition.",
           "The molten steel is then poured into continuous casting machines to form billets of the required cross-section. The casting process is monitored for consistent solidification, minimizing internal defects such as porosity and segregation. After casting, transferred directly to our rolling mills (hot charging), saving reheating cost which gives Renny an edge over other manufacturers.",
-          "This captive billet production is the backbone of Renny Strips’ cost advantage and quality control. By producing our own billets, we eliminate the price volatility and quality inconsistency associated with buying from external suppliers.",
+          "This captive billet production is the backbone of Renny Strips cost advantage and quality control. By producing our own billets, we eliminate the price volatility and quality inconsistency associated with buying from external suppliers.",
         ];
   const displayCards =
     pageData?.coreStrengths &&
@@ -523,7 +523,7 @@ const MSBillets = () => {
         <section className="bg-blue text-white w-full py-12 md:py-20 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden">
           {/* LEFT CONTENT */}
           <div className="flex-1 text-center lg:text-left">
-            <motion.h1
+            <motion.h2
               className="text-[1.75rem] md:text-[2.5rem] font-bold mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -531,7 +531,7 @@ const MSBillets = () => {
             >
               Get Detailed Information
               <div className="w-52 md:w-72 lg:w-96 h-0.5 bg-white rounded-full mt-2 mx-auto lg:mx-0" />
-            </motion.h1>
+            </motion.h2>
 
             <p className="text-sm md:text-base leading-7 text-gray-100 max-w-2xl mx-auto lg:mx-0">
               Looking for more information? We’re here to help. Reach out and

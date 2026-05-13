@@ -188,7 +188,7 @@ const WireRods = () => {
     pageData.manufacturingProcess[0].trim() !== ""
       ? pageData.manufacturingProcess
       : [
-          "Wire rod production at Renny Strips starts at the steel melting shop, where raw materials are melted in induction furnaces to produce MS billets of controlled chemistry. These billets hot rolled into wire rod , where they pass through a series of roughing, intermediate, and finishing stands that progressively reduce the cross-section to the target wire rod diameter.",
+          "Wire rod production at Renny Strips starts at the steel melting shop, where raw materials are melted in induction furnaces to produce MS billets of controlled chemistry. These billets hot rolled into wire rod, where they pass through a series of roughing, intermediate, and finishing stands that progressively reduce the cross-section to the target wire rod diameter.",
           "Because we produce both the billet and the wire rod in-house, we can precisely control the carbon content, manganese levels, and other alloying elements to match the requirements of specific end applications whether it’s a soft wire for drawing or a harder grade for fastener manufacturing.",
         ];
   const displayCards =
@@ -330,13 +330,13 @@ const WireRods = () => {
         1. Changed grid-cols-1 for all screens under 878px.
         2. Switched sm:grid-cols-2 to only apply above 878px.
     */}
-              <div className="relative z-10 grid grid-cols-1 min-[878px]:flex   min-[878px]:flex-row items-center md:items-end justify-center gap-6 md:gap-4 lg:gap-10 px-6 md:pb-20 w-full">
+              <div className="relative z-10 grid grid-cols-1 min-[878px]:flex   min-[878px]:flex-row items-center md:items-end justify-center gap-6 md:gap-4 lg:gap-10 px-3 md:pb-20 w-full">
                 {displayHighlights.map((highlight, idx) => (
                   <motion.div
                     key={idx}
                     variants={itemVariants}
                     className={`
-            flex items-center md:items-start text-white px-4 h-full
+            flex items-center md:items-start pr-4 text-white  h-full
             /* Border logic: 
                - Hidden by default (mobile/tablet)
                - Visible only on screens larger than 878px (laptop)
@@ -523,7 +523,7 @@ const WireRods = () => {
         <section className="bg-blue text-white w-full py-12 md:py-20 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden">
           {/* LEFT CONTENT */}
           <div className="flex-1 text-center lg:text-left">
-            <motion.h1
+            <motion.h2
               className="text-[1.75rem] md:text-[2.5rem] font-bold mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -531,7 +531,7 @@ const WireRods = () => {
             >
               Get Detailed Information
               <div className="w-52 md:w-72 lg:w-96 h-0.5 bg-white rounded-full mt-2 mx-auto lg:mx-0" />
-            </motion.h1>
+            </motion.h2>
 
             <p className="text-sm md:text-base  text-gray-100 max-w-2xl mx-auto lg:mx-0">
               Looking for more information? We’re here to help. Reach out and

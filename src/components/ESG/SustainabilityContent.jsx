@@ -80,7 +80,6 @@ const SustainabilityContent = () => {
     },
   };
 
-
   const imageZoom = {
     hidden: { opacity: 0, scale: 1.1 },
     visible: {
@@ -91,11 +90,9 @@ const SustainabilityContent = () => {
   };
 
   return (
-    <div className="w-full bg-white overflow-x-hidden">
+    <div className="w-full bg-white font-helvetica overflow-x-hidden">
       {/* 1. HERO BANNER SECTION */}
-      {/* Banner */}
-     
-         <motion.section
+      <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
@@ -124,7 +121,7 @@ const SustainabilityContent = () => {
         <motion.h1
           variants={fadeUp}
           className="relative z-10 text-white text-4xl md:text-7xl font-bold
-                   flex items-end justify-start h-full py-10 px-6 md:px-10"
+               flex items-end justify-start h-full py-10 px-6 md:px-10"
         >
           {heroHeading}
         </motion.h1>
@@ -162,7 +159,7 @@ const SustainabilityContent = () => {
         {/* Content Paragraph - Kept exactly as previous */}
         <ScrollReveal direction="up" delay={2}>
           <p
-            className="text-[16px] md:text-[18px] text-[#333]"
+            className="text-[16px] md:text-[16px] text-[#333]"
             style={{ fontFamily: "var(--font-helvetica)" }}
           >
             Renny Strips Limited is committed to sustainable manufacturing

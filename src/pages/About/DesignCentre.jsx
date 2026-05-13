@@ -119,7 +119,7 @@ const DesignCentre = () => {
       {" "}
       <SEO
         title="Design Centre | Renny Strips Limited"
-        description="Explore Renny Strips Limited's Design Centre focused on innovation, engineering excellence, customized steel solutions, product development, and advanced manufacturing capabilities."
+        description="Explore Renny Strips Limited’s Design Centre for steel innovation, engineering expertise, customized products, and advanced manufacturing solutions."
         keywords="Design Centre, Renny Strips Limited, steel innovation, engineering solutions, customized steel products, product development, manufacturing excellence"
         url="https://rennystrips.com/design-centre"
       />
@@ -183,7 +183,7 @@ const DesignCentre = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * idx, duration: 0.5 }}
-                className="text-black-700 leading-relaxed md:leading-[28px] text-justify"
+                className="text-black-700   "
               >
                 {para}
               </motion.p>
@@ -214,7 +214,7 @@ const DesignCentre = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * idx, duration: 0.5 }}
-                className="text-black-700 md:text-[17px] leading-relaxed md:leading-[28px] text-justify"
+                className="text-black-700 md:text-[17px]  "
               >
                 {para}
               </motion.p>
@@ -241,9 +241,7 @@ const DesignCentre = () => {
                     <p className="uppercase text-lg font-bold tracking-wide mb-4">
                       {stat.title}
                     </p>
-                    <p className="text-lg leading-relaxed text-white/80">
-                      {stat.desc}
-                    </p>
+                    <p className="text-lg  text-white/80">{stat.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -264,7 +262,7 @@ const DesignCentre = () => {
                 {data.innovationParagraphs.map((para, idx) => (
                   <p
                     key={idx}
-                    className="text-gray-700 text-sm md:text-[17px] leading-7 md:leading-[30px] text-justify"
+                    className="text-gray-700 text-sm md:text-[17px]  "
                   >
                     {para}
                   </p>

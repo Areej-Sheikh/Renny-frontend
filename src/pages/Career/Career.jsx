@@ -91,7 +91,7 @@ const Career = () => {
       />
       <section className="w-full font-helvetica bg-[#f8f9fa] font-helvetica">
         {/* HERO */}
-        <section className="relative h-[50vh] md:h-[100vh] overflow-hidden">
+        <section className="relative h-[100vh] md:h-[100vh] overflow-hidden">
           {heroSrc &&
           (heroSrc.endsWith(".webm") || heroSrc.endsWith(".mp4")) ? (
             <video
@@ -111,7 +111,6 @@ const Career = () => {
               className="absolute inset-0 w-full h-full object-cover"
             />
           )}
-          <div className="absolute inset-0 bg-black/60" />
           <h1 className="relative z-10 h-full flex items-end px-6 md:px-10 py-12 text-white text-4xl md:text-6xl font-bold">
             {heroHeading}
           </h1>

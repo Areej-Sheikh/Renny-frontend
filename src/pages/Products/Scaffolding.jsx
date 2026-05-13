@@ -801,7 +801,7 @@ const Scaffolding = () => {
         <section className="bg-blue text-white w-full py-12 md:py-20 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden">
           {/* LEFT CONTENT */}
           <div className="flex-1 text-center lg:text-left">
-            <motion.h1
+            <motion.h2
               className="text-[1.75rem] md:text-[2.5rem] font-bold mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -809,7 +809,7 @@ const Scaffolding = () => {
             >
               Get Detailed Information
               <div className="w-52 md:w-72 lg:w-96 h-0.5 bg-white rounded-full mt-2 mx-auto lg:mx-0" />
-            </motion.h1>
+            </motion.h2>
 
             <p className="text-sm md:text-base  text-gray-100 max-w-2xl mx-auto lg:mx-0">
               Looking for more information? We’re here to help. Reach out and

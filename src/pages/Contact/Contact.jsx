@@ -191,6 +191,26 @@ const Contact = () => {
       setLoading(false);
     }
   };
+   const imageZoom = {
+    hidden: { opacity: 0, scale: 1.1 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1,
+        ease: "easeOut",
+      },
+    },
+  };  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.18,
+      },
+    },
+  };
 
   return (
     <>
@@ -203,10 +223,11 @@ const Contact = () => {
       />
       {/* Banner */}
       <motion.section
-        className="relative font-helvetica h-[50vh] md:h-[100vh] w-full overflow-hidden mb-12"
-        initial={{ opacity: 0, scale: 1.2 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.4, ease: "easeOut" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={imageZoom}
+        className="relative h-[100vh] w-full overflow-hidden mb-10"
       >
         {heroSrc && (heroSrc.endsWith(".webm") || heroSrc.endsWith(".mp4")) ? (
           <video
@@ -221,20 +242,16 @@ const Contact = () => {
         ) : (
           <img
             key={heroSrc || "fallback"}
-            src={heroSrc || banner}
-            alt="Contact Banner"
+            src={heroSrc || aboutVideo}
+            alt="Hero Banner"
             className="absolute inset-0 w-full h-full object-cover"
           />
         )}
 
-        <div className="absolute inset-0 bg-black/40"></div>
-
         <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6, ease: "easeOut" }}
-          className="relative z-10 text-white text-4xl md:text-7xl font-bold 
-                       flex items-end justify-start h-full py-10 px-6 md:px-10"
+          variants={fadeUp}
+          className="relative z-10 text-white text-4xl md:text-7xl font-bold
+                flex items-end justify-start h-full py-10 px-6 md:px-10"
         >
           {heroHeading}
         </motion.h1>
@@ -445,7 +462,7 @@ const Contact = () => {
             }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             whileHover={{ y: -6 }}
-            className="bg-gray-200 hover:bg-white rounded-2xl p-8 space-y-4 text-center shadow-sm hover:shadow-xl  transition-all duration-300"
+            className="bg-gray-200 hover:bg-white rounded-2xl p-8 space-y-4  shadow-sm hover:shadow-xl  transition-all duration-300"
           >
             <h2 className="text-2xl md:text-3xl font-semibold text-[#292c44]">
               Get in Touch
@@ -500,7 +517,7 @@ const Contact = () => {
               }}
               transition={{ duration: 0.6, ease: "easeOut" }}
               whileHover={{ y: -6 }}
-              className="bg-gray-200 hover:bg-white rounded-2xl p-8 space-y-4 text-center shadow-sm hover:shadow-xl transition-all duration-300"
+              className="bg-gray-200 hover:bg-white rounded-2xl p-8 space-y-4  shadow-sm hover:shadow-xl transition-all duration-300"
             >
               <div className="flex items-center justify-center gap-3">
                 <MdLocationOn size={28} className="text-[#292c44]" />

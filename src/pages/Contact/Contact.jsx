@@ -191,7 +191,7 @@ const Contact = () => {
       setLoading(false);
     }
   };
-   const imageZoom = {
+  const imageZoom = {
     hidden: { opacity: 0, scale: 1.1 },
     visible: {
       opacity: 1,
@@ -201,7 +201,8 @@ const Contact = () => {
         ease: "easeOut",
       },
     },
-  };  const fadeUp = {
+  };
+  const fadeUp = {
     hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
@@ -216,7 +217,7 @@ const Contact = () => {
     <>
       <SEO
         title="Contact Renny Strips | Get in Touch With Our Team"
-        description="Contact Renny Strips for product enquiries, partnerships, collaborations, and industrial solutions. Reach our offices, manufacturing plants, and support team across India."
+        description="Contact Renny Strips for product enquiries, partnerships, industrial solutions, and support from our offices and manufacturing units."
         keywords="Contact Renny Strips, steel manufacturer contact, industrial plant contact, scaffolding solutions India, product enquiry, partnership enquiry, Ludhiana manufacturing company"
         url="https://rennystrips.com/contact-us"
         image={banner}
@@ -464,7 +465,7 @@ const Contact = () => {
             whileHover={{ y: -6 }}
             className="bg-gray-200 hover:bg-white rounded-2xl p-8 space-y-4  shadow-sm hover:shadow-xl  transition-all duration-300"
           >
-            <h2 className="text-2xl md:text-3xl font-semibold text-[#292c44]">
+            <h2 className="text-2xl md:text-2xl font-semibold text-[#292c44]">
               Get in Touch
             </h2>
 
@@ -519,7 +520,7 @@ const Contact = () => {
               whileHover={{ y: -6 }}
               className="bg-gray-200 hover:bg-white rounded-2xl p-8 space-y-4  shadow-sm hover:shadow-xl transition-all duration-300"
             >
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-start justify-start gap-3">
                 <MdLocationOn size={28} className="text-[#292c44]" />
                 <h2 className="text-2xl font-semibold text-[#292c44]">
                   {office.type}

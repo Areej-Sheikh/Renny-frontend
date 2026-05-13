@@ -85,7 +85,7 @@ const Career = () => {
     <>
       <SEO
         title="Careers at Renny Strips | Steel Manufacturing Jobs"
-        description="Explore career opportunities at Renny Strips and build your future in steel manufacturing, engineering, production, and innovation."
+        description="Explore career opportunities at Renny Strips in steel manufacturing, engineering, production, and industrial innovation."
         keywords="Renny Strips careers, steel jobs, engineering jobs, manufacturing careers"
         url="https://rennystrips.com/careers"
       />
@@ -239,8 +239,8 @@ const Career = () => {
         {/* Success Stories */}
         {/* <section className="bg-[#eff6ff] py-10">
           <div className=" mx-auto px-6"> */}
-            {/* Heading */}
-            {/* <motion.h2
+        {/* Heading */}
+        {/* <motion.h2
               className="text-[32px] md:text-[48px] font-bold mb-5 w-full text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -263,8 +263,8 @@ const Career = () => {
               skills, confidence, and professional capabilities.
             </span> */}
 
-            {/* Carousel here */}
-            {/* <CareerCarousel />
+        {/* Carousel here */}
+        {/* <CareerCarousel />
           </div>
         </section> */}
       </section>

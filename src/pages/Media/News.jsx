@@ -137,7 +137,7 @@ const News = () => {
     <>
       <SEO
         title="News Room | Renny Strips"
-        description="Stay updated with the latest news, announcements, media coverage, company updates, and industry developments from Renny Strips."
+        description="Stay updated with Renny Strips news, announcements, media coverage, company updates, and industry developments."
         keywords="Renny Strips news, company announcements, steel industry news, press releases, manufacturing updates, media coverage, corporate news"
         url="https://rennystrips.com/news-room"
         image={heroSrc}

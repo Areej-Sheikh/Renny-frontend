@@ -47,7 +47,7 @@ const Shareholding = () => {
     <>
       <SEO
         title="Share Holding Pattern | Investor Relations | Renny Strips"
-        description="View the latest shareholding patterns, investor ownership details, and equity distribution reports of Renny Strips Limited."
+        description="View Renny Strips shareholding patterns, investor ownership details, and equity distribution reports."
         keywords="Renny Strips shareholding pattern, shareholder structure, investor relations, equity holdings, promoter holdings, public shareholding"
         url="https://rennystrips.com/share-holding-pattern"
         image={heroSrc}

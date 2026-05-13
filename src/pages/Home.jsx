@@ -316,6 +316,7 @@ text-lg
           {/* Horizontal Scroll Container */}
           <ProductCarousel />
         </section>
+
         {/* 4. Our Network Section */}
         <motion.section
           className="flex flex-col items-center font-helvetica bg-white justify-center px-4 sm:px-6 py-12 md:py-16 panel"
@@ -387,7 +388,7 @@ text-lg
               </motion.div>
             ))}
           </motion.div>
-        </motion.section>
+        </motion.section> 
 
         {/* 5. Features Section */}
         <section className="flex justify-center px-6 py-16 font-helvetica bg-[#f0f6ff]">

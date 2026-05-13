@@ -85,7 +85,7 @@ const IPODocs = () => {
     <>
       <SEO
         title="IPO Documents | Investor Relations | Renny Strips"
-        description="Access IPO offer documents, draft red herring prospectus, investor disclosures, and public issue related filings of Renny Strips Limited."
+        description="Access Renny Strips IPO documents, DRHP filings, investor disclosures, and public issue records for shareholders and investors."
         keywords="Renny Strips IPO documents, DRHP, offer documents, investor relations, stock market filings, IPO disclosures, red herring prospectus"
         url="https://rennystrips.com/ipo"
         image={heroSrc}

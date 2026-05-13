@@ -346,7 +346,7 @@ const Scaffolding = () => {
     <>
       <SEO
         title="Scaffolding & Formwork Solutions | Renny Strips"
-        description="Renny Strips provides reliable scaffolding and formwork solutions engineered for safety, stability, and performance in construction and infrastructure projects."
+        description="Renny Strips delivers scaffolding and formwork solutions for safe, stable, and efficient construction and infrastructure projects."
         keywords="scaffolding manufacturer, formwork solutions, construction scaffolding, steel scaffolding systems, industrial formwork, Renny Strips"
         url="https://rennystrips.com/scaffolding-formwork"
         image={heroSrc}

@@ -106,7 +106,7 @@ const Policies = () => {
     <>
       <SEO
         title="Policies | Investor Relations | Renny Strips"
-        description="Explore corporate policies, governance documents, compliance frameworks, and investor relation policies published by Renny Strips Limited."
+        description="Explore Renny Strips corporate policies, governance frameworks, compliance documents, and investor relation disclosures."
         keywords="Renny Strips policies, corporate governance policies, investor relations, compliance documents, company policies, steel company governance"
         url="https://rennystrips.com/our-policies"
         image={heroSrc}

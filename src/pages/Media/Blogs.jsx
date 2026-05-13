@@ -125,7 +125,7 @@ const Blogs = () => {
     <>
       <SEO
         title="Blogs & Industry Insights | Renny Strips"
-        description="Explore expert blogs, steel industry insights, manufacturing trends, leadership perspectives, and company updates from Renny Strips."
+        description="Explore Renny Strips blogs on steel industry insights, manufacturing trends, leadership perspectives, and company updates."
         keywords="Renny Strips blog, steel industry insights, manufacturing blogs, industrial trends, steel company articles, leadership insights, steel sector updates"
         url="https://rennystrips.com/blog"
         image={heroSrc}

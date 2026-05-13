@@ -11,7 +11,7 @@ import EventCard from "../../components/EventCard";
 import PageSpinner from "../../components/PageSpinner.jsx";
 
 const containerVariants = {
-  hidden: {}, 
+  hidden: {},
   visible: {
     transition: {
       staggerChildren: 0.2,
@@ -109,7 +109,7 @@ const Events = () => {
     <>
       <SEO
         title="Events & Exhibitions | Renny Strips"
-        description="Explore events, exhibitions, trade shows, corporate gatherings, and industry participation highlights from Renny Strips."
+        description="Explore Renny Strips events, exhibitions, trade shows, corporate gatherings, and industry participation highlights."
         keywords="Renny Strips events, steel exhibitions, trade shows, corporate events, industrial expos, manufacturing conferences, company events"
         url="https://rennystrips.com/events"
         image={heroSrc}

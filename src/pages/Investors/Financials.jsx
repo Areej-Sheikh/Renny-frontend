@@ -154,7 +154,7 @@ const Financials = () => {
     <>
       <SEO
         title="Investor Financials | Renny Strips Financial Reports & Documents"
-        description="Access Renny Strips investor financial documents, annual reports, disclosures, and financial statements. Download official financial records and investor-related resources."
+        description="Access Renny Strips financial reports, annual statements, disclosures, and investor documents for official corporate records."
         keywords="Renny Strips financials, investor relations, annual reports, financial statements, corporate disclosures, investor documents, steel manufacturing company financial reports"
         url="https://rennystrips.com/financials"
         image={heroSrc || banner}

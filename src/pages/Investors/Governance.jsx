@@ -81,7 +81,7 @@ const Governance = () => {
       <>
         <SEO
           title="Board of Directors | Corporate Governance | Renny Strips"
-          description="Meet the Board of Directors at Renny Strips and explore the leadership team driving corporate governance, compliance, transparency, and strategic growth."
+          description="Meet the Renny Strips Board of Directors driving corporate governance, compliance, transparency, and strategic growth."
           keywords="Renny Strips board of directors, corporate governance, management team, steel company leadership, investor governance, directors and committee"
           url="https://rennystrips.com/corporate-governance"
           image={heroSrc}

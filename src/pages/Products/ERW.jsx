@@ -248,7 +248,7 @@ const ERW = () => {
     <>
       <SEO
         title="ERW Pipes and Tubes Manufacturer | Renny Strips"
-        description="Explore durable and high-performance ERW pipes and tubes manufactured by Renny Strips for construction, infrastructure, industrial, and engineering sectors."
+        description="Explore high-performance ERW pipes and tubes by Renny Strips for construction, infrastructure, industrial, and engineering applications."
         keywords="ERW pipes manufacturer, steel tubes supplier, ERW tubes India, industrial pipes and tubes, steel pipe manufacturer, Renny Strips"
         url="https://rennystrips.com/erw-pipes-and-tubes"
         image={heroSrc}

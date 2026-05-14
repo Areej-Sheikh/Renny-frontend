@@ -68,7 +68,6 @@ const BlogDetail = () => {
           "Renny Strips blog, steel industry insights, manufacturing trends, industrial articles, engineering blogs"
         }
         url={`https://rennystrips.com/blog/${slug}`}
-        image={heroSrc}
       />
       <div className="font-helvetica bg-white">
         {/* 1. Hero Header */}

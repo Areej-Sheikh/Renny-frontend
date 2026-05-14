@@ -72,6 +72,20 @@ const Career = () => {
 
     fetchJobs();
   }, []);
+   const fadeUp = {
+    hidden: {
+      opacity: 0,
+      y: 80,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: "easeOut",
+      },
+    },
+  };
 
   // ========== Filtered Jobs ==========
   const filteredJobs = jobsData.filter((job) => {
@@ -111,9 +125,13 @@ const Career = () => {
               className="absolute inset-0 w-full h-full object-cover"
             />
           )}
-          <h1 className="relative z-10 h-full flex items-end px-6 md:px-10 py-12 text-white text-4xl md:text-6xl font-bold">
+          <motion.h1
+            variants={fadeUp}
+            className="relative z-10 text-white text-4xl md:text-7xl font-bold
+          flex items-end justify-start h-full py-10 px-6 md:px-10"
+          >
             {heroHeading}
-          </h1>
+          </motion.h1>
         </section>
 
         {/* CONTENT */}

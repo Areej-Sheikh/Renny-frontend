@@ -212,7 +212,7 @@ const Contact = () => {
       },
     },
   };
-
+console.log(plants);
   return (
     <>
       <SEO
@@ -257,7 +257,7 @@ const Contact = () => {
           {heroHeading}
         </motion.h1>
       </motion.section>
-
+      {/* Get In Touch With Us */}
       <section className="w-full bg-white text-black px-6 md:px-20 ">
         {/* Heading */}
         <motion.h2

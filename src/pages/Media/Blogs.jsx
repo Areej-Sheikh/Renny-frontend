@@ -142,7 +142,7 @@ const Blogs = () => {
         >
           {heroSrc &&
           (heroSrc.endsWith(".webm") || heroSrc.endsWith(".mp4")) ? (
-            <video
+            <video 
               key={heroSrc}
               src={heroSrc}
               autoPlay

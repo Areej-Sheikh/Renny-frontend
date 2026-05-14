@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
+import { API_BASE_URL } from "../../lib/api";
 
 // Asset Imports
 import adoptionSchool from "../../assets/Adoption_School.webp";
@@ -46,8 +47,7 @@ const FeaturedProjects = () => {
 
   const fetchEsgProjects = useCallback(async () => {
     try {
-      const API_URL = (import.meta.env.VITE_API_URL).replace(/\/$/, "");
-      const res = await axios.get(`${API_URL}/api/esg-projects`);
+      const res = await axios.get(`${API_BASE_URL}/api/esg-projects`);
       const data = res.data?.data || res.data;
       if (Array.isArray(data)) {
         setServerProjects(data);
@@ -74,7 +74,7 @@ const FeaturedProjects = () => {
     return [
       ...mappedServer,
       ...hardcodedProjects.filter(h => !mappedServer.some(s => s.title === h.title))
-    ].sort((a,b) => (a.order || 0) - (b.order || 0));
+    ].sort((a, b) => (a.order || 0) - (b.order || 0));
   })();
 
   // Animation Variants

@@ -11,6 +11,8 @@ import InvestorSidebar from "../../components/InvestorSidebar";
 // ========== Hooks ==========
 import usePageHero from "../../hooks/usePageHero";
 
+import { API_BASE_URL } from "../../lib/api";
+
 const IPODocs = () => {
   // ========== State ==========
   const [docs, setDocs] = useState([]);
@@ -40,7 +42,7 @@ const IPODocs = () => {
     const fetchIpoDocs = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/ipo-documents`,
+          `${API_BASE_URL}/api/ipo-documents`,
         );
 
         setDocs(response.data);

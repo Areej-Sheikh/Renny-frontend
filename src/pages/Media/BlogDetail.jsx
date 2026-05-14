@@ -4,6 +4,8 @@ import axios from "axios";
 import Newsletter from "../../components/Newsletter";
 import PageSpinner from "../../components/PageSpinner.jsx";
 import SEO from "../../components/SEO.jsx";
+import { API_BASE_URL } from "../../lib/api";
+
 const BlogDetail = () => {
   const { slug } = useParams();
   const [blog, setBlog] = useState(null);
@@ -17,12 +19,12 @@ const BlogDetail = () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/blogs/${slug}`,
+          `${API_BASE_URL}/api/blogs/${slug}`,
         );
         setBlog(res.data.data);
 
         const listRes = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/blogs`,
+          `${API_BASE_URL}/api/blogs`,
         );
         const others = listRes.data.data
           .filter((b) => b.slug !== slug)

@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import SEO from "../../components/SEO";
+import { API_BASE_URL } from "../../lib/api";
 
 // ========== Hooks ==========
 import usePageHero from "../../hooks/usePageHero";
@@ -24,10 +25,7 @@ const DesignCentre = () => {
   const [cmsData, setCmsData] = useState(null);
 
   // ========== API Configuration ==========
-  const API_URL = useMemo(
-    () => (import.meta.env.VITE_API_URL || "").replace(/\/$/, ""),
-    [],
-  );
+  const API_URL = API_BASE_URL;
 
   const DATA_API = useMemo(() => `${API_URL}/api/design-centre`, [API_URL]);
 

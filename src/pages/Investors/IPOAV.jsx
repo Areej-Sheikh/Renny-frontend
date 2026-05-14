@@ -10,6 +10,8 @@ import InvestorSidebar from "../../components/InvestorSidebar";
 // ========== Hooks ==========
 import usePageHero from "../../hooks/usePageHero";
 
+import { API_BASE_URL } from "../../lib/api";
+
 const IPOAV = () => {
   // ========== State ==========
   const [videos, setVideos] = useState([]);
@@ -45,7 +47,7 @@ const IPOAV = () => {
     const fetchVideos = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/ipo-av`,
+          `${API_BASE_URL}/api/ipo-av`,
         );
 
         setVideos(Array.isArray(response.data) ? response.data : []);

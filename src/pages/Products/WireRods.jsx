@@ -32,6 +32,8 @@ import coreStrength4 from "../../assets/core-strength-4.png";
 import coreStrength5 from "../../assets/core-strength-5.png";
 import coreStrength6 from "../../assets/core-strength-6.png";
 
+import { API_BASE_URL } from "../../lib/api";
+
 const WireRods = () => {
   const containerVariants = {
     hidden: {},
@@ -145,7 +147,7 @@ const WireRods = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const baseURL = import.meta.env.VITE_API_URL;
+        const baseURL = API_BASE_URL;
         const res = await axios.get(`${baseURL}/api/product-content/wire-rods`);
         if (res.data && res.data.data) {
           setPageData(res.data.data);

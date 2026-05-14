@@ -50,6 +50,8 @@ const imageZoom = {
     transition: { duration: 1, ease: "easeOut" },
   },
 };
+import { API_BASE_URL } from "../../lib/api";
+
 const Events = () => {
   const { heroSrc, heroHeading } = usePageHero("events", "Events", banner);
   const [eventsData, setEventsData] = useState([]);
@@ -63,7 +65,7 @@ const Events = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/events`);
+        const res = await fetch(`${API_BASE_URL}/api/events`);
         const json = await res.json();
 
         if (!json.success) throw new Error("Failed to fetch events");

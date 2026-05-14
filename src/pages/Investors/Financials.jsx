@@ -13,7 +13,7 @@ import SEO from "../../components/SEO";
 import fallbackHero from "../../assets/investorbanner.webp";
 
 // ========== API Configuration ==========
-const API_URL = import.meta.env.VITE_API_URL;
+import { API_BASE_URL as API_URL } from "../../lib/api";
 
 // ========== Fixed Tabs ==========
 const FIXED_TABS = [

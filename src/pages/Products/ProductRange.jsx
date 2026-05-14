@@ -1,5 +1,6 @@
 import banner from "../../assets/Scaffolding.mp4";
 import { motion } from "framer-motion";
+import { API_BASE_URL } from "../../lib/api";
 import product1 from "../../assets/productRange1-Coupler.jpg";
 import product2 from "../../assets/productRange2-Jack.jpeg";
 import product3 from "../../assets/productRange3-Nuts.png";
@@ -34,7 +35,7 @@ const ProductRange = () => {
   useEffect(() => {
     const fetchScaffoldingData = async () => {
       try {
-        const baseURL = import.meta.env.VITE_API_URL;
+        const baseURL = API_BASE_URL;
         const res = await axios.get(`${baseURL}/api/scaffolding`);
         if (res.data && res.data.success) {
           const allData = res.data.data;

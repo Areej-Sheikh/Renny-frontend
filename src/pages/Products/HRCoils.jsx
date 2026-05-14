@@ -30,6 +30,8 @@ import img3 from "../../assets/HR-Coil-scaled.webp";
 
 import Information from "../../assets/Information3-1.png";
 
+import { API_BASE_URL } from "../../lib/api";
+
 const HRCoils = () => {
   const containerVariants = {
     hidden: {},
@@ -147,7 +149,7 @@ const HRCoils = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const baseURL = import.meta.env.VITE_API_URL;
+        const baseURL = API_BASE_URL;
         const res = await axios.get(`${baseURL}/api/product-content/hr-coils`);
         if (res.data && res.data.data) {
           setPageData(res.data.data);

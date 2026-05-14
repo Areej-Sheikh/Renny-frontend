@@ -35,6 +35,8 @@ import products1 from "../../assets/product3.png";
 import products2 from "../../assets/product2.png";
 import products3 from "../../assets/product1.png";
 
+import { API_BASE_URL } from "../../lib/api";
+
 const ERW = () => {
   const containerVariants = {
     hidden: {},
@@ -148,7 +150,7 @@ const ERW = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const baseURL = import.meta.env.VITE_API_URL;
+        const baseURL = API_BASE_URL;
         const res = await axios.get(`${baseURL}/api/product-content/erw-pipes`);
         if (res.data && res.data.data) {
           setPageData(res.data.data);

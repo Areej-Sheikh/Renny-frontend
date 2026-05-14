@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
+import { API_BASE_URL } from "../../lib/api";
+
 const News = () => {
   const { heroSrc, heroHeading } = usePageHero("news-room", "News Room");
   const [newsData, setNewsData] = useState([]);
@@ -33,7 +35,7 @@ const News = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/news`);
+        const res = await fetch(`${API_BASE_URL}/api/news`);
         const data = await res.json();
 
         const formatted = data.map((item) => ({

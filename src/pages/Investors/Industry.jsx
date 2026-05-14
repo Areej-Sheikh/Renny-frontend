@@ -10,6 +10,8 @@ import InvestorSidebar from "../../components/InvestorSidebar";
 
 // ========== Hooks ==========
 import usePageHero from "../../hooks/usePageHero";
+import { API_BASE_URL } from "../../lib/api";
+
 const IndustryReport = () => {
   // ========== Location ==========
   const location = useLocation();
@@ -39,7 +41,7 @@ const IndustryReport = () => {
     const fetchReports = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/industry-report`,
+          `${API_BASE_URL}/api/industry-report`,
         );
 
         setReports(response.data);

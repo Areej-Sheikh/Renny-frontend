@@ -93,6 +93,8 @@ const timelineData = [
   },
 ];
 
+import { API_BASE_URL } from "../../lib/api";
+
 const About = () => {
   // ==========Page Hero==========
   const { heroSrc, heroHeading } = usePageHero(
@@ -107,7 +109,7 @@ const About = () => {
   useEffect(() => {
     const fetchTimelineData = async () => {
       try {
-        const API_URL = import.meta.env.VITE_API_URL;
+        const API_URL = API_BASE_URL;
 
         const res = await axios.get(`${API_URL}/api/timeline`);
 

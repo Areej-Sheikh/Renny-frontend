@@ -12,6 +12,8 @@ import newsvideo from "../../assets/newsvideo.webm";
 import usePageHero from "../../hooks/usePageHero";
 import PageSpinner from "../../components/PageSpinner.jsx";
 
+import { API_BASE_URL } from "../../lib/api";
+
 const Blogs = () => {
   const { heroSrc, heroHeading } = usePageHero("blog", "Blogs");
   const [blogsData, setBlogsData] = useState([]);
@@ -34,7 +36,7 @@ const Blogs = () => {
     const fetchBlogs = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/blogs`,
+          `${API_BASE_URL}/api/blogs`,
         );
         const fetchedBlogs = res.data.data || [];
         setBlogsData(fetchedBlogs);

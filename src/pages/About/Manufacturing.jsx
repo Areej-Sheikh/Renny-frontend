@@ -19,6 +19,8 @@ import rawimg from "../../assets/RawToRemarkable.webm";
 import TotalCapacity from "../../assets/TotalCapacity.jpg";
 import carbonfootprint from "../../assets/carbon.webp";
 
+import { API_BASE_URL } from "../../lib/api";
+
 // ========== Hardcoded Units ==========
 const hardcodedUnits = [
   {
@@ -49,7 +51,7 @@ const Manufacturing = () => {
   // ========== Fetch Units ==========
   const fetchUnits = useCallback(async () => {
     try {
-      const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
+      const API_URL = API_BASE_URL;
 
       const res = await axios.get(`${API_URL}/api/units`);
 

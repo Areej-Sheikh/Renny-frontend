@@ -32,6 +32,8 @@ const itemVariants = {
   },
 };
 
+import { API_BASE_URL } from "../../lib/api";
+
 const Governance = () => {
   const [activeTab, setActiveTab] = useState("board");
   const [governanceData, setGovernanceData] = useState([]);
@@ -60,7 +62,7 @@ const Governance = () => {
     const fetchGovernance = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/governance`,
+          `${API_BASE_URL}/api/governance`,
         );
         setGovernanceData(response.data);
       } catch (error) {

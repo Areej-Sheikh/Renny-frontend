@@ -54,6 +54,8 @@ import product12 from "../../assets/productRange12-cuplock system.jpg.jpeg";
 import product13 from "../../assets/productRange13-frame scaffolding.jpg";
 import product14 from "../../assets/productRange14-silver_kwikstage.png";
 import product15 from "../../assets/productRange15-access tower.jpg";
+import { API_BASE_URL } from "../../lib/api";
+
 const Scaffolding = () => {
   const [videoSrc, setVideoSrc] = useState(video);
   useEffect(() => {
@@ -244,7 +246,7 @@ const Scaffolding = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const baseURL = import.meta.env.VITE_API_URL;
+        const baseURL = API_BASE_URL;
         const res = await axios.get(
           `${baseURL}/api/product-content/scaffolding`,
         );

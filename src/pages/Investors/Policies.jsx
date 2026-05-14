@@ -43,6 +43,8 @@ const FIXED_POLICIES = [
   { slug: "diversity", label: "Policy on Diversity of the Board" },
 ];
 
+import { API_BASE_URL } from "../../lib/api";
+
 const Policies = () => {
   const [activeTab, setActiveTab] = useState("archival");
   const [groupedPolicies, setGroupedPolicies] = useState({}); // Grouping docs by slug
@@ -65,7 +67,7 @@ const Policies = () => {
       try {
         // Updated to Port 3000
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/policies`,
+          `${API_BASE_URL}/api/policies`,
         );
         const data = response.data;
 

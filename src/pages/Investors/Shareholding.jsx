@@ -6,6 +6,8 @@ import InvestorSidebar from "../../components/InvestorSidebar";
 import usePageHero from "../../hooks/usePageHero";
 import SEO from "../../components/SEO";
 
+import { API_BASE_URL } from "../../lib/api";
+
 const Shareholding = () => {
   const location = useLocation();
 
@@ -31,7 +33,7 @@ const Shareholding = () => {
     const fetchShareholding = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/shareholding-pattern`,
+          `${API_BASE_URL}/api/shareholding-pattern`,
         );
         setShareholdingDocs(response.data);
       } catch (error) {

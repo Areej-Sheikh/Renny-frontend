@@ -1,17 +1,18 @@
-const rawApiUrl = import.meta.env.VITE_API_URL || "";
+const getApiUrl = () => {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (envUrl && envUrl !== "undefined") {
+    return envUrl.replace(/\/$/, "");
+  }
+  // Fallback to production API if env var is missing or 'undefined' string
+  return "https://api.rennystrips.com";
+};
 
-export const API_BASE_URL = rawApiUrl.replace(/\/$/, "");
+export const API_BASE_URL = getApiUrl();
 
 export const buildApiUrl = (path = "") => {
-  if (!API_BASE_URL) {
-    return path;
-  }
-
-  if (!path) {
-    return API_BASE_URL;
-  }
-
-  return `${API_BASE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+  if (!path) return API_BASE_URL;
+  const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  return `${API_BASE_URL}${cleanPath}`;
 };
 
 export const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "";

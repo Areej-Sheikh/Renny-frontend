@@ -229,7 +229,7 @@ const WireRods = () => {
   return (
     <>
       <SEO
-        title="Wire Rods Manufacturer | Renny Strips"
+        title="Wire Rods Manufacturer and Supplier | Renny Strips"
         description="Discover premium wire rods from Renny Strips for construction, engineering, fabrication, and industrial applications."
         keywords="wire rods manufacturer, steel wire rods, industrial wire rods, construction steel products, Renny Strips, wire rod supplier"
         url="https://rennystrips.com/wire-rods"

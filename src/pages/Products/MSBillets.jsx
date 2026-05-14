@@ -233,7 +233,7 @@ const MSBillets = () => {
   return (
     <>
       <SEO
-        title="MS Billets Manufacturer | Renny Strips"
+        title="MS Billets Manufacturer and Supplier | Renny Strips"
         description="Renny Strips manufactures high-quality MS billets for steel rolling, fabrication, and industrial applications."
         keywords="MS billets manufacturer, mild steel billets, steel billets India, industrial steel products, Renny Strips, billet supplier"
         url="https://rennystrips.com/ms-billets"

@@ -208,7 +208,7 @@ const Footer = () => {
           >
             <p className="font-semibold text-gray-800">Contact us</p>
             <p>+91 11 52526620-50, 1800 208 25166</p>
-            <p>info@renny.com</p>
+            <p>info@rennystrips.com</p>
           </motion.div>
         </motion.div>
       </motion.div>

@@ -118,7 +118,7 @@ const DesignCentre = () => {
     <>
       {" "}
       <SEO
-        title="Design Centre | Renny Strips Limited"
+        title="Design Centre | Renny Strips Limited Design Centre for steel innovation"
         description="Explore Renny Strips Limited’s Design Centre for steel innovation, engineering expertise, customized products, and advanced manufacturing solutions."
         keywords="Design Centre, Renny Strips Limited, steel innovation, engineering solutions, customized steel products, product development, manufacturing excellence"
         url="https://rennystrips.com/design-centre"

@@ -60,7 +60,7 @@ const BlogDetail = () => {
   return (
     <>
       <SEO
-        title={`${blog?.title || "Blog"} | Renny Strips`}
+        title={`Blog | Renny Strips`}
         description={
           "Explore steel industry insights, manufacturing trends, engineering expertise, and industrial updates from Renny Strips."
         }

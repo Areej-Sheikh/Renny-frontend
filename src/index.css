@@ -10,6 +10,57 @@
   --font-jost: "Jost", Arial, sans-serif;
   --font-helvetica: Helvetica, Arial, sans-serif;
   --font-poppins: "Poppins", Arial, sans-serif;
+  /* =========================
+     iPhones
+  ========================= */
+
+  --breakpoint-iphone-SE: 320px;
+  --breakpoint-iphone-XR: 414px;
+  --breakpoint-iphone-12pro: 390px;
+  --breakpoint-iphone-14promax: 430px;
+
+  /* =========================
+     Google Pixel
+  ========================= */
+
+  --breakpoint-pixel-7: 412px;
+
+  /* =========================
+     Samsung Devices
+  ========================= */
+
+  --breakpoint-samsungGalaxy-S8: 360px;
+  --breakpoint-samsungGalaxy-S20: 412px;
+  --breakpoint-samsungGalaxy-A51-A71: 412px;
+
+  /* =========================
+     iPads
+  ========================= */
+
+  --breakpoint-ipad-mini: 768px;
+  --breakpoint-ipad-air: 820px;
+  --breakpoint-ipad-pro: 1024px;
+
+  /* =========================
+     Microsoft Surface
+  ========================= */
+
+  --breakpoint-surface-pro-7: 912px;
+  --breakpoint-surface-duo: 540px;
+
+  /* =========================
+     Foldables
+  ========================= */
+
+  --breakpoint-galaxy-z-fold-5: 344px;
+  --breakpoint-asus-zenbook-fold: 853px;
+
+  /* =========================
+     Smart Displays
+  ========================= */
+
+  --breakpoint-nest-hub: 1024px;
+  --breakpoint-nest-hub-max: 1280px;
 }
 
 html,

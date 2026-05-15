@@ -148,18 +148,40 @@ const Home = () => {
       <div className="relative flex flex-col font-helvetica ">
         {/* 1. Banner Section */}
         <section className="w-full min-h-screen relative flex items-center py-12 md:py-0 overflow-hidden">
-          <div className="w-full flex flex-col md:flex-row items-center px-4 md:px-0 gap-6 md:gap-0">
+          <div className="w-full flex flex-col nest-hub:flex-row items-center justify-center px-4 md:px-0 gap-6 md:gap-0">
             {/* Left Content */}
             <motion.div
-              /* Changed mb-25 to a responsive margin that won't crush mobile layouts */
-              className="flex flex-col justify-center h-auto ml-0 md:ml-10 mb-4 md:mb-20 lg:mb-25 text-center md:text-left"
+              className="flex flex-col justify-center h-auto ml-0 md:ml-10 mb-2  text-center md:text-left"
               initial={{ opacity: 0, x: -80 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true }}
             >
-              {/* Reduced text size for small mobiles (text-4xl) while keeping 90px for laptop */}
-              <h1 className="text-4xl sm:text-6xl md:text-[90px] xl:text-[90px] font-semibold text-blue font-jost leading-tight md:mt-10">
+              <h1
+                className="
+    font-semibold
+    text-blue
+    font-jost
+    leading-tight
+
+    text-[28px]
+
+    iphone-SE:text-[36px]
+    iphone-SE:mt-8
+    iphone-XR:text-[56px]
+    iphone-12pro:text-[50px]
+    iphone-14promax:text-[60px]
+
+    samsungGalaxy-S8:text-[45px]
+    samsungGalaxy-S20:text-[60px]
+
+    ipad-mini:text-[80px]
+    ipad-pro:text-[80px]
+    nest-hub:mb-30
+    nest-hub:ml-5
+
+  "
+              >
                 Building <br />
                 <span className="font-semibold text-gray-500 bg-clip-text">
                   A Future
@@ -180,7 +202,7 @@ const Home = () => {
               {/* Video Container - Preserved your hover logic and desktop widths */}
               <div className="w-full flex items-center justify-center mt-4 md:mt-8 pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
                 <video
-                  className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-48 sm:h-64 md:h-65 
+                  className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-48 sm:h-64 md:h-80 
                      ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover 
                      transition-all duration-700 ease-out 
                      hover:scale-110 lg:hover:w-[calc(100vw-460px)] 
@@ -193,17 +215,23 @@ const Home = () => {
                 />
               </div>
 
-              <div className="flex flex-col w-full items-center md:items-start px-6 md:px-10">
+              <div className="flex flex-col w-full items-center md:items-start   nest-hub:items-center nest-hub:justify-center nest-hub:text-center">
                 <p
-                  className="text-gray-600 
-                     text-base sm:text-lg 
-                     md:text-[18px] 
-                     lg:text-[22px] 
-                     xl:text-[22px] 
-                     2xl:text-[30px]
-                     mt-4 md:mt-8 lg:mt-10 
-                     mb-10 md:mb-12 lg:mb-14 
-                     text-center md:text-left"
+                  className="
+    text-gray-600
+    text-[20px]
+    iphone-12pro:text-[22px]
+    iphone-14promax:text-[26px]
+    ipad-mini:text-[28px]
+    iphone-SE:text-[15px]
+    ipad-mini:text-center
+    ipad-mini:px-10
+    nest-hub:text-[22px]
+    nest-hub-max:text-2xl
+    mt-4 md:mt-8
+    mb-10 md:mb-12
+    text-center md:text-left
+  "
                 >
                   Proudly recognized with the prestigious 5-Star Green Steel
                   Manufacturing Rating, that reflects excellence in sustainable

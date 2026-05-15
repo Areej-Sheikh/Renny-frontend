@@ -258,18 +258,28 @@ export default function MapPage() {
           className="map-tooltip"
           style={{
             position: "fixed",
-            left: tooltip.x + 18,
-            top: tooltip.y + 18,
+
+            left: Math.min(tooltip.x + 18, window.innerWidth - 220),
+            top: Math.min(tooltip.y + 18, window.innerHeight - 260),
+
             background: "rgba(4, 20, 70, 0.97)",
             backdropFilter: "blur(14px)",
-            padding: "16px 20px",
+
+            padding: window.innerWidth < 640 ? "12px 14px" : "16px 20px",
+
             borderRadius: "14px",
+
             boxShadow:
               "0 16px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(5,38,126,0.2)",
+
             border: "1px solid rgba(5,38,126,0.25)",
+
             pointerEvents: "none",
-            minWidth: "220px",
-            maxWidth: "280px",
+
+            width: window.innerWidth < 640 ? "180px" : "220px",
+
+            maxWidth: "90vw",
+
             zIndex: 10000,
           }}
         >
@@ -304,33 +314,32 @@ export default function MapPage() {
           {/* Country list */}
           {activeData.countries.length > 0 && (
             <>
-            <div style={{ textAlign: "center",   }}>
-  <div
-                style={{
-                  display: "inline-block",
-                  color: "rgba(255, 255, 255, 1)",
-                  fontSize: "10px",
-                  fontWeight: "700",
-                  letterSpacing: "1.2px",
-                  marginBottom: "8px",
-                  background: "#37446c",
-                  textTransform: "uppercase",
-                  textAlign: "center",
-                  padding: "4px 8px",
-                  borderRadius: "6px",
-                }}
-              >
-                {hoveredCountry ? "Countries" : "Countries"}
+              <div style={{ textAlign: "center" }}>
+                <div
+                  style={{
+                    display: "inline-block",
+                    color: "rgba(255, 255, 255, 1)",
+                    fontWeight: "700",
+                    letterSpacing: "1.2px",
+                    marginBottom: "8px",
+                    background: "#37446c",
+                    textTransform: "uppercase",
+                    textAlign: "center",
+                    padding: window.innerWidth < 640 ? "3px 6px" : "4px 8px",
+fontSize: window.innerWidth < 640 ? "9px" : "10px",
+                    borderRadius: "6px",
+                  }}
+                >
+                  {hoveredCountry ? "Countries" : "Countries"}
+                </div>
               </div>
 
-            </div>
-            
               <ul
                 style={{
                   margin: 0,
                   padding: "0 0 0 14px",
                   listStyleType: "disc",
-                  fontSize: "12.5px",
+               fontSize: window.innerWidth < 640 ? "11px" : "12.5px",
                   lineHeight: "1.7",
                 }}
               >

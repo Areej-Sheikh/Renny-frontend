@@ -142,24 +142,26 @@ const Home = () => {
         title="Renny Strips Limited | Leading Integrated Steel Manufacturer in India"
         description="Renny Strips Limited manufactures HR coils, ERW pipes, scaffolding systems, wire rods, MS billets, and industrial steel solutions for global markets."
         keywords="Renny Strips Limited, steel manufacturer India, integrated steel manufacturer, HR coils, ERW pipes, scaffolding systems, wire rods, MS billets, steel exports, industrial steel products"
-        url="https://rennystrips.com/"
+        url="https://www.rennystrips.com/"
         image={HomepageBanner}
       />
       <div className="relative flex flex-col font-helvetica ">
         {/* 1. Banner Section */}
-        <section className="w-full min-h-screen relative flex items-center ">
-          <div className="w-full flex flex-col mt-4 md:flex-row items-center px-4 md:px-0">
+        <section className="w-full min-h-screen relative flex items-center py-12 md:py-0 overflow-hidden">
+          <div className="w-full flex flex-col md:flex-row items-center px-4 md:px-0 gap-6 md:gap-0">
+            {/* Left Content */}
             <motion.div
-              className="flex flex-col justify-center h-auto md:h-auto ml-0 md:ml-10 mb-6 md:mb-25 text-center md:text-left"
+              /* Changed mb-25 to a responsive margin that won't crush mobile layouts */
+              className="flex flex-col justify-center h-auto ml-0 md:ml-10 mb-4 md:mb-20 lg:mb-25 text-center md:text-left"
               initial={{ opacity: 0, x: -80 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true }}
             >
-              <h1 className="text-5xl sm:text-[90px] md:text-[90px] xl:text-[90px] font-semibold text-blue font-jost leading-tight md:mt-10">
+              {/* Reduced text size for small mobiles (text-4xl) while keeping 90px for laptop */}
+              <h1 className="text-4xl sm:text-6xl md:text-[90px] xl:text-[90px] font-semibold text-blue font-jost leading-tight md:mt-10">
                 Building <br />
                 <span className="font-semibold text-gray-500 bg-clip-text">
-                  {" "}
                   A Future
                 </span>
                 <br />
@@ -167,21 +169,22 @@ const Home = () => {
               </h1>
             </motion.div>
 
+            {/* Right Content */}
             <motion.div
-              className="w-full mr-0 md:mr-1 max-w-full relative overflow-hidden flex flex-col items-start"
+              className="w-full mr-0 md:mr-1 max-w-full relative flex flex-col items-start"
               initial={{ opacity: 0, x: 80 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
               viewport={{ once: true }}
             >
-              <div className="w-full flex items-center justify-center mt-8 pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
+              {/* Video Container - Preserved your hover logic and desktop widths */}
+              <div className="w-full flex items-center justify-center mt-4 md:mt-8 pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
                 <video
-                  className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-56 sm:h-64 md:h-65 
-             ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover 
-             transition-all duration-700 ease-out 
-             /* Hover State - Expanding back out */
-             hover:scale-110 lg:hover:w-[calc(100vw-460px)] 
-             hover:mt-0 md:hover:mt-16 hover:ml-0 md:hover:ml-10"
+                  className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-48 sm:h-64 md:h-65 
+                     ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover 
+                     transition-all duration-700 ease-out 
+                     hover:scale-110 lg:hover:w-[calc(100vw-460px)] 
+                     hover:mt-0 md:hover:mt-16 hover:ml-0 md:hover:ml-10"
                   src={HomepageBanner}
                   autoPlay
                   loop
@@ -193,20 +196,14 @@ const Home = () => {
               <div className="flex flex-col w-full items-center md:items-start px-6 md:px-10">
                 <p
                   className="text-gray-600 
-/* Mobile: readable base size */
-text-lg 
-/* 14-inch PC (~md/lg): roughly 22px-24px */
- md:text-[18px] 
- /* 15-inch+ PC (~xl): scales up to 26px */
-  lg:text-[22px] 
-  xl:text-[22px] 
-  /* Extra Large monitors: 32px */
-  2xl:text-[30px]
-    
-  mt-6 md:mt-8 lg:mt-10 
-  mb-8 md:mb-12 lg:mb-14 
-  text-center md:text-left 
-    "
+                     text-base sm:text-lg 
+                     md:text-[18px] 
+                     lg:text-[22px] 
+                     xl:text-[22px] 
+                     2xl:text-[30px]
+                     mt-4 md:mt-8 lg:mt-10 
+                     mb-10 md:mb-12 lg:mb-14 
+                     text-center md:text-left"
                 >
                   Proudly recognized with the prestigious 5-Star Green Steel
                   Manufacturing Rating, that reflects excellence in sustainable
@@ -215,9 +212,11 @@ text-lg
               </div>
             </motion.div>
           </div>
+
+          {/* Scroll Indicator */}
           <div
             onClick={scrollToNext}
-            className="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-gray-800 text-4xl animate-bounce cursor-pointer"
+            className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-gray-800 text-3xl md:text-4xl animate-bounce cursor-pointer"
           >
             <i className="ri-arrow-down-line"></i>
           </div>
@@ -388,7 +387,7 @@ text-lg
               </motion.div>
             ))}
           </motion.div>
-        </motion.section> 
+        </motion.section>
 
         {/* 5. Features Section */}
         <section className="flex justify-center px-6 py-16 font-helvetica bg-[#f0f6ff]">

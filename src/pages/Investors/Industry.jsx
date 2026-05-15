@@ -61,7 +61,7 @@ const IndustryReport = () => {
         title="Industry Reports | Investor Relations | Renny Strips"
         description="Access Renny Strips industry reports, market insights, and investor documents on steel manufacturing trends and business performance."
         keywords="Renny Strips industry reports, investor relations, steel industry reports, manufacturing market insights, business reports, steel sector analysis"
-        url="https://rennystrips.com/industry-report"
+        url="https://www.rennystrips.com/industry-report"
         image={heroSrc}
       />
       <div className="font-['Helvetica','Arial',sans-serif]">

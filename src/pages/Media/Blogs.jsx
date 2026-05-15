@@ -129,7 +129,7 @@ const Blogs = () => {
         title="Blogs & Industry Insights | Renny Strips"
         description="Explore Renny Strips blogs on steel industry insights, manufacturing trends, leadership perspectives, and company updates."
         keywords="Renny Strips blog, steel industry insights, manufacturing blogs, industrial trends, steel company articles, leadership insights, steel sector updates"
-        url="https://rennystrips.com/blog"
+        url="https://www.rennystrips.com/blog"
         image={heroSrc}
       />
       <div className="font-helvetica  min-h-screen">

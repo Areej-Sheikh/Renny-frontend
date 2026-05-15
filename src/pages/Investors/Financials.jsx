@@ -156,7 +156,7 @@ const Financials = () => {
         title="Investor Financials | Renny Strips Financial Reports & Documents"
         description="Access Renny Strips financial reports, annual statements, disclosures, and investor documents for official corporate records."
         keywords="Renny Strips financials, investor relations, annual reports, financial statements, corporate disclosures, investor documents, steel manufacturing company financial reports"
-        url="https://rennystrips.com/financials"
+        url="https://www.rennystrips.com/financials"
         image={heroSrc || banner}
       />
       {/* Banner */}

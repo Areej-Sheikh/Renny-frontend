@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 const EC = () => {
   const pdfUrl =
-    'https://rennystrips.com/wp-content/uploads/2025/09/RENNY-EC-1-MERGER-APPROVAL.pdf';
+    'https://www.rennystrips.com/wp-content/uploads/2025/09/RENNY-EC-1-MERGER-APPROVAL.pdf';
 
   useEffect(() => {
     // Automatically open the PDF in the same window

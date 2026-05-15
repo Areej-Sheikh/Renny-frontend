@@ -101,7 +101,7 @@ const Career = () => {
         title="Careers at Renny Strips | Steel Manufacturing Jobs"
         description="Explore career opportunities at Renny Strips in steel manufacturing, engineering, production, and industrial innovation."
         keywords="Renny Strips careers, steel jobs, engineering jobs, manufacturing careers"
-        url="https://rennystrips.com/careers"
+        url="https://www.rennystrips.com/careers"
       />
       <section className="w-full font-helvetica bg-[#f8f9fa] font-helvetica">
         {/* HERO */}

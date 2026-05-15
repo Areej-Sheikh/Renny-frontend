@@ -184,7 +184,7 @@ const Manufacturing = () => {
         title="Integrated Manufacturing | Renny Strips Limited"
         description="Explore Renny Strips Limited’s integrated manufacturing of HR coils, ERW pipes, scaffolding systems, wire rods, and sustainable steel production."
         keywords="Integrated Manufacturing, Renny Strips Limited, HR coils, ERW pipes, scaffolding systems, steel manufacturing India, billet casting, wire rods, sustainable steel production"
-        url="https://rennystrips.com/manufacturing-units"
+        url="https://www.rennystrips.com/manufacturing-units"
       />
       <div className="relative flex flex-col font-helvetica">
         {/* ================= BANNER ================= */}

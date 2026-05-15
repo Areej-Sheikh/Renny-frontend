@@ -83,8 +83,8 @@ const JobDetails = () => {
         title={`${job.title} Job Opening | Careers at Renny Strips`}
         description={`Apply for the ${job.title} role at Renny Strips. Explore opportunities in ${job.department}, steel manufacturing, engineering, and operations.`}
         keywords={`${job.title}, ${job.department} jobs, Renny Strips careers, steel manufacturing jobs, industrial jobs India, engineering careers, production jobs`}
-        url={`https://rennystrips.com/careers/${jobId}`}
-        image="https://rennystrips.com/og-careers.jpg"
+        url={`https://www.rennystrips.com/careers/${jobId}`}
+        image="https://www.rennystrips.com/og-careers.jpg"
       />
       <section className="w-full font-helvetica bg-gray-100 ">
         {/* Banner */}

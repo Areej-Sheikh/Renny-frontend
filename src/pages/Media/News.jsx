@@ -141,7 +141,7 @@ const News = () => {
         title="News Room | Renny Strips news, announcements, media coverage, company updates"
         description="Stay updated with Renny Strips news, announcements, media coverage, company updates, and industry developments."
         keywords="Renny Strips news, company announcements, steel industry news, press releases, manufacturing updates, media coverage, corporate news"
-        url="https://rennystrips.com/news-room"
+        url="https://www.rennystrips.com/news-room"
         image={heroSrc}
       />
 

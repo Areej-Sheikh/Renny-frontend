@@ -13,7 +13,7 @@ const Sustainability = () => {
         title="Sustainability & ESG Initiatives | Renny Strips"
         description="Explore Renny Strips’ sustainability efforts, ESG practices, energy efficiency, and environmentally responsible steel manufacturing."
         keywords="Renny Strips sustainability, ESG initiatives, sustainable steel manufacturing, environmental responsibility, green manufacturing, energy efficiency, steel industry sustainability"
-        url="https://rennystrips.com/sustainability"
+        url="https://www.rennystrips.com/sustainability"
         image={heroSrc}
       />
       <SustainabilityContent />

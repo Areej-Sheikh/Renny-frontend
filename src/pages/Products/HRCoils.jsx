@@ -237,7 +237,7 @@ const HRCoils = () => {
         title="Narrow HR Coils Manufacturer and Supplier | Renny Strips"
         description="Renny Strips supplies precision-engineered narrow HR coils for industrial, fabrication, and engineering applications."
         keywords="narrow HR coils, hot rolled coils, HR coil supplier, steel coils manufacturer, industrial steel coils, Renny Strips"
-        url="https://rennystrips.com/narrow-hrcoil"
+        url="https://www.rennystrips.com/narrow-hrcoil"
         image={heroSrc}
       />
       <div className="relative w-full overflow-x-hidden font-helvetica">

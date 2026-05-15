@@ -67,7 +67,7 @@ const IPOAV = () => {
         title="IPO Audio Visual | Investor Relations | Renny Strips"
         description="Watch Renny Strips IPO presentations, investor videos, and corporate media for shareholders, investors, and stakeholders."
         keywords="Renny Strips IPO audio visual, investor presentation videos, IPO media, investor relations videos, corporate presentation, shareholder communication"
-        url="https://rennystrips.com/ipo-audio-visual"
+        url="https://www.rennystrips.com/ipo-audio-visual"
         image={heroSrc}
       />
       <div className="font-['Helvetica','Arial',sans-serif]">

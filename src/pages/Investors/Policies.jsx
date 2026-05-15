@@ -110,7 +110,7 @@ const Policies = () => {
         title="Policies | Investor Relations | Renny Strips"
         description="Explore Renny Strips corporate policies, governance frameworks, compliance documents, and investor relation disclosures."
         keywords="Renny Strips policies, corporate governance policies, investor relations, compliance documents, company policies, steel company governance"
-        url="https://rennystrips.com/our-policies"
+        url="https://www.rennystrips.com/our-policies"
         image={heroSrc}
       />
       <div className="font-['Helvetica','Arial',sans-serif]">

@@ -53,7 +53,7 @@ const Governance = () => {
     if (!url || !url.includes("drive.google.com")) return url;
     const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
     if (match && match[1]) {
-      return `https://lh3.googleusercontent.com/d/${match[1]}=s1000`;
+      return `https://www.lh3.googleusercontent.com/d/${match[1]}=s1000`;
     }
     return url;
   };
@@ -85,7 +85,7 @@ const Governance = () => {
           title="Board of Directors | Corporate Governance | Renny Strips"
           description="Meet the Renny Strips Board of Directors driving corporate governance, compliance, transparency, and strategic growth."
           keywords="Renny Strips board of directors, corporate governance, management team, steel company leadership, investor governance, directors and committee"
-          url="https://rennystrips.com/corporate-governance"
+          url="https://www.rennystrips.com/corporate-governance"
           image={heroSrc}
         />
         <motion.div
@@ -112,7 +112,7 @@ const Governance = () => {
                     hoveredMember === member._id ? "grayscale-0" : "grayscale"
                   }`}
                   onError={(e) => {
-                    e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=292C44&color=fff`;
+                    e.target.src = `https://www.ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=292C44&color=fff`;
                   }}
                 />
               </div>
@@ -150,7 +150,7 @@ const Governance = () => {
           title="Board Committee Composition | Corporate Governance | Renny Strips"
           description="Explore the committee composition of the Board at Renny Strips including director roles, governance structure, compliance oversight, and management responsibilities."
           keywords="Renny Strips committee composition, board committee, corporate governance committee, directors committee, governance structure, audit committee, management board"
-          url="https://rennystrips.com/corporate-governance"
+          url="https://www.rennystrips.com/corporate-governance"
           image={heroSrc}
         />
         <motion.div
@@ -216,7 +216,7 @@ const Governance = () => {
           title="Board Committee Composition | Corporate Governance | Renny Strips"
           description="Explore the committee composition of the Board at Renny Strips including director roles, governance structure, compliance oversight, and management responsibilities."
           keywords="Renny Strips committee composition, board committee, corporate governance committee, directors committee, governance structure, audit committee, management board"
-          url="https://rennystrips.com/corporate-governance"
+          url="https://www.rennystrips.com/corporate-governance"
           image={heroSrc}
         />
         <motion.div
@@ -289,7 +289,7 @@ const Governance = () => {
         title="Board Committee Composition | Corporate Governance | Renny Strips"
         description="Explore the committee composition of the Board at Renny Strips including director roles, governance structure, compliance oversight, and management responsibilities."
         keywords="Renny Strips committee composition, board committee, corporate governance committee, directors committee, governance structure, audit committee, management board"
-        url="https://rennystrips.com/corporate-governance"
+        url="https://www.rennystrips.com/corporate-governance"
         image={heroSrc}
       />
       <div className="font-['Helvetica','Arial',sans-serif] bg-white min-h-screen">

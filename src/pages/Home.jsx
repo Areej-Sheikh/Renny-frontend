@@ -607,7 +607,7 @@ const Home = () => {
 
             {/* ================= INVESTOR RELATIONS (RIGHT) ================= */}
             <motion.div
-              className="w-full lg:w-1/4 bg-white rounded-2xl shadow p-4 sm:p-6 flex flex-col"
+              className="w-full lg:w-1/4 bg-white rounded-2xl shadow p-4 sm:p-6 flex flex-col items-center justify-start"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -621,11 +621,12 @@ const Home = () => {
                 {[
                   { title: "Financials", path: "/financials" },
                   { title: "Industry Report", path: "/industry-report" },
-                  {
-                    title: "Corporate Governance",
-                    path: "/corporate-governance",
-                  },
+                 
                   { title: "IPO Documents", path: "/ipo" },
+                  { title: "Industry Report", path: "/industry-report" },
+                  { title: "IPO Audio Visual", path: "/ipo-audio-visual" },
+                
+                  { title: "Our Policies", path: "/our-policies" },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -635,7 +636,7 @@ const Home = () => {
                       visible: { opacity: 1, x: 0 },
                     }}
                   >
-                    <span className="text-sm font-medium">{item.title}</span>
+                    <span className="text-sm mr-10 font-medium">{item.title}</span>
                     <Link to={item.path}>
                       <button className="bg-blue text-white px-4 py-2 rounded-lg text-xs hover:bg-blue-800 transition font-bold">
                         View
@@ -645,7 +646,7 @@ const Home = () => {
                 ))}
               </div>
 
-              <div className="mt-auto flex justify-around border-t pt-4">
+              {/* <div className="mt-auto flex justify-around border-t pt-4">
                 <div className="text-center">
                   <p className="text-xs text-gray-500 font-bold tracking-tighter uppercase">
                     BSE
@@ -658,7 +659,7 @@ const Home = () => {
                   </p>
                   <p className="text-sm font-semibold text-[#292C44]">₹93.63</p>
                 </div>
-              </div>
+              </div> */}
             </motion.div>
           </div>
         </section>

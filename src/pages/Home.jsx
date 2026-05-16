@@ -623,7 +623,6 @@ const Home = () => {
                   { title: "Industry Report", path: "/industry-report" },
                  
                   { title: "IPO Documents", path: "/ipo" },
-                  { title: "Industry Report", path: "/industry-report" },
                   { title: "IPO Audio Visual", path: "/ipo-audio-visual" },
                 
                   { title: "Our Policies", path: "/our-policies" },

@@ -621,10 +621,8 @@ const Home = () => {
                 {[
                   { title: "Financials", path: "/financials" },
                   { title: "Industry Report", path: "/industry-report" },
-                 
                   { title: "IPO Documents", path: "/ipo" },
                   { title: "IPO Audio Visual", path: "/ipo-audio-visual" },
-                
                   { title: "Our Policies", path: "/our-policies" },
                 ].map((item, index) => (
                   <motion.div
@@ -635,7 +633,9 @@ const Home = () => {
                       visible: { opacity: 1, x: 0 },
                     }}
                   >
-                    <span className="text-sm mr-10 font-medium">{item.title}</span>
+                    <span className="text-sm mr-10 font-medium">
+                      {item.title}
+                    </span>
                     <Link to={item.path}>
                       <button className="bg-blue text-white px-4 py-2 rounded-lg text-xs hover:bg-blue-800 transition font-bold">
                         View
@@ -754,7 +754,7 @@ const Home = () => {
           >
             {/* Latest Blog */}
             <div className="lg:w-1/2">
-              <h2 className="text-2xl text-[#05267e] font-bold mb-6 w-full text-left">
+              <h2 className="text-2xl text-blue font-bold mb-6 w-full text-left">
                 Latest Blog
               </h2>
               {blogs.length > 0 ? (

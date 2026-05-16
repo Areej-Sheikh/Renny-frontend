@@ -69,7 +69,7 @@ const BlogDetail = () => {
         keywords={
           "Renny Strips blog, steel industry insights, manufacturing trends, industrial articles, engineering blogs"
         }
-        url={`https://www.rennystrips.com/blog/${slug}`}
+        url={`https://rennystrips.com/blog/${slug}`}
       />
       <div className="font-helvetica bg-white">
         {/* 1. Hero Header */}

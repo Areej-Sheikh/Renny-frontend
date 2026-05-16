@@ -219,7 +219,7 @@ console.log(plants);
         title="Contact Renny Strips | Get in Touch With Our Team"
         description="Contact Renny Strips for product enquiries, partnerships, industrial solutions, and support from our offices and manufacturing units."
         keywords="Contact Renny Strips, steel manufacturer contact, industrial plant contact, scaffolding solutions India, product enquiry, partnership enquiry, Ludhiana manufacturing company"
-        url="https://www.rennystrips.com/contact-us"
+        url="https://rennystrips.com/contact-us"
         image={banner}
       />
       {/* Banner */}

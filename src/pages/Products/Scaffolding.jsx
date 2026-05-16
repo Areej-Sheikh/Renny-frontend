@@ -350,7 +350,7 @@ const Scaffolding = () => {
         title="Scaffolding & Formwork Solutions | Renny Strips"
         description="Renny Strips delivers scaffolding and formwork solutions for safe, stable, and efficient construction and infrastructure projects."
         keywords="scaffolding manufacturer, formwork solutions, construction scaffolding, steel scaffolding systems, industrial formwork, Renny Strips"
-        url="https://www.rennystrips.com/scaffolding-formwork"
+        url="https://rennystrips.com/scaffolding-formwork"
         image={heroSrc}
       />
       <div className="relative w-full overflow-x-hidden font-helvetica">

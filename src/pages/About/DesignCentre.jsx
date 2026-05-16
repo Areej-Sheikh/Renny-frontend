@@ -119,7 +119,7 @@ const DesignCentre = () => {
         title="Design Centre | Renny Strips Limited Design Centre for steel innovation"
         description="Explore Renny Strips Limited’s Design Centre for steel innovation, engineering expertise, customized products, and advanced manufacturing solutions."
         keywords="Design Centre, Renny Strips Limited, steel innovation, engineering solutions, customized steel products, product development, manufacturing excellence"
-        url="https://www.rennystrips.com/design-centre"
+        url="https://rennystrips.com/design-centre"
       />
       <section className="w-full font-helvetica  bg-gray-100 text-[#292c44]">
         {/* ---------------- HERO ---------------- */}

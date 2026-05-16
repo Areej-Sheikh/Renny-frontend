@@ -142,7 +142,7 @@ const Home = () => {
         title="Renny Strips Limited | Leading Integrated Steel Manufacturer in India"
         description="Renny Strips Limited manufactures HR coils, ERW pipes, scaffolding systems, wire rods, MS billets, and industrial steel solutions for global markets."
         keywords="Renny Strips Limited, steel manufacturer India, integrated steel manufacturer, HR coils, ERW pipes, scaffolding systems, wire rods, MS billets, steel exports, industrial steel products"
-        url="https://www.rennystrips.com/"
+        url="https://rennystrips.com"
         image={HomepageBanner}
       />
       <div className="relative flex flex-col font-helvetica ">

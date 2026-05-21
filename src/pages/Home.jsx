@@ -129,6 +129,7 @@ const Home = () => {
   const [viewKey, setViewKey] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef(null);
+  const sustainabilityVideoRef = useRef(null);
 
   const scrollToNext = () => {
     const nextSection = document.getElementById("next-section");
@@ -704,17 +705,25 @@ const Home = () => {
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+              onAnimationComplete={() => {
+                if (sustainabilityVideoRef.current) {
+                  sustainabilityVideoRef.current.play().catch((err) => {
+                    console.warn("Autoplay failed:", err);
+                  });
+                }
+              }}
             >
               <video
+                ref={sustainabilityVideoRef}
                 src={sustainability2}
                 /* Changed h-135 to aspect-video for mobile 
          lg:h-auto + object-cover ensures it fills the column height on desktop
       */
                 className="w-full h-auto aspect-video lg:aspect-auto lg:h-full object-fill shadow-lg rounded-3xl lg:rounded-4xl"
-                muted
-                loop
-                autoPlay
-                playsInline
+                muted={true}
+                loop={true}
+                autoPlay={true}
+                playsInline={true}
               />
             </motion.div>
           </motion.div>

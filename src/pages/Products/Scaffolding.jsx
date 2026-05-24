@@ -731,15 +731,14 @@ const Scaffolding = () => {
           </motion.h2>
 
           {/* Video Container - Changed h-[90vh] to an aspect-ratio approach for mobile */}
-          <div className="w-full h-[40vh] sm:h-[60vh] md:h-[80vh] lg:h-[90vh] rounded-xl md:rounded-2xl overflow-hidden shadow-lg">
+          <div className="w-full rounded-xl md:rounded-2xl overflow-hidden shadow-lg">
             <video
               src={CBAM}
-              loop
-              muted
-              autoPlay
-              playsInline
-              /* Changed object-fill to object-cover to prevent squishing the video */
-              className="w-full h-full object-cover md:object-fill"
+              className="w-full h-auto aspect-video lg:aspect-auto lg:h-full object-fill shadow-lg rounded-3xl lg:rounded-4xl"
+              muted={true}
+              loop={true}
+              autoPlay={true}
+              playsInline={true}
             />
           </div>
 

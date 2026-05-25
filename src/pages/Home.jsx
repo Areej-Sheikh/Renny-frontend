@@ -129,6 +129,7 @@ const Home = () => {
   const [viewKey, setViewKey] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef(null);
+  const sustainabilityVideoRef = useRef(null);
 
   const scrollToNext = () => {
     const nextSection = document.getElementById("next-section");
@@ -142,24 +143,46 @@ const Home = () => {
         title="Renny Strips Limited | Leading Integrated Steel Manufacturer in India"
         description="Renny Strips Limited manufactures HR coils, ERW pipes, scaffolding systems, wire rods, MS billets, and industrial steel solutions for global markets."
         keywords="Renny Strips Limited, steel manufacturer India, integrated steel manufacturer, HR coils, ERW pipes, scaffolding systems, wire rods, MS billets, steel exports, industrial steel products"
-        url="https://www.rennystrips.com/"
+        url="https://rennystrips.com"
         image={HomepageBanner}
       />
       <div className="relative flex flex-col font-helvetica ">
         {/* 1. Banner Section */}
         <section className="w-full min-h-screen relative flex items-center py-12 md:py-0 overflow-hidden">
-          <div className="w-full flex flex-col md:flex-row items-center px-4 md:px-0 gap-6 md:gap-0">
+          <div className="w-full flex flex-col nest-hub:flex-row items-center justify-center px-4 md:px-0 gap-6 md:gap-0">
             {/* Left Content */}
             <motion.div
-              /* Changed mb-25 to a responsive margin that won't crush mobile layouts */
-              className="flex flex-col justify-center h-auto ml-0 md:ml-10 mb-4 md:mb-20 lg:mb-25 text-center md:text-left"
+              className="flex flex-col justify-center h-auto ml-0 md:ml-10 mb-2  text-center md:text-left"
               initial={{ opacity: 0, x: -80 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: true }}
             >
-              {/* Reduced text size for small mobiles (text-4xl) while keeping 90px for laptop */}
-              <h1 className="text-4xl sm:text-6xl md:text-[90px] xl:text-[90px] font-semibold text-blue font-jost leading-tight md:mt-10">
+              <h1
+                className="
+    font-semibold
+    text-blue
+    font-jost
+    leading-tight
+
+    text-[28px]
+
+    iphone-SE:text-[36px]
+    iphone-SE:mt-8
+    iphone-XR:text-[56px]
+    iphone-12pro:text-[50px]
+    iphone-14promax:text-[60px]
+
+    samsungGalaxy-S8:text-[45px]
+    samsungGalaxy-S20:text-[60px]
+
+    ipad-mini:text-[80px]
+    ipad-pro:text-[80px]
+    nest-hub:mb-30
+    nest-hub:ml-5
+
+  "
+              >
                 Building <br />
                 <span className="font-semibold text-gray-500 bg-clip-text">
                   A Future
@@ -180,7 +203,7 @@ const Home = () => {
               {/* Video Container - Preserved your hover logic and desktop widths */}
               <div className="w-full flex items-center justify-center mt-4 md:mt-8 pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
                 <video
-                  className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-48 sm:h-64 md:h-65 
+                  className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-48 sm:h-64 md:h-80 
                      ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover 
                      transition-all duration-700 ease-out 
                      hover:scale-110 lg:hover:w-[calc(100vw-460px)] 
@@ -193,17 +216,23 @@ const Home = () => {
                 />
               </div>
 
-              <div className="flex flex-col w-full items-center md:items-start px-6 md:px-10">
+              <div className="flex flex-col w-full items-center md:items-start   nest-hub:items-center nest-hub:justify-center nest-hub:text-center">
                 <p
-                  className="text-gray-600 
-                     text-base sm:text-lg 
-                     md:text-[18px] 
-                     lg:text-[22px] 
-                     xl:text-[22px] 
-                     2xl:text-[30px]
-                     mt-4 md:mt-8 lg:mt-10 
-                     mb-10 md:mb-12 lg:mb-14 
-                     text-center md:text-left"
+                  className="
+    text-gray-600
+    text-[20px]
+    iphone-12pro:text-[22px]
+    iphone-14promax:text-[26px]
+    ipad-mini:text-[28px]
+    iphone-SE:text-[15px]
+    ipad-mini:text-center
+    ipad-mini:px-10
+    nest-hub:text-[22px]
+    nest-hub-max:text-2xl
+    mt-4 md:mt-8
+    mb-10 md:mb-12
+    text-center md:text-left
+  "
                 >
                   Proudly recognized with the prestigious 5-Star Green Steel
                   Manufacturing Rating, that reflects excellence in sustainable
@@ -579,7 +608,7 @@ const Home = () => {
 
             {/* ================= INVESTOR RELATIONS (RIGHT) ================= */}
             <motion.div
-              className="w-full lg:w-1/4 bg-white rounded-2xl shadow p-4 sm:p-6 flex flex-col"
+              className="w-full lg:w-1/4 bg-white rounded-2xl shadow p-4 sm:p-6 flex flex-col items-center justify-start"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -593,11 +622,9 @@ const Home = () => {
                 {[
                   { title: "Financials", path: "/financials" },
                   { title: "Industry Report", path: "/industry-report" },
-                  {
-                    title: "Corporate Governance",
-                    path: "/corporate-governance",
-                  },
                   { title: "IPO Documents", path: "/ipo" },
+                  { title: "IPO Audio Visual", path: "/ipo-audio-visual" },
+                  { title: "Our Policies", path: "/our-policies" },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -607,7 +634,9 @@ const Home = () => {
                       visible: { opacity: 1, x: 0 },
                     }}
                   >
-                    <span className="text-sm font-medium">{item.title}</span>
+                    <span className="text-sm mr-10 font-medium">
+                      {item.title}
+                    </span>
                     <Link to={item.path}>
                       <button className="bg-blue text-white px-4 py-2 rounded-lg text-xs hover:bg-blue-800 transition font-bold">
                         View
@@ -617,7 +646,7 @@ const Home = () => {
                 ))}
               </div>
 
-              <div className="mt-auto flex justify-around border-t pt-4">
+              {/* <div className="mt-auto flex justify-around border-t pt-4">
                 <div className="text-center">
                   <p className="text-xs text-gray-500 font-bold tracking-tighter uppercase">
                     BSE
@@ -630,7 +659,7 @@ const Home = () => {
                   </p>
                   <p className="text-sm font-semibold text-[#292C44]">₹93.63</p>
                 </div>
-              </div>
+              </div> */}
             </motion.div>
           </div>
         </section>
@@ -676,17 +705,25 @@ const Home = () => {
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+              onAnimationComplete={() => {
+                if (sustainabilityVideoRef.current) {
+                  sustainabilityVideoRef.current.play().catch((err) => {
+                    console.warn("Autoplay failed:", err);
+                  });
+                }
+              }}
             >
               <video
+                ref={sustainabilityVideoRef}
                 src={sustainability2}
                 /* Changed h-135 to aspect-video for mobile 
          lg:h-auto + object-cover ensures it fills the column height on desktop
       */
                 className="w-full h-auto aspect-video lg:aspect-auto lg:h-full object-fill shadow-lg rounded-3xl lg:rounded-4xl"
-                muted
-                loop
-                autoPlay
-                playsInline
+                muted={true}
+                loop={true}
+                autoPlay={true}
+                playsInline={true}
               />
             </motion.div>
           </motion.div>
@@ -726,7 +763,7 @@ const Home = () => {
           >
             {/* Latest Blog */}
             <div className="lg:w-1/2">
-              <h2 className="text-2xl text-[#05267e] font-bold mb-6 w-full text-left">
+              <h2 className="text-2xl text-blue font-bold mb-6 w-full text-left">
                 Latest Blog
               </h2>
               {blogs.length > 0 ? (

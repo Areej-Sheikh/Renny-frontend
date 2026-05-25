@@ -195,8 +195,8 @@ const JobApply = () => {
         title="Apply for Jobs at Renny Strips | Career Application Form"
         description="Apply for jobs at Renny Strips in steel manufacturing, engineering, production, quality assurance, and industrial operations."
         keywords="Renny Strips application form, apply jobs online, steel industry careers, manufacturing jobs India, engineering application, industrial jobs, scaffolding careers, ERW pipe careers"
-        url={`https://www.rennystrips.com/careers/${jobId}/apply`}
-        image="https://www.rennystrips.com/og-careers.jpg"
+        url={`https://rennystrips.com/careers/${jobId}/apply`}
+        image="https://rennystrips.com/og-careers.jpg"
       />
       <section className="min-h-screen font-helvetica bg-gray-100 flex items-center justify-center py-20 px-4">
         <motion.form

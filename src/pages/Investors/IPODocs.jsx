@@ -89,7 +89,7 @@ const IPODocs = () => {
         title="IPO Documents | Investor Relations | Renny Strips"
         description="Access Renny Strips IPO documents, DRHP filings, investor disclosures, and public issue records for shareholders and investors."
         keywords="Renny Strips IPO documents, DRHP, offer documents, investor relations, stock market filings, IPO disclosures, red herring prospectus"
-        url="https://www.rennystrips.com/ipo"
+        url="https://rennystrips.com/ipo"
         image={heroSrc}
       />
       <div className="font-['Helvetica','Arial',sans-serif]">

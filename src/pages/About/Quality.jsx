@@ -218,7 +218,7 @@ const Quality = () => {
         title="Quality Assurance & Global Standards | Renny Strips Limited"
         description="Explore Renny Strips Limited’s ISO-certified quality systems, EN 1090 standards, CE compliance, testing labs, and global steel manufacturing practices."
         keywords="Renny Strips quality assurance, ISO 9001 steel manufacturer, EN 1090 certified company, CE marking steel products, steel quality testing, QMS steel manufacturing, NDT testing, scaffolding quality standards, ERW pipe quality inspection, metallurgical testing India"
-        url="https://www.rennystrips.com/quality-standard"
+        url="https://rennystrips.com/quality-standard"
       />
       <section className="w-full bg-gray-100 font-helvetica">
         {/* ================= Banner Section ================= */}

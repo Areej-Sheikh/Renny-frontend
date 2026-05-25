@@ -113,7 +113,7 @@ const Events = () => {
         title="Events & Exhibitions | Renny Strips"
         description="Explore Renny Strips events, exhibitions, trade shows, corporate gatherings, and industry participation highlights."
         keywords="Renny Strips events, steel exhibitions, trade shows, corporate events, industrial expos, manufacturing conferences, company events"
-        url="https://www.rennystrips.com/events"
+        url="https://rennystrips.com/events"
         image={heroSrc}
       />
       <motion.div className="font-helvetica overflow-hidden min-h-screen">

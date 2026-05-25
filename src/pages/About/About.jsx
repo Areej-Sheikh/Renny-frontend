@@ -312,7 +312,7 @@ const About = () => {
         title="Company Overview | Renny Strips Limited"
         description="Explore Renny Strips Limited’s integrated steel manufacturing, exports, HR coils, ERW pipes, scaffolding systems, wire rods, and production capabilities."
         keywords="Renny Strips Limited, steel manufacturer India, HR coils, ERW pipes, scaffolding systems, wire rods, steel company Ludhiana, integrated steel manufacturer"
-        url="https://www.rennystrips.com/company-overview"
+        url="https://rennystrips.com/company-overview"
       />
       <div className="w-full bg-black text-white font-helvetica">
         {/* ================= HERO ================= */}

@@ -8,6 +8,9 @@ const SEO = ({
   url = "https://rennystrips.com",
   type = "website",
 }) => {
+  // Ensure the URL doesn't have a trailing slash (except for the root domain)
+  const canonicalUrl = url.endsWith("/") && url.length > 8 ? url.slice(0, -1) : url;
+
   return (
     <Helmet>
       {/* Primary SEO */}
@@ -23,13 +26,13 @@ const SEO = ({
       />
 
       {/* Canonical */}
-      <link rel="canonical" href={url} />
+      <link rel="canonical" href={canonicalUrl} />
 
       {/* Open Graph */}
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content={url} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={image} />
       <meta property="og:site_name" content="Renny Strips" />
 

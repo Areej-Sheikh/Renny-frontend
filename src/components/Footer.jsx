@@ -133,7 +133,7 @@ const Footer = () => {
         <motion.div variants={item} className="space-y-5">
           <div className="space-y-3">
             <h3 className="font-semibold">EC</h3>
-            <FooterLink to="/ec/">EC</FooterLink>
+            <FooterLink to="/ec">EC</FooterLink>
           </div>
 
           <div className="space-y-3">

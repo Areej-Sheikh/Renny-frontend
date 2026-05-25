@@ -58,8 +58,16 @@ const Contact = lazy(() => import("./pages/Contact/Contact"));
 const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Trailing slash redirection
+    if (location.pathname !== "/" && location.pathname.endsWith("/")) {
+      const newPath = location.pathname.slice(0, -1);
+      navigate(newPath + location.search, { replace: true });
+      return;
+    }
+
     setIsLoading(true);
     // Show spinner for a short duration while page content gets rendered
     const timer = setTimeout(() => {
@@ -102,7 +110,7 @@ const App = () => {
           <Route path="/our-policies" element={<Policies />} />
 
           {/* EC */}
-          <Route path="/ec/" element={<EC />} />
+          <Route path="/ec" element={<EC />} />
 
           {/* Sustainability */}
           <Route path="/sustainability" element={<Sustainability />} />

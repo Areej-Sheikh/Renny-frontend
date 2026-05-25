@@ -58,7 +58,7 @@ const Navbar = () => {
         { name: "Our Policies", path: "/our-policies" },
       ],
     },
-    { title: "EC", path: "/ec/" },
+    { title: "EC", path: "/ec" },
     {
       title: "Sustainability",
       links: [{ name: "ESG", path: "/sustainability" }],
@@ -250,7 +250,7 @@ const Navbar = () => {
         {/* EC */}
         <li>
           <Link
-            to="/ec/"
+            to="/ec"
             className="hover:bg-blue hover:text-white px-4 py-3 rounded-xl"
           >
             EC

@@ -29,9 +29,9 @@ import Areospace from "../../assets/Aerospace.webp";
 import Defence from "../../assets/Defence.webp";
 import Heavy from "../../assets/heavy engineering.webp";
 
-import msBilletsSection2 from "../../assets/ms billets section 2.jpeg";
-import manufacturingProcess from "../../assets/manufacturingProcess-1.png";
-import Information from "../../assets/Information1-1.png";
+import msBilletsSection2 from "../../assets/ms billets section 2.webp";
+import manufacturingProcess from "../../assets/manufacturingProcess-1.webp";
+import Information from "../../assets/Information1-1.webp";
 const MSBillets = () => {
   const containerVariants = {
     hidden: {},
@@ -558,7 +558,7 @@ const MSBillets = () => {
                h-64
                md:h-80
                lg:h-[30rem]
-               object-fit
+               object-cover
                rounded-2xl
                md:rounded-3xl
              "

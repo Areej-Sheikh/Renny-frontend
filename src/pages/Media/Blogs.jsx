@@ -151,7 +151,7 @@ const Blogs = () => {
               loop
               muted
               playsInline
-              className="absolute inset-0 w-full h-full object-fit"
+              className="absolute inset-0 w-full h-full object-cover"
             />
           ) : (
             <img
@@ -323,7 +323,7 @@ const Blogs = () => {
                   <img
                     src={activeBlog.mainImage}
                     alt={activeBlog.title}
-                    className="w-full h-82 object-fit rounded-2xl mb-6"
+                    className="w-full h-82 object-cover rounded-2xl mb-6"
                   />
                   <h2 className="text-2xl font-bold mb-2 text-center">
                     {activeBlog.title}

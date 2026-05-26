@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import msBilletsSection2 from "../assets/ms billets section 2.jpeg";
-import img from "../assets/forging-billets.png";
+import msBilletsSection2 from "../assets/ms billets section 2.webp";
+import img from "../assets/forging-billets.webp";
 
 const images = [msBilletsSection2, img];
 

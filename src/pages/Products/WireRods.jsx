@@ -11,26 +11,26 @@ import usePageHero from "../../hooks/usePageHero";
 import SEO from "../../components/SEO";
 
 // ========== Assets ==========
-import banner from "../../assets/Wire rod.mp4";
+import banner from "../../assets/Wire rod.webm";
 
-import Application1 from "../../assets/Application1-1.png";
-import Application2 from "../../assets/Application2-1.png";
-import Application3 from "../../assets/Application3-1.png";
-import Application4 from "../../assets/Application4-1.png";
-import Application5 from "../../assets/Application5-1.png";
+import Application1 from "../../assets/Application1-1.webp";
+import Application2 from "../../assets/Application2-1.webp";
+import Application3 from "../../assets/Application3-1.webp";
+import Application4 from "../../assets/Application4-1.webp";
+import Application5 from "../../assets/Application5-1.webp";
 
-import manufacturingProcess from "../../assets/manufacturingProcess-2.png";
+import manufacturingProcess from "../../assets/manufacturingProcess-2.webp";
 
 import img3 from "../../assets/wire2.webp";
 
-import Information from "../../assets/Information2-1.png";
+import Information from "../../assets/Information2-1.webp";
 
-import coreStrength1 from "../../assets/core-strength-1.png";
-import coreStrength2 from "../../assets/core-strength-2.png";
-import coreStrength3 from "../../assets/core-strength-3.png";
-import coreStrength4 from "../../assets/core-strength-4.png";
-import coreStrength5 from "../../assets/core-strength-5.png";
-import coreStrength6 from "../../assets/core-strength-6.png";
+import coreStrength1 from "../../assets/core-strength-1.webp";
+import coreStrength2 from "../../assets/core-strength-2.webp";
+import coreStrength3 from "../../assets/core-strength-3.webp";
+import coreStrength4 from "../../assets/core-strength-4.webp";
+import coreStrength5 from "../../assets/core-strength-5.webp";
+import coreStrength6 from "../../assets/core-strength-6.webp";
 
 import { API_BASE_URL } from "../../lib/api";
 
@@ -560,7 +560,7 @@ const WireRods = () => {
                h-64
                md:h-80
                lg:h-[30rem]
-               object-fit
+               object-cover
                rounded-2xl
                md:rounded-3xl
              "

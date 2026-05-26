@@ -1,27 +1,27 @@
-import banner from "../../assets/Scaffolding.mp4";
+import banner from "../../assets/Scaffolding.webm";
 import { motion } from "framer-motion";
 import { API_BASE_URL } from "../../lib/api";
-import product1 from "../../assets/productRange1-Coupler.jpg";
-import product2 from "../../assets/productRange2-Jack.jpeg";
-import product3 from "../../assets/productRange3-Nuts.png";
-import product4 from "../../assets/productRange4-Tube.jpeg";
-import product5 from "../../assets/productRange5-Edge protection system & barriers.jpg";
-import product6 from "../../assets/productRange6-Formwork accessories.jpeg";
-import product7 from "../../assets/productRange7-Formwork panel.jpeg";
-import product8 from "../../assets/productRange8-Props and shoring systems at work.jpeg";
+import product1 from "../../assets/productRange1-Coupler.webp";
+import product2 from "../../assets/productRange2-Jack.webp";
+import product3 from "../../assets/productRange3-Nuts.webp";
+import product4 from "../../assets/productRange4-Tube.webp";
+import product5 from "../../assets/productRange5-Edge protection system & barriers.webp";
+import product6 from "../../assets/productRange6-Formwork accessories.webp";
+import product7 from "../../assets/productRange7-Formwork panel.webp";
+import product8 from "../../assets/productRange8-Props and shoring systems at work.webp";
 import product9 from "../../assets/productRange9- scaffolding system.webp";
-import product10 from "../../assets/productRange10-fastner.jpeg";
-import product11 from "../../assets/productRange11-ringlock system.jpg.jpeg";
-import product12 from "../../assets/productRange12-cuplock system.jpg.jpeg";
-import product13 from "../../assets/productRange13-frame scaffolding.jpg";
-import product14 from "../../assets/productRange14-silver_kwikstage.png";
-import product15 from "../../assets/productRange15-access tower.jpg";
-import information from "../../assets/Information5-1.png";
+import product10 from "../../assets/productRange10-fastner.webp";
+import product11 from "../../assets/productRange11-ringlock system.jpg.webp";
+import product12 from "../../assets/productRange12-cuplock system.jpg.webp";
+import product13 from "../../assets/productRange13-frame scaffolding.webp";
+import product14 from "../../assets/productRange14-silver_kwikstage.webp";
+import product15 from "../../assets/productRange15-access tower.webp";
+import information from "../../assets/Information5-1.webp";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import usePageHero from "../../hooks/usePageHero";
-import bannerVideo from "../../assets/Scaffolding.mp4";
+import bannerVideo from "../../assets/Scaffolding.webm";
 const ProductRange = () => {
   const [fetchedProducts, setFetchedProducts] = useState({
     range: [],

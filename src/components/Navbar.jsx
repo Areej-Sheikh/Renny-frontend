@@ -101,7 +101,9 @@ const Navbar = () => {
       <img
         src={RennyLogo}
         alt="Logo"
-        className="h-20  cursor-pointer rounded-md p-2"
+        width="217"
+        height="175"
+        className="h-20 w-auto cursor-pointer rounded-md p-2"
         onClick={() => navigate("/")}
       />
 
@@ -109,7 +111,7 @@ const Navbar = () => {
       <ul
         className={`hidden lg:flex items-center gap-3 transition-all duration-300
     ${
-      isScrolled ? "text-gray-700 font-semibold" : "font-semibold text-gray-400"
+      isScrolled ? "text-gray-700 font-semibold" : "font-semibold text-blue-900"
     }
   `}
       >
@@ -318,6 +320,9 @@ const Navbar = () => {
 
       {/* Mobile Menu Toggle */}
       <button
+        aria-label="Open navigation menu"
+        aria-expanded={isMenuOpen}
+        aria-controls="main-nav"
         className="lg:hidden text-2xl text-blue-900 focus:outline-none"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
@@ -326,6 +331,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation Drawer */}
       <div
+        id="main-nav"
         className={`fixed top-16 left-0 w-full bg-white shadow-lg transition-all duration-300 ease-in-out transform lg:hidden ${
           isMenuOpen
             ? "translate-x-0 opacity-100"

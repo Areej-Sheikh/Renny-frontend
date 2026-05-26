@@ -59,6 +59,8 @@ const Footer = () => {
           <img
             src={RennyLogo}
             alt="Renny Logo"
+            width="217"
+            height="175"
             className="h-[100px] w-auto object-contain"
           />
           <p className="text-sm text-gray-600">
@@ -163,6 +165,7 @@ const Footer = () => {
               href="https://x.com/rennystrips?t=Zv74JfuWaVw3CHAxPHAQSA&s=08"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Renny Strips on X"
               className="w-8 h-8 flex items-center justify-center rounded-full bg-black hover:opacity-80 transition-opacity shadow-md"
             >
               <span className="text-white text-md font-bold">𝕏</span>
@@ -172,6 +175,7 @@ const Footer = () => {
               href="https://www.facebook.com/rennypvtltd"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Renny Strips on Facebook"
               className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1877F2] hover:opacity-80 transition-opacity shadow-md"
             >
               <span className="text-white text-lg font-bold">
@@ -183,6 +187,7 @@ const Footer = () => {
               href="https://www.instagram.com/rennystrips/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Renny Strips on Instagram"
               className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-80 transition-opacity shadow-md"
             >
               <span className="text-white text-md">
@@ -194,6 +199,7 @@ const Footer = () => {
               href="https://www.linkedin.com/company/rennystrips/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Renny Strips on LinkedIn"
               className="w-8 h-8 flex items-center justify-center rounded-full bg-[#0077B5] hover:opacity-80 transition-opacity shadow-md"
             >
               <span className="text-white text-md font-bold">

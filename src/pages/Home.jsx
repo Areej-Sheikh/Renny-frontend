@@ -12,10 +12,10 @@ import SEO from "../components/SEO";
 import MS from "../assets/product-1.webp";
 import Scaffolding from "../assets/product-2.webp";
 import ERW from "../assets/product-3.webp";
-import Coil from "../assets/hr-coil.png";
+import Coil from "../assets/hr-coil.webp";
 import rods from "../assets/product-5.webp";
 
-import sustainability2 from "../assets/CBAM.mp4";
+import sustainability2 from "../assets/CBAM.webm";
 
 import CountUp from "react-countup";
 
@@ -29,8 +29,8 @@ import blog3 from "../assets/blog3.webp";
 import blog4 from "../assets/blog4.webp";
 
 import { AnimatePresence } from "framer-motion";
-import AboutUs from "../assets/about-3.png";
-import AboutUsMobile from "../assets/about-3.png";
+import AboutUs from "../assets/about-3.webp";
+import AboutUsMobile from "../assets/AboutUsMobile.webp";
 
 import SustainabilitySlider from "../components/SustainabilitySlider";
 import MapPage from "./MapPage";
@@ -262,6 +262,12 @@ const Home = () => {
         >
           <div className="relative w-full min-h-[100vh] md:h-full overflow-hidden">
             <picture className="absolute inset-0">
+              {import.meta.env.PROD && (
+                <>
+                  <source srcSet="/assets/about-3.avif" type="image/avif" />
+                  <source srcSet="/assets/about-3.webp" type="image/webp" />
+                </>
+              )}
               {/* Desktop Image */}
               <source media="(min-width: 768px)" srcSet={AboutUs} />
 
@@ -269,6 +275,9 @@ const Home = () => {
               <img
                 src={AboutUsMobile}
                 alt="About Us"
+                width="1534"
+                height="1080"
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
             </picture>
@@ -432,24 +441,28 @@ const Home = () => {
                 {
                   id: 0,
                   icon: icons1,
+                  alt: "Innovation",
                   title: "Precision Engineering and Manufacturing",
                   desc: "Specializes in manufacturing high-precision, safety-critical components as per specifications.",
                 },
                 {
                   id: 1,
                   icon: icons2,
+                  alt: "Sustainability",
                   title: "Fabrication and Forging",
                   desc: "Advanced sheet metal processing with EN 1090 & ISO 3834 compliance.",
                 },
                 {
                   id: 2,
                   icon: icons3,
+                  alt: "Quality",
                   title: "Customized Excellence",
                   desc: "Tailored solutions backed by an in-house raw material ecosystem.",
                 },
                 {
                   id: 3,
                   icon: icons1,
+                  alt: "Innovation",
                   title: "CNC Machining and Finishing",
                   desc: "Automated precision machining for consistent, high-quality output.",
                 },
@@ -462,6 +475,9 @@ const Home = () => {
                   <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center relative">
                     <img
                       src={card.icon}
+                      alt={card.alt}
+                      width="72"
+                      height="72"
                       className={`h-18 w-18 mb-6 transition-all duration-500 ${openIndex === i ? "scale-110 brightness-0 invert" : ""}`}
                     />
                     <h3 className="text-lg font-semibold mb-4">{card.title}</h3>
@@ -775,7 +791,7 @@ const Home = () => {
                   <img
                     src={blogs[0].mainImage || blog1}
                     alt={blogs[0].title}
-                    className="w-full h-64 md:h-80 object-fit object-center"
+                    className="w-full h-64 md:h-80 object-cover object-center"
                   />
                   <div className="p-6">
                     <h2 className="text-xl font-semibold text-blue group-hover:text-blue-900 transition">
@@ -818,7 +834,7 @@ const Home = () => {
                         <img
                           src={blog.mainImage || [blog2, blog3, blog4][index]}
                           alt={blog.title}
-                          className="w-42 h-24 object-fit rounded-md flex-shrink-0"
+                          className="w-42 h-24 object-cover rounded-md flex-shrink-0"
                         />
                         <div>
                           <h2 className="font-semibold text-gray-800 group-hover:text-blue-900 transition line-clamp-2">

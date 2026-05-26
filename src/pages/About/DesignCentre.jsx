@@ -11,7 +11,7 @@ import usePageHero from "../../hooks/usePageHero";
 // ========== Assets ==========
 import designCentreBanner from "../../assets/Design-Center-Banner.webp";
 // import designCenterImage from "../../assets/DesignCentre-Frame.webp";
-import designCenterImage from "../../assets/DesignCentre-Frame-1.jpeg";
+import designCenterImage from "../../assets/DesignCentre-Frame-1.webp";
 
 const DesignCentre = () => {
   // ========== Hero Content ==========

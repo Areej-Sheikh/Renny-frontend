@@ -11,29 +11,29 @@ import usePageHero from "../../hooks/usePageHero";
 // ========== Assets ==========
 import banner from "../../assets/erw.webm";
 
-import coreStrength1 from "../../assets/core-strength-13-1.png";
-import coreStrengh2 from "../../assets/core-strength-14-1.png";
-import coreStrength3 from "../../assets/core-strength-15-1.png";
-import coreStrength4 from "../../assets/core-strength-16-1.png";
-import coreStrength5 from "../../assets/core-strength-17-1.png";
-import coreStrength6 from "../../assets/core-strength-18-1.png";
+import coreStrength1 from "../../assets/core-strength-13-1.webp";
+import coreStrengh2 from "../../assets/core-strength-14-1.webp";
+import coreStrength3 from "../../assets/core-strength-15-1.webp";
+import coreStrength4 from "../../assets/core-strength-16-1.webp";
+import coreStrength5 from "../../assets/core-strength-17-1.webp";
+import coreStrength6 from "../../assets/core-strength-18-1.webp";
 
-import Application1 from "../../assets/Application9-1.png";
-import Application2 from "../../assets/Application10-1.png";
-import Application3 from "../../assets/Application11-1.png";
-import Application4 from "../../assets/Application12-1.png";
-import Application5 from "../../assets/Application13-1.png";
-import Application6 from "../../assets/Application14-1.png";
+import Application1 from "../../assets/Application9-1.webp";
+import Application2 from "../../assets/Application10-1.webp";
+import Application3 from "../../assets/Application11-1.webp";
+import Application4 from "../../assets/Application12-1.webp";
+import Application5 from "../../assets/Application13-1.webp";
+import Application6 from "../../assets/Application14-1.webp";
 
-import bannerImg from "../../assets/pipes.jpeg";
+import bannerImg from "../../assets/pipes.webp";
 
-import manufacturingProcess from "../../assets/manufacturingProcess-4.png";
+import manufacturingProcess from "../../assets/manufacturingProcess-4.webp";
 
 import Information from "../../assets/Information4-1.webp";
 
-import products1 from "../../assets/product3.png";
-import products2 from "../../assets/product2.png";
-import products3 from "../../assets/product1.png";
+import products1 from "../../assets/product3.webp";
+import products2 from "../../assets/product2.webp";
+import products3 from "../../assets/product1.webp";
 
 import { API_BASE_URL } from "../../lib/api";
 
@@ -617,7 +617,7 @@ const ERW = () => {
                h-64
                md:h-80
                lg:h-[30rem]
-               object-fit
+               object-cover
                rounded-2xl
                md:rounded-3xl
              "

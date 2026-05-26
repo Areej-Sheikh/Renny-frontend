@@ -16,7 +16,7 @@ import unit2 from "../../assets/Unit-3.webp";
 import image from "../../assets/Manufacturing1.webp";
 import video from "../../assets/new235.webm";
 import rawimg from "../../assets/RawToRemarkable.webm";
-import TotalCapacity from "../../assets/TotalCapacity.jpg";
+import TotalCapacity from "../../assets/TotalCapacity.webp";
 import carbonfootprint from "../../assets/carbon.webp";
 
 import { API_BASE_URL } from "../../lib/api";
@@ -526,7 +526,7 @@ const Manufacturing = () => {
                 key={currentMetric.image}
                 src={currentMetric.image}
                 alt={currentMetric.title}
-                className="w-full h-full rounded-4xl object-fit"
+                className="w-full h-full rounded-4xl object-cover"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}

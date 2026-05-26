@@ -89,7 +89,7 @@ const BlogDetail = () => {
           <img
             src={blog.mainImage}
             alt={blog.title}
-            className="w-full object-fit max-w-5xl rounded-xl shadow-lg"
+            className="w-full object-cover max-w-5xl rounded-xl shadow-lg"
           />
         </div>
 
@@ -256,7 +256,7 @@ const BlogDetail = () => {
                         <img
                           src={section.url || section.image}
                           alt={section.caption || section.content || ""}
-                          className="w-full object-fit rounded-lg shadow-sm"
+                          className="w-full object-cover rounded-lg shadow-sm"
                         />
                         {(section.caption || section.content) && (
                           <figcaption className="text-center text-sm text-gray-400 mt-2">
@@ -393,7 +393,7 @@ const BlogDetail = () => {
                           <img
                             src={rel.mainImage}
                             alt=""
-                            className="w-full h-32 object-fit rounded-md mb-2 shadow-sm group-hover:opacity-90 transition-opacity"
+                            className="w-full h-32 object-cover rounded-md mb-2 shadow-sm group-hover:opacity-90 transition-opacity"
                           />
                           <p className="text-xs font-bold text-blue group-hover:underline">
                             Read Article →

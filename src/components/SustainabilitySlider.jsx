@@ -47,7 +47,7 @@ const SustainabilitySlider = () => {
                 <img
                   src={slide.image}
                   alt={slide.title}
-                  className="w-full h-full object-fit"
+                  className="w-full h-full object-cover"
                 />
               </div>
 

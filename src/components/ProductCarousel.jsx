@@ -132,12 +132,7 @@ const ProductCarousel = () => {
               {/* Image */}
               {item.title === "HR Coils" ? (
                 <picture className="absolute inset-0 w-full h-full">
-                  {import.meta.env.PROD && (
-                    <>
-                      <source srcSet="/assets/hr-coil.avif" type="image/avif" />
-                      <source srcSet="/assets/hr-coil.webp" type="image/webp" />
-                    </>
-                  )}
+                  <source srcSet={item.image} type="image/webp" />
                   <img
                     src={item.image}
                     alt={item.title}

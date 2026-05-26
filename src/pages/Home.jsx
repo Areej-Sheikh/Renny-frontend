@@ -262,14 +262,8 @@ const Home = () => {
         >
           <div className="relative w-full min-h-[100vh] md:h-full overflow-hidden">
             <picture className="absolute inset-0">
-              {import.meta.env.PROD && (
-                <>
-                  <source srcSet="/assets/about-3.avif" type="image/avif" />
-                  <source srcSet="/assets/about-3.webp" type="image/webp" />
-                </>
-              )}
               {/* Desktop Image */}
-              <source media="(min-width: 768px)" srcSet={AboutUs} />
+              <source media="(min-width: 768px)" srcSet={AboutUs} type="image/webp" />
 
               {/* Mobile Image (default) */}
               <img

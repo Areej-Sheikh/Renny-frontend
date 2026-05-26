@@ -11,24 +11,24 @@ import usePageHero from "../../hooks/usePageHero";
 // ========== Assets ==========
 import banner from "../../assets/HR Coil.webm";
 
-import coreStrength1 from "../../assets/core-strength-7-1.png";
-import coreStrength2 from "../../assets/core-strength-8-1.png";
-import coreStrength3 from "../../assets/core-strength-9-1.png";
-import coreStrength4 from "../../assets/core-strength-10-1.png";
-import coreStrength5 from "../../assets/core-strength-11-1.png";
-import coreStrength6 from "../../assets/core-strength-12-1.png";
+import coreStrength1 from "../../assets/core-strength-7-1.webp";
+import coreStrength2 from "../../assets/core-strength-8-1.webp";
+import coreStrength3 from "../../assets/core-strength-9-1.webp";
+import coreStrength4 from "../../assets/core-strength-10-1.webp";
+import coreStrength5 from "../../assets/core-strength-11-1.webp";
+import coreStrength6 from "../../assets/core-strength-12-1.webp";
 
-import Application1 from "../../assets/Application6-1.png";
-import Application2 from "../../assets/Application7-1.png";
-import Application3 from "../../assets/Application8-1.png";
-import Application4 from "../../assets/Application88-1.png";
-import Application5 from "../../assets/Application888-1.png";
+import Application1 from "../../assets/Application6-1.webp";
+import Application2 from "../../assets/Application7-1.webp";
+import Application3 from "../../assets/Application8-1.webp";
+import Application4 from "../../assets/Application88-1.webp";
+import Application5 from "../../assets/Application888-1.webp";
 
-import manufacturingProcess from "../../assets/manufacturingProcess-3.png";
+import manufacturingProcess from "../../assets/manufacturingProcess-3.webp";
 
 import img3 from "../../assets/HR-Coil-scaled.webp";
 
-import Information from "../../assets/Information3-1.png";
+import Information from "../../assets/Information3-1.webp";
 
 import { API_BASE_URL } from "../../lib/api";
 
@@ -564,7 +564,7 @@ const HRCoils = () => {
                h-64
                md:h-80
                lg:h-[30rem]
-               object-fit
+               object-cover
                rounded-2xl
                md:rounded-3xl
              "

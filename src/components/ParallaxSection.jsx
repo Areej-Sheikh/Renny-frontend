@@ -30,7 +30,13 @@ const CinematicParallax = () => {
       <motion.img
         src={parallaxImg}
         alt="Cinematic Parallax"
-        className="absolute inset-0 m-auto w-250 object-fit"
+        fetchpriority="high"
+        loading="eager"
+        width="1260"
+        height="452"
+        srcSet={import.meta.env.PROD ? "/assets/RENNY-mobile.webp 640w, /assets/RENNY-Bi73PIQU.webp 1260w" : undefined}
+        sizes="(max-width: 768px) 100vw, 1260px"
+        className="absolute inset-0 m-auto w-250 object-cover"
         style={{ y, scale }}
       />
 

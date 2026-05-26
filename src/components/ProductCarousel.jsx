@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import MS from "../assets/product-1.webp";
 import Scaffolding from "../assets/product-2.webp";
 import ERW from "../assets/product-3.webp";
-import Coil from "../assets/hr-coil.png";
+import Coil from "../assets/hr-coil.webp";
 import rods from "../assets/product-5.webp";
 
 const ProductCarousel = () => {
@@ -130,11 +130,26 @@ const ProductCarousel = () => {
               className="min-w-full h-full snap-start relative cursor-pointer"
             >
               {/* Image */}
-              <img
-                src={item.image}
-                alt={item.title}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
+              {item.title === "HR Coils" ? (
+                <picture className="absolute inset-0 w-full h-full">
+                  <source srcSet={item.image} type="image/webp" />
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    width="1920"
+                    height="1080"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                </picture>
+              ) : (
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              )}
 
               {/* Overlay */}
               <div className="absolute inset-0 bg-black/40" />
@@ -160,6 +175,7 @@ const ProductCarousel = () => {
         {/* Left Button */}
         <button
           onClick={prevSlide}
+          aria-label="Previous slide"
           className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-20 
              flex items-center justify-center 
              w-12 h-12 md:w-14 md:h-14
@@ -172,6 +188,7 @@ const ProductCarousel = () => {
         {/* Right Button */}
         <button
           onClick={nextSlide}
+          aria-label="Next slide"
           className="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 z-20 
              flex items-center justify-center 
              w-12 h-12 md:w-14 md:h-14

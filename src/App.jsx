@@ -77,62 +77,82 @@ const App = () => {
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
+  useEffect(() => {
+    const load = () => {
+      if (document.querySelector('script[src*="googletagmanager.com/gtm.js"]')) return;
+      const s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-N4W2N5TC';
+      s.async = true;
+      document.head.appendChild(s);
+    };
+    const timer = setTimeout(load, 3000);
+    const events = ['click', 'scroll', 'keydown', 'touchstart'];
+    const handler = () => {
+      clearTimeout(timer); load();
+      events.forEach(e => removeEventListener(e, handler));
+    };
+    events.forEach(e => addEventListener(e, handler, { once: true }));
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="App relative min-h-screen overflow-x-hidden font-helvetica clip scroll-smooth no-scrollbar">
       <ScrollToTop />
       <Navbar />
-      <Suspense fallback={<PageSpinner />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
+      <main id="main-content">
+        <Suspense fallback={<PageSpinner />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
 
-          {/* About */}
-          <Route path="/company-overview" element={<About />} />
-          <Route path="/manufacturing-units" element={<Manufacturing />} />
-          <Route path="/quality-standard" element={<Quality />} />
-          <Route path="/design-centre" element={<DesignCentre />} />
+            {/* About */}
+            <Route path="/company-overview" element={<About />} />
+            <Route path="/manufacturing-units" element={<Manufacturing />} />
+            <Route path="/quality-standard" element={<Quality />} />
+            <Route path="/design-centre" element={<DesignCentre />} />
 
-          {/* Products */}
-          <Route path="/ms-billets" element={<MSBillets />} />
-          <Route path="/wire-rods" element={<WireRods />} />
-          <Route path="/narrow-hrcoil" element={<HRCoils />} />
-          <Route path="/erw-pipes-and-tubes" element={<ERW />} />
-          <Route path="/scaffolding-formwork" element={<Scaffolding />} />
-          <Route path="/product-range" element={<ProductRange />} />
-          <Route path="/product-range-2" element={<ProductRange2 />} />
+            {/* Products */}
+            <Route path="/ms-billets" element={<MSBillets />} />
+            <Route path="/wire-rods" element={<WireRods />} />
+            <Route path="/narrow-hrcoil" element={<HRCoils />} />
+            <Route path="/erw-pipes-and-tubes" element={<ERW />} />
+            <Route path="/scaffolding-formwork" element={<Scaffolding />} />
+            <Route path="/product-range" element={<ProductRange />} />
+            <Route path="/product-range-2" element={<ProductRange2 />} />
 
-          {/* Investor Relations */}
-          <Route path="/financials" element={<Financials />} />
-          <Route path="/corporate-governance" element={<Governance />} />
-          <Route path="/industry-report" element={<Industry />} />
-          <Route path="/ipo" element={<IPODocs />} />
-          <Route path="/ipo-audio-visual" element={<IPOAV />} />
-          <Route path="/share-holding-pattern" element={<Shareholding />} />
-          <Route path="/our-policies" element={<Policies />} />
+            {/* Investor Relations */}
+            <Route path="/financials" element={<Financials />} />
+            <Route path="/corporate-governance" element={<Governance />} />
+            <Route path="/industry-report" element={<Industry />} />
+            <Route path="/ipo" element={<IPODocs />} />
+            <Route path="/ipo-audio-visual" element={<IPOAV />} />
+            <Route path="/share-holding-pattern" element={<Shareholding />} />
+            <Route path="/our-policies" element={<Policies />} />
 
-          {/* EC */}
-          <Route path="/ec" element={<EC />} />
+            {/* EC */}
+            <Route path="/ec" element={<EC />} />
 
-          {/* Sustainability */}
-          <Route path="/sustainability" element={<Sustainability />} />
+            {/* Sustainability */}
+            <Route path="/sustainability" element={<Sustainability />} />
 
-          {/* Media */}
-          <Route path="/news-room" element={<News />} />
-          <Route path="/blog" element={<Blogs />} />
-          <Route path="/blog/:slug" element={<BlogDetail />} />
-          <Route path="/events" element={<Events />} />
+            {/* Media */}
+            <Route path="/news-room" element={<News />} />
+            <Route path="/blog" element={<Blogs />} />
+            <Route path="/blog/:slug" element={<BlogDetail />} />
+            <Route path="/events" element={<Events />} />
 
-         
+           
 
-          {/* Contact */}
-          <Route path="/contact-us" element={<Contact />} />
+            {/* Contact */}
+            <Route path="/contact-us" element={<Contact />} />
 
-          {/* Career */}
-          <Route path="/careers" element={<Career />} />
-          <Route path="/careers/:jobId" element={<JobDetails />} />
-          <Route path="/careers/:jobId/apply" element={<JobApply />} /> 
-        </Routes>
-      </Suspense>
-      <Parallax />
+            {/* Career */}
+            <Route path="/careers" element={<Career />} />
+            <Route path="/careers/:jobId" element={<JobDetails />} />
+            <Route path="/careers/:jobId/apply" element={<JobApply />} /> 
+          </Routes>
+        </Suspense>
+        <Parallax />
+      </main>
       <Footer />
       <WhatsAppButton />
     </div>

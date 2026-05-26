@@ -297,7 +297,7 @@ const News = () => {
                   variants={scaleFade}
                   src={activeNews.img}
                   alt={activeNews.title}
-                  className="w-72 h-72 object-fit rounded-2xl mb-6"
+                  className="w-72 h-72 object-cover rounded-2xl mb-6"
                 />
 
                 <motion.h2

@@ -11,49 +11,49 @@ import SEO from "../../components/SEO";
 import usePageHero from "../../hooks/usePageHero";
 
 // ========== Assets ==========
-import coreStrength1 from "../../assets/core-strength-7-1.png";
-import coreStrength2 from "../../assets/core-strength-8-1.png";
-import coreStrength3 from "../../assets/core-strength-9-1.png";
-import coreStrength4 from "../../assets/core-strength-10-1.png";
-import coreStrength5 from "../../assets/core-strength-11-1.png";
-import coreStrength6 from "../../assets/core-strength-12-1.png";
+import coreStrength1 from "../../assets/core-strength-7-1.webp";
+import coreStrength2 from "../../assets/core-strength-8-1.webp";
+import coreStrength3 from "../../assets/core-strength-9-1.webp";
+import coreStrength4 from "../../assets/core-strength-10-1.webp";
+import coreStrength5 from "../../assets/core-strength-11-1.webp";
+import coreStrength6 from "../../assets/core-strength-12-1.webp";
 
-import Application1 from "../../assets/Application15-1.png";
-import Application2 from "../../assets/Application16-1.png";
-import Application3 from "../../assets/Application17-1.png";
-import Application4 from "../../assets/Application18-1.png";
-import Application5 from "../../assets/Application19-1.png";
-import Application6 from "../../assets/Application20-1.png";
+import Application1 from "../../assets/Application15-1.webp";
+import Application2 from "../../assets/Application16-1.webp";
+import Application3 from "../../assets/Application17-1.webp";
+import Application4 from "../../assets/Application18-1.webp";
+import Application5 from "../../assets/Application19-1.webp";
+import Application6 from "../../assets/Application20-1.webp";
 
-import manufacturingProcess from "../../assets/manufacturingProcess-6.png";
+import manufacturingProcess from "../../assets/manufacturingProcess-6.webp";
 
-import img3 from "../../assets/imgg.png";
+import img3 from "../../assets/imgg.webp";
 
-import Information from "../../assets/Information5-1.png";
+import Information from "../../assets/Information5-1.webp";
 
-import CBAM from "../../assets/CBAM.mp4";
+import CBAM from "../../assets/CBAM.webm";
 
 import video from "../../assets/newsvideo.webm";
 
-import bannerVideo from "../../assets/Scaffolding.mp4";
+import bannerVideo from "../../assets/Scaffolding.webm";
 
 import mobileview from "../../assets/MobileMediaVideo.webm";
 
-import product1 from "../../assets/productRange1-Coupler.jpg";
-import product2 from "../../assets/productRange2-Jack.jpeg";
-import product3 from "../../assets/productRange3-Nuts.png";
-import product4 from "../../assets/productRange4-Tube.jpeg";
-import product5 from "../../assets/productRange5-Edge protection system & barriers.jpg";
-import product6 from "../../assets/productRange6-Formwork accessories.jpeg";
-import product7 from "../../assets/productRange7-Formwork panel.jpeg";
-import product8 from "../../assets/productRange8-Props and shoring systems at work.jpeg";
+import product1 from "../../assets/productRange1-Coupler.webp";
+import product2 from "../../assets/productRange2-Jack.webp";
+import product3 from "../../assets/productRange3-Nuts.webp";
+import product4 from "../../assets/productRange4-Tube.webp";
+import product5 from "../../assets/productRange5-Edge protection system & barriers.webp";
+import product6 from "../../assets/productRange6-Formwork accessories.webp";
+import product7 from "../../assets/productRange7-Formwork panel.webp";
+import product8 from "../../assets/productRange8-Props and shoring systems at work.webp";
 import product9 from "../../assets/productRange9- scaffolding system.webp";
-import product10 from "../../assets/productRange10-fastner.jpeg";
-import product11 from "../../assets/productRange11-ringlock system.jpg.jpeg";
-import product12 from "../../assets/productRange12-cuplock system.jpg.jpeg";
-import product13 from "../../assets/productRange13-frame scaffolding.jpg";
-import product14 from "../../assets/productRange14-silver_kwikstage.png";
-import product15 from "../../assets/productRange15-access tower.jpg";
+import product10 from "../../assets/productRange10-fastner.webp";
+import product11 from "../../assets/productRange11-ringlock system.jpg.webp";
+import product12 from "../../assets/productRange12-cuplock system.jpg.webp";
+import product13 from "../../assets/productRange13-frame scaffolding.webp";
+import product14 from "../../assets/productRange14-silver_kwikstage.webp";
+import product15 from "../../assets/productRange15-access tower.webp";
 import { API_BASE_URL } from "../../lib/api";
 
 const Scaffolding = () => {
@@ -837,7 +837,7 @@ const Scaffolding = () => {
                h-64
                md:h-80
                lg:h-[30rem]
-               object-fit
+               object-cover
                rounded-2xl
                md:rounded-3xl
              "

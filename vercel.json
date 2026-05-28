@@ -1,419 +1,417 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
   "redirects": [
     {
-      "source": "/wire-rods-2",
+      "source": "/wire-rods-2:path*",
       "destination": "/wire-rods",
       "statusCode": 301
     },
     {
-      "source": "/company-overview-2",
+      "source": "/company-overview-2:path*",
       "destination": "/company-overview",
       "statusCode": 301
     },
     {
-      "source": "/the-surging-demand-for-sustainable-steel-scaffolding-and-formwork-within-the-construction-and-infrastructure-industry-2",
+      "source": "/the-surging-demand-for-sustainable-steel-scaffolding-and-formwork-within-the-construction-and-infrastructure-industry-2:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/renny-strips-leading-the-future-of-steel-fabrication-forging-2",
+      "source": "/renny-strips-leading-the-future-of-steel-fabrication-forging-2:path*",
       "destination": "/company-overview",
       "statusCode": 301
     },
     {
-      "source": "/renny-kwikstage-scaffolding-a-global-leader-in-versatile-high-performance-scaffolding-solutions-2",
+      "source": "/renny-kwikstage-scaffolding-a-global-leader-in-versatile-high-performance-scaffolding-solutions-2:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/renny-indias-leading-erw-pipe-manufacturer-3",
+      "source": "/renny-indias-leading-erw-pipe-manufacturer-3:path*",
       "destination": "/erw-pipes-and-tubes",
       "statusCode": 301
     },
     {
-      "source": "/the-role-of-renny-steel-props-in-modern-construction-innovation-safety-efficiency",
+      "source": "/the-role-of-renny-steel-props-in-modern-construction-innovation-safety-efficiency:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/renny-ms-black-round-pipes-powering-the-backbone-of-new-age-construction",
+      "source": "/renny-ms-black-round-pipes-powering-the-backbone-of-new-age-construction:path*",
       "destination": "/erw-pipes-and-tubes",
       "statusCode": 301
     },
     {
-      "source": "/renny-ring-lock-system-revolutionizing-scaffolding-with-strength-flexibility-sustainability-2",
+      "source": "/renny-ring-lock-system-revolutionizing-scaffolding-with-strength-flexibility-sustainability-2:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/indias-rise-as-a-global-powerhouse-in-scaffolding-formwork-sourcing",
+      "source": "/indias-rise-as-a-global-powerhouse-in-scaffolding-formwork-sourcing:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/MS-billets",
+      "source": "/MS-billets:path*",
       "destination": "/ms-billets",
       "statusCode": 301
     },
     {
-      "source": "/tag/ms-wire-rod-manufacturers-in-india/feed",
+      "source": "/tag/ms-wire-rod-manufacturers-in-india/feed:path*",
       "destination": "/blog/explore-the-leading-wire-rod-manufacturers-in-india-for-superior-industrial-appli",
       "statusCode": 301
     },
     {
-      "source": "/tag/hot-rolled-steel-coil-production-in-india/feed",
+      "source": "/tag/hot-rolled-steel-coil-production-in-india/feed:path*",
       "destination": "/blog/top-hot-rolled-steel-coil-manufacturers-in-india",
       "statusCode": 301
     },
     {
-      "source": "/tag/hot-rolled-coil-manufacturers-in-india/feed",
+      "source": "/tag/hot-rolled-coil-manufacturers-in-india/feed:path*",
       "destination": "/blog/top-hot-rolled-steel-coil-manufacturers-in-india",
       "statusCode": 301
     },
     {
-      "source": "/tag/renny-ring-lock-system/feed",
+      "source": "/tag/renny-ring-lock-system/feed:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/ringlock-manufacturer-in-india/feed",
+      "source": "/tag/ringlock-manufacturer-in-india/feed:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/forged-scaffolding-components/feed",
+      "source": "/tag/forged-scaffolding-components/feed:path*",
       "destination": "/blog/complete-guide-to-forged-scaffolding-components-for-industrial-projects",
       "statusCode": 301
     },
     {
-      "source": "/tag/kwikstage-scaffolding/feed",
+      "source": "/tag/kwikstage-scaffolding/feed:path*",
       "destination": "/blog/kwikstage-scaffolding-expert-insights-for-better-construction-performance",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding-steel-props-jacks/feed",
+      "source": "/tag/scaffolding-steel-props-jacks/feed:path*",
       "destination": "/blog/ultimate-guide-to-scaffolding-steel-props-and-jacks-for-strength-and-safety-in-c",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding/feed",
+      "source": "/tag/scaffolding/feed:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/tag/renny-ring-lock/feed",
+      "source": "/tag/renny-ring-lock/feed:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/gi-rectangular-hollow-section-pipe-manufacturers-in-ind",
+      "source": "/tag/gi-rectangular-hollow-section-pipe-manufacturers-in-ind:path*",
       "destination": "/blog/qi-square-hollow-pipe-manufacturers-in-india-providing-durable-solutions-for-ind",
       "statusCode": 301
     },
     {
-      "source": "/tag/gi-square-hollow-section-pipe-manufacturers/feed",
+      "source": "/tag/gi-square-hollow-section-pipe-manufacturers/feed:path*",
       "destination": "/blog/qi-square-hollow-pipe-manufacturers-in-india-providing-durable-solutions-for-ind",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding-manufacturers-company-in-india/feed",
+      "source": "/tag/scaffolding-manufacturers-company-in-india/feed:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding-formwork-company-in-india/feed",
+      "source": "/tag/scaffolding-formwork-company-in-india/feed:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/tag/forged-scaffolding-components",
+      "source": "/tag/forged-scaffolding-components:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding-formwork-company-in-india",
+      "source": "/tag/scaffolding-formwork-company-in-india:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/blog/renny-strips-leading-the-future-of-steel-fabrication-forging",
+      "source": "/blog/renny-strips-leading-the-future-of-steel-fabrication-forging:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/the-surging-demand-for-sustainable-steel-scaffolding-and-formwork-within-the-construction-and-infra",
+      "source": "/the-surging-demand-for-sustainable-steel-scaffolding-and-formwork-within-the-construction-and-infra:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding-and-formworks-frames/feed",
+      "source": "/tag/scaffolding-and-formworks-frames/feed:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/tag/renny/feed",
+      "source": "/tag/renny/feed:path*",
       "destination": "/",
       "statusCode": 301
     },
     {
-      "source": "/tag/wire-rod-manufacturers-in-india/feed",
+      "source": "/tag/wire-rod-manufacturers-in-india/feed:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/renny-kwikstage-scaffolding-a-global-leader-in-versatile-high-performance-scaffolding-solutions",
+      "source": "/renny-kwikstage-scaffolding-a-global-leader-in-versatile-high-performance-scaffolding-solutions:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/category/uncategorized/page/3",
+      "source": "/category/uncategorized/page/3:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/category/uncategorized/page/2",
+      "source": "/category/uncategorized/page/2:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/gi-hollow-section-pipe/feed",
+      "source": "/tag/gi-hollow-section-pipe/feed:path*",
       "destination": "/erw-pipes-and-tubes",
       "statusCode": 301
     },
     {
-      "source": "/blog/renny-kwikstage-scaffolding-a-global-leader-in-versatile-high-performance-scaffolding-solutions",
+      "source": "/blog/renny-kwikstage-scaffolding-a-global-leader-in-versatile-high-performance-scaffolding-solutions:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/explore-the-leading-wire-rod",
+      "source": "/explore-the-leading-wire-rod:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/blog/renny-kwikstage-",
+      "source": "/blog/renny-kwikstage-:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/blog/renny-indias-leading-erw-pipe-manufacturer",
+      "source": "/blog/renny-indias-leading-erw-pipe-manufacturer:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/v/feed",
+      "source": "/tag/v/feed:path*",
       "destination": "/",
       "statusCode": 301
     },
     {
-      "source": "/blog/the-",
+      "source": "/blog/the-:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/timeline",
+      "source": "/timeline:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/blog/renny-strips-",
+      "source": "/blog/renny-strips-:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding-manufacturers-company-in-india",
+      "source": "/tag/scaffolding-manufacturers-company-in-india:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/event",
+      "source": "/event:path*",
       "destination": "/events",
       "statusCode": 301
     },
     {
-      "source": "/author/nidhi/feed",
+      "source": "/author/nidhi/feed:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/blog/renny-forging-billets-precision-engineered-for-performance",
+      "source": "/blog/renny-forging-billets-precision-engineered-for-performance:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/renny-strips-ltd-design-",
+      "source": "/renny-strips-ltd-design-:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/steel-wire-rod-manufacturers-in-india/feed",
+      "source": "/tag/steel-wire-rod-manufacturers-in-india/feed:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/forged-scaffolding-",
+      "source": "/forged-scaffolding-:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/hr-coil-manufacturers-in-india",
+      "source": "/tag/hr-coil-manufacturers-in-india:path*",
       "destination": "/narrow-hrcoil",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding",
+      "source": "/tag/scaffolding:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/careers/web-developer",
+      "source": "/careers/web-developer:path*",
       "destination": "/careers",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding-formwork-manufacturer-in-india/feed",
+      "source": "/tag/scaffolding-formwork-manufacturer-in-india/feed:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding-components/feed",
+      "source": "/tag/scaffolding-components/feed:path*",
       "destination": "/blog/complete-guide-to-forged-scaffolding-components-for-industrial-projects",
       "statusCode": 301
     },
     {
-      "source": "/tag/forging-billets-manufacturer-company-in-india/feed",
+      "source": "/tag/forging-billets-manufacturer-company-in-india/feed:path*",
       "destination": "/ms-billets",
       "statusCode": 301
     },
     {
-      "source": "/careers/product-manager",
+      "source": "/careers/product-manager:path*",
       "destination": "/careers",
       "statusCode": 301
     },
     {
-      "source": "/careers/web-developer/apply",
+      "source": "/careers/web-developer/apply:path*",
       "destination": "/careers",
       "statusCode": 301
     },
     {
-      "source": "/india-rising-rennys-role-in-building-a-strong-sustainable-future",
+      "source": "/india-rising-rennys-role-in-building-a-strong-sustainable-future:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/2025/05/08",
+      "source": "/2025/05/08:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/2025/08/22",
+      "source": "/2025/08/22:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/blog/precision-engineering-for-structural-excellence",
+      "source": "/blog/precision-engineering-for-structural-excellence:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/forging-billets",
+      "source": "/tag/forging-billets:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/2025/12/25",
+      "source": "/2025/12/25:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding-formwork-manufacturer-in-india",
+      "source": "/tag/scaffolding-formwork-manufacturer-in-india:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/2025/02/25",
+      "source": "/2025/02/25:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/qi-square-hollow-section-pipe-manufacturers-in-india",
+      "source": "/tag/qi-square-hollow-section-pipe-manufacturers-in-india:path*",
       "destination": "/erw-pipes-and-tubes",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding-manufacturers-in-india",
+      "source": "/tag/scaffolding-manufacturers-in-india:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding-formwork-manufacturer-in-punjab",
+      "source": "/tag/scaffolding-formwork-manufacturer-in-punjab:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/blog/renny-ring-lock-system-revolutionizing-scaffolding-with-strength-flexibility-sustainability",
+      "source": "/blog/renny-ring-lock-system-revolutionizing-scaffolding-with-strength-flexibility-sustainability:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/careers/product-manager/apply",
+      "source": "/careers/product-manager/apply:path*",
       "destination": "/careers",
       "statusCode": 301
     },
     {
-      "source": "/tag/industrial-solutions",
+      "source": "/tag/industrial-solutions:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/scaffolding-and-formwork-company-in-india",
+      "source": "/tag/scaffolding-and-formwork-company-in-india:path*",
       "destination": "/scaffolding-formwork",
       "statusCode": 301
     },
     {
-      "source": "/2025/09/22",
+      "source": "/2025/09/22:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/2025/07/05",
+      "source": "/2025/07/05:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/blog/indias-rise-as-a-global-powerhouse-in-scaffolding-formwork-sourcing",
+      "source": "/blog/indias-rise-as-a-global-powerhouse-in-scaffolding-formwork-sourcing:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/2025/03/01",
+      "source": "/2025/03/01:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/wire-rod-manufacturers/feed",
+      "source": "/tag/wire-rod-manufacturers/feed:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/2025/09/16",
+      "source": "/2025/09/16:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/blog/the-surging-demand-for-sustainable-steel-scaffolding-and-formwork-within-the-construction-and",
+      "source": "/blog/the-surging-demand-for-sustainable-steel-scaffolding-and-formwork-within-the-construction-and:path*",
       "destination": "/blog",
       "statusCode": 301
     },
     {
-      "source": "/tag/wire-rods",
+      "source": "/tag/wire-rods:path*",
       "destination": "/wire-rods",
       "statusCode": 301
     },
     {
-      "source": "/tag/wire-rods/feed",
+      "source": "/tag/wire-rods/feed:path*",
       "destination": "/wire-rods",
       "statusCode": 301
     }

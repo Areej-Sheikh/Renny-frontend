@@ -62,11 +62,13 @@ const BlogDetail = () => {
   return (
     <>
       <SEO
-        title={`Blog | Renny Strips`}
+        title={blog.seoTitle || `Blog | Renny Strips`}
         description={
+          blog.seoDescription ||
           "Explore steel industry insights, manufacturing trends, engineering expertise, and industrial updates from Renny Strips."
         }
         keywords={
+          blog.seoKeywords ||
           "Renny Strips blog, steel industry insights, manufacturing trends, industrial articles, engineering blogs"
         }
         url={`https://rennystrips.com/blog/${slug}`}

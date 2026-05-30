@@ -4,6 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../../components/SEO";
+import SchemaMarkup from "../../components/SchemaMarkup";
+import narrowHrCoilSchema from "../../schema/narrowHrCoilSchema";
 
 // ========== Hooks ==========
 import usePageHero from "../../hooks/usePageHero";
@@ -233,6 +235,8 @@ const HRCoils = () => {
 
   return (
     <>
+      {" "}
+      <SchemaMarkup schema={narrowHrCoilSchema} />
       <SEO
         title="Narrow HR Coils Manufacturer and Supplier | Renny Strips"
         description="Renny Strips supplies precision-engineered narrow HR coils for industrial, fabrication, and engineering applications."

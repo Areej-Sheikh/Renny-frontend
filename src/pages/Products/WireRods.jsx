@@ -9,7 +9,9 @@ import usePageHero from "../../hooks/usePageHero";
 
 // ========== Components ==========
 import SEO from "../../components/SEO";
-
+import SchemaMarkup from "../../components/SchemaMarkup";
+import wireRodsSchema from "../../schema/wireRodsSchema";
+ 
 // ========== Assets ==========
 import banner from "../../assets/Wire rod.webm";
 
@@ -230,6 +232,7 @@ const WireRods = () => {
 
   return (
     <>
+      <SchemaMarkup schema={wireRodsSchema} />
       <SEO
         title="Wire Rods Manufacturer and Supplier | Renny Strips"
         description="Discover premium wire rods from Renny Strips for construction, engineering, fabrication, and industrial applications."
@@ -237,6 +240,7 @@ const WireRods = () => {
         url="https://rennystrips.com/wire-rods"
         image={heroSrc}
       />
+
       <div className="relative w-full overflow-x-hidden font-helvetica">
         {/* ================= BANNER SECTION ================= */}
         <motion.section

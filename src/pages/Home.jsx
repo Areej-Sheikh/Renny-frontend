@@ -8,6 +8,8 @@ import axios from "axios"; // Added for integration
 
 import HomepageBanner from "../assets/HomepageBanner.webm";
 import SEO from "../components/SEO";
+import SchemaMarkup from "../components/SchemaMarkup";
+import homeSchema from "../schema/homeSchema";
 
 import MS from "../assets/product-1.webp";
 import Scaffolding from "../assets/product-2.webp";
@@ -139,6 +141,7 @@ const Home = () => {
   };
   return (
     <>
+      <SchemaMarkup schema={homeSchema} />
       <SEO
         title="Renny Strips Limited | Leading Integrated Steel Manufacturer in India"
         description="Renny Strips Limited manufactures HR coils, ERW pipes, scaffolding systems, wire rods, MS billets, and industrial steel solutions for global markets."
@@ -263,7 +266,11 @@ const Home = () => {
           <div className="relative w-full min-h-[100vh] md:h-full overflow-hidden">
             <picture className="absolute inset-0">
               {/* Desktop Image */}
-              <source media="(min-width: 768px)" srcSet={AboutUs} type="image/webp" />
+              <source
+                media="(min-width: 768px)"
+                srcSet={AboutUs}
+                type="image/webp"
+              />
 
               {/* Mobile Image (default) */}
               <img

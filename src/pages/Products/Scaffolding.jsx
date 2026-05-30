@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // ========== Components ==========
 import SEO from "../../components/SEO";
+import SchemaMarkup from "../../components/SchemaMarkup";
+import scaffoldingSchema from "../../schema/scaffoldingSchema";
 
 // ========== Hooks ==========
 import usePageHero from "../../hooks/usePageHero";
@@ -346,6 +348,7 @@ const Scaffolding = () => {
 
   return (
     <>
+      <SchemaMarkup schema={scaffoldingSchema} />
       <SEO
         title="Scaffolding & Formwork Solutions | Renny Strips"
         description="Renny Strips delivers scaffolding and formwork solutions for safe, stable, and efficient construction and infrastructure projects."

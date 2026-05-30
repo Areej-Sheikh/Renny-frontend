@@ -12,6 +12,8 @@ import { buildApiUrl } from "../../lib/api";
 
 // ========== Components ==========
 import SEO from "../../components/SEO";
+import SchemaMarkup from "../../components/SchemaMarkup";
+import msBilletsSchema from "../../schema/msBilletsSchema";
 
 // ========== Assets ==========
 import banner from "../../assets/Ms Billet.webm";
@@ -232,6 +234,7 @@ const MSBillets = () => {
 
   return (
     <>
+      <SchemaMarkup schema={msBilletsSchema} />
       <SEO
         title="MS Billets Manufacturer and Supplier | Renny Strips"
         description="Renny Strips manufactures high-quality MS billets for steel rolling, fabrication, and industrial applications."

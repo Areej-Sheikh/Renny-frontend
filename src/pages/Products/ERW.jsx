@@ -4,6 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../../components/SEO";
+import SchemaMarkup from "../../components/SchemaMarkup";
+import erwPipesSchema from "../../schema/erwPipesSchema";
 
 // ========== Hooks ==========
 import usePageHero from "../../hooks/usePageHero";
@@ -248,6 +250,7 @@ const ERW = () => {
 
   return (
     <>
+      <SchemaMarkup schema={erwPipesSchema} />
       <SEO
         title="ERW Pipes and Tubes Manufacturer | Renny Strips"
         description="Explore high-performance ERW pipes and tubes by Renny Strips for construction, infrastructure, industrial, and engineering applications."

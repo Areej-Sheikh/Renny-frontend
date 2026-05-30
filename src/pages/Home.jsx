@@ -792,7 +792,7 @@ const Home = () => {
                   <img
                     src={blogs[0].mainImage || blog1}
                     alt={blogs[0].title}
-                    className="w-full h-64 md:h-80 object-cover object-center"
+                    className="w-full h-64 md:h-80 object-fill object-center"
                   />
                   <div className="p-6">
                     <h2 className="text-xl font-semibold text-blue group-hover:text-blue-900 transition">

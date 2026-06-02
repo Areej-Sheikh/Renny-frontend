@@ -1,5 +1,5 @@
 import { lazy, Suspense, useState, useEffect } from "react";
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate, Navigate } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -68,6 +68,12 @@ const App = () => {
       return;
     }
 
+    // Query string SEO redirect
+    if (location.pathname === "/" && location.search.includes("p=")) {
+      navigate("/", { replace: true });
+      return;
+    }
+
     setIsLoading(true);
     // Show spinner for a short duration while page content gets rendered
     const timer = setTimeout(() => {
@@ -103,6 +109,33 @@ const App = () => {
         <Suspense fallback={<PageSpinner />}>
           <Routes>
             <Route path="/" element={<Home />} />
+
+            {/* SEO Redirects */}
+            {[
+              { path: "/tag/scaffolding-formwork-company-in-india/feed", to: "/blog/trusted-scaffolding-and-formwork-company-in-india-delivering-safety-and-strength" },
+              { path: "/tag/forged-scaffolding-components", to: "/blog/complete-guide-to-forged-scaffolding-components-for-industrial-projects" },
+              { path: "/tag/scaffolding-formwork-company-in-india", to: "/blog/trusted-scaffolding-and-formwork-company-in-india-delivering-safety-and-strength" },
+              { path: "/blog/renny-strips-leading-the-future-of-steel-fabrication-forging", to: "/blog" },
+              { path: "/the-surging-demand-for-sustainable-steel-scaffolding-and-formwork-within-the-construction-and-infrastructure-in", to: "/blog" },
+              { path: "/tag/scaffolding-and-formworks-frames/feed", to: "/blog/scaffolding-and-formworks-frames-innovations-driving-faster-and-safer-building" },
+              { path: "/tag/renny/feed", to: "/" },
+              { path: "/tag/wire-rod-manufacturers-in-india/feed", to: "/blog/explore-the-leading-wire-rod-manufacturers-in-india-for-superior-industrial-applications" },
+              { path: "/renny-kwikstage-scaffolding-a-global-leader-in-versatile-high-performance-scaffolding-solutions", to: "/blog/kwikstage-scaffolding-expert-insights-for-better-construction-performance" },
+              { path: "/renny-strips-leading-the-future-of-steel-fabrication-forging", to: "/blog" },
+              { path: "/category/uncategorized/page/3", to: "/blog" },
+              { path: "/category/uncategorized/page/2", to: "/blog" },
+              { path: "/tag/gi-hollow-section-pipe/feed", to: "/blog/gi-square-hollow-pipe-manufacturers-in-india-providing-durable-solutions-for-industries" },
+              { path: "/blog/renny-kwikstage-scaffolding-a-global-leader-in-versatile-high-performance-scaffolding-solutions", to: "/blog/kwikstage-scaffolding-expert-insights-for-better-construction-performance" },
+              { path: "/explore-the-leading-wire-rod", to: "/blog/explore-the-leading-wire-rod-manufacturers-in-india-for-superior-industrial-applications" },
+              { path: "/blog/renny-kwikstage-", to: "/blog/kwikstage-scaffolding-expert-insights-for-better-construction-performance" },
+              { path: "/blog/renny-indias-leading-erw-pipe-manufacturer", to: "/blog" },
+              { path: "/tag/v/feed", to: "/" },
+              { path: "/the-role-of-renny-steel-props-in-modern-construction-innovation-safety-efficiency", to: "/blog" },
+              { path: "/blog/the-", to: "/blog" },
+            ].map((redirect, index) => (
+              <Route key={index} path={redirect.path} element={<Navigate to={redirect.to} replace />} />
+            ))}
+
 
             {/* About */}
             <Route path="/company-overview" element={<About />} />

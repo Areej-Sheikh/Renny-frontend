@@ -15,7 +15,7 @@ const SustainabilitySlider = () => {
     },
     {
       title: "Industry-Best Low-Emission Standards",
-      description: "Renny Strips Ltd. monitors environmental impact across sourcing, processing, and distribution stages through its vertically aligned operations. Internal production of steel inputs limits transport reliance and strengthens oversight.",
+      description: "Renny integrates sustainability through its vertically integrated manufacturing ecosystem and 22 MW solar power plant, meeting nearly 30% of energy needs while reducing emissions, improving resource efficiency, and supporting responsible manufacturing.",
       image: sustainability3
     },
     {

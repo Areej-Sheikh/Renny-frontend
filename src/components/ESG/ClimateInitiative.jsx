@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 // Asset Imports
-import initiativeLeaf from '../../assets/Initaitive_Leaf.webp';
+import initiativeLeaf from '../../assets/Initaitive_Leaf.jpg';
 import goodLifeImg from '../../assets/Good_Life.webp';
 
 const ClimateInitiative = () => {
@@ -58,7 +58,7 @@ const ClimateInitiative = () => {
             </div>
 
             <p className="text-[16px] md:text-[18px]  text-[#333] " style={{ fontFamily: 'var(--font-helvetica)' }}>
-              Renny Strips Limited drives climate action through renewable energy and energy-efficient manufacturing, achieving lower carbon emissions across its operations. The Company’s 22 MW solar power plant and sustainability initiatives have earned it the 5 Star Green Steel Rating from the Ministry of Steel, Government of India. By aligning with global climate frameworks such as the Carbon Border Adjustment Mechanism, Renny Strips continues to support a cleaner and more sustainable industrial future.
+           Renny Strips Limited advances climate action through sustainable manufacturing, vertically integrated operations, and renewable energy adoption. Its 22 MW captive solar power plant currently meets nearly 30% of the Company's energy requirement, helping reduce carbon emissions and strengthen its commitment to cleaner steel production. Recognized with a 5-Star Green Steel Rating by the Ministry of Steel, Government of India, Renny continues to align with global sustainability initiatives, including CBAM, to support a more sustainable and low-carbon industrial future.
             </p>
           </motion.div>
 

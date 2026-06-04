@@ -245,7 +245,7 @@ console.log(plants);
             key={heroSrc || "fallback"}
             src={heroSrc || aboutVideo}
             alt="Hero Banner"
-            className="absolute inset-0 w-full h-full object-fit"
+            className="absolute inset-0 w-full h-full object-cover"
           />
         )}
 

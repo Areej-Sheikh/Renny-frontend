@@ -83,23 +83,7 @@ const App = () => {
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
-  useEffect(() => {
-    const load = () => {
-      if (document.querySelector('script[src*="googletagmanager.com/gtm.js"]')) return;
-      const s = document.createElement('script');
-      s.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-N4W2N5TC';
-      s.async = true;
-      document.head.appendChild(s);
-    };
-    const timer = setTimeout(load, 3000);
-    const events = ['click', 'scroll', 'keydown', 'touchstart'];
-    const handler = () => {
-      clearTimeout(timer); load();
-      events.forEach(e => removeEventListener(e, handler));
-    };
-    events.forEach(e => addEventListener(e, handler, { once: true }));
-    return () => clearTimeout(timer);
-  }, []);
+ 
 
   return (
     <div className="App relative min-h-screen overflow-x-hidden font-helvetica clip scroll-smooth no-scrollbar">

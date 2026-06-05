@@ -32,7 +32,7 @@ import bannerImg from "../../assets/pipes.webp";
 import manufacturingProcess from "../../assets/manufacturingProcess-4.webp";
 
 import Information from "../../assets/Information4-1.webp";
-
+import ProductEnquiryModal from "../../components/ProductEnquiryModal";
 import products1 from "../../assets/product3.webp";
 import products2 from "../../assets/product2.webp";
 import products3 from "../../assets/product1.webp";
@@ -126,6 +126,8 @@ const ERW = () => {
     "Renny GI Pipes & Tubes",
   ];
   const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const imageZoom = {
     hidden: { opacity: 0, scale: 1.1 },
     visible: {
@@ -287,13 +289,64 @@ const ERW = () => {
             />
           )}
 
-          <motion.h1
-            variants={fadeUp}
-            className="relative z-10 text-white text-4xl md:text-7xl font-bold
-                  flex items-end justify-start h-full py-10 px-6 md:px-10"
-          >
-            {heroHeading}
-          </motion.h1>
+          {/* Optional Overlay */}
+          <div className="absolute inset-0 bg-black/40" />
+
+          {/* Content */}
+          <div className="absolute bottom-10 left-6 md:left-10 z-10">
+            <motion.h1
+              variants={fadeUp}
+              className="text-white text-4xl md:text-7xl font-bold max-w-4xl"
+            >
+              {heroHeading}
+            </motion.h1>
+
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="
+    mt-6
+    inline-flex
+    items-center
+    gap-2
+    px-6
+    py-3
+    rounded-xl
+    
+    /* Glassmorphism Core */
+    bg-blue/15
+    backdrop-blur-md
+    border
+    border-white/30
+    
+    /* Text & Icon Color */
+    text-white
+    font-medium
+    text-sm
+    tracking-wide
+    
+    /* Effects & Transitions */
+    shadow-[0_8px_32px_0_rgba(0,0,0,0.2)]
+    shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.2)]
+    transition-all
+    duration-300
+    
+    /* Hover & Active States */
+    hover:bg-white/25
+    hover:border-white/40
+    hover:-translate-y-0.5
+    hover:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]
+    active:translate-y-0
+  "
+            >
+              Request a Quote
+            </button>
+          </div>
+
+          <ProductEnquiryModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            productName={heroHeading}
+          />
         </motion.section>
 
         {/* ================= INTRO SECTION ================= */}

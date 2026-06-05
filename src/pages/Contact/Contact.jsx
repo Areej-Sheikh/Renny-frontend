@@ -25,23 +25,16 @@ import unit3 from "../../assets/Unit-3.webp";
 const hardcodedPlants = [
   {
     title: "Unit I & II",
-
     address:
       "Village Mangarh, Machhiwara Road, Kohara,\nDistrict Ludhiana, Punjab – 141112, India.",
-
     image: unit1,
-
     order: 1,
   },
-
   {
     title: "Unit III",
-
     address:
       "Lakhowal Road, Opposite PSPCL House, Kohara,\nLudhiana, Punjab – 141112, India.",
-
     image: unit3,
-
     order: 2,
   },
 ];
@@ -56,11 +49,8 @@ const Contact = () => {
 
   // ========== Backend State ==========
   const [loading, setLoading] = useState(false);
-
   const [serverPlants, setServerPlants] = useState([]);
-
   const [contactInfo, setContactInfo] = useState(null);
-
   const [pageError, setPageError] = useState("");
 
   const [submitStatus, setSubmitStatus] = useState({
@@ -71,9 +61,11 @@ const Contact = () => {
   // ========== Form Data ==========
   const [formData, setFormData] = useState({
     fullName: "",
+    companyName: "",
     email: "",
     phoneNumber: "",
     enquiryType: "",
+    approxQuantity: "",
     message: "",
   });
 
@@ -81,7 +73,6 @@ const Contact = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-
       [e.target.name]: e.target.value,
     });
   };
@@ -90,9 +81,7 @@ const Contact = () => {
   const fetchPlants = async () => {
     try {
       const res = await axios.get(buildApiUrl("/api/plants"));
-
       const data = res.data?.data || res.data;
-
       if (Array.isArray(data)) {
         setServerPlants(data);
       }
@@ -105,7 +94,6 @@ const Contact = () => {
   const fetchContactInfo = async () => {
     try {
       const res = await axios.get(buildApiUrl("/api/contact-info"));
-
       if (res.data.success && res.data.data) {
         setContactInfo(res.data.data);
       }
@@ -124,17 +112,13 @@ const Contact = () => {
   const plants = (() => {
     const mappedServer = serverPlants.map((p) => ({
       title: p.title,
-
       image: p.image,
-
       address: p.address,
-
       order: p.order || 0,
     }));
 
     return [
       ...mappedServer,
-
       ...hardcodedPlants.filter(
         (h) => !mappedServer.some((s) => s.title === h.title),
       ),
@@ -144,7 +128,6 @@ const Contact = () => {
   // ========== Form Submit ==========
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setLoading(true);
 
     setSubmitStatus({
@@ -170,9 +153,11 @@ const Contact = () => {
 
         setFormData({
           fullName: "",
+          companyName: "",
           email: "",
           phoneNumber: "",
           enquiryType: "",
+          approxQuantity: "",
           message: "",
         });
       }
@@ -191,6 +176,7 @@ const Contact = () => {
       setLoading(false);
     }
   };
+
   const imageZoom = {
     hidden: { opacity: 0, scale: 1.1 },
     visible: {
@@ -202,6 +188,7 @@ const Contact = () => {
       },
     },
   };
+
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
     visible: {
@@ -212,7 +199,9 @@ const Contact = () => {
       },
     },
   };
-console.log(plants);
+
+  console.log(plants);
+
   return (
     <>
       <SEO
@@ -243,7 +232,7 @@ console.log(plants);
         ) : (
           <img
             key={heroSrc || "fallback"}
-            src={heroSrc || aboutVideo}
+            src={heroSrc || banner}
             alt="Hero Banner"
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -257,6 +246,7 @@ console.log(plants);
           {heroHeading}
         </motion.h1>
       </motion.section>
+
       {/* Get In Touch With Us */}
       <section className="w-full bg-white text-black px-6 md:px-20 ">
         {/* Heading */}
@@ -288,7 +278,7 @@ console.log(plants);
             ></motion.h2>
 
             <motion.p
-              className="text-base md:text-lg text-gray-700 leading-relaxed"
+              className="text-base md:text-lg mt-10 text-gray-700 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
@@ -322,12 +312,26 @@ console.log(plants);
 
           {/* RIGHT SIDE – Form Submission */}
           <motion.div
+            className="w-full max-w-[450px] mx-auto  mb-10  bg-blue-50 pb-20 rounded-2xl p-6 md:p-8 shadow-sm "
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <form className="space-y-8" onSubmit={handleSubmit}>
+            {/* Trust Badges */}
+            <div className="flex flex-wrap items-center gap-2 mb-6">
+              <span className="bg-gray/10 text-gray-700 font-medium text-xs px-3 py-1.5 rounded-full border border-gray-200/60 shadow-xs">
+                Est. 1996
+              </span>
+              <span className="bg-gray/10 text-gray-700 font-medium text-xs px-3 py-1.5 rounded-full border border-gray-200/60 shadow-xs">
+                5 continents
+              </span>
+              <span className="bg-gray/10 text-gray-700 font-medium text-xs px-3 py-1.5 rounded-full border border-gray-200/60 shadow-xs">
+                IS/ISO certified
+              </span>
+            </div>
+
+            <form className="space-y-4" onSubmit={handleSubmit}>
               {submitStatus.message && (
                 <div
                   className={`rounded-xl px-4 py-3 text-sm ${
@@ -339,97 +343,168 @@ console.log(plants);
                   {submitStatus.message}
                 </div>
               )}
+
               <motion.input
                 type="text"
                 name="fullName"
                 required
                 value={formData.fullName}
                 onChange={handleChange}
-                placeholder="Full Name"
-                className="w-full bg-transparent border-b border-black px-1 py-2 outline-none"
+                placeholder="Full name *"
+                className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 outline-none text-gray-900 placeholder-gray-400 focus:border-black transition-all text-base"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 viewport={{ once: true }}
               />
+
+             
+
               <motion.input
                 type="email"
                 name="email"
                 required
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="Email Address"
-                className="w-full bg-transparent border-b border-black px-1 py-2 outline-none"
+                placeholder="Email Address *"
+                className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 outline-none text-gray-900 placeholder-gray-400 focus:border-black transition-all text-base"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
                 viewport={{ once: true }}
               />
+
               <motion.input
                 type="tel"
                 name="phoneNumber"
                 required
                 value={formData.phoneNumber}
                 onChange={handleChange}
-                placeholder="Phone Number"
-                className="w-full bg-transparent border-b border-black px-1 py-2 outline-none"
+                placeholder="Phone number *"
+                className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 outline-none text-gray-900 placeholder-gray-400 focus:border-black transition-all text-base"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
+                viewport={{ once: true }}
+              />
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="enquiryType"
+                    value="Dealer / Distributor Enquiry"
+                    checked={
+                      formData.enquiryType === "Dealer / Distributor Enquiry"
+                    }
+                    onChange={handleChange}
+                    required
+                  />
+                  <span>Dealer / Distributor Enquiry</span>
+                </label>
+
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="enquiryType"
+                    value="Export / International Enquiry"
+                    checked={
+                      formData.enquiryType === "Export / International Enquiry"
+                    }
+                    onChange={handleChange}
+                  />
+                  <span>Export Enquiry</span>
+                </label>
+              </div>
+
+              <motion.div
+                className="relative"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
                 viewport={{ once: true }}
-              />
+              >
+                <select
+                  name="enquiryType"
+                  required
+                  value={formData.enquiryType}
+                  onChange={handleChange}
+                  className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 outline-none text-gray-900 placeholder-gray-400 focus:border-black transition-all appearance-none text-base font-medium"
+                >
+                  <option value="" disabled hidden>
+                    Product enquiry type *
+                  </option>
 
-              <motion.select
-                name="enquiryType"
-                required
-                value={formData.enquiryType}
+                  <option value="MS Billets">MS Billets</option>
+                  <option value="Wire Rods">Wire Rods</option>
+                  <option value="Narrow-width HR Coils">
+                    Narrow-width HR Coils
+                  </option>
+                  <option value="ERW Pipes & Tubes">ERW Pipes & Tubes</option>
+                  <option value="General Enquiry">
+                    Scaffolding & Formwork
+                  </option>
+                </select>
+                <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-500">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+              </motion.div>
+
+              <motion.input
+                type="text"
+                name="approxQuantity"
+                value={formData.approxQuantity}
                 onChange={handleChange}
-                className="w-full bg-transparent border-b border-black px-1 py-2 outline-none"
+                placeholder="Approx. quantity (tonnes / units)"
+                className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 outline-none text-gray-900 placeholder-gray-400 focus:border-black transition-all text-base"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.25 }}
                 viewport={{ once: true }}
-              >
-                <option value="">Enquiry Type</option>
-                <option value="General Enquiry">General Enquiry</option>
-                <option value="Product Enquiry">Product Enquiry</option>
-                <option value="Partnership">Partnership</option>
-                <option value="Collaboration">Collaboration</option>
-              </motion.select>
+              />
 
               <motion.textarea
-                rows="3"
+                rows="4"
                 name="message"
                 required
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Message"
-                className="w-full bg-transparent border-b border-black px-1 py-2 outline-none resize-none"
+                placeholder="Your requirement or message"
+                className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 outline-none text-gray-900 placeholder-gray-400 focus:border-black transition-all resize-none h-[130px] text-base"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
                 viewport={{ once: true }}
               />
 
               <motion.div
-                className="flex justify-center pt-6"
+                className="flex flex-col items-center gap-2 pt-2"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.35 }}
                 viewport={{ once: true }}
               >
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-10 py-2.5 text-sm tracking-wide rounded-lg transition-all duration-300 hover:opacity-90 disabled:bg-gray-400"
-                  style={{
-                    backgroundColor: "#292c44",
-                    border: "1px solid #292c44",
-                    color: "#ffffff",
-                  }}
+                  className="w-full py-3.5 text-white font-bold tracking-wide rounded-lg border-2 border-gray-200 bg-blue text-black transition-all duration-200 hover:bg-blue-highlight hover:text-white focus:border-black disabled:bg-gray-100 disabled:text-gray-400"
                 >
-                  {loading ? "Sending..." : "Submit"}
+                  {loading ? "Sending..." : "Request A Quote"}
                 </button>
+                <span className="text-xs text-gray-500 font-medium mt-1">
+                  We respond within 1 business day
+                </span>
               </motion.div>
             </form>
           </motion.div>
@@ -439,7 +514,7 @@ console.log(plants);
       {/* Contact Info Grid */}
       <section className="w-full px-6 md:px-20 py-20 bg-gradient-to-t to-[#262731] from-[#879cefe6]">
         {pageError && (
-          <div className="max-w-6xl mx-auto mb-6 rounded-xl bg-white/80 px-4 py-3 text-sm text-[#292c44] shadow-sm">
+          <div className="max-w-6xl mx-auto mb-6 rounded-xl bg-blue-50 px-4 py-3 text-sm text-[#292c44] shadow-sm">
             {pageError}
           </div>
         )}
@@ -598,6 +673,7 @@ console.log(plants);
                       className="space-y-6 p-6 border-l-4 border-[#292c44]"
                     >
                       <div className="flex  items-center gap-3">
+                        <img src={banner} className="hidden" alt="" />
                         <MdLocationOn size={30} className="text-[#292c44]" />
                         <h3 className="text-2xl md:text-3xl font-semibold text-[#292c44]">
                           {plant.title}

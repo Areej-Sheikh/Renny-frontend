@@ -14,7 +14,8 @@ import wireRodsSchema from "../../schema/wireRodsSchema";
  
 // ========== Assets ==========
 import banner from "../../assets/Wire rod.webm";
-
+import ProductEnquiryModal from "../../components/ProductEnquiryModal";
+ 
 import Application1 from "../../assets/Application1-1.webp";
 import Application2 from "../../assets/Application2-1.webp";
 import Application3 from "../../assets/Application3-1.webp";
@@ -83,6 +84,8 @@ const WireRods = () => {
       },
     },
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const cards = [
     {
       img: coreStrength1,
@@ -243,7 +246,7 @@ const WireRods = () => {
 
       <div className="relative w-full overflow-x-hidden font-helvetica">
         {/* ================= BANNER SECTION ================= */}
-        <motion.section
+          <motion.section
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -270,13 +273,64 @@ const WireRods = () => {
             />
           )}
 
-          <motion.h1
-            variants={fadeUp}
-            className="relative z-10 text-white text-4xl md:text-7xl font-bold
-               flex items-end justify-start h-full py-10 px-6 md:px-10"
-          >
-            {heroHeading}
-          </motion.h1>
+          {/* Optional Overlay */}
+          <div className="absolute inset-0 bg-black/40" />
+
+          {/* Content */}
+          <div className="absolute bottom-10 left-6 md:left-10 z-10">
+            <motion.h1
+              variants={fadeUp}
+              className="text-white text-4xl md:text-7xl font-bold max-w-4xl"
+            >
+              {heroHeading}
+            </motion.h1>
+
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="
+    mt-6
+    inline-flex
+    items-center
+    gap-2
+    px-6
+    py-3
+    rounded-xl
+    
+    /* Glassmorphism Core */
+    bg-blue/15
+    backdrop-blur-md
+    border
+    border-white/30
+    
+    /* Text & Icon Color */
+    text-white
+    font-medium
+    text-sm
+    tracking-wide
+    
+    /* Effects & Transitions */
+    shadow-[0_8px_32px_0_rgba(0,0,0,0.2)]
+    shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.2)]
+    transition-all
+    duration-300
+    
+    /* Hover & Active States */
+    hover:bg-white/25
+    hover:border-white/40
+    hover:-translate-y-0.5
+    hover:shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]
+    active:translate-y-0
+  "
+            >
+              Request a Quote
+            </button>
+          </div>
+
+          <ProductEnquiryModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            productName={heroHeading}
+          />
         </motion.section>
         {/* ================= INTRO SECTION ================= */}
         <section className="bg-white">

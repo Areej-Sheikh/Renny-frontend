@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { FaTimes } from "react-icons/fa";
-import { buildApiUrl } from "../lib/api";
+import ReCAPTCHA from "react-google-recaptcha";
+import { buildApiUrl, RECAPTCHA_SITE_KEY } from "../lib/api";
 
 const ProductEnquiryModal = ({ isOpen, onClose, productName = "" }) => {
+  const recaptchaRef = useRef();
   const [loading, setLoading] = useState(false);
 
   const [submitStatus, setSubmitStatus] = useState({
@@ -52,6 +54,22 @@ const ProductEnquiryModal = ({ isOpen, onClose, productName = "" }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!RECAPTCHA_SITE_KEY) {
+      const message = "Enquiry submissions are temporarily unavailable. Please try again later.";
+      setSubmitStatus({ type: "error", message });
+      toast.error(message);
+      return;
+    }
+
+    const token = recaptchaRef.current?.getValue();
+
+    if (!token) {
+      const message = "Please complete the verification step before submitting.";
+      setSubmitStatus({ type: "error", message });
+      toast.error(message);
+      return;
+    }
+
     setLoading(true);
 
     setSubmitStatus({
@@ -63,6 +81,7 @@ const ProductEnquiryModal = ({ isOpen, onClose, productName = "" }) => {
       const payload = {
         ...formData,
         productInterested: productName,
+        captchaToken: token,
       };
 
       const res = await axios.post(buildApiUrl("/api/contact/submit"), payload);
@@ -86,6 +105,7 @@ const ProductEnquiryModal = ({ isOpen, onClose, productName = "" }) => {
           approxQuantity: "",
           message: "",
         });
+        recaptchaRef.current?.reset();
 
         setTimeout(() => {
           onClose();
@@ -255,6 +275,19 @@ const ProductEnquiryModal = ({ isOpen, onClose, productName = "" }) => {
               placeholder="Your requirement or message"
               className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3"
             />
+
+            <div className="py-2 flex justify-center scale-[0.9] origin-center">
+              {RECAPTCHA_SITE_KEY ? (
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={RECAPTCHA_SITE_KEY}
+                />
+              ) : (
+                <div className="rounded-xl bg-yellow-50 px-4 py-3 text-center text-sm text-yellow-800">
+                  Verification is unavailable until `VITE_RECAPTCHA_SITE_KEY` is configured.
+                </div>
+              )}
+            </div>
 
             <button
               type="submit"

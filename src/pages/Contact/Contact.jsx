@@ -1,7 +1,8 @@
 // ========== Imports ==========
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import SEO from "../../components/SEO";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
 
@@ -13,7 +14,7 @@ import { toast } from "react-toastify";
 import usePageHero from "../../hooks/usePageHero";
 
 // ========== Utilities ==========
-import { buildApiUrl } from "../../lib/api";
+import { buildApiUrl, RECAPTCHA_SITE_KEY } from "../../lib/api";
 
 // ========== Assets ==========
 import banner from "../../assets/contactusbanner.webp";
@@ -40,6 +41,8 @@ const hardcodedPlants = [
 ];
 
 const Contact = () => {
+  const recaptchaRef = useRef();
+
   // ========== Hero Content ==========
   const { heroSrc, heroHeading } = usePageHero(
     "contact-us",
@@ -128,8 +131,24 @@ const Contact = () => {
   // ========== Form Submit ==========
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
+    if (!RECAPTCHA_SITE_KEY) {
+      const message = "Enquiry submissions are temporarily unavailable. Please try again later.";
+      setSubmitStatus({ type: "error", message });
+      toast.error(message);
+      return;
+    }
+
+    const token = recaptchaRef.current?.getValue();
+
+    if (!token) {
+      const message = "Please complete the verification step before submitting.";
+      setSubmitStatus({ type: "error", message });
+      toast.error(message);
+      return;
+    }
+
+    setLoading(true);
     setSubmitStatus({
       type: "",
       message: "",
@@ -138,7 +157,10 @@ const Contact = () => {
     try {
       const res = await axios.post(
         buildApiUrl("/api/contact/submit"),
-        formData,
+        {
+          ...formData,
+          captchaToken: token,
+        },
       );
 
       if (res.data.success) {
@@ -160,6 +182,7 @@ const Contact = () => {
           approxQuantity: "",
           message: "",
         });
+        recaptchaRef.current?.reset();
       }
     } catch (err) {
       const errorMessage =
@@ -495,6 +518,19 @@ const Contact = () => {
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.35 }}
                 viewport={{ once: true }}
               >
+                <div className="py-2 flex justify-center scale-[0.9] origin-center">
+                  {RECAPTCHA_SITE_KEY ? (
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={RECAPTCHA_SITE_KEY}
+                    />
+                  ) : (
+                    <div className="rounded-xl bg-yellow-50 px-4 py-3 text-center text-sm text-yellow-800">
+                      Verification is unavailable until `VITE_RECAPTCHA_SITE_KEY` is configured.
+                    </div>
+                  )}
+                </div>
+
                 <button
                   type="submit"
                   disabled={loading}

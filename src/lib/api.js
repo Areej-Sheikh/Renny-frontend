@@ -15,4 +15,4 @@ export const buildApiUrl = (path = "") => {
   return `${API_BASE_URL}${cleanPath}`;
 };
 
-export const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "";
+export const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";

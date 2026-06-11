@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom";
-import RennyLogo from "../assets/RennyLogo.webp";
-import {
-  FaXTwitter,
-  FaFacebookF,
-  FaLinkedinIn,
-  FaInstagram,
-} from "react-icons/fa6";
+const RennyLogo = "/assets/RennyLogo.webp";
 import { motion } from "framer-motion";
 
 const container = {
@@ -20,29 +14,6 @@ const item = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
-
-const socialLinks = [
-  {
-    icon: FaXTwitter,
-    url: "https://x.com/rennystrips?t=Zv74JfuWaVw3CHAxPHAQSA&s=08",
-    color: "!text-black",
-  },
-  {
-    icon: FaFacebookF,
-    url: "https://www.facebook.com/rennypvtltd",
-    color: "!text-[#1877F2]",
-  },
-  {
-    icon: FaLinkedinIn,
-    url: "https://www.linkedin.com/company/rennystrips/",
-    color: "!text-[#0A66C2]",
-  },
-  {
-    icon: FaInstagram,
-    url: "https://www.instagram.com/rennystrips/",
-    color: "!text-[#E4405F]",
-  },
-];
 
 const Footer = () => {
   return (
@@ -59,8 +30,8 @@ const Footer = () => {
           <img
             src={RennyLogo}
             alt="Renny Logo"
-            width="217"
-            height="175"
+            width={155}
+            height={125}
             className="h-[100px] w-auto object-contain"
           />
           <p className="text-sm text-gray-600">
@@ -179,7 +150,9 @@ const Footer = () => {
               className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1877F2] hover:opacity-80 transition-opacity shadow-md"
             >
               <span className="text-white text-lg font-bold">
-                <i className="ri-facebook-line"></i>
+                <svg className="w-5 h-5 mx-auto" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.487-.14-2.812-.14C12 2 10 3.2 10 6.5v3H7.5v4H10V22h4v-8.5z"/>
+                </svg>
               </span>
             </a>
 
@@ -191,7 +164,9 @@ const Footer = () => {
               className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-80 transition-opacity shadow-md"
             >
               <span className="text-white text-md">
-                <i className="ri-instagram-fill"></i>
+                <svg className="w-5 h-5 mx-auto" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.22 2.428.47a4.902 4.902 0 0 1 1.77 1.15 4.9 4.9 0 0 1 1.15 1.77c.25.637.42 1.363.47 2.428.047 1.066.058 1.405.058 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.22 1.79-.47 2.428a4.902 4.902 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.638.25-1.363.42-2.428.47-1.066.047-1.405.058-4.122.058-2.717 0-3.056-.01-4.122-.058-1.065-.05-1.79-.22-2.428-.47a4.902 4.902 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.25-.637-.42-1.363-.47-2.428C2.01 15.056 2 14.717 2 12c0-2.717.01-3.056.058-4.122.05-1.065.22-1.79.47-2.428a4.9 4.9 0 0 1 1.15-1.77 4.9 4.9 0 0 1 1.77-1.15c.637-.25 1.363-.42 2.428-.47C8.944 2.01 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm5.25-3.5a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5z"/>
+                </svg>
               </span>
             </a>
 
@@ -203,7 +178,9 @@ const Footer = () => {
               className="w-8 h-8 flex items-center justify-center rounded-full bg-[#0077B5] hover:opacity-80 transition-opacity shadow-md"
             >
               <span className="text-white text-md font-bold">
-                <i className="ri-linkedin-fill"></i>
+                <svg className="w-5 h-5 mx-auto" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6.5 21.5h-5v-13h5v13zM4 6.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm17.5 15h-5v-7c0-2.28-1-3.5-3-3.5-2 0-3 1.25-3 3.5v7h-5v-13h5v1.82c.9-1.32 2.5-2.07 4.5-2.07 4 0 7 2.5 7 7.75v5.5z"/>
+                </svg>
               </span>
             </a>
           </div>
@@ -252,7 +229,9 @@ const FooterLink = ({ to, children }) => (
       to={to}
       className="flex items-center gap-1 text-[13px] uppercase font-medium text-gray-700 hover:font-semibold hover:text-blue-900 hover:translate-x-1 transition-all"
     >
-      <i className="ri-arrow-right-s-line text-sm" />
+      <svg className="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/>
+      </svg>
       {children}
     </Link>
   </motion.div>

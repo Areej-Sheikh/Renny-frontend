@@ -31,10 +31,7 @@ const Navbar = () => {
     },
     {
       title: "Products",
-      links: [
-        { name: "MS Billets", path: "/ms-billets" },
-        { name: "Wire Rods", path: "/wire-rods" },
-        { name: "Narrow-width HR Coils", path: "/narrow-hrcoil" },
+       links: [
         { name: "ERW Pipes & Tubes", path: "/erw-pipes-and-tubes" },
         {
           name: "Scaffolding & Formwork",
@@ -44,6 +41,9 @@ const Navbar = () => {
           //   { name: "ProductRange2", path: "/product-range-2" },
           // ],
         },
+        { name: "Narrow-width HR Coils", path: "/narrow-hrcoil" },
+        { name: "Wire Rods", path: "/wire-rods" },
+        { name: "MS Billets", path: "/ms-billets" },
       ],
     },
     {
@@ -146,38 +146,20 @@ const Navbar = () => {
           </ul>
         </li>
 
-        {/* Products */}
+           {/* Products */}
         <li className="relative group">
           <span className="cursor-pointer hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
             Products
           </span>
 
           <ul className="absolute hidden group-hover:block bg-white shadow-lg mt-2 w-72 z-50">
-            <li>
-              <Link to="/ms-billets" className="dropdown-item">
-                MS Billets
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/wire-rods" className="dropdown-item">
-                Wire Rods
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/narrow-hrcoil" className="dropdown-item">
-                Narrow-width HR Coils
-              </Link>
-            </li>
+            {/* Nested Dropdown */}
 
             <li>
               <Link to="/erw-pipes-and-tubes" className="dropdown-item">
                 ERW Pipes & Tubes
               </Link>
             </li>
-
-            {/* Nested Dropdown */}
             <li className="relative group/submenu">
               <Link
                 to="/scaffolding-formwork"
@@ -201,6 +183,21 @@ const Navbar = () => {
                   </Link>
                 </li>
               </ul> */}
+            </li>
+            <li>
+              <Link to="/narrow-hrcoil" className="dropdown-item">
+                Narrow-width HR Coils
+              </Link>
+            </li>
+            <li>
+              <Link to="/wire-rods" className="dropdown-item">
+                Wire Rods
+              </Link>
+            </li>
+            <li>
+              <Link to="/ms-billets" className="dropdown-item">
+                MS Billets
+              </Link>
             </li>
           </ul>
         </li>

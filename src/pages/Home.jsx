@@ -143,9 +143,9 @@ const Home = () => {
     <>
       <SchemaMarkup schema={homeSchema} />
       <SEO
-        title="Renny Strips Limited | Leading Integrated Steel Manufacturer in India"
-        description="Renny Strips Limited manufactures HR coils, ERW pipes, scaffolding systems, wire rods, MS billets, and industrial steel solutions for global markets."
-        keywords="Renny Strips Limited, steel manufacturer India, integrated steel manufacturer, HR coils, ERW pipes, scaffolding systems, wire rods, MS billets, steel exports, industrial steel products"
+        title="CBAM-Compliant Structural Steel Company in India | Renny Strips"
+        description="Renny Strips is a CBAM-compliant structural steel company manufacturing high-quality steel products for infrastructure, engineering, and industrial applications."
+        keywords="structural steel company, structural steel manufacturer, green steel, CBAM, structural steel fabricators"
         url="https://rennystrips.com"
         image={HomepageBanner}
       />

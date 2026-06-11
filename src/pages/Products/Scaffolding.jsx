@@ -353,9 +353,9 @@ const Scaffolding = () => {
     <>
       <SchemaMarkup schema={scaffoldingSchema} />
       <SEO
-        title="Scaffolding & Formwork Solutions | Renny Strips"
-        description="Renny Strips delivers scaffolding and formwork solutions for safe, stable, and efficient construction and infrastructure projects."
-        keywords="scaffolding manufacturer, formwork solutions, construction scaffolding, steel scaffolding systems, industrial formwork, Renny Strips"
+        title="Scaffolding & Formwork Systems for Construction | Renny Strips"
+        description="Reliable scaffolding and formwork solutions designed to improve safety, access, and efficiency on construction sites."
+        keywords="scaffolding, formwork, scaffolding materials, scaffold towers"
         url="https://rennystrips.com/scaffolding-formwork"
         image={heroSrc}
       />

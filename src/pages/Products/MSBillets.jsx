@@ -238,9 +238,9 @@ const MSBillets = () => {
     <>
       <SchemaMarkup schema={msBilletsSchema} />
       <SEO
-        title="MS Billets Manufacturer and Supplier | Renny Strips"
-        description="Renny Strips manufactures high-quality MS billets for steel rolling, fabrication, and industrial applications."
-        keywords="MS billets manufacturer, mild steel billets, steel billets India, industrial steel products, Renny Strips, billet supplier"
+        title="High-Quality MS Billets for Industrial Applications | Renny Strips"
+        description="High-quality MS billets manufactured for industrial applications and downstream steel applications with consistent chemistry, strength, and dimensional accuracy."
+        keywords="ms billets, steel billets, billet steel, billets manufacturer"
         url="https://rennystrips.com/ms-billets"
         image={heroSrc}
       />

@@ -254,9 +254,9 @@ const ERW = () => {
     <>
       <SchemaMarkup schema={erwPipesSchema} />
       <SEO
-        title="ERW Pipes and Tubes Manufacturer | Renny Strips"
-        description="Explore high-performance ERW pipes and tubes by Renny Strips for construction, infrastructure, industrial, and engineering applications."
-        keywords="ERW pipes manufacturer, steel tubes supplier, ERW tubes India, industrial pipes and tubes, steel pipe manufacturer, Renny Strips"
+        title="ERW Pipes & Tubes for Structural Applications | Renny Strips"
+        description="Durable ERW pipes and tubes manufactured for construction, infrastructure, engineering, and industrial projects."
+        keywords="erw pipe, erw tubes, ms erw pipe, galvanized pipes"
         url="https://rennystrips.com/erw-pipes-and-tubes"
         image={heroSrc}
       />

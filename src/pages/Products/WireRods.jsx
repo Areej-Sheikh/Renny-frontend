@@ -237,7 +237,7 @@ const WireRods = () => {
     <>
       <SchemaMarkup schema={wireRodsSchema} />
       <SEO
-        title="Stainless Steel Wire Rods for Industrial Application | Renny Strips"
+        title="Mild Steel Wire Rods for Industrial Application | Renny Strips"
         description="Premium steel wire rods engineered for construction, fasteners, fabrication, and industrial manufacturing applications."
         keywords="wire rod, steel wire rod, wire rod manufacturer"
         url="https://rennystrips.com/wire-rods"

@@ -101,7 +101,7 @@ const Home = () => {
     { title: "HR Coils", image: Coil, link: "/narrow-hrcoil" },
     { title: "ERW Pipes", image: ERW, link: "/erw-pipes-and-tubes" },
     {
-      title: "Scaffolding Formwork",
+      title: "Scaffolding & Formwork Systems",
       image: Scaffolding,
       link: "/scaffolding-formwork",
     },

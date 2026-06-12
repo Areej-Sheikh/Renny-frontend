@@ -34,7 +34,7 @@ const Navbar = () => {
        links: [
         { name: "ERW Pipes & Tubes", path: "/erw-pipes-and-tubes" },
         {
-          name: "Scaffolding & Formwork",
+          name: "Scaffolding & Formwork Systems",
           path: "/scaffolding-formwork",
           // subLinks: [
           //   { name: "ProductRange", path: "/product-range" },
@@ -166,7 +166,7 @@ const Navbar = () => {
                 className="dropdown-item whitespace-nowrap block"
               >
                 <span className="inline-flex items-center gap-1.5">
-                  Scaffolding & Formwork
+                  Scaffolding & Formwork Systems
                   {/* <FaChevronRight className="text-[10px]" /> */}
                 </span>
               </Link>

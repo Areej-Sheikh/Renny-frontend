@@ -22,9 +22,9 @@ const ProductCarousel = () => {
   });
 
   const products = [
-    { title: "ERW Pipes", image: ERW, link: "/erw-pipes-and-tubes" },
+    { title: "ERW Pipes & Tubes", image: ERW, link: "/erw-pipes-and-tubes" },
     {
-      title: "Scaffolding Formwork",
+      title: "Scaffolding & Formwork Systems",
       image: Scaffolding,
       link: "/scaffolding-formwork",
     },

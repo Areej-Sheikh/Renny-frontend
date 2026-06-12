@@ -87,13 +87,13 @@ const Footer = () => {
             to="/erw-pipes-and-tubes"
             className="block hover:translate-x-1 transition-transform text-[13px] uppercase font-medium text-gray-700 "
           >
-            ERW Black & Galvanized Pipes & Tubes
+            ERW Pipes & Tubes
           </FooterLink>
           <FooterLink
             to="/scaffolding-formwork"
             className="block hover:translate-x-1 transition-transform text-[13px] uppercase font-medium text-gray-700 "
           >
-            Scaffolding & Formwork System
+            Scaffolding & Formwork Systems
           </FooterLink>
           <FooterLink
             to="/narrow-hrcoil"

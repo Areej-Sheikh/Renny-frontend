@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 // Asset Imports
-import initiativeLeaf from '../../assets/Initaitive_Leaf.jpg';
+import initiativeLeaf from '../../assets/Initaitive_Leaf.webp';
 import goodLifeImg from '../../assets/Good_Life.webp';
 
 const ClimateInitiative = () => {

@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 
 // Asset Imports
-import environmentalImg from '../../assets/E-enviromental.webp';
+import environmentalImg from '../../assets/environment.webp';
 import socialImg from '../../assets/Social.webp';
 import governanceImg from '../../assets/Governance.webp';
 
@@ -112,7 +112,7 @@ const SustainabilityPillars = () => {
                   <img 
                     src={pillar.img} 
                     alt={pillar.title} 
-                    className="w-full object-cover h-[300px] md:h-[450px]" 
+                    className="w-full object-center h-[300px] md:h-[450px]" 
                   />
                 </motion.div>
               </motion.div>

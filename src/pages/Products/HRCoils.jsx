@@ -145,7 +145,7 @@ const HRCoils = () => {
   const [pageData, setPageData] = useState(null);
   const { heroSrc, heroHeading } = usePageHero(
     "hr-coils",
-    "Narrow Width Hot-Rolled (HR) Coils",
+    "Narrow Width HR Coils",
     banner,
   );
 
@@ -280,7 +280,7 @@ const HRCoils = () => {
 
           {/* Content */}
           <div className="absolute bottom-10 left-6 md:left-10 z-10">
-            <motion.h1
+            <motion.h1 
               variants={fadeUp}
               className="text-white text-4xl md:text-7xl font-bold max-w-4xl"
             >
@@ -349,7 +349,7 @@ const HRCoils = () => {
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.5 }}
                 >
-                  {pageData?.title || "Narrow Width Hot-Rolled (HR) Coils"}
+                  {pageData?.title || "Narrow Width HR Coils"}
                   {/* Responsive underline width */}
                   <div className="w-3/4 sm:w-1/2 md:w-3/4 lg:w-full max-w-[400px] h-1 bg-blue mx-auto rounded-full mt-4 mb-8 md:mb-10" />
                 </motion.h2>

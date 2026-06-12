@@ -298,7 +298,7 @@ const ERW = () => {
               variants={fadeUp}
               className="text-white text-4xl md:text-7xl font-bold max-w-4xl"
             >
-              {heroHeading}
+              {heroHeading} 
             </motion.h1>
 
             <button

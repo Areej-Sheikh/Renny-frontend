@@ -22,15 +22,15 @@ const ProductCarousel = () => {
   });
 
   const products = [
-    { title: "MS Billets", image: MS, link: "/ms-billets" },
-    { title: "Wire Rods", image: rods, link: "/wire-rods" },
-    { title: "HR Coils", image: Coil, link: "/narrow-hrcoil" },
     { title: "ERW Pipes", image: ERW, link: "/erw-pipes-and-tubes" },
     {
       title: "Scaffolding Formwork",
       image: Scaffolding,
       link: "/scaffolding-formwork",
     },
+    { title: "HR Coils", image: Coil, link: "/narrow-hrcoil" },
+    { title: "Wire Rods", image: rods, link: "/wire-rods" },
+    { title: "MS Billets", image: MS, link: "/ms-billets" },
   ];
 
   // 🔹 Scroll to slide

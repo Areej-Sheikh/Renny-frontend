@@ -153,19 +153,19 @@ const BlogDetail = () => {
                   <div key={index} className={wrapperClass}>
                     {/* HEADINGS */}
                     {section.type === "heading" && (
-                      <h3
+                      <h2
                         id={slugify(section.content)}
                         className="mt-10 text-blue hover:text-blue-900 transition-colors text-xl md:text-2xl font-bold scroll-mt-28 mb-4"
                       >
                         {section.content}
-                      </h3>
+                      </h2>
                     )}
 
                     {/* SUB HEADING */}
                     {section.type === "sub-heading" && (
-                      <h4 className="mt-6 mb-3 text-lg md:text-xl font-semibold text-blue">
+                      <h3 className="mt-6 mb-3 text-lg md:text-xl font-semibold text-blue">
                         {section.content}
-                      </h4>
+                      </h3>
                     )}
 
                     {/* PARAGRAPHS */}

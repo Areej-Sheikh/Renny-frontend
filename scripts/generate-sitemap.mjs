@@ -104,9 +104,22 @@ uniqueStaticRoutes.forEach((route) => {
 // Append dynamic blog URLs
 // ------------------------------------
 
+// Load backend API URL from .env file if it exists, fallback to production URL
+const envPath = path.join(process.cwd(), ".env");
+let viteApiUrl = "https://api.rennystrips.com";
+if (fs.existsSync(envPath)) {
+  const envContent = fs.readFileSync(envPath, "utf8");
+  const match = envContent.match(/VITE_API_URL\s*=\s*([^\s#]+)/);
+  if (match) {
+    viteApiUrl = match[1].replace(/["']/g, "").trim();
+  }
+}
+const apiUrl = viteApiUrl.replace(/\/$/, "");
+console.log(`Connecting to backend API at: ${apiUrl}`);
+
 try {
   const response = await axios.get(
-    "https://api.rennystrips.com/api/blogs"
+    `${apiUrl}/api/blogs`
   );
 
   const blogs = response?.data?.data || [];

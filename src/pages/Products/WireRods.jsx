@@ -11,11 +11,11 @@ import usePageHero from "../../hooks/usePageHero";
 import SEO from "../../components/SEO";
 import SchemaMarkup from "../../components/SchemaMarkup";
 import wireRodsSchema from "../../schema/wireRodsSchema";
- 
+
 // ========== Assets ==========
 import banner from "../../assets/Wire rod.webm";
 import ProductEnquiryModal from "../../components/ProductEnquiryModal";
- 
+
 import Application1 from "../../assets/Application1-1.webp";
 import Application2 from "../../assets/Application2-1.webp";
 import Application3 from "../../assets/Application3-1.webp";
@@ -246,7 +246,7 @@ const WireRods = () => {
 
       <div className="relative w-full overflow-x-hidden font-helvetica">
         {/* ================= BANNER SECTION ================= */}
-          <motion.section
+        <motion.section
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -542,7 +542,7 @@ const WireRods = () => {
               {activeTab === "APPLICATIONS" && (
                 <div className="max-w-7xl mx-auto space-y-10">
                   {displayAppIntro && (
-                    <p className="text-gray-600 text-sm md:text-lg   md:text-left ">
+                    <p className="text-gray-600 text-sm md:text-lg md:text-left">
                       {displayAppIntro}
                     </p>
                   )}
@@ -554,7 +554,7 @@ const WireRods = () => {
                         variants={fadeUp}
                         className="flex flex-col items-center group"
                       >
-                        <div className="relative w-full aspect-[4/5] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
+                        <div className="relative w-full aspect-square max-w-[180px] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
                           <div className="w-16 h-16 md:w-20 md:h-20 mb-3">
                             <img
                               src={item.img}
@@ -567,6 +567,7 @@ const WireRods = () => {
                               }
                             />
                           </div>
+
                           <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
                             {item.label}
                           </p>

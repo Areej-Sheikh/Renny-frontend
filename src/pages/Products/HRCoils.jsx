@@ -7,7 +7,7 @@ import SEO from "../../components/SEO";
 import SchemaMarkup from "../../components/SchemaMarkup";
 import narrowHrCoilSchema from "../../schema/narrowHrCoilSchema";
 import ProductEnquiryModal from "../../components/ProductEnquiryModal";
- 
+
 // ========== Hooks ==========
 import usePageHero from "../../hooks/usePageHero";
 
@@ -248,7 +248,7 @@ const HRCoils = () => {
       />
       <div className="relative w-full overflow-x-hidden font-helvetica">
         {/* ================= BANNER SECTION ================= */}
-         <motion.section
+        <motion.section
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -280,7 +280,7 @@ const HRCoils = () => {
 
           {/* Content */}
           <div className="absolute bottom-10 left-6 md:left-10 z-10">
-            <motion.h1 
+            <motion.h1
               variants={fadeUp}
               className="text-white text-4xl md:text-7xl font-bold max-w-4xl"
             >
@@ -543,12 +543,11 @@ const HRCoils = () => {
               {activeTab === "APPLICATIONS" && (
                 <div className="max-w-7xl mx-auto space-y-10">
                   {displayAppIntro && (
-                    <p className="text-gray-600 text-sm md:text-lg leading-relaxed text-justify md:text-left ">
+                    <p className="text-gray-600 text-sm md:text-lg leading-relaxed text-justify md:text-left">
                       {displayAppIntro}
                     </p>
                   )}
 
-                  {/* Changed flex to a responsive grid for better alignment across all devices */}
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 justify-items-center">
                     {displayApps.map((item, index) => (
                       <motion.div
@@ -556,7 +555,7 @@ const HRCoils = () => {
                         variants={fadeUp}
                         className="flex flex-col items-center group w-full"
                       >
-                        <div className="relative w-full aspect-[4/5] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
+                        <div className="relative w-full aspect-square max-w-[180px] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
                           <div className="w-16 h-16 md:w-20 md:h-20 mb-3">
                             <img
                               src={item.img}
@@ -569,6 +568,7 @@ const HRCoils = () => {
                               }
                             />
                           </div>
+
                           <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
                             {item.label}
                           </p>

@@ -9,7 +9,7 @@ import SEO from "../../components/SEO";
 import SchemaMarkup from "../../components/SchemaMarkup";
 import scaffoldingSchema from "../../schema/scaffoldingSchema";
 import ProductEnquiryModal from "../../components/ProductEnquiryModal";
- 
+
 // ========== Hooks ==========
 import usePageHero from "../../hooks/usePageHero";
 
@@ -361,7 +361,7 @@ const Scaffolding = () => {
       />
       <div className="relative w-full overflow-x-hidden font-helvetica">
         {/* ================= BANNER SECTION ================= */}
-           <motion.section
+        <motion.section
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -736,6 +736,7 @@ const Scaffolding = () => {
               )}
 
               {/* APPLICATIONS */}
+              {/* APPLICATIONS */}
               {activeTab === "APPLICATIONS" && (
                 <motion.div
                   className="max-w-7xl mx-auto"
@@ -744,24 +745,23 @@ const Scaffolding = () => {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.2 }}
                 >
-                  {/* Using Grid instead of Flex for consistent alignment across all devices */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 justify-items-center">
                     {displayApps.map((item, index) => (
                       <motion.div
                         key={item._id || index}
                         variants={fadeUp}
-                        whileHover={{ y: -8 }}
-                        className="flex flex-col items-center cursor-pointer group"
+                        className="flex flex-col items-center group w-full"
                       >
-                        <div className="relative w-full aspect-square flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
-                          <div className="w-14 h-14 md:w-20 md:h-20 mb-3 flex items-center justify-center">
+                        <div className="relative w-full aspect-square max-w-[180px] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
+                          <div className="w-16 h-16 md:w-20 md:h-20 mb-3 flex items-center justify-center">
                             <img
                               src={item.img}
                               alt={item.label}
                               className="w-full h-full object-contain group-hover:drop-shadow-md"
                             />
                           </div>
-                          <p className="text-center font-bold text-[10px] md:text-xs lg:text-sm text-gray-800 px-2 group-hover:text-blue transition-colors">
+
+                          <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
                             {item.label}
                           </p>
                         </div>

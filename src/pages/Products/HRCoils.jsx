@@ -241,7 +241,7 @@ const HRCoils = () => {
       <SchemaMarkup schema={narrowHrCoilSchema} />
       <SEO
         title="Hot Rolled Coils Engineered for Performance | Renny Strips"
-        description="Precision hot rolled coils designed for fabrication, engineering, structural steel, and industrial processing requirements."
+        description="Precision hot rolled coils (HR Coils) designed for fabrication, engineering, structural steel, and industrial processing requirements."
         keywords="hot rolled coil, hr coil, hrc steel, hot rolled sheet"
         url="https://rennystrips.com/narrow-hrcoil"
         image={heroSrc}

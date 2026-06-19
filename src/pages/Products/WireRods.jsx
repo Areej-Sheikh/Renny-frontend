@@ -219,7 +219,7 @@ const WireRods = () => {
         ];
   const displayAppIntro =
     pageData?.applicationsIntro ||
-    "MS billets are essential in the manufacturing of high-strength components used across automotive, railway, aerospace, defence, and heavy engineering sectors.";
+    " ";
   const displayApps =
     pageData?.applications &&
     pageData.applications.length > 0 &&

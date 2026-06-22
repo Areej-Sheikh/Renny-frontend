@@ -54,7 +54,9 @@ const EXCLUDED_ROUTES = new Set([
 ]);
 
 const uniqueStaticRoutes = [...new Set(staticRoutes)].filter(
-  (route) => !EXCLUDED_ROUTES.has(route)
+  (route) =>
+    !EXCLUDED_ROUTES.has(route) &&
+    !route.includes("/thank-you")
 );
 
 // ------------------------------------

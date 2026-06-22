@@ -7,9 +7,12 @@ const SEO = ({
   image = "https://rennystrips.com/og-image.jpg",
   url = "https://rennystrips.com",
   type = "website",
+  noindex = false,
+  nofollow = false,
 }) => {
   // Ensure the URL doesn't have a trailing slash (except for the root domain)
-  const canonicalUrl = url.endsWith("/") && url.length > 8 ? url.slice(0, -1) : url;
+  const canonicalUrl =
+    url.endsWith("/") && url.length > 8 ? url.slice(0, -1) : url;
 
   return (
     <Helmet>
@@ -19,10 +22,11 @@ const SEO = ({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="author" content="Renny Strips Ltd." />
-
       <meta
         name="robots"
-        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        content={`${
+          noindex ? "noindex" : "index"
+        }, ${nofollow ? "nofollow" : "follow"}, max-image-preview:large, max-snippet:-1, max-video-preview:-1`}
       />
 
       {/* Canonical */}

@@ -175,7 +175,7 @@ const Contact = () => {
 
         recaptchaRef.current?.reset();
 
-        navigate("/contact-us/thank-you");
+        navigate(`${location.pathname}/thank-you`);
       }
     } catch (err) {
       const errorMessage =

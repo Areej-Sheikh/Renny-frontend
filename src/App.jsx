@@ -216,7 +216,6 @@ const App = () => {
 
             {/* Contact */}
             <Route path="/contact-us" element={<Contact />} />
-            <Route path="/contact-us/thank-you" element={<ThankYou />} />
 
             {/* Career */}
             <Route path="/careers" element={<Career />} />

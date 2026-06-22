@@ -17,10 +17,11 @@ import usePageHero from "../../hooks/usePageHero";
 import { buildApiUrl, RECAPTCHA_SITE_KEY } from "../../lib/api";
 
 // ========== Assets ==========
-import banner from "../../assets/contactusbanner.webp";
+import banner from "../../assets/contactus.webp";
 import rennylocation from "../../assets/renny's-location.webp";
 import unit1 from "../../assets/Unit-1.webp";
 import unit3 from "../../assets/Unit-3.webp";
+import { useNavigate } from "react-router-dom";
 
 // ========== Hardcoded Plants ==========
 const hardcodedPlants = [
@@ -133,7 +134,8 @@ const Contact = () => {
     e.preventDefault();
 
     if (!RECAPTCHA_SITE_KEY) {
-      const message = "Enquiry submissions are temporarily unavailable. Please try again later.";
+      const message =
+        "Enquiry submissions are temporarily unavailable. Please try again later.";
       setSubmitStatus({ type: "error", message });
       toast.error(message);
       return;
@@ -142,7 +144,8 @@ const Contact = () => {
     const token = recaptchaRef.current?.getValue();
 
     if (!token) {
-      const message = "Please complete the verification step before submitting.";
+      const message =
+        "Please complete the verification step before submitting.";
       setSubmitStatus({ type: "error", message });
       toast.error(message);
       return;
@@ -155,24 +158,11 @@ const Contact = () => {
     });
 
     try {
-      const res = await axios.post(
-        buildApiUrl("/api/contact/submit"),
-        {
-          ...formData,
-          captchaToken: token,
-        },
-      );
-
+      const res = await axios.post(buildApiUrl("/api/contact/submit"), {
+        ...formData,
+        captchaToken: token,
+      });
       if (res.data.success) {
-        const successMessage = "Your enquiry has been submitted successfully.";
-
-        setSubmitStatus({
-          type: "success",
-          message: successMessage,
-        });
-
-        toast.success(successMessage);
-
         setFormData({
           fullName: "",
           companyName: "",
@@ -182,7 +172,10 @@ const Contact = () => {
           approxQuantity: "",
           message: "",
         });
+
         recaptchaRef.current?.reset();
+
+        navigate("/contact-us/thank-you");
       }
     } catch (err) {
       const errorMessage =
@@ -224,6 +217,7 @@ const Contact = () => {
   };
 
   console.log(plants);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -355,14 +349,8 @@ const Contact = () => {
             </div>
 
             <form className="space-y-4" onSubmit={handleSubmit}>
-              {submitStatus.message && (
-                <div
-                  className={`rounded-xl px-4 py-3 text-sm ${
-                    submitStatus.type === "success"
-                      ? "bg-green-50 text-green-700"
-                      : "bg-red-50 text-red-700"
-                  }`}
-                >
+              {submitStatus.type === "error" && submitStatus.message && (
+                <div className="rounded-xl px-4 py-3 text-sm bg-red-50 text-red-700">
                   {submitStatus.message}
                 </div>
               )}
@@ -380,8 +368,6 @@ const Contact = () => {
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 viewport={{ once: true }}
               />
-
-             
 
               <motion.input
                 type="email"
@@ -526,7 +512,8 @@ const Contact = () => {
                     />
                   ) : (
                     <div className="rounded-xl bg-yellow-50 px-4 py-3 text-center text-sm text-yellow-800">
-                      Verification is unavailable until `VITE_RECAPTCHA_SITE_KEY` is configured.
+                      Verification is unavailable until
+                      `VITE_RECAPTCHA_SITE_KEY` is configured.
                     </div>
                   )}
                 </div>

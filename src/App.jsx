@@ -1,5 +1,11 @@
 import { lazy, Suspense, useState, useEffect } from "react";
-import { Routes, Route, useLocation, useNavigate, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+  Navigate,
+} from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -7,53 +13,58 @@ import Parallax from "./components/ParallaxSection";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import PageSpinner from "./components/PageSpinner.jsx";
 import WhatsAppButton from "./components/WhatsAppButton.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import Thankyou from "./pages/Thankyou.jsx";
 
 /* ── Pages ── */
 const Home = lazy(() => import("./pages/Home"));
 
 /* About */
-const About        = lazy(() => import("./pages/About/About"));
+const About = lazy(() => import("./pages/About/About"));
 const Manufacturing = lazy(() => import("./pages/About/Manufacturing"));
-const Quality      = lazy(() => import("./pages/About/Quality"));
+const Quality = lazy(() => import("./pages/About/Quality"));
 const DesignCentre = lazy(() => import("./pages/About/DesignCentre"));
 
 /* Products */
-const MSBillets    = lazy(() => import("./pages/Products/MSBillets"));
-const WireRods     = lazy(() => import("./pages/Products/WireRods"));
-const HRCoils      = lazy(() => import("./pages/Products/HRCoils"));
-const ERW          = lazy(() => import("./pages/Products/ERW"));
-const Scaffolding  = lazy(() => import("./pages/Products/Scaffolding"));
-const ProductRange  = lazy(() => import("./pages/Products/ProductRange.jsx"));
+const MSBillets = lazy(() => import("./pages/Products/MSBillets"));
+const WireRods = lazy(() => import("./pages/Products/WireRods"));
+const HRCoils = lazy(() => import("./pages/Products/HRCoils"));
+const ERW = lazy(() => import("./pages/Products/ERW"));
+const Scaffolding = lazy(() => import("./pages/Products/Scaffolding"));
+const ProductRange = lazy(() => import("./pages/Products/ProductRange.jsx"));
 const ProductRange2 = lazy(() => import("./pages/Products/ProductRange2.jsx"));
 
 /* Investor Relations */
-const Financials  = lazy(() => import("./pages/Investors/Financials"));
-const Governance  = lazy(() => import("./pages/Investors/Governance"));
-const Industry    = lazy(() => import("./pages/Investors/Industry"));
-const IPODocs     = lazy(() => import("./pages/Investors/IPODocs"));
-const IPOAV       = lazy(() => import("./pages/Investors/IPOAV"));
+const Financials = lazy(() => import("./pages/Investors/Financials"));
+const Governance = lazy(() => import("./pages/Investors/Governance"));
+const Industry = lazy(() => import("./pages/Investors/Industry"));
+const IPODocs = lazy(() => import("./pages/Investors/IPODocs"));
+const IPOAV = lazy(() => import("./pages/Investors/IPOAV"));
 const Shareholding = lazy(() => import("./pages/Investors/Shareholding"));
-const Policies    = lazy(() => import("./pages/Investors/Policies"));
+const Policies = lazy(() => import("./pages/Investors/Policies"));
 
 /* EC */
 const EC = lazy(() => import("./pages/EC/EC"));
 
 /* Sustainability */
-const Sustainability = lazy(() => import("./pages/Sustainability/Sustainability"));
+const Sustainability = lazy(
+  () => import("./pages/Sustainability/Sustainability"),
+);
 
 /* Media */
-const News       = lazy(() => import("./pages/Media/News"));
-const Blogs      = lazy(() => import("./pages/Media/Blogs"));
+const News = lazy(() => import("./pages/Media/News"));
+const Blogs = lazy(() => import("./pages/Media/Blogs"));
 const BlogDetail = lazy(() => import("./pages/Media/BlogDetail"));
-const Events     = lazy(() => import("./pages/Media/Events"));
+const Events = lazy(() => import("./pages/Media/Events"));
 
 /* Career */
-const Career     = lazy(() => import("./pages/Career/Career"));
+const Career = lazy(() => import("./pages/Career/Career"));
 const JobDetails = lazy(() => import("./pages/Career/JobDetails"));
-const JobApply   = lazy(() => import("./pages/Career/JobApply.jsx"));
+const JobApply = lazy(() => import("./pages/Career/JobApply.jsx"));
 
 /* Contact */
 const Contact = lazy(() => import("./pages/Contact/Contact"));
+const ThankYou = lazy(() => import("./pages/Thankyou.jsx"));
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -83,8 +94,6 @@ const App = () => {
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
- 
-
   return (
     <div className="App relative min-h-screen overflow-x-hidden font-helvetica clip scroll-smooth no-scrollbar">
       <ScrollToTop />
@@ -96,30 +105,78 @@ const App = () => {
 
             {/* SEO Redirects */}
             {[
-              { path: "/tag/scaffolding-formwork-company-in-india/feed", to: "/blog/trusted-scaffolding-and-formwork-company-in-india-delivering-safety-and-strength" },
-              { path: "/tag/forged-scaffolding-components", to: "/blog/complete-guide-to-forged-scaffolding-components-for-industrial-projects" },
-              { path: "/tag/scaffolding-formwork-company-in-india", to: "/blog/trusted-scaffolding-and-formwork-company-in-india-delivering-safety-and-strength" },
-              { path: "/blog/renny-strips-leading-the-future-of-steel-fabrication-forging", to: "/blog" },
-              { path: "/the-surging-demand-for-sustainable-steel-scaffolding-and-formwork-within-the-construction-and-infrastructure-in", to: "/blog" },
-              { path: "/tag/scaffolding-and-formworks-frames/feed", to: "/blog/scaffolding-and-formworks-frames-innovations-driving-faster-and-safer-building" },
+              {
+                path: "/tag/scaffolding-formwork-company-in-india/feed",
+                to: "/blog/trusted-scaffolding-and-formwork-company-in-india-delivering-safety-and-strength",
+              },
+              {
+                path: "/tag/forged-scaffolding-components",
+                to: "/blog/complete-guide-to-forged-scaffolding-components-for-industrial-projects",
+              },
+              {
+                path: "/tag/scaffolding-formwork-company-in-india",
+                to: "/blog/trusted-scaffolding-and-formwork-company-in-india-delivering-safety-and-strength",
+              },
+              {
+                path: "/blog/renny-strips-leading-the-future-of-steel-fabrication-forging",
+                to: "/blog",
+              },
+              {
+                path: "/the-surging-demand-for-sustainable-steel-scaffolding-and-formwork-within-the-construction-and-infrastructure-in",
+                to: "/blog",
+              },
+              {
+                path: "/tag/scaffolding-and-formworks-frames/feed",
+                to: "/blog/scaffolding-and-formworks-frames-innovations-driving-faster-and-safer-building",
+              },
               { path: "/tag/renny/feed", to: "/" },
-              { path: "/tag/wire-rod-manufacturers-in-india/feed", to: "/blog/explore-the-leading-wire-rod-manufacturers-in-india-for-superior-industrial-applications" },
-              { path: "/renny-kwikstage-scaffolding-a-global-leader-in-versatile-high-performance-scaffolding-solutions", to: "/blog/kwikstage-scaffolding-expert-insights-for-better-construction-performance" },
-              { path: "/renny-strips-leading-the-future-of-steel-fabrication-forging", to: "/blog" },
+              {
+                path: "/tag/wire-rod-manufacturers-in-india/feed",
+                to: "/blog/explore-the-leading-wire-rod-manufacturers-in-india-for-superior-industrial-applications",
+              },
+              {
+                path: "/renny-kwikstage-scaffolding-a-global-leader-in-versatile-high-performance-scaffolding-solutions",
+                to: "/blog/kwikstage-scaffolding-expert-insights-for-better-construction-performance",
+              },
+              {
+                path: "/renny-strips-leading-the-future-of-steel-fabrication-forging",
+                to: "/blog",
+              },
               { path: "/category/uncategorized/page/3", to: "/blog" },
               { path: "/category/uncategorized/page/2", to: "/blog" },
-              { path: "/tag/gi-hollow-section-pipe/feed", to: "/blog/gi-square-hollow-pipe-manufacturers-in-india-providing-durable-solutions-for-industries" },
-              { path: "/blog/renny-kwikstage-scaffolding-a-global-leader-in-versatile-high-performance-scaffolding-solutions", to: "/blog/kwikstage-scaffolding-expert-insights-for-better-construction-performance" },
-              { path: "/explore-the-leading-wire-rod", to: "/blog/explore-the-leading-wire-rod-manufacturers-in-india-for-superior-industrial-applications" },
-              { path: "/blog/renny-kwikstage-", to: "/blog/kwikstage-scaffolding-expert-insights-for-better-construction-performance" },
-              { path: "/blog/renny-indias-leading-erw-pipe-manufacturer", to: "/blog" },
+              {
+                path: "/tag/gi-hollow-section-pipe/feed",
+                to: "/blog/gi-square-hollow-pipe-manufacturers-in-india-providing-durable-solutions-for-industries",
+              },
+              {
+                path: "/blog/renny-kwikstage-scaffolding-a-global-leader-in-versatile-high-performance-scaffolding-solutions",
+                to: "/blog/kwikstage-scaffolding-expert-insights-for-better-construction-performance",
+              },
+              {
+                path: "/explore-the-leading-wire-rod",
+                to: "/blog/explore-the-leading-wire-rod-manufacturers-in-india-for-superior-industrial-applications",
+              },
+              {
+                path: "/blog/renny-kwikstage-",
+                to: "/blog/kwikstage-scaffolding-expert-insights-for-better-construction-performance",
+              },
+              {
+                path: "/blog/renny-indias-leading-erw-pipe-manufacturer",
+                to: "/blog",
+              },
               { path: "/tag/v/feed", to: "/" },
-              { path: "/the-role-of-renny-steel-props-in-modern-construction-innovation-safety-efficiency", to: "/blog" },
+              {
+                path: "/the-role-of-renny-steel-props-in-modern-construction-innovation-safety-efficiency",
+                to: "/blog",
+              },
               { path: "/blog/the-", to: "/blog" },
             ].map((redirect, index) => (
-              <Route key={index} path={redirect.path} element={<Navigate to={redirect.to} replace />} />
+              <Route
+                key={index}
+                path={redirect.path}
+                element={<Navigate to={redirect.to} replace />}
+              />
             ))}
-
 
             {/* About */}
             <Route path="/company-overview" element={<About />} />
@@ -157,15 +214,16 @@ const App = () => {
             <Route path="/blog/:slug" element={<BlogDetail />} />
             <Route path="/events" element={<Events />} />
 
-           
-
             {/* Contact */}
             <Route path="/contact-us" element={<Contact />} />
+            <Route path="/contact-us/thank-you" element={<ThankYou />} />
 
             {/* Career */}
             <Route path="/careers" element={<Career />} />
             <Route path="/careers/:jobId" element={<JobDetails />} />
-            <Route path="/careers/:jobId/apply" element={<JobApply />} /> 
+            <Route path="/careers/:jobId/apply" element={<JobApply />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/:slug/thank-you" element={<Thankyou />} />
           </Routes>
         </Suspense>
         <Parallax />

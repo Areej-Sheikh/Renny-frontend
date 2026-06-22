@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -8,6 +9,8 @@ import { buildApiUrl, RECAPTCHA_SITE_KEY } from "../lib/api";
 
 const ProductEnquiryModal = ({ isOpen, onClose, productName = "" }) => {
   const recaptchaRef = useRef();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [loading, setLoading] = useState(false);
 
   const [submitStatus, setSubmitStatus] = useState({
@@ -55,7 +58,8 @@ const ProductEnquiryModal = ({ isOpen, onClose, productName = "" }) => {
     e.preventDefault();
 
     if (!RECAPTCHA_SITE_KEY) {
-      const message = "Enquiry submissions are temporarily unavailable. Please try again later.";
+      const message =
+        "Enquiry submissions are temporarily unavailable. Please try again later.";
       setSubmitStatus({ type: "error", message });
       toast.error(message);
       return;
@@ -64,7 +68,8 @@ const ProductEnquiryModal = ({ isOpen, onClose, productName = "" }) => {
     const token = recaptchaRef.current?.getValue();
 
     if (!token) {
-      const message = "Please complete the verification step before submitting.";
+      const message =
+        "Please complete the verification step before submitting.";
       setSubmitStatus({ type: "error", message });
       toast.error(message);
       return;
@@ -87,15 +92,6 @@ const ProductEnquiryModal = ({ isOpen, onClose, productName = "" }) => {
       const res = await axios.post(buildApiUrl("/api/contact/submit"), payload);
 
       if (res.data.success) {
-        const successMessage = "Your enquiry has been submitted successfully.";
-
-        setSubmitStatus({
-          type: "success",
-          message: successMessage,
-        });
-
-        toast.success(successMessage);
-
         setFormData({
           fullName: "",
           companyName: "",
@@ -105,11 +101,12 @@ const ProductEnquiryModal = ({ isOpen, onClose, productName = "" }) => {
           approxQuantity: "",
           message: "",
         });
+
         recaptchaRef.current?.reset();
 
-        setTimeout(() => {
-          onClose();
-        }, 1500);
+        onClose();
+
+        navigate(`${location.pathname}/thank-you`);
       }
     } catch (err) {
       const errorMessage =
@@ -192,7 +189,6 @@ const ProductEnquiryModal = ({ isOpen, onClose, productName = "" }) => {
               className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3"
             />
 
-        
             <input
               type="email"
               name="email"
@@ -278,13 +274,11 @@ const ProductEnquiryModal = ({ isOpen, onClose, productName = "" }) => {
 
             <div className="py-2 flex justify-center scale-[0.9] origin-center">
               {RECAPTCHA_SITE_KEY ? (
-                <ReCAPTCHA
-                  ref={recaptchaRef}
-                  sitekey={RECAPTCHA_SITE_KEY}
-                />
+                <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_SITE_KEY} />
               ) : (
                 <div className="rounded-xl bg-yellow-50 px-4 py-3 text-center text-sm text-yellow-800">
-                  Verification is unavailable until `VITE_RECAPTCHA_SITE_KEY` is configured.
+                  Verification is unavailable until `VITE_RECAPTCHA_SITE_KEY` is
+                  configured.
                 </div>
               )}
             </div>

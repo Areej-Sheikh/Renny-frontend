@@ -62,6 +62,7 @@ const Navbar = () => {
     {
       title: "Sustainability",
       links: [{ name: "ESG", path: "/sustainability" }],
+      // links: [{ name: "CBAM", path: "/cbam" }],
     },
     {
       title: "Media",
@@ -266,6 +267,11 @@ const Navbar = () => {
               <Link to="/sustainability" className="dropdown-item">
                 ESG
               </Link>
+            </li>
+            <li>
+              {/* <Link to="/cbam" className="dropdown-item">
+                CBAM
+              </Link> */}
             </li>
           </ul>
         </li>

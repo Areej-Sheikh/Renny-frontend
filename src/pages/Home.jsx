@@ -117,15 +117,15 @@ const Home = () => {
     visible: { transition: { staggerChildren: 0.12 } },
   };
   const listItem = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { x: -20 },
     visible: { opacity: 1, x: 0 },
   };
   const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { y: 30 },
     visible: { opacity: 1, y: 0 },
   };
   const scaleFade = {
-    hidden: { opacity: 0, scale: 0.95 },
+    hidden: { scale: 0.95 },
     visible: { opacity: 1, scale: 1 },
   };
   const [viewKey, setViewKey] = useState(0);
@@ -156,10 +156,9 @@ const Home = () => {
             {/* Left Content */}
             <motion.div
               className="flex flex-col justify-center h-auto ml-0 md:ml-10 mb-2  text-center md:text-left"
-              initial={{ opacity: 0, x: -80 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ x: -80 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, x: 0 }}
             >
               <h1
                 className="
@@ -198,10 +197,9 @@ const Home = () => {
             {/* Right Content */}
             <motion.div
               className="w-full mr-0 md:mr-1 max-w-full relative flex flex-col items-start"
-              initial={{ opacity: 0, x: 80 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ x: 80 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
-              viewport={{ once: true }}
             >
               {/* Video Container - Preserved your hover logic and desktop widths */}
               <div className="w-full flex items-center justify-center mt-4 md:mt-8 pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
@@ -288,8 +286,9 @@ const Home = () => {
               <div className="bg-transparent  rounded-xl px-6 py-8 md:px-10 md:py-10 max-w-3xl w-full text-center">
                 <motion.h2
                   className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ y: 30, filter: "blur(1px)" }}
+                  whileInView={{ y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                 >
                   About Us
@@ -297,9 +296,10 @@ const Home = () => {
 
                 <motion.p
                   className="text-sm sm:text-base md:text-base text-white mb-4 leading-relaxed"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+                  initial={{ y: 30, filter: "blur(1px)" }}
+                  whileInView={{ y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
                 >
                   Founded in 1996, Renny Strips Limited delivers innovative,
                   sustainable and industry-ready structural products at
@@ -312,9 +312,10 @@ const Home = () => {
 
                 <motion.p
                   className="text-sm sm:text-base md:text-base text-white mb-4 leading-relaxed"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+                  initial={{ y: 30, filter: "blur(1px)" }}
+                  whileInView={{ y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
                 >
                   Renny Strips operates three integrated manufacturing units
                   offering end-to-end production, ensuring consistent quality,
@@ -324,9 +325,10 @@ const Home = () => {
 
                 <motion.p
                   className="text-sm sm:text-base md:text-base text-white leading-relaxed"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.45 }}
+                  initial={{ y: 30, filter: "blur(1px)" }}
+                  whileInView={{ y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
                 >
                   Committed to sustainable manufacturing and environmental
                   responsibility, the Company adopts eco-friendly practices,
@@ -343,8 +345,9 @@ const Home = () => {
           {/* Heading */}
           <motion.h2
             className="text-3xl text-blue py-8 sm:text-4xl md:text-[48px] font-bold  w-full text-center"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5 }}
           >
             Our Products
@@ -358,15 +361,16 @@ const Home = () => {
         {/* 4. Our Network Section */}
         <motion.section
           className="flex flex-col items-center font-helvetica bg-white justify-center px-4 sm:px-6 py-12 md:py-16 panel"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <motion.h2
             className="text-3xl text-blue sm:text-4xl md:text-[48px] font-bold ml-0 md:ml-20 w-full text-center"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5 }}
           >
             Our Network
@@ -380,7 +384,7 @@ const Home = () => {
             className="flex flex-wrap items-center justify-center gap-6 mt-8 md:mt-10"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.3 }}
             variants={staggerContainer}
           >
             {[
@@ -432,9 +436,9 @@ const Home = () => {
         <section className="flex justify-center px-6 py-16 font-helvetica bg-[#f0f6ff]">
           <motion.section
             className="flex justify-center w-full"
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10  w-full">
@@ -511,8 +515,9 @@ const Home = () => {
           {/* Heading */}
           <motion.h2
             className="text-3xl text-blue sm:text-4xl md:text-[48px] font-bold ml-0 md:ml-20 mb-8 md:mb-10 w-full text-center"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5 }}
           >
             News & Investor Relations
@@ -525,7 +530,7 @@ const Home = () => {
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
               className="w-full lg:w-1/4 bg-white rounded-2xl shadow p-4 space-y-3"
             >
               {newsData.length > 0 ? (
@@ -571,7 +576,7 @@ const Home = () => {
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
               className="w-full lg:w-2/4 bg-white rounded-2xl shadow p-4 sm:p-6 min-h-auto lg:min-h-[500px] flex items-center justify-center"
             >
               <AnimatePresence mode="wait">
@@ -628,7 +633,7 @@ const Home = () => {
               className="w-full lg:w-1/4 bg-white rounded-2xl shadow p-4 sm:p-6 flex flex-col items-center justify-start"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
               variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
             >
               <h2 className="text-lg sm:text-xl font-bold mb-5 sm:mb-6 text-center">
@@ -647,7 +652,7 @@ const Home = () => {
                     key={index}
                     className="flex items-center justify-between bg-gray-50 rounded-xl p-4 hover:shadow transition"
                     variants={{
-                      hidden: { opacity: 0, x: 20 },
+                      hidden: { x: 20 },
                       visible: { opacity: 1, x: 0 },
                     }}
                   >
@@ -685,9 +690,9 @@ const Home = () => {
         <section className="flex flex-col items-center font-helvetica justify-center px-4 sm:px-6 py-12 md:py-16 bg-white panel min-h-screen lg:h-screen">
           <motion.h2
             className="text-3xl font-helvetica text-blue sm:text-4xl md:text-[48px] ml-0 md:ml-20 font-bold mb-8 md:mb-10 w-full text-center"
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             Engineering a{" "}
@@ -699,17 +704,17 @@ const Home = () => {
 
           <motion.div
             className="flex flex-col lg:flex-row items-stretch justify-center gap-6 sm:gap-8 md:gap-10 w-full"
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }} // Reduced amount for better mobile triggering
+            viewport={{ once: true, amount: 0.3 }} // Reduced amount for better mobile triggering
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             {/* Slider Container */}
             <motion.div
               className="w-full lg:w-3/5" // Removed fixed h-80 to allow content to dictate height
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.15 }}
             >
               <SustainabilitySlider />
@@ -718,9 +723,9 @@ const Home = () => {
             {/* Video Container */}
             <motion.div
               className="w-full lg:w-2/5 flex"
-              initial={{ opacity: 0, x: 20, scale: 0.98 }} // Reduced X and scale for smoother mobile entry
+              initial={{ x: 20, scale: 0.98 }} // Reduced X and scale for smoother mobile entry
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
               onAnimationComplete={() => {
                 if (sustainabilityVideoRef.current) {
@@ -751,9 +756,9 @@ const Home = () => {
           className="bg-gray-100 px-6 py-10 font-helvetica panel"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={{
-            hidden: { opacity: 0, y: 40 },
+            hidden: { y: 40 },
             visible: {
               opacity: 1,
               y: 0,
@@ -763,8 +768,9 @@ const Home = () => {
         >
           <motion.h2
             className="text-[48px] text-blue font-bold w-full text-center"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5 }}
           >
             Blogs
@@ -773,9 +779,9 @@ const Home = () => {
 
           <motion.div
             className="mx-auto flex flex-col lg:flex-row gap-10"
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
           >
             {/* Latest Blog */}

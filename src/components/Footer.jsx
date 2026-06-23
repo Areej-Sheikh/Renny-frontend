@@ -140,7 +140,8 @@ const Footer = () => {
 
           <div className="space-y-3">
             <h3 className="font-semibold">Sustainability</h3>
-            <FooterLink to="/sustainability">Sustainability</FooterLink>
+            <FooterLink to="/sustainability">ESG</FooterLink>
+            {/* <FooterLink to="/cbam">CBAM</FooterLink> */}
           </div>
 
           <div className="space-y-3">

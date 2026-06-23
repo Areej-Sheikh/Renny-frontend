@@ -15,6 +15,7 @@ import PageSpinner from "./components/PageSpinner.jsx";
 import WhatsAppButton from "./components/WhatsAppButton.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Thankyou from "./pages/Thankyou.jsx";
+// import CBAM from "./pages/Sustainability/CBAM.jsx";
 
 /* ── Pages ── */
 const Home = lazy(() => import("./pages/Home"));
@@ -49,6 +50,9 @@ const EC = lazy(() => import("./pages/EC/EC"));
 /* Sustainability */
 const Sustainability = lazy(
   () => import("./pages/Sustainability/Sustainability"),
+);
+const CBAM = lazy(
+  () => import("./pages/Sustainability/CBAM.jsx"),
 );
 
 /* Media */
@@ -207,6 +211,7 @@ const App = () => {
 
             {/* Sustainability */}
             <Route path="/sustainability" element={<Sustainability />} />
+            {/* <Route path="/cbam" element={<CBAM />} /> */}
 
             {/* Media */}
             <Route path="/news-room" element={<News />} />

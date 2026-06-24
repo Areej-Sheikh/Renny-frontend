@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
   "dev": "vite",
-  "build": "npm run sitemap && vite build && node -e \"require('fs').copyFileSync('dist/index.html', 'dist/404.html')\"",
+  "build": "npm run sitemap && vite build",
   "sitemap": "node scripts/generate-sitemap.mjs",
   "lint": "eslint .",
   "preview": "vite preview"

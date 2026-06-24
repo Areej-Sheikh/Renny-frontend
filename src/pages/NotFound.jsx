@@ -10,6 +10,7 @@ const NotFound = () => {
         description="The page you are looking for could not be found. Explore our steel products, wire rods, strips, and industrial solutions."
         keywords="404, page not found, Renny Strips"
         url="https://rennystrips.com/404"
+        noindex={true}
       />
 
       <div className="min-h-screen flex items-center justify-center px-6 bg-gray-100">

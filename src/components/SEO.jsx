@@ -23,10 +23,11 @@ const SEO = ({
       <meta name="keywords" content={keywords} />
       <meta name="author" content="Renny Strips Ltd." />
       <meta
+        key="robots"
         name="robots"
-        content={`${
-          noindex ? "noindex" : "index"
-        }, ${nofollow ? "nofollow" : "follow"}, max-image-preview:large, max-snippet:-1, max-video-preview:-1`}
+        content={`${noindex ? "noindex" : "index"}, ${
+          nofollow ? "nofollow" : "follow"
+        }, max-image-preview:large, max-snippet:-1, max-video-preview:-1`}
       />
 
       {/* Canonical */}

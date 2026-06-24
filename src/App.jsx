@@ -51,9 +51,7 @@ const EC = lazy(() => import("./pages/EC/EC"));
 const Sustainability = lazy(
   () => import("./pages/Sustainability/Sustainability"),
 );
-const CBAM = lazy(
-  () => import("./pages/Sustainability/CBAM.jsx"),
-);
+const CBAM = lazy(() => import("./pages/Sustainability/CBAM.jsx"));
 
 /* Media */
 const News = lazy(() => import("./pages/Media/News"));

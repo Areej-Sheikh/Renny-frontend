@@ -408,5 +408,6 @@
   { "source": "/contact-us/thank-you", "status": "200", "target": "/index.html" },
   { "source": "/careers/thank-you", "status": "200", "target": "/index.html" },
   { "source": "/apply/thank-you", "status": "200", "target": "/index.html" },
+  { "source": "/thank-you", "status": "200", "target": "/index.html" },
   { "source": "/<*>", "status": "404-200", "target": "/index.html" }
 ]

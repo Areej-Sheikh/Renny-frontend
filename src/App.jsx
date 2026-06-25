@@ -225,6 +225,7 @@ const App = () => {
             <Route path="/careers/:jobId" element={<JobDetails />} />
             <Route path="/careers/:jobId/apply" element={<JobApply />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/thank-you" element={<Thankyou />} />
             <Route path="/:slug/thank-you" element={<Thankyou />} />
           </Routes>
         </Suspense>

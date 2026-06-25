@@ -10,7 +10,7 @@ const Thankyou = () => {
         description="Thank you for contacting Renny Strips. Our team has received your enquiry and will get back to you shortly."
         keywords="thank you, enquiry submitted, contact confirmation"
         url="https://rennystrips.com/thank-you"
-        noindex={false}
+        noindex={true}
         nofollow={true}
       />
       <div className="min-h-screen flex items-center justify-center px-6 bg-gray-100">

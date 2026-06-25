@@ -72,7 +72,13 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
 
+    if (params.get("page_id") === "2404") {
+      window.location.replace("/");
+    }
+  }, []);
   useEffect(() => {
     // Trailing slash redirection
     if (location.pathname !== "/" && location.pathname.endsWith("/")) {

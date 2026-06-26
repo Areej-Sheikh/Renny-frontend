@@ -735,18 +735,15 @@ const Home = () => {
                 }
               }}
             >
-              <video
+              {/* <video
                 ref={sustainabilityVideoRef}
                 src={sustainability2}
-                /* Changed h-135 to aspect-video for mobile 
-         lg:h-auto + object-cover ensures it fills the column height on desktop
-      */
                 className="w-full h-auto aspect-video lg:aspect-auto lg:h-full object-fill shadow-lg rounded-3xl lg:rounded-4xl"
                 muted={true}
                 loop={true}
                 autoPlay={true}
                 playsInline={true}
-              />
+              /> */}
             </motion.div>
           </motion.div>
         </section>

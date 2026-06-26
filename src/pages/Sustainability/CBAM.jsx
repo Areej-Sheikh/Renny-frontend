@@ -15,7 +15,7 @@ import {
   FiPackage,
   FiInfo,
 } from "react-icons/fi";
-
+import { PiColumnsBold, PiSquaresFourBold } from "react-icons/pi";
 // Animation libraries
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
@@ -217,18 +217,34 @@ const cards = [
     title: "Renny Green Steel\nCarbon Impact",
     value: "~€48.11",
     unit: "per MT",
-    valueColor: "text-green-600",
-    border: "border-green-600",
-    iconBg: "bg-green-50",
+    valueColor: "text-green",
+    border: "border-green",
+    iconBg: "bg-green/10",
   },
   {
     icon: FiDollarSign,
     title: "Estimated Savings",
     value: "~€117.67",
     unit: "per MT",
-    valueColor: "text-blue-900",
-    border: "border-blue-500",
+    valueColor: "text-blue",
+    border: "border-blue",
     iconBg: "bg-blue-50",
+  },
+];
+const products = [
+  {
+    title: "Structural Steel",
+    description:
+      "Steel products used in construction, infrastructure, and industrial applications.",
+    image: img1,
+    Icon: PiColumnsBold, // Clean structural beam representation
+  },
+  {
+    title: "Construction Material",
+    description:
+      "Cement and other construction materials essential for building and infrastructure.",
+    image: img2,
+    Icon: PiSquaresFourBold, // Clean material block layout
   },
 ];
 
@@ -633,7 +649,7 @@ const CBAM = () => {
       </section>
 
       {/* Cost Saving Calculator */}
-      <section className="py-12 bg-white overflow-hidden selection:bg-green-100">
+      <section className="py-12 bg-white overflow-hidden selection:bg-green/20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           {/* Heading */}
           <motion.div
@@ -648,6 +664,7 @@ const CBAM = () => {
               className="text-[30px] md:text-[40px] font-bold text-black"
             >
               CBAM Cost Saving Calculator
+              <div className="w-64 md:w-130 h-0.5 bg-blue mx-auto mt-2" />
             </motion.h2>
 
             {/* Kept this original element but removed heavy styles to let the h2 absolute border handle styling gracefully */}
@@ -724,7 +741,21 @@ const CBAM = () => {
                         <div
                           className={`text-2xl xl:text-3xl font-bold tracking-tight ${card.valueColor}`}
                         >
-                          {card.value}
+                          <CountUp
+                            end={parseFloat(
+                              String(card.value).replace(/[^\d.-]/g, ""),
+                            )}
+                            duration={2}
+                            separator=","
+                            decimals={
+                              String(card.value).includes(".")
+                                ? String(card.value).split(".")[1].length
+                                : 0
+                            }
+                            prefix="€"
+                            enableScrollSpy
+                            scrollSpyOnce
+                          />
                         </div>
 
                         <p className="text-[11px] font-medium uppercase tracking-wider text-gray-400 mt-0.5">
@@ -742,12 +773,12 @@ const CBAM = () => {
                 whileHover={{
                   scale: 1.005,
                 }}
-                className="rounded-xl border border-emerald-100/60 bg-gradient-to-br from-[#f6faf4] to-[#f0f4eb] p-6 shadow-sm flex-grow flex items-center"
+                className="rounded-xl border border-green/20 bg-gradient-to-br from-green/20 to-[#f0f4eb] p-6 shadow-sm flex-grow flex items-center"
               >
                 <div className="flex items-center justify-between gap-6 w-full">
                   <div className="flex items-center gap-4 sm:gap-5">
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-50 border border-emerald-100/50 flex items-center justify-center shrink-0">
-                      <FiHome size={26} className="text-emerald-600" />
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-green/20 border border-green/10 flex items-center justify-center shrink-0">
+                      <FiHome size={26} className="text-green" />
                     </div>
 
                     <div>
@@ -755,15 +786,24 @@ const CBAM = () => {
                         Estimated Savings per 25 MT Export Container
                       </p>
 
-                      <h3 className="text-2xl sm:text-3xl xl:text-4xl font-bold text-emerald-700 mt-1 tracking-tight">
-                        ~€2,941.75
+                      <h3 className="text-2xl sm:text-3xl xl:text-4xl font-bold text-green mt-1 tracking-tight">
+                        ~
+                        <CountUp
+                          end={2941.75}
+                          duration={2.5}
+                          separator=","
+                          decimals={2}
+                          prefix="€"
+                          enableScrollSpy
+                          scrollSpyOnce
+                        />
                       </h3>
                     </div>
                   </div>
 
                   <FiPackage
                     size={100}
-                    className="text-emerald-800/10 hidden md:block shrink-0 stroke-[1.2]"
+                    className="text-green/40 hidden md:block shrink-0 stroke-[1.2]"
                   />
                 </div>
               </motion.div>
@@ -787,6 +827,81 @@ const CBAM = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Products Covered Under CBAM */}
+      <section className="py-10 bg-gray-100 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          {/* Header */}
+          <motion.div
+            variants={textContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="text-center mb-14"
+          >
+            <motion.h2
+              variants={fadeUp}
+              className="text-3xl font-bold text-[#1d2b4f] tracking-tight inline-block relative after:content-[''] after:absolute after:-bottom-3 after:left-1 after:right-1 after:h-[2px] after:bg-[#1d2b4f]"
+            >
+              Products Covered Under CBAM
+            </motion.h2>
+          </motion.div>
+
+          {/* Cards Grid Grid */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch max-w-5xl mx-auto"
+          >
+            {products.map((product, index) => {
+              const IconComponent = product.Icon;
+
+              return (
+                <motion.div
+                  key={index}
+                  variants={fadeUp}
+                  className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col group"
+                >
+                  {/* Image Section */}
+                  <div className="h-[240px] sm:h-[280px] w-full overflow-hidden relative">
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Content Section with Intersecting Floating Badge */}
+                  <div className="relative pt-12 pb-10 px-6 sm:px-10 text-center flex-grow flex flex-col items-center bg-white">
+                    {/* Absolute Badge Container Intersecting the Image Frame */}
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                      <div className="w-16 h-16 rounded-full bg-[#f3f5f9] border-[4px] border-white shadow-md flex items-center justify-center text-[#1d2b4f]">
+                        <IconComponent size={24} />
+                      </div>
+                    </div>
+
+                    {/* Title & Accent underline */}
+                    <h3 className="text-xl font-bold text-[#1d2b4f] tracking-tight">
+                      {product.title}
+                    </h3>
+
+                    <div className="w-8 h-[2px] bg-[#1d2b4f] my-3.5 rounded-full" />
+
+                    {/* Description */}
+                    <p className="text-gray-500 text-sm leading-relaxed max-w-sm">
+                      {product.description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      
     </div>
   );
 };

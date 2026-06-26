@@ -1,7 +1,8 @@
 customHeaders:
-  - pattern: '**'
-    headers:
+   - pattern: '**'
+     headers:
       - key: 'X-Frame-Options'
+        value: 'SAMEORIGIN'
         value: 'SAMEORIGIN'
 
       - key: 'Referrer-Policy'

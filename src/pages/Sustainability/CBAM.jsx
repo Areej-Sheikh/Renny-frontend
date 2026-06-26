@@ -1,17 +1,46 @@
+// React
 import React from "react";
+
+// Icons
+import {
+  FiCheckCircle,
+  FiFileText,
+  FiBarChart2,
+  FiShield,
+  FiHome,
+  FiAward,
+  FiBriefcase,
+  FiDollarSign,
+  FiBox,
+  FiPackage,
+  FiInfo,
+} from "react-icons/fi";
+
+// Animation libraries
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
+
+// Image assets
 import heroSrc from "../../assets/CBAMHero.webp";
 import CBAMImage from "../../assets/CBAM1.webp";
 import CBAMImage1 from "../../assets/What Changed in 2026.webp";
 import CBAMImage2 from "../../assets/CBAM.svg";
+import logo from "../../assets/RennyLogo.webp";
+import CostSavingCalculator from "../../assets/CBAM Cost Saving Calculator.webp";
+import global from "../../assets/Global_5.webp";
+import img1 from "../../assets/1.webp";
+import img2 from "../../assets/3.webp";
+import HowToComply from "../../assets/How To Comply.webp";
+import R from "../../assets/R.webp";
 
+// Animation viewport settings
 const viewportConfig = {
   once: true,
   amount: 0.2,
 };
 
+// Container animation variants
 const containerVariants = {
   hidden: {},
   visible: {
@@ -22,6 +51,26 @@ const containerVariants = {
   },
 };
 
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const textContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+// Content animation variants
 const fadeUp = {
   hidden: {
     opacity: 0,
@@ -51,15 +100,6 @@ const slideLeft = {
     },
   },
 };
-const staggerContainer = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
-  },
-};
 
 const slideRight = {
   hidden: {
@@ -76,6 +116,7 @@ const slideRight = {
   },
 };
 
+// Image animation variants
 const imageReveal = {
   hidden: {
     opacity: 0,
@@ -108,14 +149,88 @@ const imageZoom = {
   },
 };
 
-const textContainer = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.2,
-    },
+// DATA ARRAYS
+const credentials = [
+  {
+    icon: FiCheckCircle,
+    text: (
+      <>
+        Nearly <span className="font-semibold text-green">40%</span> lower
+        emissions than conventional industry benchmarks.
+      </>
+    ),
   },
-};
+  {
+    icon: FiAward,
+    text: (
+      <>
+        <span className="font-semibold text-green">5-Star</span> Green Steel
+        Manufacturing Rating.
+      </>
+    ),
+  },
+  {
+    icon: FiShield,
+    text: (
+      <>
+        Greenhouse gas emissions independently verified by{" "}
+        <span className="font-semibold text-green">TÜV Rheinland.</span>
+      </>
+    ),
+  },
+  {
+    icon: FiFileText,
+    text: (
+      <>
+        Verified under{" "}
+        <span className="font-semibold text-green">ISO 14064-3:2019</span> and
+        the Greenhouse Gas Protocol.
+      </>
+    ),
+  },
+  {
+    icon: FiBarChart2,
+    text: (
+      <>
+        Emission intensity reported at{" "}
+        <span className="font-semibold text-green">0.395 tCO₂e</span> per tonne
+        for the Steel Division and{" "}
+        <span className="font-semibold text-green">0.065 tCO₂e</span> per tonne
+        for the Infra Division.
+      </>
+    ),
+  },
+];
+
+const cards = [
+  {
+    icon: FiBriefcase,
+    title: "Conventional Steel\nCarbon Impact",
+    value: "~€165.79",
+    unit: "per MT",
+    valueColor: "text-slate-800",
+    border: "border-orange-500",
+    iconBg: "bg-slate-100",
+  },
+  {
+    icon: FiCheckCircle,
+    title: "Renny Green Steel\nCarbon Impact",
+    value: "~€48.11",
+    unit: "per MT",
+    valueColor: "text-green-600",
+    border: "border-green-600",
+    iconBg: "bg-green-50",
+  },
+  {
+    icon: FiDollarSign,
+    title: "Estimated Savings",
+    value: "~€117.67",
+    unit: "per MT",
+    valueColor: "text-blue-900",
+    border: "border-blue-500",
+    iconBg: "bg-blue-50",
+  },
+];
 
 const CBAM = () => {
   const [ref, inView] = useInView({
@@ -124,13 +239,13 @@ const CBAM = () => {
   });
   return (
     <div className="relative w-full overflow-x-hidden font-helvetica">
-      {/* Banner Section */}
+      {/* Hero Banner */}
       <motion.section
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={imageZoom}
-        className="relative h-screen w-full overflow-hidden mb-10"
+        className="relative h-screen w-full overflow-hidden"
       >
         <img
           src={heroSrc}
@@ -198,7 +313,7 @@ const CBAM = () => {
         </motion.div>
       </section>
 
-      {/* WHAT CHANGED */}
+      {/* What Changed in 2026 */}
       <section className="bg-white py-10 sm:py-14 lg:py-16">
         <motion.div
           variants={containerVariants}
@@ -293,7 +408,6 @@ const CBAM = () => {
         </motion.div>
       </section>
 
-
       {/* CBAM Benefit */}
       <section
         ref={ref}
@@ -341,17 +455,17 @@ const CBAM = () => {
               >
                 <p>
                   Renny Strips’ Green Steel has a carbon footprint of only{" "}
-                  <span className="font-bold text-[#18852D]">0.6385 tCO₂</span>{" "}
-                  per metric ton compared to the conventional industry average
-                  of nearly{" "}
+                  <span className="font-bold text-green">0.6385 tCO₂</span> per
+                  metric ton compared to the conventional industry average of
+                  nearly{" "}
                   <span className="font-bold text-[#162456]">2.2 tCO₂</span> per
                   metric ton.
                 </p>
 
                 <p className="mt-8">
                   This can help buyers reduce carbon-linked import exposure by
-                  nearly <span className="font-bold text-[#18852D]">€118</span>{" "}
-                  per metric ton and strengthen their ESG and compliance
+                  nearly <span className="font-bold text-green">€118</span> per
+                  metric ton and strengthen their ESG and compliance
                   positioning.
                 </p>
               </motion.div>
@@ -365,14 +479,14 @@ const CBAM = () => {
               {/* TOP LABEL */}
               <motion.p
                 variants={fadeUp}
-                className="text-[12px] tracking-[3px] mt-10 font-semibold text-[#1E7D2B] uppercase"
+                className="text-[12px] tracking-[3px] font-semibold text-green uppercase"
               >
                 Renny Strips' Green Steel
               </motion.p>
 
               {/* 0.6385 */}
               <motion.div variants={fadeUp} className="mt-1">
-                <h3 className="text-[#18852D] font-extrabold leading-none text-[70px] md:text-[90px]">
+                <h3 className="text-green font-extrabold leading-none text-[65px] md:text-[70px]">
                   {inView && (
                     <CountUp
                       start={0}
@@ -393,7 +507,7 @@ const CBAM = () => {
                 variants={fadeUp}
                 className="flex items-center gap-4 my-5 w-full max-w-[280px]"
               >
-                <div className="flex-1 h-[1px] bg-[#4EA658]" />
+                <div className="flex-1 h-[1px] bg-green" />
                 <span className="font-bold text-[#162456] text-[30px]">vs</span>
                 <div className="flex-1 h-[1px] bg-[#9CA3AF]" />
               </motion.div>
@@ -408,7 +522,7 @@ const CBAM = () => {
 
               {/* 2.2 */}
               <motion.div variants={fadeUp}>
-                <h3 className="text-[#081B58] font-extrabold leading-none mt-2 text-[70px] md:text-[90px]">
+                <h3 className="text-[#081B58] font-extrabold leading-none mt-2 text-[65px] md:text-[70px]">
                   {inView && (
                     <CountUp start={0} end={2.2} decimals={1} duration={2.5} />
                   )}
@@ -434,7 +548,7 @@ const CBAM = () => {
                   €{inView && <CountUp start={0} end={118} duration={2.5} />}
                 </div>
 
-                <p className="mt-10 uppercase tracking-[1.5px] text-[#1E7D2B] font-bold text-[14px]">
+                <p className="mt-10 uppercase tracking-[1.5px] text-green font-bold text-[14px]">
                   Carbon-Linked Import Exposure Reduction
                 </p>
 
@@ -445,6 +559,233 @@ const CBAM = () => {
             </motion.div>
           </div>
         </motion.div>
+      </section>
+
+      {/* Carbon Credentials */}
+      <section className="bg-gray-100 h-screen flex items-center justify-center">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            className="grid lg:grid-cols-2 gap-20 items-center"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+          >
+            {/* Left Side */}
+            <motion.div variants={slideLeft} className="flex justify-center">
+              <motion.img
+                src={logo}
+                alt="Renny Logo"
+                className="w-full max-w-md object-contain"
+                whileHover={{
+                  scale: 1.03,
+                }}
+                transition={{
+                  duration: 0.4,
+                }}
+              />
+            </motion.div>
+
+            {/* Right Side */}
+            <motion.div variants={slideRight} className="max-w-xl">
+              <motion.h2
+                variants={fadeUp}
+                className="text-4xl font-bold text-[#0A2342]"
+              >
+                Renny's Carbon Credentials
+              </motion.h2>
+
+              <motion.div
+                variants={fadeUp}
+                className="mt-4 w-[240px] h-[2px] bg-[#CFCFCF] relative"
+              >
+                <div className="absolute left-0 top-0 w-14 h-full bg-[#162456]" />
+              </motion.div>
+
+              <motion.div variants={staggerContainer} className="space-y-2">
+                {credentials.map((item, index) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <motion.div
+                      key={index}
+                      variants={fadeUp}
+                      whileHover={{
+                        x: 6,
+                      }}
+                      transition={{
+                        duration: 0.3,
+                      }}
+                      className="flex gap-5 items-start border-b border-gray-200 py-1"
+                    >
+                      <div className="w-14 h-14 rounded-full bg-green/10 flex items-center justify-center shrink-0">
+                        <Icon size={28} className="text-green" />
+                      </div>
+
+                      <p className="text-gray-700 leading-7">{item.text}</p>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Cost Saving Calculator */}
+      <section className="py-12 bg-white overflow-hidden selection:bg-green-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          {/* Heading */}
+          <motion.div
+            variants={textContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="text-center mb-10"
+          >
+            <motion.h2
+              variants={fadeUp}
+              className="text-[30px] md:text-[40px] font-bold text-black"
+            >
+              CBAM Cost Saving Calculator
+            </motion.h2>
+
+            {/* Kept this original element but removed heavy styles to let the h2 absolute border handle styling gracefully */}
+            <motion.div variants={fadeUp} className="hidden" />
+
+            <motion.p
+              variants={fadeUp}
+              className="mt-6 text-gray-500 text-sm sm:text-base tracking-wide"
+            >
+              Real savings through lower carbon emissions.
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="grid lg:grid-cols-[1fr_1.3fr] gap-6 items-stretch"
+          >
+            {/* LEFT IMAGE */}
+            <motion.div
+              variants={slideLeft}
+              className="rounded-xl overflow-hidden shadow-sm border border-gray-100 min-h-[340px] lg:min-h-auto relative"
+            >
+              <motion.img
+                src={CostSavingCalculator}
+                alt="Cost Saving Calculator"
+                className="w-full h-full object-cover absolute inset-0"
+                whileHover={{
+                  scale: 1.02,
+                }}
+                transition={{
+                  duration: 0.5,
+                }}
+              />
+            </motion.div>
+
+            {/* RIGHT SIDE */}
+            <motion.div
+              variants={slideRight}
+              className="flex flex-col justify-between gap-5"
+            >
+              {/* Top Cards */}
+              <motion.div
+                variants={staggerContainer}
+                className="grid sm:grid-cols-3 gap-4"
+              >
+                {cards.map((card, index) => {
+                  const Icon = card.icon;
+
+                  return (
+                    <motion.div
+                      key={index}
+                      variants={fadeUp}
+                      whileHover={{
+                        y: -4,
+                      }}
+                      className={`bg-white rounded-xl border-b-[3px] ${card.border} shadow-sm px-4 py-6 text-center flex flex-col justify-between min-h-[220px]`}
+                    >
+                      <div>
+                        <div
+                          className={`w-12 h-12 rounded-full ${card.iconBg} flex items-center justify-center mx-auto mb-4 border border-gray-50`}
+                        >
+                          <Icon size={22} className="text-[#1d2b4f]" />
+                        </div>
+
+                        <h3 className="text-xs font-semibold text-gray-700 tracking-wide leading-tight whitespace-pre-line">
+                          {card.title}
+                        </h3>
+                      </div>
+
+                      <div className="mt-4">
+                        <div
+                          className={`text-2xl xl:text-3xl font-bold tracking-tight ${card.valueColor}`}
+                        >
+                          {card.value}
+                        </div>
+
+                        <p className="text-[11px] font-medium uppercase tracking-wider text-gray-400 mt-0.5">
+                          {card.unit}
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+
+              {/* Bottom Savings */}
+              <motion.div
+                variants={fadeUp}
+                whileHover={{
+                  scale: 1.005,
+                }}
+                className="rounded-xl border border-emerald-100/60 bg-gradient-to-br from-[#f6faf4] to-[#f0f4eb] p-6 shadow-sm flex-grow flex items-center"
+              >
+                <div className="flex items-center justify-between gap-6 w-full">
+                  <div className="flex items-center gap-4 sm:gap-5">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-50 border border-emerald-100/50 flex items-center justify-center shrink-0">
+                      <FiHome size={26} className="text-emerald-600" />
+                    </div>
+
+                    <div>
+                      <p className="text-gray-600 text-xs sm:text-sm font-medium tracking-wide">
+                        Estimated Savings per 25 MT Export Container
+                      </p>
+
+                      <h3 className="text-2xl sm:text-3xl xl:text-4xl font-bold text-emerald-700 mt-1 tracking-tight">
+                        ~€2,941.75
+                      </h3>
+                    </div>
+                  </div>
+
+                  <FiPackage
+                    size={100}
+                    className="text-emerald-800/10 hidden md:block shrink-0 stroke-[1.2]"
+                  />
+                </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+
+          {/* Footer */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="flex justify-center items-center gap-1.5 mt-8 text-gray-400 text-xs text-center px-4"
+          >
+            <FiInfo className="text-gray-400 shrink-0" size={14} />
+
+            <p className="leading-normal">
+              Savings are indicative and based on current CBAM carbon pricing
+              assumptions.
+            </p>
+          </motion.div>
+        </div>
       </section>
     </div>
   );

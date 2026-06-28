@@ -13,8 +13,11 @@ import {
   FiDollarSign,
   FiBox,
   FiPackage,
+  FiDatabase,
+  FiTrendingUp,
   FiInfo,
 } from "react-icons/fi";
+import { FaLeaf } from "react-icons/fa";
 import { PiColumnsBold, PiSquaresFourBold } from "react-icons/pi";
 // Animation libraries
 import { motion } from "framer-motion";
@@ -71,17 +74,37 @@ const textContainer = {
 };
 
 // Content animation variants
+
 const fadeUp = {
   hidden: {
     opacity: 0,
-    y: 60,
+    y: 40,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8,
+      duration: 0.6,
       ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
+const lineExtend = {
+  hidden: { scaleX: 0 },
+  visible: {
+    scaleX: 1,
+    transition: {
+      duration: 1.2,
+      ease: "easeInOut",
+    },
+  },
+};
+
+const timelineContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.3, // Creates the sequential timeline chain effect
     },
   },
 };
@@ -120,16 +143,17 @@ const slideRight = {
 const imageReveal = {
   hidden: {
     opacity: 0,
-    scale: 1.08,
-    y: 50,
+    scale: 1.05,
+    y: 40,
   },
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
     transition: {
-      duration: 1.2,
+      duration: 1,
       ease: "easeOut",
+      delay: 0.5, // Waits slightly for the steps to complete their cycle
     },
   },
 };
@@ -247,6 +271,34 @@ const products = [
     Icon: PiSquaresFourBold, // Clean material block layout
   },
 ];
+const stepsData = [
+  {
+    id: "01",
+    title: "Collect",
+    description: "Capture operational and emissions data seamlessly.",
+    icon: FiDatabase,
+  },
+  {
+    id: "02",
+    title: "Monitor",
+    description:
+      "Track emissions across fuel, electricity, processes, and raw materials.",
+    icon: FiTrendingUp,
+  },
+  {
+    id: "03",
+    title: "Verify",
+    description:
+      "Validate and authenticate product-level carbon footprints digitally.",
+    icon: FiShield,
+  },
+  {
+    id: "04",
+    title: "Report",
+    description: "Generate CBAM-ready reports with accuracy and transparency.",
+    icon: FiFileText,
+  },
+];
 
 const CBAM = () => {
   const [ref, inView] = useInView({
@@ -254,7 +306,7 @@ const CBAM = () => {
     threshold: 0.25,
   });
   return (
-    <div className="relative w-full overflow-x-hidden font-helvetica">
+    <div className="relative w-full  overflow-x-hidden font-helvetica">
       {/* Hero Banner */}
       <motion.section
         initial="hidden"
@@ -299,7 +351,7 @@ const CBAM = () => {
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          className=" mx-auto px-4 sm:px-6 lg:px-8"
         >
           <motion.h2
             variants={fadeUp}
@@ -336,7 +388,7 @@ const CBAM = () => {
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          className=" mx-auto px-4 sm:px-6 lg:px-8"
         >
           <motion.h2
             variants={fadeUp}
@@ -371,7 +423,7 @@ const CBAM = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="max-w-7xl mx-auto px-6 lg:px-12"
+          className=" mx-auto px-6 lg:px-12"
         >
           {/* Top Content */}
           <div className="grid lg:grid-cols-2 gap-16 mb-20 items-start">
@@ -446,7 +498,7 @@ const CBAM = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full"
+          className="relative z-10  mx-auto px-6 lg:px-8 w-full"
         >
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* LEFT CONTENT */}
@@ -578,8 +630,8 @@ const CBAM = () => {
       </section>
 
       {/* Carbon Credentials */}
-      <section className="bg-gray-100 h-screen flex items-center justify-center">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="bg-gray-100 h-screen flex items-center justify-center ">
+        <div className=" mx-auto max-w-6xl">
           <motion.div
             className="grid lg:grid-cols-2 gap-20 items-center"
             variants={containerVariants}
@@ -650,7 +702,7 @@ const CBAM = () => {
 
       {/* Cost Saving Calculator */}
       <section className="py-12 bg-white overflow-hidden selection:bg-green/20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto sm:px-6">
           {/* Heading */}
           <motion.div
             variants={textContainer}
@@ -830,7 +882,7 @@ const CBAM = () => {
 
       {/* Products Covered Under CBAM */}
       <section className="py-10 bg-gray-100 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className=" mx-auto sm:px-6">
           {/* Header */}
           <motion.div
             variants={textContainer}
@@ -853,7 +905,7 @@ const CBAM = () => {
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
-            className="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch max-w-5xl mx-auto"
+            className="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch max-w-6xl mx-auto"
           >
             {products.map((product, index) => {
               const IconComponent = product.Icon;
@@ -901,7 +953,102 @@ const CBAM = () => {
         </div>
       </section>
 
-      
+      {/* How To Comply - Importer Steps */}
+      <section className="bg-white py-10  mx-auto font-sans overflow-hidden">
+        {/* Header Section */}
+        <motion.div
+          className="text-center mb-20 flex flex-col items-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportConfig}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="text-green text-2xl mb-3">
+            <FaLeaf />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4 tracking-tight">
+            How To Comply – Importer Steps
+          </h2>
+          <h3 className="text-xl md:text-2xl font-semibold text-green mb-4">
+            Every Ton Accounted For. Every Emission Visible.
+          </h3>
+          <p className="text-slate-500 max-w-3xl text-center leading-relaxed text-sm md:text-base">
+            Renny's AI-powered emissions platform captures, monitors, and
+            verifies carbon data in line with CBAM requirements, delivering
+            real-time visibility and product-level traceability.
+          </p>
+        </motion.div>
+
+        {/* Timeline Steps Section */}
+        <motion.div
+          className="relative isolate grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 max-w-7xl mx-auto"
+          variants={timelineContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
+          {stepsData.map((step, idx) => {
+            const IconComponent = step.icon;
+
+            return (
+              <motion.div
+                key={step.id}
+                variants={fadeUp}
+                className="relative flex flex-col items-center text-center  px-4"
+              >
+                {/* Icon */}
+                <div className="relative mb-5 flex items-center justify-center">
+                  <div className="relative z-10 w-20 h-20 rounded-full border-2 border-green bg-white shadow-sm flex items-center justify-center text-green text-2xl">
+                    <IconComponent />
+                  </div>
+                </div>
+
+                {/* Connector (Desktop Only) */}
+                {idx < stepsData.length - 1 && (
+                  <div className="hidden lg:block absolute top-[40px] left-1/2 w-full pointer-events-none">
+                    {/* Left dashed line */}
+                    <div className="absolute left-[40px] right-[50%] border-t border-dashed border-green" />
+
+                    {/* Middle dot */}
+                    <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-green" />
+                    {/* Right dashed line */}
+                    <div className="absolute left-[50%] right-0 border-t border-dashed border-green" />
+                  </div>
+                )}
+
+                <span className="mt-2 text-green font-bold tracking-wider text-2xl mb-1">
+                  {step.id}
+                </span>
+
+                <h4 className="text-xl font-bold text-slate-800 mb-3">
+                  {step.title}
+                </h4>
+
+                <p className="text-slate-400 text-sm leading-relaxed max-w-[240px]">
+                  {step.description}
+                </p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* Dashboard Graphic Container */}
+        <motion.div
+          className="w-full flex justify-center mt-6"
+          variants={imageReveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
+          <div className="w-full max-w-6xl rounded-3xl overflow-hidden shadow-2xl border border-slate-100 bg-slate-900">
+            <img
+              src={HowToComply}
+              alt="Renny CBAM Compliance Dashboard Interface View"
+              className="w-full h-auto object-cover block"
+            />
+          </div>
+        </motion.div>
+      </section>
     </div>
   );
 };

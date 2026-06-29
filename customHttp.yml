@@ -1,5 +1,5 @@
 customHeaders:
-  - pattern: '**/*'
+  - pattern: '**'
     headers:
       - key: 'X-Frame-Options'
         value: 'SAMEORIGIN'
@@ -17,7 +17,7 @@ customHeaders:
         value: 'cross-origin'
 
       - key: 'Content-Security-Policy'
-        value: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.rennystrips.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"
+        value: "default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.rennystrips.com https://www.googletagmanager.com https://www.google-analytics.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"
 
   - pattern: '/'
     headers:
@@ -37,7 +37,7 @@ customHeaders:
         value: 'cross-origin'
 
       - key: 'Content-Security-Policy'
-        value: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.rennystrips.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"
+        value: "default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.rennystrips.com https://www.googletagmanager.com https://www.google-analytics.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"
 
   - pattern: '/index.html'
     headers:
@@ -57,4 +57,4 @@ customHeaders:
         value: 'cross-origin'
 
       - key: 'Content-Security-Policy'
-        value: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.rennystrips.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"
+        value: "default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.rennystrips.com https://www.googletagmanager.com https://www.google-analytics.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"

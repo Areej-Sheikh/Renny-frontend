@@ -735,7 +735,7 @@ const Home = () => {
                 }
               }}
             >
-              {/* <video
+              <video
                 ref={sustainabilityVideoRef}
                 src={sustainability2}
                 className="w-full h-auto aspect-video lg:aspect-auto lg:h-full object-fill shadow-lg rounded-3xl lg:rounded-4xl"
@@ -743,7 +743,7 @@ const Home = () => {
                 loop={true}
                 autoPlay={true}
                 playsInline={true}
-              /> */}
+              />
             </motion.div>
           </motion.div>
         </section>

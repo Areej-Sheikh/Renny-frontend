@@ -788,7 +788,7 @@ const Scaffolding = () => {
           </motion.h2>
 
           {/* Video Container - Changed h-[90vh] to an aspect-ratio approach for mobile */}
-          {/* <div className="w-full md:h-[90vh] rounded-xl md:rounded-2xl overflow-hidden shadow-lg">
+          <div className="w-full md:h-[90vh] rounded-xl md:rounded-2xl overflow-hidden shadow-lg">
             <video
               src={CBAM}
               className="w-full h-auto aspect-video lg:aspect-auto lg:h-full object-fill shadow-lg rounded-3xl lg:rounded-4xl"
@@ -797,7 +797,7 @@ const Scaffolding = () => {
               autoPlay={true}
               playsInline={true}
             />
-          </div> */}
+          </div>
 
           {/* ================= SPOTLIGHT SECTION ================= */}
           <section className="flex items-center justify-center w-full">

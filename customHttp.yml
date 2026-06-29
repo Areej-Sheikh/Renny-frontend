@@ -16,6 +16,9 @@ customHeaders:
       - key: 'Cross-Origin-Resource-Policy'
         value: 'cross-origin'
 
+      - key: 'Content-Security-Policy'
+        value: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://YOUR-API-DOMAIN.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"
+
   - pattern: '/'
     headers:
       - key: 'X-Frame-Options'
@@ -33,6 +36,9 @@ customHeaders:
       - key: 'Cross-Origin-Resource-Policy'
         value: 'cross-origin'
 
+      - key: 'Content-Security-Policy'
+        value: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://YOUR-API-DOMAIN.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"
+
   - pattern: '/index.html'
     headers:
       - key: 'X-Frame-Options'
@@ -49,3 +55,6 @@ customHeaders:
 
       - key: 'Cross-Origin-Resource-Policy'
         value: 'cross-origin'
+
+      - key: 'Content-Security-Policy'
+        value: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://YOUR-API-DOMAIN.com; frame-ancestors 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"

@@ -48,7 +48,7 @@ const SEO = ({
       <meta name="twitter:image" content={image} />
 
       {/* Structured Data */}
-      <script type="application/ld+json">
+      <script type="application/ld+json" id="org-schema">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",

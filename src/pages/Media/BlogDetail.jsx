@@ -38,18 +38,6 @@ const BlogDetail = () => {
   const [loading, setLoading] = useState(true);
   const [openRelatedIndex, setOpenRelatedIndex] = useState(null);
 
-  // Effect to inject schema into HTML immediately (for Google bot)
-  useEffect(() => {
-    if (blog?.structuredData) {
-      // Inject schema immediately into HTML script tag
-      // This ensures schema is in page source for Google bot
-      const schemaElement = document.getElementById('schema-markup');
-      if (schemaElement) {
-        schemaElement.textContent = JSON.stringify(blog.structuredData);
-        console.log("✅ Schema injected into page source");
-      }
-    }
-  }, [blog]);
 
   useEffect(() => {
     const fetchBlogData = async () => {

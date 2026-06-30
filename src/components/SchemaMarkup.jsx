@@ -25,11 +25,9 @@ export default function SchemaMarkup({ schema }) {
 
   return (
     <Helmet>
-      {schemas.map((s, idx) => (
-        <script key={idx} type="application/ld+json">
-          {JSON.stringify(s)}
-        </script>
-      ))}
+      <script type="application/ld+json" id="blog-schema">
+        {JSON.stringify(schemas)}
+      </script>
     </Helmet>
   );
 }

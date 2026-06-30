@@ -9,11 +9,16 @@ export default function SchemaMarkup({ schema }) {
     console.log("Schema Loaded:");
    
 
+  if (!schema) return null;
+  const schemas = Array.isArray(schema) ? schema : [schema];
+
   return (
     <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(schema)}
-      </script>
+      {schemas.map((s, idx) => (
+        <script key={idx} type="application/ld+json">
+          {JSON.stringify(s)}
+        </script>
+      ))}
     </Helmet>
   );
 }

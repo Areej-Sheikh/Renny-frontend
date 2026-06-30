@@ -4,6 +4,7 @@ import axios from "axios";
 import Newsletter from "../../components/Newsletter";
 import PageSpinner from "../../components/PageSpinner.jsx";
 import SEO from "../../components/SEO.jsx";
+import SchemaMarkup from "../../components/SchemaMarkup.jsx";
 import { API_BASE_URL } from "../../lib/api";
 
 const BlogDetail = () => {
@@ -61,6 +62,7 @@ const BlogDetail = () => {
 
   return (
     <>
+      {blog.structuredData && <SchemaMarkup schema={blog.structuredData} />}
       <SEO
         title={blog.seoTitle || `Blog | Renny Strips`}
         description={

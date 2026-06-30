@@ -19,14 +19,12 @@ const BlogDetail = () => {
       window.scrollTo(0, 0);
       setLoading(true);
       try {
-        const res = await axios.get(
-          `${API_BASE_URL}/api/blogs/${slug}`,
-        );
+        const res = await axios.get(`${API_BASE_URL}/api/blogs/${slug}`);
+        console.log("Blog Response:", res.data.data);
+        console.log("Structured Data:", res.data.data.structuredData);
         setBlog(res.data.data);
 
-        const listRes = await axios.get(
-          `${API_BASE_URL}/api/blogs`,
-        );
+        const listRes = await axios.get(`${API_BASE_URL}/api/blogs`);
         const others = listRes.data.data
           .filter((b) => b.slug !== slug)
           .slice(0, 5);
@@ -38,7 +36,6 @@ const BlogDetail = () => {
       }
     };
     fetchBlogData();
-    console.log(blog);
   }, [slug]);
 
   if (loading) return <PageSpinner />;

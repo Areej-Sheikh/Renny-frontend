@@ -19,9 +19,9 @@ const SEO = ({
       {/* Primary SEO */}
       <title>{title}</title>
 
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
-      <meta name="author" content="Renny Strips Ltd." />
+      <meta key="description" name="description" content={description} />
+      <meta key="keywords" name="keywords" content={keywords} />
+      <meta key="author" name="author" content="Renny Strips Ltd." />
       <meta
         key="robots"
         name="robots"

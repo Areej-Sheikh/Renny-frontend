@@ -70,7 +70,7 @@ const getPriority = (route) => {
     "/company-overview",
     "/manufacturing-units",
     "/quality-standard",
-    "/product-range",
+  
   ];
 
   if (highPriorityPages.includes(route)) return "0.9";

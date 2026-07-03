@@ -7,6 +7,30 @@ import SEO from "../../components/SEO.jsx";
 import SchemaMarkup from "../../components/SchemaMarkup.jsx";
 import { API_BASE_URL } from "../../lib/api";
 
+// Validates schema format for proper JSON-LD structure
+const validateSchema = (schema) => {
+  if (!schema) return { valid: false, error: "No schema provided" };
+  
+  try {
+    // Check if it's proper JSON-LD
+    if (typeof schema === 'string') {
+      JSON.parse(schema);
+    } else if (typeof schema !== 'object') {
+      return { valid: false, error: "Schema must be JSON object" };
+    }
+    
+    // Check required fields for BlogPosting
+    if (schema['@type'] === 'BlogPosting') {
+      if (!schema.headline) return { valid: false, error: "Missing headline" };
+      if (!schema['@context']) return { valid: false, error: "Missing @context" };
+    }
+    
+    return { valid: true };
+  } catch (err) {
+    return { valid: false, error: `Invalid JSON: ${err.message}` };
+  }
+};
+
 const BlogDetail = () => {
   const { slug } = useParams();
   const [blog, setBlog] = useState(null);
@@ -14,19 +38,27 @@ const BlogDetail = () => {
   const [loading, setLoading] = useState(true);
   const [openRelatedIndex, setOpenRelatedIndex] = useState(null);
 
+
   useEffect(() => {
     const fetchBlogData = async () => {
       window.scrollTo(0, 0);
       setLoading(true);
       try {
-        const res = await axios.get(
-          `${API_BASE_URL}/api/blogs/${slug}`,
-        );
+        const res = await axios.get(`${API_BASE_URL}/api/blogs/${slug}`);
+        console.log("Blog Response:", res.data.data);
+        
+        // Validate schema
+        const validation = validateSchema(res.data.data.structuredData);
+        if (!validation.valid) {
+          console.warn(`⚠️ Schema validation warning: ${validation.error}`);
+        } else {
+          console.log("✅ Schema validation passed");
+        }
+        
+        console.log("Structured Data:", res.data.data.structuredData);
         setBlog(res.data.data);
 
-        const listRes = await axios.get(
-          `${API_BASE_URL}/api/blogs`,
-        );
+        const listRes = await axios.get(`${API_BASE_URL}/api/blogs`);
         const others = listRes.data.data
           .filter((b) => b.slug !== slug)
           .slice(0, 5);
@@ -38,7 +70,6 @@ const BlogDetail = () => {
       }
     };
     fetchBlogData();
-    console.log(blog);
   }, [slug]);
 
   if (loading) return <PageSpinner />;
@@ -62,7 +93,7 @@ const BlogDetail = () => {
 
   return (
     <>
-      {blog.structuredData && <SchemaMarkup schema={blog.structuredData} />}
+      <SchemaMarkup schema={blog.structuredData} />
       <SEO
         title={blog.seoTitle || `Blog | Renny Strips`}
         description={

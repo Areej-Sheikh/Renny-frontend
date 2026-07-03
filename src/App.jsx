@@ -198,8 +198,7 @@ const App = () => {
             <Route path="/narrow-hrcoil" element={<HRCoils />} />
             <Route path="/erw-pipes-and-tubes" element={<ERW />} />
             <Route path="/scaffolding-formwork" element={<Scaffolding />} />
-            <Route path="/product-range" element={<ProductRange />} />
-            <Route path="/product-range-2" element={<ProductRange2 />} />
+
 
             {/* Investor Relations */}
             <Route path="/financials" element={<Financials />} />
@@ -215,7 +214,6 @@ const App = () => {
 
             {/* Sustainability */}
             <Route path="/sustainability" element={<Sustainability />} />
-            {/* <Route path="/cbam" element={<CBAM />} /> */}
 
             {/* Media */}
             <Route path="/news-room" element={<News />} />

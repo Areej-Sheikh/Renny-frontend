@@ -1,24 +1,33 @@
 import { Helmet } from "react-helmet-async";
 
 export default function SchemaMarkup({ schema }) {
-   console.log(
-    "Schema injected for:",
-    window.location.pathname,
-    schema
-  );
-    console.log("Schema Loaded:");
-   
+  if (!schema) {
+    console.warn("⚠️ No schema provided to SchemaMarkup component");
+    return null;
+  }
 
-  if (!schema) return null;
   const schemas = Array.isArray(schema) ? schema : [schema];
+
+  // Validate schemas
+  schemas.forEach((s, idx) => {
+    if (!s['@context']) {
+      console.warn(`❌ Schema ${idx} missing @context`);
+    }
+    if (!s['@type']) {
+      console.warn(`❌ Schema ${idx} missing @type`);
+    }
+  });
+
+  console.log(
+    `✅ SchemaMarkup rendering ${schemas.length} schema(s) for:`,
+    window.location.pathname
+  );
 
   return (
     <Helmet>
-      {schemas.map((s, idx) => (
-        <script key={idx} type="application/ld+json">
-          {JSON.stringify(s)}
-        </script>
-      ))}
+      <script type="application/ld+json" id="blog-schema">
+        {JSON.stringify(schemas)}
+      </script>
     </Helmet>
   );
 }

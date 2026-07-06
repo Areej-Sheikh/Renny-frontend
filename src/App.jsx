@@ -214,6 +214,7 @@ const App = () => {
 
             {/* Sustainability */}
             <Route path="/sustainability" element={<Sustainability />} />
+            <Route path="/cbam" element={<CBAM />} />
 
             {/* Media */}
             <Route path="/news-room" element={<News />} />

@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useState } from "react";
 
 // Icons
 import {
@@ -16,11 +16,21 @@ import {
   FiDatabase,
   FiTrendingUp,
   FiInfo,
+  FiCheckSquare,
+  FiCpu,
+  FiClock,
+  FiLink2,
+  FiChevronLeft,
+  FiChevronRight,
+  FiGlobe,
+  FiTruck,
+  FiMapPin,
 } from "react-icons/fi";
-import { FaLeaf } from "react-icons/fa";
+import { FiChevronDown } from "react-icons/fi";
+import { FaLeaf, FaQuoteLeft } from "react-icons/fa";
 import { PiColumnsBold, PiSquaresFourBold } from "react-icons/pi";
 // Animation libraries
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 
@@ -29,7 +39,7 @@ import heroSrc from "../../assets/CBAMHero.webp";
 import CBAMImage from "../../assets/CBAM1.webp";
 import CBAMImage1 from "../../assets/What Changed in 2026.webp";
 import CBAMImage2 from "../../assets/CBAM.svg";
-import logo from "../../assets/RennyLogo.webp";
+import logo from "../../assets/CBAMLogo.webp";
 import CostSavingCalculator from "../../assets/CBAM Cost Saving Calculator.webp";
 import global from "../../assets/Global_5.webp";
 import img1 from "../../assets/1.webp";
@@ -300,11 +310,281 @@ const stepsData = [
   },
 ];
 
+const featureItems = [
+  {
+    icon: FiCheckSquare,
+    text: (
+      <>
+        <span className="text-green font-bold">Independently verified</span>{" "}
+        emissions reporting.
+      </>
+    ),
+  },
+  {
+    icon: FiCpu,
+    text: (
+      <>
+        <span className="text-green font-bold">AI-driven</span> monitoring
+        systems.
+      </>
+    ),
+  },
+  {
+    icon: FiClock,
+    text: (
+      <>
+        <span className="text-green font-bold">Real-time</span> operational data
+        collection.
+      </>
+    ),
+  },
+  {
+    icon: FiLink2,
+    text: (
+      <>
+        <span className="text-green font-bold">Digital traceability</span>{" "}
+        systems.
+      </>
+    ),
+  },
+  {
+    icon: FiTrendingUp,
+    text: (
+      <>
+        <span className="text-green font-bold">Automated reporting</span>{" "}
+        capabilities that provide quick access to verified emissions insights
+        and compliance documentation.
+      </>
+    ),
+  },
+];
+
+const mockLogos = {
+  tuv: (
+    <svg
+      viewBox="0 0 100 100"
+      className="w-12 h-12 text-[#005A9C]"
+      fill="currentColor"
+    >
+      <path d="M50 15L15 75h70L50 15zm0 18l23 40H27l23-40zM40 60h20v4H40v-4z" />
+    </svg>
+  ),
+  iso: (
+    <div className="w-12 h-12 rounded-full bg-[#0a3a60] text-white flex flex-col items-center justify-center font-bold text-[10px] tracking-tighter">
+      <span>ISO</span>
+      <span className="text-[7px]">14064-3</span>
+    </div>
+  ),
+  ghg: (
+    <div className="w-12 h-12 rounded-full border-4 border-green flex items-center justify-center">
+      <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-green/50 to-green animate-pulse" />
+    </div>
+  ),
+  nisst: (
+    <div className="w-12 h-12 bg-[#1e293b] text-[#10b981] font-black rounded flex items-center justify-center text-xs">
+      NISST
+    </div>
+  ),
+};
+
+const certData = [
+  {
+    id: 0,
+    logo: mockLogos.tuv,
+    title: "TÜV Rheinland",
+    accentText: "Verified",
+    subTitle: "Greenhouse Gas Assessment.",
+    docTitle: "Verified Greenhouse Gas Assessment",
+    docBadge: "VERIFIED",
+    docDesc:
+      "Independently verified greenhouse gas emissions assessment for reliable reporting.",
+    footerUrl: "www.tuv.com",
+  },
+  {
+    id: 1,
+    logo: mockLogos.iso,
+    title: "ISO 14064-3:2019",
+    accentText: "Verification.",
+    subTitle: "",
+    docTitle: "ISO 14064-3:2019 Specification",
+    docBadge: "VERIFICATION",
+    docDesc:
+      "Verification of greenhouse gas statements for ISO 14064-3:2019 compliance standards.",
+    footerUrl: "www.iso.org",
+  },
+  {
+    id: 2,
+    logo: mockLogos.ghg,
+    title: "Greenhouse Gas Protocol",
+    accentText: "Compliance.",
+    subTitle: "",
+    docTitle: "GREENHOUSE GAS PROTOCOL",
+    docBadge: "COMPLIANT",
+    docDesc:
+      "Aligned with the globally recognized Greenhouse Gas Protocol for corporate accounting.",
+    footerUrl: "www.ghgprotocol.org",
+  },
+  {
+    id: 3,
+    logo: mockLogos.nisst,
+    title: "5-Star Green Steel Manufacturing Rating by",
+    accentText: "NISST",
+    subTitle: ", Ministry of Steel, Government of India.",
+    docTitle: "5-STAR GREEN STEEL MANUFACTURING RATING",
+    docBadge: "★★★★★",
+    docDesc:
+      "Recognized for excellence in sustainable clean energy steel manufacturing practices.",
+    footerUrl: "www.steel.gov.in",
+  },
+];
+
+const pillarData = [
+  {
+    icon: FiGlobe,
+    title: "Global Market Presence",
+    description:
+      "Serving customers in key international markets with a strong focus on Europe.",
+  },
+  {
+    icon: FiTruck,
+    title: "Export-Ready Ecosystem",
+    description:
+      "Integrated, efficient, and scalable operations designed to meet global quality and logistics standards.",
+  },
+  {
+    icon: FiFileText,
+    title: "Carbon Transparency",
+    description:
+      "Providing verified emissions data and clear traceability to support decarbonization and stakeholder trust.",
+  },
+  {
+    icon: FiShield,
+    title: "Compliance-Driven Operations",
+    description:
+      "Aligned with international regulations and CBAM requirements to ensure seamless compliance across markets.",
+  },
+];
+
+const testimonialData = [
+  {
+    id: 0,
+    quote:
+      "Renny's commitment to quality and CBAM compliance gives us complete confidence. Their transparency and reliability make them a valued partner in our supply chain.",
+    name: "Rajesh Mehta",
+    role: "Head – Procurement",
+    company: "Larsen & Toubro",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    id: 1,
+    quote:
+      "The real-time emissions data and product-level transparency from Renny have simplified our CBAM reporting and helped us achieve our sustainability goals with complete confidence.",
+    name: "Amit Agarwal",
+    role: "VP – Supply Chain",
+    company: "Tata Projects",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    id: 2,
+    quote:
+      "Consistent quality, on-time delivery, and a strong focus on sustainability—Renny stands out as a partner who truly understands our business and values.",
+    name: "Sandeep Jain",
+    role: "Head – Procurement",
+    company: "Jindal Stainless",
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80",
+  },
+  {
+    id: 3,
+    quote:
+      "Their carbon-tracking dashboard sets a new benchmark for corporate transparency. Navigating international regulatory landscape audits has never been more fluid.",
+    name: "Arun Sharma",
+    role: "Director – Sustainability",
+    company: "GMR Group",
+    avatar:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80",
+  },
+];
+
+const faqData = [
+  {
+    id: 1,
+    question: "Is CBAM a tax?",
+    answer:
+      "The Carbon Border Adjustment Mechanism (CBAM) functions like a tax on carbon emissions embedded in specific goods imported into the EU, ensuring that foreign products face equivalent carbon pricing to internal EU alternatives.",
+  },
+  {
+    id: 2,
+    question: "How does CBAM work?",
+    answer:
+      "Importers buy electronic certificates representing the embedded carbon price of their goods. The cost matches the EU Emissions Trading System (ETS) allowance prices, adjusting dynamically for any carbon price already paid in the originating jurisdiction.",
+  },
+  {
+    id: 3,
+    question: "Does CBAM apply to finished goods?",
+    answer:
+      "CBAM targets iron, steel, cement, aluminum, fertilizers, electricity, and hydrogen, covering both foundational raw substances and select downstream industrial finished goods derived directly from them.",
+  },
+  {
+    id: 4,
+    question:
+      "Which greenhouse gas emissions are covered under CBAM, and what reporting metrics are used for different product categories?",
+    answer:
+      "It covers direct emissions released during industrial synthesis alongside specific indirect emissions (like electricity consumed in manufacturing). Importers measure embedded intensity metrics using specific metric tons of CO2 equivalent ($tCO_2e$) per ton of output.",
+  },
+  {
+    id: 5,
+    question: "What CBAM services does RENNY provide?",
+    answer:
+      "RENNY provides end-to-end software integration to automate direct emission tracking, cross-border supply chain verification matrices, compliance documentation compilation, and real-time ledger auditing tools tailored to international customs standards.",
+  },
+];
+
 const CBAM = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.25,
   });
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % certData.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + certData.length) % certData.length);
+  };
+  const [currentIndex, setCurrentIndex] = useState(1); // Default focused centered element matching image configuration
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonialData.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex(
+      (prev) => (prev - 1 + testimonialData.length) % testimonialData.length,
+    );
+  };
+
+  // Helper logic to capture structural viewport positioning (Left side, Centered focus, Right side)
+  const getVisibleCards = () => {
+    const len = testimonialData.length;
+    const leftIndex = (currentIndex - 1 + len) % len;
+    const rightIndex = (currentIndex + 1) % len;
+    return [
+      { ...testimonialData[leftIndex], position: "left" },
+      { ...testimonialData[currentIndex], position: "center" },
+      { ...testimonialData[rightIndex], position: "right" },
+    ];
+  };
+  const [openId, setOpenId] = useState(null);
+
+  const toggleAccordion = (id) => {
+    setOpenId(openId === id ? null : id);
+  };
   return (
     <div className="relative w-full  overflow-x-hidden font-helvetica">
       {/* Hero Banner */}
@@ -630,27 +910,26 @@ const CBAM = () => {
       </section>
 
       {/* Carbon Credentials */}
-      <section className="bg-gray-100 h-screen flex items-center justify-center ">
+      <section className="bg-gray-100 py-10 flex items-center justify-center ">
         <div className=" mx-auto max-w-6xl">
           <motion.div
-            className="grid lg:grid-cols-2 gap-20 items-center"
+            className="grid lg:grid-cols-2 gap-2 items-center"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
           >
             {/* Left Side */}
-            <motion.div variants={slideLeft} className="flex justify-center">
+            <motion.div
+              variants={slideLeft}
+              className="flex justify-center items-center w-full"
+            >
               <motion.img
                 src={logo}
                 alt="Renny Logo"
-                className="w-full max-w-md object-contain"
-                whileHover={{
-                  scale: 1.03,
-                }}
-                transition={{
-                  duration: 0.4,
-                }}
+                className="w-full mx-auto object-contain"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.4 }}
               />
             </motion.div>
 
@@ -1047,6 +1326,613 @@ const CBAM = () => {
               className="w-full h-auto object-cover block"
             />
           </div>
+        </motion.div>
+      </section>
+
+      {/* R */}
+      <section className="bg-white py-16 px-6 md:px-12 max-w-7xl mx-auto font-sans overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          {/* Left Side: Masked Image / Brand Asset */}
+          <motion.div
+            className="lg:col-span-5 flex justify-center lg:justify-start"
+            variants={slideLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+          >
+            <div className="max-w-md lg:max-w-full w-full">
+              <img
+                src={R}
+                alt="Renny Brand Identity Landscape Visualization"
+                className="w-full h-auto object-contain block"
+              />
+            </div>
+          </motion.div>
+
+          {/* Right Side: Content & Feature Rows */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
+            {/* Header Typography */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportConfig}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="mb-8"
+            >
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#111827] tracking-tight relative mb-4">
+                How Renny Provides Your Data
+                <span className="absolute bottom-[-10px] left-0 w-24 h-[3px] bg-black rounded-full" />
+              </h2>
+              <p className="text-slate-700 font-medium text-base mt-6">
+                Renny provides data through:
+              </p>
+            </motion.div>
+
+            {/* List Layout */}
+            <motion.div
+              className="flex flex-col"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+            >
+              {featureItems.map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    variants={slideRight}
+                    className="flex items-start py-5 border-b border-slate-100 last:border-0 group"
+                  >
+                    {/* Circular Icon Shield */}
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-green/10 border border-green/10 flex items-center justify-center text-green text-xl shadow-sm transition-all duration-300 group-hover:bg-green group-hover:text-white mr-5">
+                      <IconComponent />
+                    </div>
+
+                    {/* Feature Text String */}
+                    <p className="text-slate-600 text-[15px] md:text-base pt-2.5 leading-relaxed">
+                      {item.text}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications and Documents */}
+      <section className="bg-gray-100 py-20 px-6 md:px-12 max-w-7xl mx-auto font-sans overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Left Side Column: Copy Info & Sidebar Triggers */}
+          <div className="lg:col-span-5 flex flex-col">
+            {/* Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportConfig}
+              transition={{ duration: 0.6 }}
+              className="mb-10"
+            >
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F172A] tracking-tight relative pb-4">
+                Certifications &<br />
+                Verified Documents
+                <span className="absolute bottom-0 left-0 w-20 h-[3px] bg-black rounded-full" />
+              </h2>
+            </motion.div>
+
+            {/* Verification Sidebar List Rows */}
+            <motion.div
+              className="space-y-2"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+            >
+              {certData.map((cert, index) => (
+                <motion.div
+                  key={cert.id}
+                  variants={slideLeft}
+                  onClick={() => setActiveIndex(index)}
+                  className={`flex items-center p-4 rounded-xl border transition-all duration-300 cursor-pointer ${
+                    activeIndex === index
+                      ? "bg-white border-slate-100 shadow-md shadow-slate-100/50"
+                      : "border-transparent hover:bg-slate-50"
+                  }`}
+                >
+                  <div className="flex-shrink-0 mr-5 bg-white w-14 h-14 rounded-full shadow-sm flex items-center justify-center border border-slate-50">
+                    {cert.logo}
+                  </div>
+                  <p className="text-slate-700 text-sm md:text-[15px] font-medium leading-relaxed">
+                    {cert.title}{" "}
+                    <span className="text-green font-bold">
+                      {cert.accentText}
+                    </span>
+                    {cert.subTitle && ` ${cert.subTitle}`}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right Side Column: Stacked 3D Document Carousel Viewport */}
+          <motion.div
+            className="lg:col-span-7 flex flex-col items-center justify-center relative min-h-[520px] select-none"
+            variants={slideRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+          >
+            {/* Carousel Track Platform wrapper */}
+            <div className="relative w-full max-w-[340px] md:max-w-[400px] h-[450px] flex items-center justify-center">
+              {/* Interactive Carousel Cards */}
+              {certData.map((cert, index) => {
+                // Calculate positional offset layer index relative to the active selection index
+                let offset = index - activeIndex;
+                if (offset < -1) offset += certData.length;
+                if (offset > certData.length - 2) offset -= certData.length;
+
+                const isActive = offset === 0;
+                const isLeft = offset === -1;
+                const isRight = offset === 1;
+                const isVisible = isActive || isLeft || isRight;
+
+                if (!isVisible) return null;
+
+                return (
+                  <motion.div
+                    key={cert.id}
+                    style={{ transformOrigin: "center bottom" }}
+                    animate={{
+                      x: isLeft ? -140 : isRight ? 140 : 0,
+                      scale: isActive ? 1 : 0.82,
+                      zIndex: isActive ? 30 : 10,
+                      opacity: isActive ? 1 : 0.45,
+                      rotateY: isLeft ? 12 : isRight ? -12 : 0,
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 28 }}
+                    className="absolute w-[280px] md:w-[320px] bg-white rounded-2xl shadow-xl border border-slate-100 p-6 flex flex-col items-center text-center h-[440px] pointer-events-none md:pointer-events-auto"
+                  >
+                    {/* Decorative Frame Border Layout lines */}
+                    <div className="absolute inset-2 border border-slate-100 rounded-xl pointer-events-none" />
+
+                    {/* Top Branding Header Anchor */}
+                    <div className="mb-6 mt-4 flex justify-center scale-90">
+                      {cert.logo}
+                    </div>
+
+                    {/* Core Document Form Metadata Labels */}
+                    <div className="flex-1 flex flex-col justify-center px-2">
+                      <h4 className="text-slate-800 font-bold text-lg md:text-xl leading-snug tracking-tight mb-4">
+                        {cert.docTitle}
+                      </h4>
+
+                      <div className="mb-5">
+                        <span className="inline-block px-8 py-1.5 rounded bg-[#0066cc] text-white font-extrabold text-xs tracking-widest uppercase shadow-sm">
+                          {cert.docBadge}
+                        </span>
+                      </div>
+
+                      <p className="text-slate-500 text-xs md:text-sm leading-relaxed px-1">
+                        {cert.docDesc}
+                      </p>
+                    </div>
+
+                    {/* Bottom Verification Certificate Signature Layout */}
+                    <div className="w-full mt-auto border-t border-slate-50 pt-3 flex flex-col items-center">
+                      <div className="w-24 h-6 mb-1 opacity-60">
+                        <svg
+                          viewBox="0 0 100 30"
+                          className="w-full h-full text-slate-400 stroke-current fill-none stroke-2"
+                        >
+                          <path d="M10 20c15-20 20 15 35-5s10-10 25 5 15-25 20-5" />
+                        </svg>
+                      </div>
+                      <span className="text-[10px] text-slate-300 tracking-wider font-mono">
+                        {cert.footerUrl}
+                      </span>
+                    </div>
+                  </motion.div>
+                );
+              })}
+
+              {/* Left Carousel Control Arrow Button */}
+              <button
+                onClick={handlePrev}
+                className="absolute left-[-40px] md:left-[-70px] z-40 bg-white hover:bg-slate-50 text-slate-700 p-3 rounded-full shadow-lg border border-slate-100 transition-all active:scale-95"
+                aria-label="Previous certification"
+              >
+                <FiChevronLeft className="w-5 h-5" />
+              </button>
+
+              {/* Right Carousel Control Arrow Button */}
+              <button
+                onClick={handleNext}
+                className="absolute right-[-40px] md:right-[-70px] z-40 bg-white hover:bg-slate-50 text-slate-700 p-3 rounded-full shadow-lg border border-slate-100 transition-all active:scale-95"
+                aria-label="Next certification"
+              >
+                <FiChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Bottom Pagination Dots Tracker Track */}
+            <div className="flex items-center space-x-2.5 mt-6">
+              {certData.map((_, dotIdx) => (
+                <button
+                  key={dotIdx}
+                  onClick={() => setActiveIndex(dotIdx)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    activeIndex === dotIdx
+                      ? "w-6 bg-[#0F172A]"
+                      : "w-2 bg-slate-200"
+                  }`}
+                  aria-label={`Go to slide ${dotIdx + 1}`}
+                />
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Global Supply Footprints*/}
+      <section className="bg-white py-16 px-4 max-w-7xl mx-auto font-sans overflow-hidden">
+        {/* Header Section */}
+        <motion.div
+          className="text-center mb-16 flex flex-col items-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
+          <motion.h2
+            variants={fadeUp}
+            className="text-3xl md:text-4xl font-bold text-slate-800 tracking-tight relative pb-4 mb-6"
+          >
+            Global Supply Footprints
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-92 h-[2px] bg-black" />
+          </motion.h2>
+
+          <motion.p
+            variants={fadeUp}
+            className="text-slate-600 max-w-4xl text-center leading-relaxed text-sm md:text-[15px]"
+          >
+            Renny serves international markets and supports global
+            infrastructure, construction, automotive, and industrial customers.
+            Its integrated manufacturing ecosystem, export readiness, carbon
+            transparency, and compliance-focused operations support customers
+            across carbon-regulated markets, particularly Europe.
+          </motion.p>
+        </motion.div>
+
+        {/* 4 Pillar Pillars Section */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 lg:gap-y-0 mb-16 max-w-6xl mx-auto"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
+          {pillarData.map((pillar, idx) => {
+            const IconComponent = pillar.icon;
+            return (
+              <motion.div
+                key={idx}
+                variants={fadeUp}
+                className={`flex flex-col items-center text-center px-6 relative ${
+                  idx !== 3 ? "lg:border-r lg:border-slate-200" : ""
+                }`}
+              >
+                {/* Soft Green Circled Icon */}
+                <div className="w-16 h-16 bg-green/10 rounded-full flex items-center justify-center text-green text-2xl border border-green/20 shadow-sm mb-4">
+                  <IconComponent />
+                </div>
+
+                <h4 className="text-sm md:text-base font-bold text-emerald-800 mb-2">
+                  {pillar.title}
+                </h4>
+
+                <p className="text-slate-500 text-xs md:text-sm leading-relaxed max-w-[240px]">
+                  {pillar.description}
+                </p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* Map Graphics Canvas Section with Overlay Metrics Floating Footer */}
+        <motion.div
+          className="w-full flex justify-center mt-6 relative"
+          variants={imageReveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
+          <div className="w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl border border-slate-100 bg-slate-900 relative">
+            <img
+              src={global}
+              alt="Renny Global Transport Logistics Map Overlay Network"
+              className="w-full h-auto object-cover block"
+            />
+
+            {/* Embedded Floating Bottom Metrics Strip Dashboard */}
+            <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 bg-emerald-950/25 backdrop-blur-md rounded-2xl p-4 md:p-6  grid grid-cols-2 lg:grid-cols-4 gap-4 text-white z-10">
+              {/* Stat 1 */}
+              <div className="flex items-center space-x-3 border-r border-emerald-800/50 pr-2 last:border-0">
+                <div className="text-xl md:text-2xl text-emerald-400">
+                  <FiGlobe />
+                </div>
+                <div>
+                  <div className="text-sm md:text-xl font-bold">50+</div>
+                  <div className="text-[10px] md:text-xs text-emerald-300">
+                    Countries Served
+                  </div>
+                </div>
+              </div>
+
+              {/* Stat 2 */}
+              <div className="flex items-center space-x-3 lg:border-r border-emerald-800/50 pr-2 last:border-0">
+                <div className="text-xl md:text-2xl text-emerald-400">
+                  <FiMapPin />
+                </div>
+                <div>
+                  <div className="text-[11px] md:text-xs font-semibold leading-tight">
+                    Strong Presence in
+                  </div>
+                  <div className="text-xs md:text-sm font-bold text-emerald-300">
+                    Europe{" "}
+                    <span className="text-[10px] font-normal text-white">
+                      and Other Key Markets
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Stat 3 */}
+              <div className="flex items-center space-x-3 border-r border-emerald-800/50 pr-2 last:border-0">
+                <div className="text-xl md:text-2xl text-emerald-400">
+                  <FiTruck />
+                </div>
+                <div>
+                  <div className="text-[11px] md:text-sm font-bold leading-tight">
+                    Reliable Global
+                  </div>
+                  <div className="text-xs md:text-sm font-bold text-emerald-300">
+                    Logistics Network
+                  </div>
+                </div>
+              </div>
+
+              {/* Stat 4 */}
+              <div className="flex items-center space-x-3 last:border-0">
+                <div className="text-xl md:text-2xl text-emerald-400">
+                  <FaLeaf />
+                </div>
+                <div>
+                  <div className="text-[11px] md:text-xs font-semibold leading-tight">
+                    Supporting a
+                  </div>
+                  <div className="text-xs md:text-sm font-bold text-emerald-300">
+                    Sustainable{" "}
+                    <span className="text-[10px] font-normal text-white">
+                      Global Future
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="bg-gray-100 py-20 px-4 max-w-7xl mx-auto font-sans overflow-hidden">
+        {/* Header Section */}
+        <motion.div
+          className="text-center mb-16 flex flex-col items-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
+          <motion.h2
+            variants={fadeUp}
+            className="text-3xl md:text-4xl font-extrabold text-[#1E293B] tracking-tight relative pb-4 mb-6"
+          >
+            Customer Testimonials
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-36 h-[2px] bg-slate-400" />
+          </motion.h2>
+
+          <motion.p
+            variants={fadeUp}
+            className="text-slate-500 max-w-2xl text-center leading-relaxed text-sm md:text-[15px]"
+          >
+            Hear from global partners who trust Renny for quality, compliance,
+            and sustainable steel solutions.
+          </motion.p>
+        </motion.div>
+
+        {/* Carousel Wrapper Track Component */}
+        <motion.div
+          className="relative max-w-6xl mx-auto flex items-center justify-center px-4 md:px-12"
+          variants={slideRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
+          {/* Navigation Action Triggers */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 md:left-4 z-30 bg-white hover:bg-slate-50 text-slate-700 p-3 rounded-full border border-slate-100 shadow-md transition-all active:scale-95"
+            aria-label="Previous testimonial"
+          >
+            <FiChevronLeft className="w-5 h-5" />
+          </button>
+
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 md:right-4 z-30 bg-white hover:bg-slate-50 text-slate-700 p-3 rounded-full border border-slate-100 shadow-md transition-all active:scale-95"
+            aria-label="Next testimonial"
+          >
+            <FiChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Carousel Window */}
+          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 items-center min-h-[440px]">
+            <AnimatePresence mode="popLayout" initial={false}>
+              {getVisibleCards().map((item) => {
+                const isCenter = item.position === "center";
+                return (
+                  <motion.div
+                    key={item.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{
+                      opacity: isCenter ? 1 : 0.6,
+                      scale: isCenter ? 1.03 : 0.96,
+                      y: isCenter ? -4 : 4,
+                    }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    className={`bg-white border rounded-3xl p-6 md:p-8 flex flex-col justify-between h-[390px] transition-shadow duration-300 ${
+                      isCenter
+                        ? "border-slate-100 shadow-xl shadow-slate-100/70 z-20"
+                        : "border-slate-100/70 shadow-sm z-10 hidden md:flex"
+                    }`}
+                  >
+                    <div>
+                      {/* Modern Quote Mark Style Icon Indicator */}
+                      <div className="text-blue-950 text-3xl mb-4 transform scale-x-[-1]">
+                        <FaQuoteLeft />
+                      </div>
+
+                      <p className="text-slate-600 text-sm md:text-[15px] leading-relaxed font-normal">
+                        {item.quote}
+                      </p>
+                    </div>
+
+                    {/* Profile Signature Node Footer Info Block */}
+                    <div className="mt-6 pt-6 border-t border-slate-100/80 flex items-center">
+                      <img
+                        src={item.avatar}
+                        alt={item.name}
+                        className="w-12 h-12 rounded-full object-cover mr-4 border border-slate-100"
+                      />
+                      <div>
+                        <h4 className="text-sm font-bold text-slate-800 leading-tight">
+                          {item.name}
+                        </h4>
+                        <p className="text-[11px] font-medium text-slate-400 mt-0.5">
+                          {item.role}
+                        </p>
+                        <p className="text-xs font-bold text-slate-700">
+                          {item.company}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+        </motion.div>
+
+        {/* Pagination Tracking Indicators bar layout */}
+        <div className="flex items-center justify-center space-x-2 mt-10">
+          {testimonialData.map((_, dotIdx) => (
+            <button
+              key={dotIdx}
+              onClick={() => setCurrentIndex(dotIdx)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                currentIndex === dotIdx
+                  ? "w-5 bg-[#0F172A]"
+                  : "w-2 bg-slate-200"
+              }`}
+              aria-label={`Go to slide ${dotIdx + 1}`}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-white py-20 px-6 md:px-12 max-w-5xl mx-auto font-sans overflow-hidden">
+        {/* Centered Heading */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportConfig}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-2xl md:text-3xl font-extrabold text-[#000000] tracking-tight">
+            Frequently Asked Questions
+          </h2>
+        </motion.div>
+
+        {/* Accordion Rows Wrapper */}
+        <motion.div
+          className="border-t border-slate-200"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
+          {faqData.map((item) => {
+            const isOpen = openId === item.id;
+
+            return (
+              <motion.div
+                key={item.id}
+                variants={fadeUp}
+                className="border-b border-slate-200"
+              >
+                <button
+                  onClick={() => toggleAccordion(item.id)}
+                  className="w-full flex items-center justify-between py-6 md:py-8 text-left group transition-colors duration-200 hover:text-emerald-600"
+                >
+                  <span className="text-sm md:text-[15px] font-bold text-slate-900 pr-6 leading-relaxed group-hover:text-emerald-600 transition-colors duration-200">
+                    {item.question}
+                  </span>
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="flex-shrink-0 text-slate-500 text-lg md:text-xl group-hover:text-emerald-600"
+                  >
+                    <FiChevronDown />
+                  </motion.div>
+                </button>
+
+                {/* Collapsible Panel Section */}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{
+                        height: "auto",
+                        opacity: 1,
+                        transition: {
+                          height: { duration: 0.35, ease: "easeOut" },
+                          opacity: { duration: 0.25, delay: 0.05 },
+                        },
+                      }}
+                      exit={{
+                        height: 0,
+                        opacity: 0,
+                        transition: {
+                          height: { duration: 0.3, ease: "easeIn" },
+                          opacity: { duration: 0.15 },
+                        },
+                      }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pb-8 pr-12 text-slate-500 text-sm md:text-[15px] leading-relaxed font-normal">
+                        {item.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </section>
     </div>

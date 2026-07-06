@@ -456,7 +456,7 @@ const ERW = () => {
             >
               {/* MANUFACTURING PROCESS */}
               {activeTab === "MANUFACTURING PROCESS" && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
+                <div className="grid grid-cols-1  md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
                   <div className="w-full">
                     <img
                       src={displayManufacturingImg}
@@ -551,55 +551,57 @@ const ERW = () => {
               )}
 
               {/* APPLICATIONS */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 justify-items-center">
-                {displayApps.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    variants={fadeUp}
-                    className="flex flex-col items-center group w-full"
-                  >
-                    <div
-                      className="
-        relative
-        w-full
-        aspect-square
-        max-w-[180px]
-        flex
-        flex-col
-        items-center
-        justify-center
-        rounded-2xl
-        bg-gray-50
-        transition-all
-        duration-300
-        group-hover:scale-105
-        group-hover:bg-white
-        group-hover:shadow-xl
-        border
-        border-transparent
-        group-hover:border-blue/20
-      "
+              {activeTab === "APPLICATIONS" && (
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 justify-items-center">
+                  {displayApps.map((item, index) => (
+                    <motion.div
+                      key={index}
+                      variants={fadeUp}
+                      className="flex flex-col items-center group w-full"
                     >
-                      <div className="w-16 h-16 md:w-20 md:h-20 mb-3">
-                        <img
-                          src={item.img}
-                          alt={item.label}
-                          className="w-full h-full object-contain group-hover:drop-shadow-md"
-                          style={
-                            item.scale
-                              ? { transform: `scale(${item.scale})` }
-                              : {}
-                          }
-                        />
-                      </div>
+                      <div
+                        className="
+            relative
+            w-full
+            aspect-square
+            max-w-[180px]
+            flex
+            flex-col
+            items-center
+            justify-center
+            rounded-2xl
+            bg-gray-50
+            transition-all
+            duration-300
+            group-hover:scale-105
+            group-hover:bg-white
+            group-hover:shadow-xl
+            border
+            border-transparent
+            group-hover:border-blue/20
+          "
+                      >
+                        <div className="w-16 h-16 md:w-20 md:h-20 mb-3">
+                          <img
+                            src={item.img}
+                            alt={item.label}
+                            className="w-full h-full object-contain group-hover:drop-shadow-md"
+                            style={
+                              item.scale
+                                ? { transform: `scale(${item.scale})` }
+                                : {}
+                            }
+                          />
+                        </div>
 
-                      <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
-                        {item.label}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                        <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
+                          {item.label}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
         </section>

@@ -564,214 +564,208 @@ const Scaffolding = () => {
             ))}
           </motion.div>
 
-          {/* Tab Content */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              transition={{ duration: 0.45, ease: "easeOut" }}
+          {/* Tab Content Container (Keeps all sections mounted simultaneously) */}
+          <div className="w-full">
+            {/* MANUFACTURING PROCESS */}
+            <div
+              className={
+                activeTab === "MANUFACTURING PROCESS" ? "block" : "hidden"
+              }
             >
-              {/* MANUFACTURING PROCESS */}
-              {activeTab === "MANUFACTURING PROCESS" && (
-                <motion.div
-                  className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto"
-                  variants={containerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                >
-                  <motion.div variants={slideLeft} className="w-full">
-                    <img
-                      src={displayManufacturingImg}
-                      alt="Manufacturing Process"
-                      className="w-full h-auto rounded-xl shadow-lg object-cover aspect-video md:aspect-auto"
-                    />
-                  </motion.div>
-
-                  <motion.div variants={slideRight} className="space-y-4">
-                    {displayManufacturingDesc.map((desc, idx) => (
-                      <p
-                        key={idx}
-                        className="text-gray-600 text-sm md:text-base  text-justify md:text-left"
-                      >
-                        {desc}
-                      </p>
-                    ))}
-                  </motion.div>
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                <motion.div variants={slideLeft} className="w-full">
+                  <img
+                    src={displayManufacturingImg}
+                    alt="Manufacturing Process"
+                    className="w-full h-auto rounded-xl shadow-lg object-cover aspect-video md:aspect-auto"
+                  />
                 </motion.div>
-              )}
 
-              {/* CORE STRENGTH */}
-              {activeTab === "CORE STRENGTH" && (
-                <motion.div
-                  className="w-full max-w-7xl mx-auto rounded-xl overflow-hidden border border-gray-100 shadow-sm"
-                  variants={sectionVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                >
-                  {/* Responsive Grid: 1 col (mobile), 2 col (tablet), 3 col (desktop) */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                    {displayCards.map((card, i) => (
-                      <motion.div
-                        key={card._id || i}
-                        variants={fadeUp}
-                        whileHover={{ y: -4 }}
-                        className={`flex flex-col items-center justify-center p-8 transition-all duration-300 group text-center min-h-[280px] ${
-                          i % 2 === 0
-                            ? "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white"
-                            : "bg-white hover:bg-blue hover:text-white"
-                        }`}
-                      >
-                        <img
-                          src={card.img || cards[i % cards.length]?.img}
-                          alt=""
-                          className="w-16 h-16 md:w-20 md:h-20 mb-4 transition duration-300 group-hover:brightness-0 group-hover:invert"
-                        />
-                        <h2 className="font-bold text-lg md:text-xl mb-2">
-                          {card.title}
-                        </h2>
-                        <p className="text-sm md:text-base  opacity-90 px-4">
-                          {card.desc}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-
-              {/* PRODUCT SPECIFICATIONS */}
-              {activeTab === "PRODUCT SPECIFICATIONS & RANGE" && (
-                <>
-                  {/* ================= SCROLLING PRODUCTS ================= */}
-                  <section className="w-full bg-white">
-                    <div className="w-full overflow-hidden">
-                      <div className="flex w-max animate-scroll gap-6">
-                        {[...displayRange, ...displayRange].map(
-                          (product, index) => (
-                            <div
-                              key={`${product._id || product.title}-${index}`}
-                              className="relative w-[260px] h-[200px] rounded-2xl overflow-hidden group cursor-pointer flex-shrink-0"
-                            >
-                              <img
-                                src={product.image}
-                                alt={product.title}
-                                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                              />
-
-                              <div className="absolute inset-0 flex items-end justify-center bg-black/40 z-10 text-center px-4">
-                                <h2 className="text-white text-lg md:text-xl mb-5 font-semibold break-words  text-center">
-                                  {product.title}
-                                </h2>
-                              </div>
-                            </div>
-                          ),
-                        )}
-                      </div>
-                    </div>
-                  </section>
-
-                  {/* ================= TABLE ================= */}
-                  <section className="text-black pb-14 max-w-7xl mx-auto">
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5 }}
-                      className="text-gray-600 text-sm mt-10 md:text-base  mb-8 px-2"
+                <motion.div variants={slideRight} className="space-y-4">
+                  {displayManufacturingDesc.map((desc, idx) => (
+                    <p
+                      key={idx}
+                      className="text-gray-600 text-sm md:text-base text-justify md:text-left"
                     >
-                      Over 1,000 SKUs ranging from couplers, ringlock systems,
-                      formwork panels, props, and jacks amongst others in
-                      various specifications. Detailed specification sheets
-                      available on request.
-                    </motion.p>
-
-                    <div className="overflow-x-auto rounded-xl border border-gray-200">
-                      <table className="w-full min-w-[700px] text-left border-collapse">
-                        <thead>
-                          <tr className="bg-blue text-white">
-                            <th className="w-1/3 px-6 py-4 text-base md:text-lg font-semibold">
-                              Parameter
-                            </th>
-                            <th className="px-6 py-4 text-base md:text-lg font-semibold border-l border-white/20">
-                              Details
-                            </th>
-                          </tr>
-                        </thead>
-
-                        <motion.tbody
-                          variants={containerVariants}
-                          initial="hidden"
-                          whileInView="visible"
-                          viewport={{ once: true, amount: 0.1 }}
-                        >
-                          {displaySpecs.map((spec, index) => (
-                            <motion.tr
-                              key={spec._id || index}
-                              variants={fadeUp}
-                              className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
-                            >
-                              <th
-                                className={`px-6 py-4 ${
-                                  index % 2 === "0"
-                                    ? "bg-gray-50/50"
-                                    : "bg-white"
-                                } font-bold text-gray-700 text-sm md:text-base`}
-                              >
-                                {spec.parameter}
-                              </th>
-
-                              <td className="px-6 py-4 text-gray-600 text-sm md:text-base">
-                                {spec.details}
-                              </td>
-                            </motion.tr>
-                          ))}
-                        </motion.tbody>
-                      </table>
-                    </div>
-                  </section>
-                </>
-              )}
-
-              {/* APPLICATIONS */}
-              {/* APPLICATIONS */}
-              {activeTab === "APPLICATIONS" && (
-                <motion.div
-                  className="max-w-7xl mx-auto"
-                  variants={containerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                >
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 justify-items-center">
-                    {displayApps.map((item, index) => (
-                      <motion.div
-                        key={item._id || index}
-                        variants={fadeUp}
-                        className="flex flex-col items-center group w-full"
-                      >
-                        <div className="relative w-full aspect-square max-w-[180px] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
-                          <div className="w-16 h-16 md:w-20 md:h-20 mb-3 flex items-center justify-center">
-                            <img
-                              src={item.img}
-                              alt={item.label}
-                              className="w-full h-full object-contain group-hover:drop-shadow-md"
-                            />
-                          </div>
-
-                          <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
-                            {item.label}
-                          </p>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
+                      {desc}
+                    </p>
+                  ))}
                 </motion.div>
-              )}
-            </motion.div>
-          </AnimatePresence>
+              </motion.div>
+            </div>
+
+            {/* CORE STRENGTH */}
+            <div className={activeTab === "CORE STRENGTH" ? "block" : "hidden"}>
+              <motion.div
+                className="w-full max-w-7xl mx-auto rounded-xl overflow-hidden border border-gray-100 shadow-sm"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                {/* Responsive Grid: 1 col (mobile), 2 col (tablet), 3 col (desktop) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                  {displayCards.map((card, i) => (
+                    <motion.div
+                      key={card._id || i}
+                      variants={fadeUp}
+                      whileHover={{ y: -4 }}
+                      className={`flex flex-col items-center justify-center p-8 transition-all duration-300 group text-center min-h-[280px] ${
+                        i % 2 === 0
+                          ? "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white"
+                          : "bg-white hover:bg-blue hover:text-white"
+                      }`}
+                    >
+                      <img
+                        src={card.img || cards[i % cards.length]?.img}
+                        alt=""
+                        className="w-16 h-16 md:w-20 md:h-20 mb-4 transition duration-300 group-hover:brightness-0 group-hover:invert"
+                      />
+                      <h2 className="font-bold text-lg md:text-xl mb-2">
+                        {card.title}
+                      </h2>
+                      <p className="text-sm md:text-base opacity-90 px-4">
+                        {card.desc}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* PRODUCT SPECIFICATIONS & RANGE */}
+            <div
+              className={
+                activeTab === "PRODUCT SPECIFICATIONS & RANGE"
+                  ? "block"
+                  : "hidden"
+              }
+            >
+              {/* ================= SCROLLING PRODUCTS ================= */}
+              <section className="w-full bg-white">
+                <div className="w-full overflow-hidden">
+                  <div className="flex w-max animate-scroll gap-6">
+                    {[...displayRange, ...displayRange].map(
+                      (product, index) => (
+                        <div
+                          key={`${product._id || product.title}-${index}`}
+                          className="relative w-[260px] h-[200px] rounded-2xl overflow-hidden group cursor-pointer flex-shrink-0"
+                        >
+                          <img
+                            src={product.image}
+                            alt={product.title}
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 flex items-end justify-center bg-black/40 z-10 text-center px-4">
+                            <h2 className="text-white text-lg md:text-xl mb-5 font-semibold break-words text-center">
+                              {product.title}
+                            </h2>
+                          </div>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                </div>
+              </section>
+
+              {/* ================= TABLE ================= */}
+              <section className="text-black pb-14 max-w-7xl mx-auto">
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="text-gray-600 text-sm mt-10 md:text-base mb-8 px-2"
+                >
+                  Over 1,000 SKUs ranging from couplers, ringlock systems,
+                  formwork panels, props, and jacks amongst others in various
+                  specifications. Detailed specification sheets available on
+                  request.
+                </motion.p>
+
+                <div className="overflow-x-auto rounded-xl border border-gray-200">
+                  <table className="w-full min-w-[700px] text-left border-collapse">
+                    <thead>
+                      <tr className="bg-blue text-white">
+                        <th className="w-1/3 px-6 py-4 text-base md:text-lg font-semibold">
+                          Parameter
+                        </th>
+                        <th className="px-6 py-4 text-base md:text-lg font-semibold border-l border-white/20">
+                          Details
+                        </th>
+                      </tr>
+                    </thead>
+
+                    <motion.tbody
+                      variants={containerVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, amount: 0.1 }}
+                    >
+                      {displaySpecs.map((spec, index) => (
+                        <motion.tr
+                          key={spec._id || index}
+                          variants={fadeUp}
+                          className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
+                        >
+                          <th
+                            className={`px-6 py-4 ${
+                              index % 2 === 0 ? "bg-gray-50/50" : "bg-white"
+                            } font-bold text-gray-700 text-sm md:text-base`}
+                          >
+                            {spec.parameter}
+                          </th>
+                          <td className="px-6 py-4 text-gray-600 text-sm md:text-base">
+                            {spec.details}
+                          </td>
+                        </motion.tr>
+                      ))}
+                    </motion.tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+
+            {/* APPLICATIONS */}
+            <div className={activeTab === "APPLICATIONS" ? "block" : "hidden"}>
+              <motion.div
+                className="max-w-7xl mx-auto"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 justify-items-center">
+                  {displayApps.map((item, index) => (
+                    <motion.div
+                      key={item._id || index}
+                      variants={fadeUp}
+                      className="flex flex-col items-center group w-full"
+                    >
+                      <div className="relative w-full aspect-square max-w-[180px] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
+                        <div className="w-16 h-16 md:w-20 md:h-20 mb-3 flex items-center justify-center">
+                          <img
+                            src={item.img}
+                            alt={item.label}
+                            className="w-full h-full object-contain group-hover:drop-shadow-md"
+                          />
+                        </div>
+                        <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
+                          {item.label}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </section>
         {/* ================= CBAM SECTION ================= */}
         <section className="bg-white min-h-screen w-full py-12 px-4 sm:px-6 md:px-20">

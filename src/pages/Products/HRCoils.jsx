@@ -434,152 +434,152 @@ const HRCoils = () => {
             ))}
           </div>
 
-          {/* Tab Content */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
+          {/* Tab Content Container (All tabs stay mounted) */}
+          <div className="w-full">
+            {/* MANUFACTURING PROCESS */}
+            <div
+              className={
+                activeTab === "MANUFACTURING PROCESS" ? "block" : "hidden"
+              }
             >
-              {/* MANUFACTURING PROCESS */}
-              {activeTab === "MANUFACTURING PROCESS" && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
-                  <div className="w-full">
-                    <img
-                      src={displayManufacturingImg}
-                      alt="Manufacturing Process"
-                      className="w-full h-auto rounded-xl shadow-lg object-cover aspect-video md:aspect-auto"
-                    />
-                  </div>
-                  <div className="space-y-4">
-                    {displayManufacturingDesc.map((desc, idx) => (
-                      <p
-                        key={idx}
-                        className="text-gray-600 text-sm md:text-base leading-relaxed text-justify md:text-left"
-                      >
-                        {desc}
-                      </p>
-                    ))}
-                  </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
+                <div className="w-full">
+                  <img
+                    src={displayManufacturingImg}
+                    alt="Manufacturing Process"
+                    className="w-full h-auto rounded-xl shadow-lg object-cover aspect-video md:aspect-auto"
+                  />
                 </div>
-              )}
-
-              {/* CORE STRENGTH */}
-              {activeTab === "CORE STRENGTH" && (
-                <motion.div
-                  className="w-full max-w-7xl mx-auto rounded-xl overflow-hidden border border-gray-100"
-                  variants={sectionVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
-                >
-                  {/* Responsive Grid: 1 col mobile, 2 col tablet, 3 col desktop */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                    {displayCards.map((card, i) => (
-                      <motion.div
-                        key={i}
-                        variants={fadeUp}
-                        className={`flex flex-col items-center text-center p-8 transition-all duration-300 group min-h-[250px] justify-center ${
-                          i % 2 === 0
-                            ? "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white"
-                            : "bg-white hover:bg-blue hover:text-white"
-                        }`}
-                      >
-                        <img
-                          src={card.img || cards[i % cards.length]?.img}
-                          alt=""
-                          className="w-16 h-16 mb-4 transition duration-300 group-hover:brightness-0 group-hover:invert"
-                        />
-                        <h2 className="font-bold text-lg md:text-xl mb-2">
-                          {card.title}
-                        </h2>
-                        <p className="text-sm md:text-base leading-snug opacity-90 px-2">
-                          {card.desc}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-
-              {/* PRODUCT SPECIFICATIONS */}
-              {activeTab === "PRODUCT SPECIFICATIONS" && (
-                <div className="max-w-7xl mx-auto py-6">
-                  <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
-                    <table className="w-full text-left border-collapse">
-                      <thead>
-                        <tr className="bg-blue text-white">
-                          <th className="px-6 py-4 font-semibold text-base md:text-lg">
-                            Parameter
-                          </th>
-                          <th className="px-6 py-4 font-semibold text-base md:text-lg border-l border-blue-400">
-                            Details
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-200">
-                        {displaySpecs.map((spec, idx) => (
-                          <tr
-                            key={idx}
-                            className="hover:bg-gray-50 transition-colors"
-                          >
-                            <th className="px-6 py-4 bg-gray-50/50 font-bold text-gray-700 text-sm md:text-base w-1/3">
-                              {spec.parameter}
-                            </th>
-                            <td className="px-6 py-4 text-gray-600 text-sm md:text-base">
-                              {spec.details}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              )}
-
-              {/* APPLICATIONS */}
-              {activeTab === "APPLICATIONS" && (
-                <div className="max-w-7xl mx-auto space-y-10">
-                  {displayAppIntro && (
-                    <p className="text-gray-600 text-sm md:text-lg leading-relaxed text-justify md:text-left">
-                      {displayAppIntro}
+                <div className="space-y-4">
+                  {displayManufacturingDesc.map((desc, idx) => (
+                    <p
+                      key={idx}
+                      className="text-gray-600 text-sm md:text-base leading-relaxed text-justify md:text-left"
+                    >
+                      {desc}
                     </p>
-                  )}
-
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 justify-items-center">
-                    {displayApps.map((item, index) => (
-                      <motion.div
-                        key={index}
-                        variants={fadeUp}
-                        className="flex flex-col items-center group w-full"
-                      >
-                        <div className="relative w-full aspect-square max-w-[180px] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
-                          <div className="w-16 h-16 md:w-20 md:h-20 mb-3">
-                            <img
-                              src={item.img}
-                              alt={item.label}
-                              className="w-full h-full object-contain group-hover:drop-shadow-md"
-                              style={
-                                item.scale
-                                  ? { transform: `scale(${item.scale})` }
-                                  : {}
-                              }
-                            />
-                          </div>
-
-                          <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
-                            {item.label}
-                          </p>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
+                  ))}
                 </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
+              </div>
+            </div>
+
+            {/* CORE STRENGTH */}
+            <div className={activeTab === "CORE STRENGTH" ? "block" : "hidden"}>
+              <motion.div
+                className="w-full max-w-7xl mx-auto rounded-xl overflow-hidden border border-gray-100"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                {/* Responsive Grid: 1 col mobile, 2 col tablet, 3 col desktop */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                  {displayCards.map((card, i) => (
+                    <motion.div
+                      key={i}
+                      variants={fadeUp}
+                      className={`flex flex-col items-center text-center p-8 transition-all duration-300 group min-h-[250px] justify-center ${
+                        i % 2 === 0
+                          ? "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white"
+                          : "bg-white hover:bg-blue hover:text-white"
+                      }`}
+                    >
+                      <img
+                        src={card.img || cards[i % cards.length]?.img}
+                        alt=""
+                        className="w-16 h-16 mb-4 transition duration-300 group-hover:brightness-0 group-hover:invert"
+                      />
+                      <h2 className="font-bold text-lg md:text-xl mb-2">
+                        {card.title}
+                      </h2>
+                      <p className="text-sm md:text-base leading-snug opacity-90 px-2">
+                        {card.desc}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* PRODUCT SPECIFICATIONS */}
+            <div
+              className={
+                activeTab === "PRODUCT SPECIFICATIONS" ? "block" : "hidden"
+              }
+            >
+              <div className="max-w-7xl mx-auto py-6">
+                <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-blue text-white">
+                        <th className="px-6 py-4 font-semibold text-base md:text-lg">
+                          Parameter
+                        </th>
+                        <th className="px-6 py-4 font-semibold text-base md:text-lg border-l border-blue-400">
+                          Details
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                      {displaySpecs.map((spec, idx) => (
+                        <tr
+                          key={idx}
+                          className="hover:bg-gray-50 transition-colors"
+                        >
+                          <th className="px-6 py-4 bg-gray-50/50 font-bold text-gray-700 text-sm md:text-base w-1/3">
+                            {spec.parameter}
+                          </th>
+                          <td className="px-6 py-4 text-gray-600 text-sm md:text-base">
+                            {spec.details}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            {/* APPLICATIONS */}
+            <div className={activeTab === "APPLICATIONS" ? "block" : "hidden"}>
+              <div className="max-w-7xl mx-auto space-y-10">
+                {displayAppIntro && (
+                  <p className="text-gray-600 text-sm md:text-lg leading-relaxed text-justify md:text-left">
+                    {displayAppIntro}
+                  </p>
+                )}
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 justify-items-center">
+                  {displayApps.map((item, index) => (
+                    <motion.div
+                      key={index}
+                      variants={fadeUp}
+                      className="flex flex-col items-center group w-full"
+                    >
+                      <div className="relative w-full aspect-square max-w-[180px] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
+                        <div className="w-16 h-16 md:w-20 md:h-20 mb-3">
+                          <img
+                            src={item.img}
+                            alt={item.label}
+                            className="w-full h-full object-contain group-hover:drop-shadow-md"
+                            style={
+                              item.scale
+                                ? { transform: `scale(${item.scale})` }
+                                : {}
+                            }
+                          />
+                        </div>
+
+                        <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
+                          {item.label}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* ================= Get Detailed Information ================= */}

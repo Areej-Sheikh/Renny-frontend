@@ -425,7 +425,6 @@ const ERW = () => {
             </motion.div>
           </section>
         </section>
-
         {/* ================= TABS SECTION ================= */}
         <section className="w-full py-12 px-4 sm:px-6 md:px-20 min-h-screen">
           {/* Tabs - Mobile Scrollable & Centered on Desktop */}
@@ -456,7 +455,7 @@ const ERW = () => {
             >
               {/* MANUFACTURING PROCESS */}
               {activeTab === "MANUFACTURING PROCESS" && (
-                <div className="grid grid-cols-1  md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
                   <div className="w-full">
                     <img
                       src={displayManufacturingImg}
@@ -468,7 +467,7 @@ const ERW = () => {
                     {displayManufacturingDesc.map((desc, idx) => (
                       <p
                         key={idx}
-                        className="text-gray-600 text-sm md:text-base leading-relaxed text-justify md:text-left"
+                        className="text-gray-600 text-sm md:text-base  md:text-left"
                       >
                         {desc}
                       </p>
@@ -486,7 +485,7 @@ const ERW = () => {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.2 }}
                 >
-                  {/* Grid: 1 col mobile, 2 col tablet, 3 col desktop */}
+                  {/* Responsive Grid: 1 col mobile, 2 col tablet, 3 col desktop */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                     {displayCards.map((card, i) => (
                       <motion.div
@@ -506,7 +505,7 @@ const ERW = () => {
                         <h2 className="font-bold text-lg md:text-xl mb-2">
                           {card.title}
                         </h2>
-                        <p className="text-sm md:text-base leading-snug opacity-90 px-2">
+                        <p className="text-sm md:text-base  opacity-90 px-2">
                           {card.desc}
                         </p>
                       </motion.div>
@@ -552,54 +551,41 @@ const ERW = () => {
 
               {/* APPLICATIONS */}
               {activeTab === "APPLICATIONS" && (
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 justify-items-center">
-                  {displayApps.map((item, index) => (
-                    <motion.div
-                      key={index}
-                      variants={fadeUp}
-                      className="flex flex-col items-center group w-full"
-                    >
-                      <div
-                        className="
-            relative
-            w-full
-            aspect-square
-            max-w-[180px]
-            flex
-            flex-col
-            items-center
-            justify-center
-            rounded-2xl
-            bg-gray-50
-            transition-all
-            duration-300
-            group-hover:scale-105
-            group-hover:bg-white
-            group-hover:shadow-xl
-            border
-            border-transparent
-            group-hover:border-blue/20
-          "
-                      >
-                        <div className="w-16 h-16 md:w-20 md:h-20 mb-3">
-                          <img
-                            src={item.img}
-                            alt={item.label}
-                            className="w-full h-full object-contain group-hover:drop-shadow-md"
-                            style={
-                              item.scale
-                                ? { transform: `scale(${item.scale})` }
-                                : {}
-                            }
-                          />
-                        </div>
+                <div className="max-w-7xl mx-auto space-y-10">
+                  {displayAppIntro && (
+                    <p className="text-gray-600 text-sm md:text-lg md:text-left">
+                      {displayAppIntro}
+                    </p>
+                  )}
 
-                        <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
-                          {item.label}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
+                    {displayApps.map((item, index) => (
+                      <motion.div
+                        key={index}
+                        variants={fadeUp}
+                        className="flex flex-col items-center group"
+                      >
+                        <div className="relative w-full aspect-square max-w-[180px] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
+                          <div className="w-16 h-16 md:w-20 md:h-20 mb-3">
+                            <img
+                              src={item.img}
+                              alt={item.label}
+                              className="w-full h-full object-contain group-hover:drop-shadow-md"
+                              style={
+                                item.scale
+                                  ? { transform: `scale(${item.scale})` }
+                                  : {}
+                              }
+                            />
+                          </div>
+
+                          <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
+                            {item.label}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               )}
             </motion.div>

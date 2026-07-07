@@ -217,9 +217,7 @@ const WireRods = () => {
           },
           { parameter: "Standards", details: "IS 7887:1992" },
         ];
-  const displayAppIntro =
-    pageData?.applicationsIntro ||
-    " ";
+  const displayAppIntro = pageData?.applicationsIntro || " ";
   const displayApps =
     pageData?.applications &&
     pageData.applications.length > 0 &&

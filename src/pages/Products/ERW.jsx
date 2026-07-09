@@ -454,7 +454,12 @@ const ERW = () => {
               transition={{ duration: 0.4 }}
             >
               {/* MANUFACTURING PROCESS */}
-              {activeTab === "MANUFACTURING PROCESS" && (
+
+              <div
+                className={
+                  activeTab === "MANUFACTURING PROCESS" ? "block" : "hidden"
+                }
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
                   <div className="w-full">
                     <img
@@ -474,10 +479,12 @@ const ERW = () => {
                     ))}
                   </div>
                 </div>
-              )}
+              </div>
 
               {/* CORE STRENGTH */}
-              {activeTab === "CORE STRENGTH" && (
+              <div
+                className={activeTab === "CORE STRENGTH" ? "block" : "hidden"}
+              >
                 <motion.div
                   className="w-full max-w-7xl mx-auto rounded-xl overflow-hidden border border-gray-100"
                   variants={sectionVariants}
@@ -512,10 +519,14 @@ const ERW = () => {
                     ))}
                   </div>
                 </motion.div>
-              )}
+              </div>
 
               {/* PRODUCT SPECIFICATIONS */}
-              {activeTab === "PRODUCT SPECIFICATIONS" && (
+              <div
+                className={
+                  activeTab === "PRODUCT SPECIFICATIONS" ? "block" : "hidden"
+                }
+              >
                 <div className="max-w-7xl mx-auto py-6">
                   <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
                     <table className="w-full text-left border-collapse">
@@ -547,10 +558,12 @@ const ERW = () => {
                     </table>
                   </div>
                 </div>
-              )}
+              </div>
 
               {/* APPLICATIONS */}
-              {activeTab === "APPLICATIONS" && (
+              <div
+                className={activeTab === "APPLICATIONS" ? "block" : "hidden"}
+              >
                 <div className="max-w-7xl mx-auto space-y-10">
                   {displayAppIntro && (
                     <p className="text-gray-600 text-sm md:text-lg md:text-left">
@@ -587,7 +600,7 @@ const ERW = () => {
                     ))}
                   </div>
                 </div>
-              )}
+              </div>
             </motion.div>
           </AnimatePresence>
         </section>

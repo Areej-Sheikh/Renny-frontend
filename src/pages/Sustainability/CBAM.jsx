@@ -39,7 +39,7 @@ import heroSrc from "../../assets/CBAMHero.webp";
 import CBAMImage from "../../assets/CBAM1.webp";
 import CBAMImage1 from "../../assets/What Changed in 2026.webp";
 import CBAMImage2 from "../../assets/CBAM.svg";
-import logo from "../../assets/Co2.webp";
+import logo from "../../assets/Co2.webp`";
 import CostSavingCalculator from "../../assets/CBAM Cost Saving Calculator.webp";
 import global from "../../assets/Global_5.webp";
 import img1 from "../../assets/1.webp";

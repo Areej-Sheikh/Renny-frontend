@@ -47,10 +47,12 @@ import img2 from "../../assets/3.webp";
 import HowToComply from "../../assets/How To Comply.webp";
 import R from "../../assets/R.webp";
 
+// import CredentialCard1 from "../../components/CredentialCard1"
+
 // Animation viewport settings
 const viewportConfig = {
   once: true,
-  amount: 0.2,
+  amount: 0.25,
 };
 
 // Container animation variants
@@ -65,12 +67,30 @@ const containerVariants = {
 };
 
 const staggerContainer = {
-  hidden: {},
+  hidden: { opacity: 0 },
   visible: {
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
+  },
+};
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 60, scale: 0.9, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const logoVariant = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 1, ease: "easeOut" },
   },
 };
 
@@ -542,6 +562,36 @@ const faqData = [
   },
 ];
 
+const CredentialCard1 = ({ item, reverse }) => {
+  const Icon = item.icon;
+  return (
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      whileHover={{
+        scale: 1.03,
+        y: -8,
+        transition: { duration: 0.35, ease: "easeOut" },
+      }}
+      className={`w-[350px] h-[175px] p-6 flex items-center gap-5 bg-white/80 backdrop-blur-md border border-green-100 rounded-[24px] shadow-[0_15px_40px_rgba(16,185,129,0.08)] hover:shadow-[0_25px_60px_rgba(16,185,129,0.18)] transition-all duration-350 ${
+        reverse ? "flex-row-reverse text-right" : ""
+      }`}
+    >
+      {/* Fixed Icon Size */}
+      <div className="w-14 h-14 shrink-0 rounded-full bg-gradient-to-br from-green-50 to-emerald-100 border border-green-200 flex items-center justify-center shadow-inner">
+        <Icon size={24} className="text-green-600" />
+      </div>
+
+      {/* Centered Text Container */}
+      <div className="text-gray-700 text-[18px] leading-[1.6] font-medium max-w-[220px]">
+        {item.text}
+      </div>
+    </motion.div>
+  );
+};
+
 const CBAM = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -549,34 +599,8 @@ const CBAM = () => {
   });
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const CredentialItem = ({
-    icon: Icon,
-    text,
-    animationVariant,
-    alignmentClasses,
-  }) => {
-    return (
-      <motion.div
-        variants={animationVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportConfig}
-        whileHover={{
-          y: -6,
-          scale: 1.03,
-        }}
-        className={`flex flex-col sm:flex-row items-center gap-4 p-4 rounded-2xl bg-white max-w-sm transition-shadow duration-300 ${alignmentClasses}`}
-      >
-        {/* Icon frame: 44px (h-11 w-11) */}
-        <div className="flex-shrink-0 flex items-center justify-center h-11 w-11 rounded-full bg-[#E8F8EF]">
-          <Icon className="text-[#00A651] w-5 h-5" />
-        </div>
-        <p className="text-gray-600 text-sm leading-relaxed text-center sm:text-left">
-          {text}
-        </p>
-      </motion.div>
-    );
-  };
+  const [selectedCredential, setSelectedCredential] = useState(null);
+
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % certData.length);
   };
@@ -612,6 +636,7 @@ const CBAM = () => {
   const toggleAccordion = (id) => {
     setOpenId(openId === id ? null : id);
   };
+
   return (
     <div className="relative w-full  overflow-x-hidden font-helvetica">
       {/* Hero Banner */}
@@ -937,168 +962,133 @@ const CBAM = () => {
       </section>
 
       {/* Carbon Credentials */}
-      <section className="bg-gray-100 min-h-screen">
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-[#F9FFFC] via-[#F3FFF7] to-[#ECFEFF]">
+        {/* Background Glows */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-green-200/30 rounded-full blur-[100px]" />
+          <div className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[500px] bg-blue-200/20 rounded-full blur-[100px]" />
+        </div>
+
         <motion.div
-          variants={containerVariants}
+          className="text-center mb-16"
+          variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24"
         >
-          {/* Header Section */}
+          <h2 className="text-4xl font-bold text-[#0A2342]">
+            Renny's Carbon Credentials
+          </h2>
+
+          <div className="mt-4 flex justify-center">
+            <div className="w-56 h-[2px] bg-gray-300 relative">
+              <div className="absolute left-1/2 -translate-x-1/2 w-16 h-full bg-[#162456]" />
+            </div>
+          </div>
+        </motion.div>
+
+        <div className="relative max-w-7xl mx-auto px-4 z-10">
+          {/* Desktop Balanced Layout with Stagger Animation */}
           <motion.div
-            variants={fadeUp}
-            className="flex flex-col items-center mb-16"
+            className="hidden lg:block relative h-[650px]"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0F2748] tracking-tight text-center">
-              Renny's Carbon Credentials
-            </h2>
-            {/* Custom Dual-color Accent Line */}
-            <div className="w-24 h-1 mt-4 flex rounded-full overflow-hidden">
-              <div className="bg-[#0F2748] w-1/3 h-full"></div>
-              <div className="bg-gray-200 w-2/3 h-full"></div>
+            {/* Logo with Pulsing Glow Animation */}
+            <motion.div
+              className="absolute inset-0 flex justify-center items-center"
+              variants={logoVariant}
+            >
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="relative"
+              >
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1], opacity: [0.6, 1, 0.6] }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute inset-0 bg-green-400/30 blur-[80px] rounded-full"
+                />
+                <img
+                  src={logo}
+                  alt="Renny Logo"
+                  className="w-[500px] relative z-10"
+                />
+              </motion.div>
+            </motion.div>
+
+            {/* Cards Positioned around Center */}
+            <div className="absolute top-0 left-[15%]">
+              <CredentialCard1 item={credentials[0]} />
+            </div>
+            <div className="absolute top-0 right-[15%]">
+              <CredentialCard1 item={credentials[2]} />
+            </div>
+            <div className="absolute top-[40%] -left-5">
+              <CredentialCard1 item={credentials[1]} />
+            </div>
+            <div className="absolute top-[40%] -right-5">
+              <CredentialCard1 item={credentials[3]} />
+            </div>
+            <div className="absolute bottom-0 left-[35%]">
+              <CredentialCard1 item={credentials[4]} />
             </div>
           </motion.div>
 
-          {/* ================= DESKTOP LAYOUT ================= */}
-          <div className="hidden lg:grid grid-cols-3 items-center justify-items-center gap-x-8 gap-y-12 max-w-6xl mx-auto">
-            {/* Top Row - Spans across columns, placeholder center */}
-            <div className="col-span-3 flex justify-center w-full mb-4">
-              <CredentialItem
-                icon={credentials[0].icon}
-                text={credentials[0].text}
-                animationVariant={fadeUp}
-                alignmentClasses="text-center"
-              />
-            </div>
-
-            {/* Left Column Stack */}
-            <div className="flex flex-col gap-16 justify-self-end w-full max-w-sm items-end text-right">
-              <CredentialItem
-                icon={credentials[1].icon}
-                text={credentials[1].text}
-                animationVariant={slideLeft}
-                alignmentClasses="sm:flex-row-reverse"
-              />
-              <CredentialItem
-                icon={credentials[2].icon}
-                text={credentials[2].text}
-                animationVariant={slideLeft}
-                alignmentClasses="sm:flex-row-reverse"
-              />
-            </div>
-
-            {/* Centered Dynamic Floating Image */}
-            <div className="relative flex justify-center items-center w-full">
-              <motion.div
-                variants={imageReveal}
-                animate={{
-                  y: [0, -8, 0],
-                }}
-                transition={{
-                  y: {
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  },
-                }}
-                className="w-full max-w-[520px]"
-              >
-                <img
-                  src={logo}
-                  alt="CO2 Earth Logo"
-                  className="w-120 h-auto object-contain select-none pointer-events-none"
-                />
-              </motion.div>
-            </div>
-
-            {/* Right Column Stack */}
-            <div className="flex flex-col gap-16 justify-self-start w-full max-w-sm items-start text-left">
-              <CredentialItem
-                icon={credentials[2].icon} // Reusing the identical graphic shield from design
-                text={credentials[2].text}
-                animationVariant={slideRight}
-                alignmentClasses=""
-              />
-              <CredentialItem
-                icon={credentials[4].icon}
-                text={credentials[4].text}
-                animationVariant={slideRight}
-                alignmentClasses=""
-              />
-            </div>
-
-            {/* Bottom Row - Spans across columns */}
-            <div className="col-span-3 flex justify-center w-full mt-4">
-              <CredentialItem
-                icon={credentials[3].icon}
-                text={credentials[3].text}
-                animationVariant={fadeUp}
-                alignmentClasses="text-center"
-              />
-            </div>
+          {/* Mobile/Tablet Responsive */}
+          <div className="lg:hidden space-y-6">
+            {credentials.map((item, index) => (
+              <CredentialCard1 key={index} item={item} />
+            ))}
           </div>
-
-          {/* ================= MOBILE & TABLET LAYOUT ================= */}
-          <div className="lg:hidden flex flex-col items-center gap-10 max-w-md mx-auto">
-            {/* Top Card */}
-            <CredentialItem
-              icon={credentials[0].icon}
-              text={credentials[0].text}
-              animationVariant={fadeUp}
-              alignmentClasses=""
-            />
-
-            {/* Centered Image View */}
-            <motion.div
-              variants={imageReveal}
-              animate={{
-                y: [0, -8, 0],
-              }}
-              transition={{
-                y: {
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
-              }}
-              className="w-full max-w-[180px] sm:max-w-[220px] my-4"
-            >
-              <img
-                src={logo}
-                alt="CO2 Earth Logo"
-                className="w-full h-auto object-contain select-none pointer-events-none"
-              />
-            </motion.div>
-
-            {/* Remaining Cards Stacked Below */}
-            <CredentialItem
-              icon={credentials[1].icon}
-              text={credentials[1].text}
-              animationVariant={slideLeft}
-              alignmentClasses=""
-            />
-            <CredentialItem
-              icon={credentials[2].icon}
-              text={credentials[2].text}
-              animationVariant={slideRight}
-              alignmentClasses=""
-            />
-            <CredentialItem
-              icon={credentials[4].icon}
-              text={credentials[4].text}
-              animationVariant={slideRight}
-              alignmentClasses=""
-            />
-            <CredentialItem
-              icon={credentials[3].icon}
-              text={credentials[3].text}
-              animationVariant={fadeUp}
-              alignmentClasses=""
-            />
-          </div>
-        </motion.div>
+        </div>
       </section>
+
+      <AnimatePresence>
+        {selectedCredential && (
+          <motion.div
+            className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 p-5"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCredential(null)} // Close on backdrop click
+          >
+            <motion.div
+              className="relative bg-white rounded-2xl max-w-xl w-full p-8"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+            >
+              {/* Close Icon */}
+              <button
+                onClick={() => setSelectedCredential(null)}
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition"
+                aria-label="Close"
+              >
+                <FiX size={22} />
+              </button>
+
+              <h3 className="text-2xl font-bold mb-6">Carbon Credential</h3>
+
+              <div className="text-gray-700 leading-8">
+                {selectedCredential.text}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Cost Saving Calculator */}
       <section className="py-12 bg-white overflow-hidden selection:bg-green/20">

@@ -149,6 +149,12 @@ const Home = () => {
         url="https://rennystrips.com"
         image={HomepageBanner}
       />
+      
+      {/* Visually hidden h1 for SEO */}
+      <h1 className="absolute w-[1px] h-[1px] p-0 -m-[1px] overflow-hidden whitespace-nowrap border-0" style={{ clip: "rect(0, 0, 0, 0)" }}>
+        CBAM-Compliant Structural Steel Company in India
+      </h1>
+
       <div className="relative flex flex-col font-helvetica ">
         {/* 1. Banner Section */}
         <section className="w-full min-h-screen relative flex items-center py-12 md:py-0 overflow-hidden">

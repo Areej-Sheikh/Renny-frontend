@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Added for integration
 
 import HomepageBanner from "../assets/HomepageBanner.webm";
+import HeroPoster from "../assets/HeroPoster.webp";
 import SEO from "../components/SEO";
 import SchemaMarkup from "../components/SchemaMarkup";
 import homeSchema from "../schema/homeSchema";
@@ -46,6 +47,7 @@ const Home = () => {
   const [activeNews, setActiveNews] = useState(null);
   const [blogs, setBlogs] = useState([]);
   const [contentError, setContentError] = useState("");
+  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -79,7 +81,30 @@ const Home = () => {
         setContentError("Some homepage content is temporarily unavailable.");
       }
     };
-    fetchContent();
+    // fetchContent();
+
+    const onPageLoaded = () => {
+      // Show Hero Video
+      setShowVideo(true);
+
+      // Load News & Blogs
+
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(fetchContent);
+      } else {
+        setTimeout(fetchContent, 1000);
+      }
+    };
+
+    if (document.readyState === "complete") {
+      onPageLoaded();
+    } else {
+      window.addEventListener("load", onPageLoaded);
+    }
+
+    return () => {
+      window.removeEventListener("load", onPageLoaded);
+    };
   }, []);
 
   const formatDate = (dateString) => {
@@ -149,12 +174,6 @@ const Home = () => {
         url="https://rennystrips.com"
         image={HomepageBanner}
       />
-      
-      {/* Visually hidden h1 for SEO */}
-      <h1 className="absolute w-[1px] h-[1px] p-0 -m-[1px] overflow-hidden whitespace-nowrap border-0" style={{ clip: "rect(0, 0, 0, 0)" }}>
-        CBAM-Compliant Structural Steel Company in India
-      </h1>
-
       <div className="relative flex flex-col font-helvetica ">
         {/* 1. Banner Section */}
         <section className="w-full min-h-screen relative flex items-center py-12 md:py-0 overflow-hidden">
@@ -162,7 +181,7 @@ const Home = () => {
             {/* Left Content */}
             <motion.div
               className="flex flex-col justify-center h-auto ml-0 md:ml-10 mb-2  text-center md:text-left"
-              initial={{ x: -80 }}
+              initial={{ opacity: 1, x: -40 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               animate={{ opacity: 1, x: 0 }}
             >
@@ -203,24 +222,41 @@ const Home = () => {
             {/* Right Content */}
             <motion.div
               className="w-full mr-0 md:mr-1 max-w-full relative flex flex-col items-start"
-              initial={{ x: 80 }}
+              initial={{ opacity: 1, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
             >
               {/* Video Container - Preserved your hover logic and desktop widths */}
               <div className="w-full flex items-center justify-center mt-4 md:mt-8 pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
-                <video
-                  className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-48 sm:h-64 md:h-80 
+                {showVideo ? (
+                  <video
+                    className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-48 sm:h-64 md:h-80 
                      ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover 
                      transition-all duration-700 ease-out 
                      hover:scale-110 lg:hover:w-[calc(100vw-460px)] 
                      hover:mt-0 md:hover:mt-16 hover:ml-0 md:hover:ml-10"
-                  src={HomepageBanner}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
+                    src={HomepageBanner}
+                    poster={HeroPoster}
+                    autoPlay
+                    preload="metadata"
+                    loop
+                    muted
+                    playsInline
+                  />
+                ) : (
+                  <img
+                    src={HeroPoster}
+                    fetchpriority="high"
+                    loading="eager"
+                    decoding="async"
+                    alt="Renny Strips"
+                    className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-48 sm:h-64 md:h-80 
+                     ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover 
+                     transition-all duration-700 ease-out 
+                     hover:scale-110 lg:hover:w-[calc(100vw-460px)] 
+                     hover:mt-0 md:hover:mt-16 hover:ml-0 md:hover:ml-10"
+                  />
+                )}
               </div>
 
               <div className="flex flex-col w-full items-center md:items-start   nest-hub:items-center nest-hub:justify-center nest-hub:text-center">

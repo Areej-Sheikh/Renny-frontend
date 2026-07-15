@@ -168,8 +168,8 @@ const Home = () => {
     <>
       <SchemaMarkup schema={homeSchema} />
       <SEO
-        title="CBAM-Compliant Structural Steel Company in India | Renny Strips"
-        description="Renny Strips is a CBAM-compliant structural steel company manufacturing high-quality steel products for infrastructure, engineering, and industrial applications."
+        title="Green Structural Steel Company in India | Renny Strips"
+        description="Renny Strips is a green structural steel company in India delivering low-carbon structural steel solutions for strong, sustainable infrastructure."
         keywords="structural steel company, structural steel manufacturer, green steel, CBAM, structural steel fabricators"
         url="https://rennystrips.com"
         image={HomepageBanner}

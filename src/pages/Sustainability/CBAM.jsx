@@ -39,7 +39,7 @@ import heroSrc from "../../assets/CBAMHero.webp";
 import CBAMImage from "../../assets/CBAM1.webp";
 import CBAMImage1 from "../../assets/What Changed in 2026.webp";
 import CBAMImage2 from "../../assets/CBAM.svg";
-import logo from "../../assets/CBAMLogo.webp";
+import logo from "../../assets/Co2.webp";
 import CostSavingCalculator from "../../assets/CBAM Cost Saving Calculator.webp";
 import global from "../../assets/Global_5.webp";
 import img1 from "../../assets/1.webp";
@@ -47,10 +47,12 @@ import img2 from "../../assets/3.webp";
 import HowToComply from "../../assets/How To Comply.webp";
 import R from "../../assets/R.webp";
 
+// import CredentialCard1 from "../../components/CredentialCard1"
+
 // Animation viewport settings
 const viewportConfig = {
   once: true,
-  amount: 0.2,
+  amount: 0.25,
 };
 
 // Container animation variants
@@ -65,12 +67,30 @@ const containerVariants = {
 };
 
 const staggerContainer = {
-  hidden: {},
+  hidden: { opacity: 0 },
   visible: {
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
+  },
+};
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 60, scale: 0.9, filter: "blur(8px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const logoVariant = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 1, ease: "easeOut" },
   },
 };
 
@@ -542,6 +562,36 @@ const faqData = [
   },
 ];
 
+const CredentialCard1 = ({ item, reverse }) => {
+  const Icon = item.icon;
+  return (
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      whileHover={{
+        scale: 1.03,
+        y: -8,
+        transition: { duration: 0.35, ease: "easeOut" },
+      }}
+      className={`w-[350px] h-[175px] p-6 flex items-center gap-5 bg-white/80 backdrop-blur-md border border-green-100 rounded-[24px] shadow-[0_15px_40px_rgba(16,185,129,0.08)] hover:shadow-[0_25px_60px_rgba(16,185,129,0.18)] transition-all duration-350 ${
+        reverse ? "flex-row-reverse text-right" : ""
+      }`}
+    >
+      {/* Fixed Icon Size */}
+      <div className="w-14 h-14 shrink-0 rounded-full bg-gradient-to-br from-green-50 to-emerald-100 border border-green-200 flex items-center justify-center shadow-inner">
+        <Icon size={24} className="text-green-600" />
+      </div>
+
+      {/* Centered Text Container */}
+      <div className="text-gray-700 text-[18px] leading-[1.6] font-medium max-w-[220px]">
+        {item.text}
+      </div>
+    </motion.div>
+  );
+};
+
 const CBAM = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -549,6 +599,7 @@ const CBAM = () => {
   });
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedCredential, setSelectedCredential] = useState(null);
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % certData.length);
@@ -585,6 +636,7 @@ const CBAM = () => {
   const toggleAccordion = (id) => {
     setOpenId(openId === id ? null : id);
   };
+
   return (
     <div className="relative w-full  overflow-x-hidden font-helvetica">
       {/* Hero Banner */}
@@ -910,74 +962,133 @@ const CBAM = () => {
       </section>
 
       {/* Carbon Credentials */}
-      <section className="bg-gray-100 py-10 flex items-center justify-center ">
-        <div className=" mx-auto max-w-6xl">
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-[#F9FFFC] via-[#F3FFF7] to-[#ECFEFF]">
+        {/* Background Glows */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-green-200/30 rounded-full blur-[100px]" />
+          <div className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[500px] bg-blue-200/20 rounded-full blur-[100px]" />
+        </div>
+
+        <motion.div
+          className="text-center mb-16"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+        >
+          <h2 className="text-4xl font-bold text-[#0A2342]">
+            Renny's Carbon Credentials
+          </h2>
+
+          <div className="mt-4 flex justify-center">
+            <div className="w-56 h-[2px] bg-gray-300 relative">
+              <div className="absolute left-1/2 -translate-x-1/2 w-16 h-full bg-[#162456]" />
+            </div>
+          </div>
+        </motion.div>
+
+        <div className="relative max-w-7xl mx-auto px-4 z-10">
+          {/* Desktop Balanced Layout with Stagger Animation */}
           <motion.div
-            className="grid lg:grid-cols-2 gap-2 items-center"
-            variants={containerVariants}
+            className="hidden lg:block relative h-[650px]"
+            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
           >
-            {/* Left Side */}
+            {/* Logo with Pulsing Glow Animation */}
             <motion.div
-              variants={slideLeft}
-              className="flex justify-center items-center w-full"
+              className="absolute inset-0 flex justify-center items-center"
+              variants={logoVariant}
             >
-              <motion.img
-                src={logo}
-                alt="Renny Logo"
-                className="w-full mx-auto object-contain"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.4 }}
-              />
-            </motion.div>
-
-            {/* Right Side */}
-            <motion.div variants={slideRight} className="max-w-xl">
-              <motion.h2
-                variants={fadeUp}
-                className="text-4xl font-bold text-[#0A2342]"
-              >
-                Renny's Carbon Credentials
-              </motion.h2>
-
               <motion.div
-                variants={fadeUp}
-                className="mt-4 w-[240px] h-[2px] bg-[#CFCFCF] relative"
+                animate={{ y: [0, -8, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="relative"
               >
-                <div className="absolute left-0 top-0 w-14 h-full bg-[#162456]" />
-              </motion.div>
-
-              <motion.div variants={staggerContainer} className="space-y-2">
-                {credentials.map((item, index) => {
-                  const Icon = item.icon;
-
-                  return (
-                    <motion.div
-                      key={index}
-                      variants={fadeUp}
-                      whileHover={{
-                        x: 6,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                      }}
-                      className="flex gap-5 items-start border-b border-gray-200 py-1"
-                    >
-                      <div className="w-14 h-14 rounded-full bg-green/10 flex items-center justify-center shrink-0">
-                        <Icon size={28} className="text-green" />
-                      </div>
-
-                      <p className="text-gray-700 leading-7">{item.text}</p>
-                    </motion.div>
-                  );
-                })}
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1], opacity: [0.6, 1, 0.6] }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute inset-0 bg-green-400/30 blur-[80px] rounded-full"
+                />
+                <img
+                  src={logo}
+                  alt="Renny Logo"
+                  className="w-[500px] relative z-10"
+                />
               </motion.div>
             </motion.div>
+
+            {/* Cards Positioned around Center */}
+            <div className="absolute top-0 left-[15%]">
+              <CredentialCard1 item={credentials[0]} />
+            </div>
+            <div className="absolute top-0 right-[15%]">
+              <CredentialCard1 item={credentials[2]} />
+            </div>
+            <div className="absolute top-[40%] -left-5">
+              <CredentialCard1 item={credentials[1]} />
+            </div>
+            <div className="absolute top-[40%] -right-5">
+              <CredentialCard1 item={credentials[3]} />
+            </div>
+            <div className="absolute bottom-0 left-[35%]">
+              <CredentialCard1 item={credentials[4]} />
+            </div>
           </motion.div>
+
+          {/* Mobile/Tablet Responsive */}
+          <div className="lg:hidden space-y-6">
+            {credentials.map((item, index) => (
+              <CredentialCard1 key={index} item={item} />
+            ))}
+          </div>
         </div>
       </section>
+
+      <AnimatePresence>
+        {selectedCredential && (
+          <motion.div
+            className="fixed inset-0 bg-black/60 flex justify-center items-center z-50 p-5"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCredential(null)} // Close on backdrop click
+          >
+            <motion.div
+              className="relative bg-white rounded-2xl max-w-xl w-full p-8"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+            >
+              {/* Close Icon */}
+              <button
+                onClick={() => setSelectedCredential(null)}
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition"
+                aria-label="Close"
+              >
+                <FiX size={22} />
+              </button>
+
+              <h3 className="text-2xl font-bold mb-6">Carbon Credential</h3>
+
+              <div className="text-gray-700 leading-8">
+                {selectedCredential.text}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Cost Saving Calculator */}
       <section className="py-12 bg-white overflow-hidden selection:bg-green/20">

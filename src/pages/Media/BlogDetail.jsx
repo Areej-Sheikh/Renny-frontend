@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import axios from "axios";
-import Newsletter from "../../components/Newsletter";
-import PageSpinner from "../../components/PageSpinner.jsx";
-import SEO from "../../components/SEO.jsx";
-import SchemaMarkup from "../../components/SchemaMarkup.jsx";
-import { API_BASE_URL } from "../../lib/api";
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import axios from 'axios';
+import Newsletter from '../../components/Newsletter';
+import PageSpinner from '../../components/PageSpinner.jsx';
+import SEO from '../../components/SEO.jsx';
+import SchemaMarkup from '../../components/SchemaMarkup.jsx';
+import { API_BASE_URL } from '../../lib/api';
 
 // Validates schema format for proper JSON-LD structure
 const validateSchema = (schema) => {
-  if (!schema) return { valid: false, error: "No schema provided" };
+  if (!schema) return { valid: false, error: 'No schema provided' };
 
   try {
     // Check if it's proper JSON-LD
-    if (typeof schema === "string") {
+    if (typeof schema === 'string') {
       JSON.parse(schema);
-    } else if (typeof schema !== "object") {
-      return { valid: false, error: "Schema must be JSON object" };
+    } else if (typeof schema !== 'object') {
+      return { valid: false, error: 'Schema must be JSON object' };
     }
 
     // Check required fields for BlogPosting
-    if (schema["@type"] === "BlogPosting") {
-      if (!schema.headline) return { valid: false, error: "Missing headline" };
-      if (!schema["@context"])
-        return { valid: false, error: "Missing @context" };
+    if (schema['@type'] === 'BlogPosting') {
+      if (!schema.headline) return { valid: false, error: 'Missing headline' };
+      if (!schema['@context'])
+        return { valid: false, error: 'Missing @context' };
     }
 
     return { valid: true };
@@ -45,17 +45,17 @@ const BlogDetail = () => {
       setLoading(true);
       try {
         const res = await axios.get(`${API_BASE_URL}/api/blogs/${slug}`);
-        console.log("Blog Response:", res.data.data);
+        console.log('Blog Response:', res.data.data);
 
         // Validate schema
         const validation = validateSchema(res.data.data.structuredData);
         if (!validation.valid) {
           console.warn(`⚠️ Schema validation warning: ${validation.error}`);
         } else {
-          console.log("✅ Schema validation passed");
+          console.log('✅ Schema validation passed');
         }
 
-        console.log("Structured Data:", res.data.data.structuredData);
+        console.log('Structured Data:', res.data.data.structuredData);
         setBlog(res.data.data);
 
         const listRes = await axios.get(`${API_BASE_URL}/api/blogs`);
@@ -64,7 +64,7 @@ const BlogDetail = () => {
           .slice(0, 5);
         setRelatedBlogs(others);
       } catch (err) {
-        console.error("Error loading blog:", err);
+        console.error('Error loading blog:', err);
       } finally {
         setLoading(false);
       }
@@ -82,14 +82,14 @@ const BlogDetail = () => {
 
   const headings =
     blog.bodySections
-      ?.filter((section) => section.type === "heading")
+      ?.filter((section) => section.type === 'heading')
       .map((section) => section.content) || [];
 
   const slugify = (text) =>
     text
       .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^\w-]+/g, "");
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '');
 
   return (
     <>
@@ -98,11 +98,11 @@ const BlogDetail = () => {
         title={blog.seoTitle || `Blog | Renny Strips`}
         description={
           blog.seoDescription ||
-          "Explore steel industry insights, manufacturing trends, engineering expertise, and industrial updates from Renny Strips."
+          'Explore steel industry insights, manufacturing trends, engineering expertise, and industrial updates from Renny Strips.'
         }
         keywords={
           blog.seoKeywords ||
-          "Renny Strips blog, steel industry insights, manufacturing trends, industrial articles, engineering blogs"
+          'Renny Strips blog, steel industry insights, manufacturing trends, industrial articles, engineering blogs'
         }
         url={`https://rennystrips.com/blog/${slug}`}
       />
@@ -119,11 +119,11 @@ const BlogDetail = () => {
             <div className="flex flex-wrap items-center gap-2 text-sm sm:text-sm font-medium mb-10 text-gray-500">
               <time>
                 {new Date(
-                  blog.date || blog.publishedAt || blog.createdAt,
-                ).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
+                  blog.date || blog.publishedAt || blog.createdAt
+                ).toLocaleDateString('en-US', {
+                  month: 'long',
+                  day: 'numeric',
+                  year: 'numeric',
                 })}
               </time>
               <span className="text-gray-400 select-none" aria-hidden="true">
@@ -179,29 +179,29 @@ const BlogDetail = () => {
                 const prevType =
                   index > 0 ? blog.bodySections[index - 1].type : null;
                 const isConsecutiveParagraphs =
-                  section.type === "paragraph" && prevType === "paragraph";
+                  section.type === 'paragraph' && prevType === 'paragraph';
                 const isConsecutiveSubPoints =
-                  section.type === "sub-point" && prevType === "sub-point";
+                  section.type === 'sub-point' && prevType === 'sub-point';
                 const isParagraphToSubPoint =
-                  section.type === "sub-point" && prevType === "paragraph";
+                  section.type === 'sub-point' && prevType === 'paragraph';
                 const isSubPointToParagraph =
-                  section.type === "paragraph" && prevType === "sub-point";
+                  section.type === 'paragraph' && prevType === 'sub-point';
 
-                let wrapperClass = "";
+                let wrapperClass = '';
                 if (isConsecutiveParagraphs) {
-                  wrapperClass = "!mt-2";
+                  wrapperClass = '!mt-2';
                 } else if (isConsecutiveSubPoints) {
-                  wrapperClass = "!mt-0";
+                  wrapperClass = '!mt-0';
                 } else if (isParagraphToSubPoint) {
-                  wrapperClass = "!mt-1";
+                  wrapperClass = '!mt-1';
                 } else if (isSubPointToParagraph) {
-                  wrapperClass = "!mt-2";
+                  wrapperClass = '!mt-2';
                 }
 
                 return (
                   <div key={index} className={wrapperClass}>
                     {/* HEADINGS */}
-                    {section.type === "heading" && (
+                    {section.type === 'heading' && (
                       <h2
                         id={slugify(section.content)}
                         className="mt-10 text-blue hover:text-blue-900 transition-colors text-xl md:text-2xl font-bold scroll-mt-28 mb-4"
@@ -211,39 +211,39 @@ const BlogDetail = () => {
                     )}
 
                     {/* SUB HEADING */}
-                    {section.type === "sub-heading" && (
+                    {section.type === 'sub-heading' && (
                       <h3 className="mt-6 mb-3 text-lg md:text-xl font-semibold text-blue">
                         {section.content}
                       </h3>
                     )}
 
                     {/* PARAGRAPHS */}
-                    {section.type === "paragraph" && (
+                    {section.type === 'paragraph' && (
                       <p className="leading-relaxed text-gray-700 text-base md:text-lg mb-3">
                         {section.content}
                       </p>
                     )}
 
                     {/* SUB POINT */}
-                    {section.type === "sub-point" && (
+                    {section.type === 'sub-point' && (
                       <p className="text-gray-700 text-base md:text-lg mb-1">
                         {section.content}
                       </p>
                     )}
 
                     {/* Bullet & Numbered Lists */}
-                    {(section.type === "bullet-list" ||
-                      section.type === "numbered-list") && (
+                    {(section.type === 'bullet-list' ||
+                      section.type === 'numbered-list') && (
                       <div className="mb-6">
-                        {section.type === "bullet-list" ? (
+                        {section.type === 'bullet-list' ? (
                           <ul className="list-disc ml-6 space-y-4 text-gray-700 text-base md:text-lg">
                             {section.listItems?.map((item, i) => (
                               <li key={i} className="pl-2">
-                                {typeof item === "object" ? (
+                                {typeof item === 'object' ? (
                                   <>
                                     <strong className="text-blue">
                                       {item.title}
-                                    </strong>{" "}
+                                    </strong>{' '}
                                     {item.descriptions &&
                                     item.descriptions.length > 0 ? (
                                       <div className="space-y-2 mt-2">
@@ -270,11 +270,11 @@ const BlogDetail = () => {
                           <ol className="list-decimal ml-6 space-y-4 text-gray-700 text-base md:text-lg">
                             {section.listItems?.map((item, i) => (
                               <li key={i} className="pl-2">
-                                {typeof item === "object" ? (
+                                {typeof item === 'object' ? (
                                   <>
                                     <strong className="text-blue">
                                       {item.title}
-                                    </strong>{" "}
+                                    </strong>{' '}
                                     {item.descriptions &&
                                     item.descriptions.length > 0 ? (
                                       <div className="space-y-2 mt-2">
@@ -302,11 +302,11 @@ const BlogDetail = () => {
                     )}
 
                     {/* IMAGES */}
-                    {section.type === "image" && (
+                    {section.type === 'image' && (
                       <figure className="my-8">
                         <img
                           src={section.url || section.image}
-                          alt={section.caption || section.content || ""}
+                          alt={section.caption || section.content || ''}
                           className="w-full object-cover rounded-lg shadow-sm"
                         />
                         {(section.caption || section.content) && (
@@ -318,9 +318,9 @@ const BlogDetail = () => {
                     )}
 
                     {/* TABLE */}
-                    {section.type === "table" && (
+                    {section.type === 'table' && (
                       <div className="overflow-x-auto my-6">
-                        {typeof section.table === "string" ? (
+                        {typeof section.table === 'string' ? (
                           <div
                             dangerouslySetInnerHTML={{ __html: section.table }}
                             className="table-auto w-full text-left prose prose-table:border-collapse prose-td:border prose-th:border prose-td:p-2 prose-th:p-2"
@@ -332,7 +332,7 @@ const BlogDetail = () => {
                                 <tr
                                   key={rIdx}
                                   className={
-                                    rIdx === 0 ? "bg-gray-100 font-bold" : ""
+                                    rIdx === 0 ? 'bg-gray-100 font-bold' : ''
                                   }
                                 >
                                   {Array.isArray(row) ? (
@@ -354,7 +354,7 @@ const BlogDetail = () => {
                             </tbody>
                           </table>
                         ) : section.table &&
-                          typeof section.table === "object" &&
+                          typeof section.table === 'object' &&
                           section.table.rows ? (
                           <table className="min-w-full border-collapse border border-gray-300">
                             {section.table.headers && (
@@ -405,6 +405,14 @@ const BlogDetail = () => {
                           </div>
                         )}
                       </div>
+                    )}
+
+                    {/* HTML BLOCK — raw HTML, rendered as-is */}
+                    {section.type === 'html' && section.content && (
+                      <div
+                        className="leading-relaxed text-gray-700 text-base md:text-lg mb-3 prose prose-a:text-blue-highlight prose-a:font-bold prose-a:underline"
+                        dangerouslySetInnerHTML={{ __html: section.content }}
+                      />
                     )}
                   </div>
                 );
@@ -474,14 +482,14 @@ const BlogDetail = () => {
                     <button
                       onClick={() =>
                         setOpenRelatedIndex(
-                          openRelatedIndex === idx ? null : idx,
+                          openRelatedIndex === idx ? null : idx
                         )
                       }
                       className="w-full py-3 text-left flex justify-between items-center text-sm font-medium text-gray-700 hover:text-blue-900 transition-colors"
                     >
                       <span className="truncate pr-2">{rel.title}</span>
                       <span className="text-gray-400">
-                        {openRelatedIndex === idx ? "−" : "+"}
+                        {openRelatedIndex === idx ? '−' : '+'}
                       </span>
                     </button>
 
@@ -519,29 +527,29 @@ const BlogDetail = () => {
               <div className="relative z-10 flex flex-col gap-2.5">
                 {[
                   {
-                    name: "ERW Pipes & Tubes",
-                    slug: "/erw-pipes-and-tubes",
-                    code: "ERW",
+                    name: 'ERW Pipes & Tubes',
+                    slug: '/erw-pipes-and-tubes',
+                    code: 'ERW',
                   },
                   {
-                    name: "Scaffolding & Formwork System",
-                    slug: "/scaffolding-formwork",
-                    code: "SF",
+                    name: 'Scaffolding & Formwork System',
+                    slug: '/scaffolding-formwork',
+                    code: 'SF',
                   },
                   {
-                    name: "Narrow Width HR Coils",
-                    slug: "/narrow-hrcoil",
-                    code: "HR",
+                    name: 'Narrow Width HR Coils',
+                    slug: '/narrow-hrcoil',
+                    code: 'HR',
                   },
                   {
-                    name: "Wire Rods",
-                    slug: "/wire-rods",
-                    code: "WR",
+                    name: 'Wire Rods',
+                    slug: '/wire-rods',
+                    code: 'WR',
                   },
                   {
-                    name: "MS Billets",
-                    slug: "/ms-billets",
-                    code: "MS",
+                    name: 'MS Billets',
+                    slug: '/ms-billets',
+                    code: 'MS',
                   },
                 ].map((product) => (
                   <Link

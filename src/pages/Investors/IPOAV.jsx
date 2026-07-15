@@ -160,7 +160,10 @@ const IPOAV = () => {
                               playsInline
                               className="w-full h-full object-cover"
                             >
-                              <source src={url} type="video/mp4" />
+                              <source 
+                                src={url} 
+                                type={url?.toLowerCase().endsWith(".webm") ? "video/webm" : "video/mp4"} 
+                              />
                               Your browser does not support the video tag.
                             </video>
                           ) : type === "link" && url ? (

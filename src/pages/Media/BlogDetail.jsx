@@ -10,21 +10,22 @@ import { API_BASE_URL } from "../../lib/api";
 // Validates schema format for proper JSON-LD structure
 const validateSchema = (schema) => {
   if (!schema) return { valid: false, error: "No schema provided" };
-  
+
   try {
     // Check if it's proper JSON-LD
-    if (typeof schema === 'string') {
+    if (typeof schema === "string") {
       JSON.parse(schema);
-    } else if (typeof schema !== 'object') {
+    } else if (typeof schema !== "object") {
       return { valid: false, error: "Schema must be JSON object" };
     }
-    
+
     // Check required fields for BlogPosting
-    if (schema['@type'] === 'BlogPosting') {
+    if (schema["@type"] === "BlogPosting") {
       if (!schema.headline) return { valid: false, error: "Missing headline" };
-      if (!schema['@context']) return { valid: false, error: "Missing @context" };
+      if (!schema["@context"])
+        return { valid: false, error: "Missing @context" };
     }
-    
+
     return { valid: true };
   } catch (err) {
     return { valid: false, error: `Invalid JSON: ${err.message}` };
@@ -38,7 +39,6 @@ const BlogDetail = () => {
   const [loading, setLoading] = useState(true);
   const [openRelatedIndex, setOpenRelatedIndex] = useState(null);
 
-
   useEffect(() => {
     const fetchBlogData = async () => {
       window.scrollTo(0, 0);
@@ -46,7 +46,7 @@ const BlogDetail = () => {
       try {
         const res = await axios.get(`${API_BASE_URL}/api/blogs/${slug}`);
         console.log("Blog Response:", res.data.data);
-        
+
         // Validate schema
         const validation = validateSchema(res.data.data.structuredData);
         if (!validation.valid) {
@@ -54,7 +54,7 @@ const BlogDetail = () => {
         } else {
           console.log("✅ Schema validation passed");
         }
-        
+
         console.log("Structured Data:", res.data.data.structuredData);
         setBlog(res.data.data);
 
@@ -109,18 +109,34 @@ const BlogDetail = () => {
       <div className="font-helvetica bg-white">
         {/* 1. Hero Header */}
         <div className="flex flex-col items-center px-6 pt-16">
-          <h1 className="text-4xl md:text-[55px] text-blue font-semibold text-center leading-tight max-w-5xl">
-            {blog.title}
-          </h1>
-          <span className="font-semibold text-center mb-9 mt-2 text-gray-500">
-            {new Date(
-              blog.date || blog.publishedAt || blog.createdAt,
-            ).toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </span>
+          <div className="flex flex-col gap-3 max-w-5xl text-left">
+            {/* Blog Title */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[55px] font-bold text-blue leading-tight tracking-tight">
+              {blog.title}
+            </h1>
+
+            {/* Metadata */}
+            <div className="flex flex-wrap items-center gap-2 text-sm sm:text-sm font-medium mb-10 text-gray-500">
+              <time>
+                {new Date(
+                  blog.date || blog.publishedAt || blog.createdAt,
+                ).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </time>
+              <span className="text-gray-400 select-none" aria-hidden="true">
+                •
+              </span>
+              <Link
+                to="/"
+                className="text-blue-highlight text-sm sm:text-sm font-bold hover:text-blue transition-colors duration-200"
+              >
+                Renny Strips Ltd
+              </Link>
+            </div>
+          </div>
           <img
             src={blog.mainImage}
             alt={blog.title}
@@ -394,10 +410,57 @@ const BlogDetail = () => {
                 );
               })}
             </div>
+            {/* Contact Us CTA */}
+            <div className="flex items-center justify-center">
+              <div className="w-[40vw] relative overflow-hidden rounded-3xl mt-10 bg-gray-100 p-6 shadow-xl ">
+                {/* Premium abstract structural overlay representing steel geometry */}
+                <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:24px_24px]" />
+
+                <div className="relative z-10 flex flex-col h-full justify-between">
+                  {/* Header & Icon */}
+                  <div>
+                    <h3 className="text-lg font-bold tracking-tight text-blue leading-snug mb-3">
+                      Need Help Choosing the Right Product?
+                    </h3>
+
+                    <p className="text-xs text-blue leading-relaxed font-normal mb-6">
+                      Have questions about pricing, technical details, or bulk
+                      orders? Get in touch with our team.
+                    </p>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col gap-3 w-full">
+                    {/* Primary Button */}
+                    <Link
+                      to="/contact-us"
+                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/30 bg-white px-4 py-3 text-sm font-medium text-blue backdrop-blur-sm transition-all duration-200 ease-in-out hover:scale-105 hover:border-white hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2"
+                        stroke="currentColor"
+                        className="w-4 h-4 text-blue-900"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                        />
+                      </svg>
+                      <span>Contact Us</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </main>
 
-          {/* RIGHT SIDE: Related Posts */}
+          {/* RIGHT SIDE */}
           <aside className="w-full lg:w-1/4 xl:w-1/5 static lg:sticky top-24 self-start">
+            {/* RIGHT SIDE: Related Posts */}
             <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
               <h4 className="font-bold text-gray-800 mb-4 border-b pb-2 text-sm uppercase tracking-wider">
                 Recent Blogs
@@ -437,6 +500,79 @@ const BlogDetail = () => {
                       </div>
                     )}
                   </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <div className="mt-6 relative overflow-hidden rounded-2xl bg-blue p-5 shadow-xl group/sidebar">
+              {/* Header Section */}
+              <div className="relative z-10">
+                <div className="flex items-center gap-2.5 mb-1.5">
+                  <h4 className="font-bold text-white border-b mb-4 text-md uppercase tracking-wider">
+                    Explore Products
+                  </h4>
+                </div>
+              </div>
+
+              {/* Product Links List */}
+              <div className="relative z-10 flex flex-col gap-2.5">
+                {[
+                  {
+                    name: "ERW Pipes & Tubes",
+                    slug: "/erw-pipes-and-tubes",
+                    code: "ERW",
+                  },
+                  {
+                    name: "Scaffolding & Formwork System",
+                    slug: "/scaffolding-formwork",
+                    code: "SF",
+                  },
+                  {
+                    name: "Narrow Width HR Coils",
+                    slug: "/narrow-hrcoil",
+                    code: "HR",
+                  },
+                  {
+                    name: "Wire Rods",
+                    slug: "/wire-rods",
+                    code: "WR",
+                  },
+                  {
+                    name: "MS Billets",
+                    slug: "/ms-billets",
+                    code: "MS",
+                  },
+                ].map((product) => (
+                  <Link
+                    key={product.slug}
+                    to={product.slug}
+                    className="group flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] p-3.5 backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.02] hover:border-blue-400/30 hover:bg-white/[0.08] hover:shadow-lg hover:shadow-blue-950/50 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3 min-w-0 pr-2">
+                      <span className="truncate text-sm font-semibold text-slate-100 group-hover:text-white transition-colors duration-200">
+                        {product.name}
+                      </span>
+                    </div>
+
+                    {/* Dynamic Animated Arrow Icon */}
+                    <div className="text-blue-400/70 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:text-blue-300 shrink-0">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="2.5"
+                        stroke="currentColor"
+                        className="w-4 h-4"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                        />
+                      </svg>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>

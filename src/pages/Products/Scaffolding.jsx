@@ -354,7 +354,7 @@ const Scaffolding = () => {
       <SchemaMarkup schema={scaffoldingSchema} />
       <SEO
         title="Green Scaffolding & Formwork Manufacturer in India | Renny "
-        description="Renny  is one of India’s few fully integrated manufacturers of scaffolding and formwork systems, delivering  green steel solutions for safe,durable,construction"
+        description="Renny  is one of India’s few fully integrated manufacturers of scaffolding and formwork systems,delivering  green steel solutions for safe,durable,construction"
         keywords="scaffolding, formwork, scaffolding materials, scaffold towers"
         url="https://rennystrips.com/scaffolding-formwork"
         image={heroSrc}

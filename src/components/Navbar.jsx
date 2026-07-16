@@ -31,7 +31,7 @@ const Navbar = () => {
     },
     {
       title: "Products",
-       links: [
+      links: [
         { name: "ERW Pipes & Tubes", path: "/erw-pipes-and-tubes" },
         {
           name: "Scaffolding & Formwork Systems",
@@ -99,15 +99,15 @@ const Navbar = () => {
       `}
     >
       {/* Logo */}
-      <img
-        src={RennyLogo}
-        alt="Logo"
-        width="217"
-        height="175"
-        className="h-20 w-auto cursor-pointer rounded-md p-2"
-        onClick={() => navigate("/")}
-      />
-
+      <Link to="/" aria-label="Go to homepage">
+        <img
+          src={RennyLogo}
+          alt="Renny Logo"
+          width="217"
+          height="175"
+          className="h-20 w-auto cursor-pointer rounded-md p-2"
+        />
+      </Link>
       {/* Navigation (Desktop) */}
       <ul
         className={`hidden lg:flex items-center gap-3 transition-all duration-300
@@ -147,7 +147,7 @@ const Navbar = () => {
           </ul>
         </li>
 
-           {/* Products */}
+        {/* Products */}
         <li className="relative group">
           <span className="cursor-pointer hover:bg-blue hover:text-white px-4 py-3 rounded-xl">
             Products

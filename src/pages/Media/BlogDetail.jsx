@@ -419,19 +419,19 @@ const BlogDetail = () => {
               })}
             </div>
             {/* Contact Us CTA */}
-            <div className="flex items-center justify-center">
-              <div className="w-[40vw] relative overflow-hidden rounded-3xl mt-10 bg-gray-100 p-6 shadow-xl ">
+            <div className="flex items-center justify-center w-full px-4 sm:px-6">
+              <div className="w-full sm:max-w-md md:max-w-lg relative overflow-hidden rounded-3xl mt-10 bg-gray-100 p-6 sm:p-8 shadow-xl">
                 {/* Premium abstract structural overlay representing steel geometry */}
                 <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:24px_24px]" />
 
                 <div className="relative z-10 flex flex-col h-full justify-between">
                   {/* Header & Icon */}
                   <div>
-                    <h3 className="text-lg font-bold tracking-tight text-blue leading-snug mb-3">
+                    <h3 className="text-lg sm:text-xl font-bold tracking-tight text-blue leading-snug mb-3">
                       Need Help Choosing the Right Product?
                     </h3>
 
-                    <p className="text-xs text-blue leading-relaxed font-normal mb-6">
+                    <p className="text-xs sm:text-sm text-blue leading-relaxed font-normal mb-6">
                       Have questions about pricing, technical details, or bulk
                       orders? Get in touch with our team.
                     </p>
@@ -442,7 +442,7 @@ const BlogDetail = () => {
                     {/* Primary Button */}
                     <Link
                       to="/contact-us"
-                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/30 bg-white px-4 py-3 text-sm font-medium text-blue backdrop-blur-sm transition-all duration-200 ease-in-out hover:scale-105 hover:border-white hover:-translate-y-0.5 active:translate-y-0"
+                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-300/50 bg-white px-4 py-3 text-sm font-medium text-blue transition-all duration-200 ease-in-out hover:scale-[1.02] active:scale-100 shadow-sm hover:shadow-md"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -450,7 +450,7 @@ const BlogDetail = () => {
                         viewBox="0 0 24 24"
                         strokeWidth="2"
                         stroke="currentColor"
-                        className="w-4 h-4 text-blue-900"
+                        className="w-4 h-4 text-blue"
                       >
                         <path
                           strokeLinecap="round"

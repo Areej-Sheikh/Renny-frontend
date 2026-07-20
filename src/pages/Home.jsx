@@ -185,7 +185,7 @@ const Home = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <h2
+              <h1
                 className="
     font-semibold
     text-blue
@@ -216,7 +216,7 @@ const Home = () => {
                 </span>
                 <br />
                 <span className="text-blue">Together</span>
-              </h2>
+              </h1>
             </motion.div>
 
             {/* Right Content */}

@@ -450,6 +450,26 @@
   ],
   "rewrites": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "s"
+        }
+      ],
+      "destination": "/404.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "fp"
+        }
+      ],
+      "destination": "/404.html"
+    },
+    {
       "source": "/assets/:path*",
       "destination": "/assets/:path*"
     },

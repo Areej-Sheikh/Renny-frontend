@@ -52,7 +52,12 @@ const Home = () => {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const [newsRes, blogsRes] = await Promise.all([
+        // const [newsRes, blogsRes] = await Promise.all([
+        //   axios.get(buildApiUrl("/api/news")),
+        //   axios.get(buildApiUrl("/api/blogs")),
+        // ]);
+        
+        const [newsRes, blogs] = await Promise.allSettled([
           axios.get(buildApiUrl("/api/news")),
           axios.get(buildApiUrl("/api/blogs")),
         ]);

@@ -1,14 +1,14 @@
-import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { useNavigate } from "react-router-dom";
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { useNavigate } from 'react-router-dom';
 
 // images (keep yours)
-import MS from "../assets/product-1.webp";
-import Scaffolding from "../assets/product-2.webp";
-import ERW from "../assets/product-3.webp";
-import Coil from "../assets/hr-coil.webp";
-import rods from "../assets/product-5.webp";
+import MS from '../assets/product-1.webp';
+import Scaffolding from '../assets/product-2.webp';
+import ERW from '../assets/product-3.webp';
+import Coil from '../assets/hr-coil.webp';
+import rods from '../assets/product-5.webp';
 
 const ProductCarousel = () => {
   const navigate = useNavigate();
@@ -22,15 +22,36 @@ const ProductCarousel = () => {
   });
 
   const products = [
-    { title: "ERW Pipes & Tubes", image: ERW, link: "/erw-pipes-and-tubes" },
     {
-      title: "Scaffolding & Formwork Systems",
-      image: Scaffolding,
-      link: "/scaffolding-formwork",
+      title: 'ERW Pipes & Tubes',
+      image: ERW,
+      link: '/erw-pipes-and-tubes',
+      desc: ' Electric Resistance Welded pipes& tubes for infrastructure, construction, and fluid transport ',
     },
-    { title: "HR Coils", image: Coil, link: "/narrow-hrcoil" },
-    { title: "Wire Rods", image: rods, link: "/wire-rods" },
-    { title: "MS Billets", image: MS, link: "/ms-billets" },
+    {
+      title: 'Scaffolding & Formwork Systems',
+      image: Scaffolding,
+      link: '/scaffolding-formwork',
+      desc: ' Engineered support systems for safe and efficient construction sites ',
+    },
+    {
+      title: 'HR Coils',
+      image: Coil,
+      link: '/narrow-hrcoil',
+      desc: ' Hot-rolled coils for pipes, tubes, and fabrication applications',
+    },
+    {
+      title: 'Wire Rods',
+      image: rods,
+      link: '/wire-rods',
+      desc: 'Precision-drawn wire rods for construction and industrial use',
+    },
+    {
+      title: 'MS Billets',
+      image: MS,
+      link: '/ms-billets',
+      desc: 'High-grade mild steel billets for downstream rolling and structural applications',
+    },
   ];
 
   // 🔹 Scroll to slide
@@ -42,7 +63,7 @@ const ProductCarousel = () => {
 
     container.scrollTo({
       left: index * width,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -82,10 +103,10 @@ const ProductCarousel = () => {
       }
     };
 
-    container.addEventListener("scroll", handleScroll);
+    container.addEventListener('scroll', handleScroll);
 
     return () => {
-      container.removeEventListener("scroll", handleScroll);
+      container.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -130,7 +151,7 @@ const ProductCarousel = () => {
               className="min-w-full h-full snap-start relative cursor-pointer"
             >
               {/* Image */}
-              {item.title === "HR Coils" ? (
+              {item.title === 'HR Coils' ? (
                 <picture className="absolute inset-0 w-full h-full">
                   <source srcSet={item.image} type="image/webp" />
                   <img
@@ -163,6 +184,7 @@ const ProductCarousel = () => {
                 >
                   {item.title}
                 </motion.h2>
+
 
                 <button className="border border-white px-6 py-2 text-sm hover:bg-white hover:text-black transition">
                   Know More →

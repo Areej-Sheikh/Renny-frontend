@@ -50,18 +50,9 @@ const Home = () => {
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
-    const fetchContent = async () => {
+    const fetchNews = async () => {
       try {
-        // const [newsRes, blogsRes] = await Promise.all([
-        //   axios.get(buildApiUrl("/api/news")),
-        //   axios.get(buildApiUrl("/api/blogs")),
-        // ]);
-        
-        const [newsRes, blogs] = await Promise.allSettled([
-          axios.get(buildApiUrl("/api/news")),
-          axios.get(buildApiUrl("/api/blogs")),
-        ]);
-
+        const newsRes = await axios.get(buildApiUrl("/api/news"));
         const newsArray =
           newsRes.data.data || newsRes.data.news || newsRes.data;
         if (Array.isArray(newsArray) && newsArray.length > 0) {
@@ -71,7 +62,15 @@ const Home = () => {
           setNewsData([]);
           setActiveNews(null);
         }
+      } catch (error) {
+        console.error("Error fetching news:", error);
+        setContentError("Some homepage content is temporarily unavailable.");
+      }
+    };
 
+    const fetchBlogs = async () => {
+      try {
+        const blogsRes = await axios.get(buildApiUrl("/api/blogs"));
         const blogArray =
           blogsRes.data.data || blogsRes.data.blogs || blogsRes.data;
         if (Array.isArray(blogArray)) {
@@ -82,11 +81,11 @@ const Home = () => {
           });
           setBlogs(sortedBlogs);
         }
-      } catch {
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
         setContentError("Some homepage content is temporarily unavailable.");
       }
     };
-    // fetchContent();
 
     const onPageLoaded = () => {
       // Show Hero Video
@@ -95,9 +94,15 @@ const Home = () => {
       // Load News & Blogs
 
       if ("requestIdleCallback" in window) {
-        requestIdleCallback(fetchContent);
+        requestIdleCallback(() => {
+          fetchNews();
+          fetchBlogs();
+        });
       } else {
-        setTimeout(fetchContent, 1000);
+        setTimeout(() => {
+          fetchNews();
+          fetchBlogs();
+        }, 1000);
       }
     };
 

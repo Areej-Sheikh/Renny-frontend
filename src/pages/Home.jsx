@@ -240,7 +240,7 @@ const Home = () => {
               <div className="w-full flex items-center justify-center mt-4 md:mt-8 pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
                 {showVideo ? (
                   <video
-                    className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-48 sm:h-64 md:h-80 
+                    className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-48 sm:h-64 md:h-75 md:mt-10
                      ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover 
                      transition-all duration-700 ease-out 
                      hover:scale-110 lg:hover:w-[calc(100vw-460px)] 
@@ -272,6 +272,7 @@ const Home = () => {
               <div className="flex flex-col w-full items-center md:items-start nest-hub:items-center nest-hub:justify-center nest-hub:text-center">
                 <p
                   className="
+                  md:text-xl
         text-gray-600
         text-[20px]
         iphone-12pro:text-[22px]

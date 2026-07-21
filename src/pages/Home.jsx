@@ -33,7 +33,7 @@ import blog4 from '../assets/blog4.webp';
 
 import { AnimatePresence } from 'framer-motion';
 import AboutUs from '../assets/about-3.webp';
-import AboutUsMobile from '../assets/AboutUsMobile.webp';
+import AboutUsMobile from '../assets/about-3.webp';
 
 import SustainabilitySlider from '../components/SustainabilitySlider';
 import MapPage from './MapPage';
@@ -269,23 +269,23 @@ const Home = () => {
                 )}
               </div>
 
-              <div className="flex flex-col w-full items-center md:items-start   nest-hub:items-center nest-hub:justify-center nest-hub:text-center">
+              <div className="flex flex-col w-full items-center md:items-start nest-hub:items-center nest-hub:justify-center nest-hub:text-center">
                 <p
                   className="
-    text-gray-600
-    text-[20px]
-    iphone-12pro:text-[22px]
-    iphone-14promax:text-[26px]
-    ipad-mini:text-[28px]
-    iphone-SE:text-[15px]
-    ipad-mini:text-center
-    ipad-mini:px-10
-    nest-hub:text-[22px]
-    nest-hub-max:text-2xl
-    mt-4 md:mt-8
-    mb-4 md:mb-6
-    text-center md:text-left
-  "
+        text-gray-600
+        text-[20px]
+        iphone-12pro:text-[22px]
+        iphone-14promax:text-[26px]
+        ipad-mini:text-[28px]
+        iphone-SE:text-[15px]
+        ipad-mini:text-center
+        ipad-mini:px-10
+        nest-hub:text-[22px]
+        nest-hub-max:text-2xl
+        mt-4 md:mt-8
+        mb-4 md:mb-6
+        text-center md:text-left
+      "
                 >
                   Renny Strips Limited is a vertically integrated structural
                   steel company and certified green steel manufacturer
@@ -294,17 +294,18 @@ const Home = () => {
                   Proudly awarded the 5-Star Green Steel Manufacturing Rating.
                 </p>
 
-                <div className="flex flex-col ml-50 sm:flex-row gap-4 w-full md:w-auto">
+                {/* Centered CTA Buttons */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 sm:mb-10">
                   <Link
                     to="/erw-pipes-and-tubes"
-                    className="bg-blue text-white px-7 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:-translate-y-1 text-center"
+                    className="w-full sm:w-auto bg-blue text-white px-6 sm:px-7 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:-translate-y-1 text-center text-sm sm:text-base whitespace-nowrap"
                   >
                     Explore Our Products
                   </Link>
 
                   <Link
                     to="https://renny-assets-storage.s3.ap-south-1.amazonaws.com/documents/1770374581565_DRHP.pdf"
-                    className="bg-blue text-white px-7 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:-translate-y-1 text-center"
+                    className="w-full sm:w-auto bg-blue text-white px-6 sm:px-7 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:-translate-y-1 text-center text-sm sm:text-base whitespace-nowrap"
                   >
                     Download IPO Documents
                   </Link>
@@ -312,8 +313,6 @@ const Home = () => {
               </div>
             </motion.div>
           </div>
-
-       
         </section>
 
         {/* 2. About Us Section */}
@@ -416,13 +415,15 @@ const Home = () => {
             </div>
             {/* CTA Button add here */}
 
-            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20">
+            <div className="absolute bottom-6 sm:bottom-10 md:bottom-12 left-1/2 -translate-x-1/2 z-20 w-full px-4 text-center">
               <Link
                 to="/company-overview"
-                className="inline-flex items-center gap-2 border border-white px-6 py-3 text-sm md:text-base text-white font-medium  hover:bg-white hover:text-black transition-all duration-300"
+                className="inline-flex items-center justify-center gap-2 border border-white px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm md:text-base text-white font-medium hover:bg-white hover:text-black transition-all duration-300 whitespace-nowrap"
               >
-                Learn More About Us 
-                <span className="text-lg">→</span>
+                <span>Learn More About Us</span>
+                <span className="text-sm sm:text-base md:text-lg transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
               </Link>
             </div>
           </div>

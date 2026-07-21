@@ -1,5 +1,5 @@
 
-const erwPipesSchema = {
+const erwPipesSchema ={
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -54,8 +54,6 @@ const erwPipesSchema = {
     }
   ]
 }
-
-
 
 
 

@@ -1,5 +1,5 @@
 
-const narrowHrCoilSchema = {
+const narrowHrCoilSchema ={
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -54,6 +54,9 @@ const narrowHrCoilSchema = {
     }
   ]
 }
+
+
+
 
 
 

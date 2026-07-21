@@ -345,9 +345,12 @@ const Home = () => {
               />
             </picture>
 
-            <div className="absolute inset-0  bg-gradient-to-t from-black/80 via-black/60 to-black/80 "></div>
-            <div className="absolute inset-0 flex items-center justify-center  px-4 sm:px-6 md:px-6 py-12 md:py-0">
-              <div className="bg-transparent  rounded-xl px-6 py-8 md:px-10   md:py-10 max-w-5xl w-full text-center">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/80"></div>
+
+            {/* Flex Column Container for Mobile / Reset for Desktop */}
+            <div className="absolute inset-0 flex flex-col md:block items-center justify-center px-4 sm:px-6 md:px-6 py-12 md:py-0 md:mb-10 z-10">
+              {/* Scrollable Text Wrapper on Mobile */}
+              <div className="bg-transparent rounded-xl px-6 py-8 md:px-10 md:py-10 max-w-5xl w-full text-center flex-1 overflow-y-auto md:flex-none md:overflow-visible mx-auto">
                 <motion.h2
                   className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2"
                   initial={{ y: 30, filter: 'blur(1px)' }}
@@ -358,7 +361,7 @@ const Home = () => {
                   About Renny Strips Ltd.
                 </motion.h2>
                 <motion.h3
-                  className="text-xl sm:text-2xl md:text-3xl  text-white mb-6"
+                  className="text-xl sm:text-2xl md:text-3xl text-white mb-6"
                   initial={{ y: 30, filter: 'blur(1px)' }}
                   whileInView={{ y: 0, filter: 'blur(0px)' }}
                   viewport={{ once: true, amount: 0.3 }}
@@ -413,19 +416,19 @@ const Home = () => {
                   in India
                 </motion.p>
               </div>
-            </div>
-            {/* CTA Button add here */}
 
-            <div className="absolute bottom-6 sm:bottom-10 md:bottom-12 left-1/2 -translate-x-1/2 z-20 w-full px-4 text-center">
-              <Link
-                to="/company-overview"
-                className="inline-flex items-center justify-center gap-2 border border-white px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm md:text-base text-white font-medium hover:bg-white hover:text-black transition-all duration-300 whitespace-nowrap"
-              >
-                <span>Learn More About Us</span>
-                <span className="text-sm sm:text-base md:text-lg transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </Link>
+              {/* CTA Button Wrapper (Non-shrinking on mobile) */}
+              <div className="relative md:absolute bottom-0 md:bottom-12 left-0 md:left-1/2 md:-translate-x-1/2 z-20 w-full px-4 text-center shrink-0 pt-4 md:pt-0">
+                <Link
+                  to="/company-overview"
+                  className="inline-flex items-center justify-center gap-2 border border-white px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm md:text-base text-white font-medium hover:bg-white hover:text-black transition-all duration-300 whitespace-nowrap"
+                >
+                  <span>Learn More About Us</span>
+                  <span className="text-sm sm:text-base md:text-lg transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </Link>
+              </div>
             </div>
           </div>
         </motion.section>

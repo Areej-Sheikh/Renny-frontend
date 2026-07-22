@@ -26,19 +26,19 @@ const ProductCarousel = () => {
       title: 'ERW Pipes & Tubes',
       image: ERW,
       link: '/erw-pipes-and-tubes',
-      desc: ' Electric Resistance Welded pipes& tubes for infrastructure, construction, and fluid transport ',
+      desc: 'Electric Resistance Welded pipes& tubes for infrastructure, construction, and fluid transport ',
     },
     {
       title: 'Scaffolding & Formwork Systems',
       image: Scaffolding,
       link: '/scaffolding-formwork',
-      desc: ' Engineered support systems for safe and efficient construction sites ',
+      desc: 'Engineered support systems for safe and efficient construction sites ',
     },
     {
       title: 'HR Coils',
       image: Coil,
       link: '/narrow-hrcoil',
-      desc: ' Hot-rolled coils for pipes, tubes, and fabrication applications',
+      desc: 'Hot-rolled coils for pipes, tubes, and fabrication applications',
     },
     {
       title: 'Wire Rods',
@@ -138,7 +138,7 @@ const ProductCarousel = () => {
 
   return (
     <section ref={ref} className="w-full font-helvetica">
-      <div className="relative w-full h-[85vh] overflow-hidden">
+      <div className="relative w-full h-[60vh] sm:h-[75vh] md:h-[85vh] overflow-hidden">
         {/* Slides */}
         <div
           ref={containerRef}
@@ -176,17 +176,20 @@ const ProductCarousel = () => {
               <div className="absolute inset-0 bg-black/40" />
 
               {/* Content */}
-              <div className="absolute bottom-10 left-6 md:left-20 z-10 text-white">
+              <div className="absolute bottom-6 sm:bottom-10 left-4 sm:left-10 md:left-20 right-4 sm:right-20 z-10 text-white max-w-2xl">
                 <motion.h2
-                  className="text-3xl md:text-5xl font-bold mb-4"
+                  className="text-2xl sm:text-3xl md:text-5xl font-bold mb-2 sm:mb-4"
                   initial={{ opacity: 0, y: 30 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                 >
                   {item.title}
                 </motion.h2>
 
+                <p className="text-sm sm:text-base text-gray-200 mb-4 line-clamp-3 sm:line-clamp-none">
+                  {item.desc}
+                </p>
 
-                <button className="border border-white px-6 py-2 text-sm hover:bg-white hover:text-black transition">
+                <button className="border border-white px-4 sm:px-6 py-1.5 sm:py-2 text-xs sm:text-sm hover:bg-white hover:text-black transition">
                   Know More →
                 </button>
               </div>
@@ -194,30 +197,30 @@ const ProductCarousel = () => {
           ))}
         </div>
 
-        {/* Left Button */}
+        {/* Left Button - Hidden on tiny mobile screens to avoid overlapping text, visible from sm up */}
         <button
           onClick={prevSlide}
           aria-label="Previous slide"
-          className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-20 
-             flex items-center justify-center 
-             w-12 h-12 md:w-14 md:h-14
-             text-white hover:scale-110 active:scale-95
-             transition-all duration-300"
+          className="hidden sm:flex absolute left-2 sm:left-6 md:left-10 top-1/2 -translate-y-1/2 z-20 
+                 items-center justify-center 
+                 w-10 h-10 md:w-14 md:h-14
+                 text-white hover:scale-110 active:scale-95
+                 transition-all duration-300 bg-black/20 sm:bg-transparent rounded-full"
         >
-          <i className="ri-arrow-left-line text-xl md:text-2xl font-bold"></i>
+          <i className="ri-arrow-left-line text-lg md:text-2xl font-bold"></i>
         </button>
 
         {/* Right Button */}
         <button
           onClick={nextSlide}
           aria-label="Next slide"
-          className="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 z-20 
-             flex items-center justify-center 
-             w-12 h-12 md:w-14 md:h-14
-             text-white hover:scale-110 active:scale-95
-             transition-all duration-300"
+          className="hidden sm:flex absolute right-2 sm:right-6 md:right-10 top-1/2 -translate-y-1/2 z-20 
+                 items-center justify-center 
+                 w-10 h-10 md:w-14 md:h-14
+                 text-white hover:scale-110 active:scale-95
+                 transition-all duration-300 bg-black/20 sm:bg-transparent rounded-full"
         >
-          <i className="ri-arrow-right-line text-xl md:text-2xl font-bold"></i>
+          <i className="ri-arrow-right-line text-lg md:text-2xl font-bold"></i>
         </button>
       </div>
     </section>

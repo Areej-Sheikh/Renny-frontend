@@ -347,12 +347,12 @@ const Home = () => {
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/80"></div>
 
-            {/* Flex Column Container for Mobile / Reset for Desktop */}
-            <div className="absolute inset-0 flex flex-col md:block items-center justify-center px-4 sm:px-6 md:px-6 py-12 md:py-0 md:mb-10 z-10">
-              {/* Scrollable Text Wrapper on Mobile */}
-              <div className="bg-transparent rounded-xl px-6 py-8 md:px-10 md:py-10 max-w-5xl w-full text-center flex-1 overflow-y-auto md:flex-none md:overflow-visible mx-auto">
+            {/* Flex Column Container for Mobile / Centered Flex Layout for Desktop */}
+            <div className="absolute inset-0 flex flex-col md:flex md:flex-col md:items-center md:justify-center px-4 sm:px-6 md:px-8 lg:px-12 py-12 md:py-16 lg:py-20 z-10">
+              {/* Scrollable Text Wrapper on Mobile / Balanced Centered Container on Desktop */}
+              <div className="bg-transparent rounded-xl px-6 py-8 md:px-8 lg:px-12 md:py-6 lg:py-8 max-w-5xl lg:max-w-4xl xl:max-w-5xl w-full text-center flex-1 overflow-y-auto md:flex-none md:overflow-visible mx-auto">
                 <motion.h2
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2"
+                  className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-2 lg:mb-3"
                   initial={{ y: 30, filter: 'blur(1px)' }}
                   whileInView={{ y: 0, filter: 'blur(0px)' }}
                   viewport={{ once: true, amount: 0.3 }}
@@ -361,7 +361,7 @@ const Home = () => {
                   About Renny Strips Ltd.
                 </motion.h2>
                 <motion.h3
-                  className="text-xl sm:text-2xl md:text-3xl text-white mb-6"
+                  className="text-xl sm:text-2xl md:text-2xl lg:text-3xl text-white mb-6 lg:mb-8 font-light tracking-wide"
                   initial={{ y: 30, filter: 'blur(1px)' }}
                   whileInView={{ y: 0, filter: 'blur(0px)' }}
                   viewport={{ once: true, amount: 0.3 }}
@@ -371,7 +371,7 @@ const Home = () => {
                 </motion.h3>
 
                 <motion.p
-                  className="text-sm sm:text-base md:text-lg text-white mb-4 leading-relaxed"
+                  className="text-sm sm:text-base md:text-base lg:text-lg text-white mb-4 lg:mb-6 leading-relaxed"
                   initial={{ y: 30, filter: 'blur(1px)' }}
                   whileInView={{ y: 0, filter: 'blur(0px)' }}
                   viewport={{ once: true, amount: 0.3 }}
@@ -388,7 +388,7 @@ const Home = () => {
                 </motion.p>
 
                 <motion.p
-                  className="text-sm sm:text-base md:text-lg text-white mb-4 leading-relaxed"
+                  className="text-sm sm:text-base md:text-base lg:text-lg text-white mb-4 lg:mb-6 leading-relaxed"
                   initial={{ y: 30, filter: 'blur(1px)' }}
                   whileInView={{ y: 0, filter: 'blur(0px)' }}
                   viewport={{ once: true, amount: 0.3 }}
@@ -405,7 +405,7 @@ const Home = () => {
                 </motion.p>
 
                 <motion.p
-                  className="text-sm sm:text-base md:text-lg text-white leading-relaxed"
+                  className="text-sm sm:text-base md:text-base lg:text-lg text-white leading-relaxed"
                   initial={{ y: 30, filter: 'blur(1px)' }}
                   whileInView={{ y: 0, filter: 'blur(0px)' }}
                   viewport={{ once: true, amount: 0.3 }}
@@ -417,11 +417,11 @@ const Home = () => {
                 </motion.p>
               </div>
 
-              {/* CTA Button Wrapper (Non-shrinking on mobile) */}
-              <div className="relative md:absolute bottom-0 md:bottom-12 left-0 md:left-1/2 md:-translate-x-1/2 z-20 w-full px-4 text-center shrink-0 pt-4 md:pt-0">
+              {/* CTA Button Wrapper */}
+              <div className="relative md:static z-20 w-full px-4 text-center shrink-0 pt-4 md:pt-2 lg:pt-2">
                 <Link
                   to="/company-overview"
-                  className="inline-flex items-center justify-center gap-2 border border-white px-4 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm md:text-base text-white font-medium hover:bg-white hover:text-black transition-all duration-300 whitespace-nowrap"
+                  className="inline-flex items-center justify-center gap-2 border border-white px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-3.5 text-xs sm:text-sm md:text-base text-white font-medium hover:bg-white hover:text-black transition-all duration-300 whitespace-nowrap group"
                 >
                   <span>Learn More About Us</span>
                   <span className="text-sm sm:text-base md:text-lg transition-transform duration-300 group-hover:translate-x-1">

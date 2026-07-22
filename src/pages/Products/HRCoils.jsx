@@ -1,12 +1,23 @@
 // ========== Imports ==========
-import { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  lazy,
+  Suspense,
+} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../../components/SEO";
 import SchemaMarkup from "../../components/SchemaMarkup";
 import narrowHrCoilSchema from "../../schema/narrowHrCoilSchema";
-import ProductEnquiryModal from "../../components/ProductEnquiryModal";
+// import ProductEnquiryModal from "../../components/ProductEnquiryModal";
+
+const ProductEnquiryModal = lazy(
+  () => import("../../components/ProductEnquiryModal"),
+);
 
 // ========== Hooks ==========
 import usePageHero from "../../hooks/usePageHero";
@@ -35,112 +46,113 @@ import Information from "../../assets/Information3-1.webp";
 
 import { API_BASE_URL } from "../../lib/api";
 
+const tabs = [
+  "MANUFACTURING PROCESS",
+  "PRODUCT SPECIFICATIONS",
+  "CORE STRENGTH",
+  "APPLICATIONS",
+];
+
+const cards = [
+  {
+    img: coreStrength1,
+    title: "Fully Automated Rolling",
+    desc: "Manufactured in automated hot rolling mills ensuring accurate dimensions, superior finish, and consistent mechanical properties.",
+    bg: "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white",
+  },
+  {
+    img: coreStrength2,
+    title: "Stringent Quality Control",
+    desc: "Subjected to dimensional, mechanical, and chemical testing for compliance with Indian and global standards.",
+    bg: "bg-white hover:bg-blue",
+    textHover: "group-hover:text-white",
+  },
+  {
+    img: coreStrength3,
+    title: "Superior Surface & Strength",
+    desc: "Delivers high tensile strength, excellent surface quality, and precise thickness control for demanding applications",
+    bg: "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white",
+  },
+  {
+    img: coreStrength4,
+    title: "Customized Grades",
+    desc: "Available in tailored grades with required strength, ductility, weldability, and formability",
+    bg: "bg-white hover:bg-blue",
+    textHover: "group-hover:text-white",
+  },
+  {
+    img: coreStrength5,
+    title: "Cost-Effective Performance",
+    desc: "Offers high performance at competitive pricing, ideal for large-scale and value-driven applications",
+    bg: "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white",
+  },
+  {
+    img: coreStrength6,
+    title: "Versatile Use & Reliable Supply",
+    desc: "Used across construction, automotive, fabrication, and engineering, backed by consistent supply and timely delivery.",
+    bg: "bg-white hover:bg-blue",
+    textHover: "group-hover:text-white",
+  },
+];
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 80,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+
+const sectionVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 80,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+
+const imageZoom = {
+  hidden: { opacity: 0, scale: 1.1 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 1, ease: "easeOut" },
+  },
+};
+
 const HRCoils = () => {
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.18,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: {
-      opacity: 0,
-      y: 80,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const sectionVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.12,
-      },
-    },
-  };
-
-  const fadeUp = {
-    hidden: {
-      opacity: 0,
-      y: 80,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const tabs = [
-    "MANUFACTURING PROCESS",
-    "PRODUCT SPECIFICATIONS",
-    "CORE STRENGTH",
-    "APPLICATIONS",
-  ];
-
-  const cards = [
-    {
-      img: coreStrength1,
-      title: "Fully Automated Rolling",
-      desc: "Manufactured in automated hot rolling mills ensuring accurate dimensions, superior finish, and consistent mechanical properties.",
-      bg: "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white",
-    },
-    {
-      img: coreStrength2,
-      title: "Stringent Quality Control",
-      desc: "Subjected to dimensional, mechanical, and chemical testing for compliance with Indian and global standards.",
-      bg: "bg-white hover:bg-blue",
-      textHover: "group-hover:text-white",
-    },
-    {
-      img: coreStrength3,
-      title: "Superior Surface & Strength",
-      desc: "Delivers high tensile strength, excellent surface quality, and precise thickness control for demanding applications",
-      bg: "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white",
-    },
-    {
-      img: coreStrength4,
-      title: "Customized Grades",
-      desc: "Available in tailored grades with required strength, ductility, weldability, and formability",
-      bg: "bg-white hover:bg-blue",
-      textHover: "group-hover:text-white",
-    },
-    {
-      img: coreStrength5,
-      title: "Cost-Effective Performance",
-      desc: "Offers high performance at competitive pricing, ideal for large-scale and value-driven applications",
-      bg: "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white",
-    },
-    {
-      img: coreStrength6,
-      title: "Versatile Use & Reliable Supply",
-      desc: "Used across construction, automotive, fabrication, and engineering, backed by consistent supply and timely delivery.",
-      bg: "bg-white hover:bg-blue",
-      textHover: "group-hover:text-white",
-    },
-  ];
-  const imageZoom = {
-    hidden: { opacity: 0, scale: 1.1 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 1, ease: "easeOut" },
-    },
-  };
-
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [pageData, setPageData] = useState(null);
   const { heroSrc, heroHeading } = usePageHero(
@@ -149,38 +161,62 @@ const HRCoils = () => {
     banner,
   );
 
+  const fetchData = useCallback(async () => {
+    try {
+      const baseURL = API_BASE_URL;
+      const res = await axios.get(`${baseURL}/api/product-content/hr-coils`);
+      if (res.data && res.data.data) {
+        setPageData(res.data.data);
+      }
+    } catch (err) {
+      console.error("Error fetching page data:", err);
+    }
+  }, []);
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const baseURL = API_BASE_URL;
-        const res = await axios.get(`${baseURL}/api/product-content/hr-coils`);
-        if (res.data && res.data.data) {
-          setPageData(res.data.data);
-        }
-      } catch (err) {
-        console.error("Error fetching page data:", err);
+    const onPageLoaded = () => {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(fetchData);
+      } else {
+        setTimeout(fetchData, 1000);
       }
     };
-    fetchData();
+
+    if (document.readyState === "complete") {
+      onPageLoaded();
+    } else {
+      window.addEventListener("load", onPageLoaded);
+    }
+
+    return () => {
+      window.removeEventListener("load", onPageLoaded);
+    };
   }, []);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const displayCapacity =
-    pageData?.capacity || "Annualised Capacity: 97,222 MTPA";
-  const displayDescription =
-    pageData?.description &&
-    pageData.description.length > 0 &&
-    pageData.description[0].trim() !== ""
+  const displayCapacity = useMemo(() => {
+    return pageData?.capacity || "Annualised Capacity: 97,222 MTPA";
+  }, [pageData?.capacity]);
+
+  const displayDescription = useMemo(() => {
+    return pageData?.description &&
+      pageData.description.length > 0 &&
+      pageData.description[0].trim() !== ""
       ? pageData.description
       : [
           "Renny Strips produces narrow-width Hot-Rolled (HR) coils at its integrated manufacturing facility. Our 4 High- hot rolling mill is equipped with advanced Gauge Control technology, delivering precise thickness control and consistent surface quality that matches the performance of wider primary HR coils.",
           "Our HR coils are sold to prominent tube and solar structure manufactures and also consumed in-house as feedstock for ERW pipe and tube production, ensuring a captive, reliable supply chain.",
         ];
-  const displayHighlightsImg = pageData?.highlightsImage || img3;
-  const displayHighlights =
-    pageData?.highlights &&
-    pageData.highlights.length > 0 &&
-    pageData.highlights[0]?.text?.trim() !== ""
+  }, [pageData?.description]);
+  const displayHighlightsImg = useMemo(() => {
+    return pageData?.highlightsImage || img3;
+  }, [pageData?.highlightsImage, img3]);
+
+  const displayHighlights = useMemo(() => {
+    return pageData?.highlights &&
+      pageData.highlights.length > 0 &&
+      pageData.highlights[0]?.text?.trim() !== ""
       ? pageData.highlights
       : [
           { text: "In-House Production" },
@@ -189,28 +225,36 @@ const HRCoils = () => {
           { text: "Consistent \n Quality" },
           { text: "BIS \n Certified" },
         ];
-  const displayManufacturingImg =
-    pageData?.manufacturingImage || manufacturingProcess;
-  const displayManufacturingDesc =
-    pageData?.manufacturingProcess &&
-    pageData.manufacturingProcess.length > 0 &&
-    pageData.manufacturingProcess[0].trim() !== ""
+  }, [pageData?.highlights]);
+
+  const displayManufacturingImg = useMemo(() => {
+    return pageData?.manufacturingImage || manufacturingProcess;
+  }, [pageData?.manufacturingImage, manufacturingProcess]);
+
+  const displayManufacturingDesc = useMemo(() => {
+    return pageData?.manufacturingProcess &&
+      pageData.manufacturingProcess.length > 0 &&
+      pageData.manufacturingProcess[0].trim() !== ""
       ? pageData.manufacturingProcess
       : [
           "HR coil production begins with MS billets (or blooms/slabs) produced at our in-house steel melting shop. These semi-finished products are reheated to rolling temperatures and passed through a series of roughing and finishing stands at our hot rolling mill. The HAGC system continuously monitors and adjusts roll gaps in real-time, ensuring the strip maintains exact thickness targets throughout the rolling process.",
           "After rolling, the strip is cooled on a controlled run-out table and coiled at the downcoiler. The finished HR coils are inspected for dimensional accuracy, surface quality, and mechanical properties before being dispatched either to our own ERW pipe mills or to external customers.",
           "This billet-to-coil integration gives Renny Strips a distinct cost and quality advantage. We control the steel grade, chemistry, and rolling parameters end-to-end, enabling us to produce coils tailored precisely to the downstream application.",
         ];
-  const displayCards =
-    pageData?.coreStrengths &&
-    pageData.coreStrengths.length > 0 &&
-    pageData.coreStrengths[0]?.title?.trim() !== ""
+  }, [pageData?.manufacturingProcess]);
+
+  const displayCards = useMemo(() => {
+    return pageData?.coreStrengths &&
+      pageData.coreStrengths.length > 0 &&
+      pageData.coreStrengths[0]?.title?.trim() !== ""
       ? pageData.coreStrengths
       : cards;
-  const displaySpecs =
-    pageData?.specifications &&
-    pageData.specifications.length > 0 &&
-    pageData.specifications[0]?.parameter?.trim() !== ""
+  }, [pageData?.coreStrengths, cards]);
+
+  const displaySpecs = useMemo(() => {
+    return pageData?.specifications &&
+      pageData.specifications.length > 0 &&
+      pageData.specifications[0]?.parameter?.trim() !== ""
       ? pageData.specifications
       : [
           { parameter: "Thickness Range", details: "1.3 mm to 5.00 mm" },
@@ -221,11 +265,14 @@ const HRCoils = () => {
           { parameter: "Grades", details: "YS235-YS460, E250, E350" },
           { parameter: "Standards", details: "IS 2062:2011, IS 10748:2004" },
         ];
+  }, [pageData?.specifications]);
+
   const displayAppIntro = pageData?.applicationsIntro || null;
-  const displayApps =
-    pageData?.applications &&
-    pageData.applications.length > 0 &&
-    pageData.applications[0]?.label?.trim() !== ""
+
+  const displayApps = useMemo(() => {
+    return pageData?.applications &&
+      pageData.applications.length > 0 &&
+      pageData.applications[0]?.label?.trim() !== ""
       ? pageData.applications
       : [
           { img: Application1, label: "Tube Manufacturing" },
@@ -234,6 +281,15 @@ const HRCoils = () => {
           { img: Application4, label: "Furniture Fabrication" },
           { img: Application5, label: "Construction Hardware" },
         ];
+  }, [
+    pageData?.applications,
+    Application1,
+    Application2,
+    Application3,
+    Application4,
+    Application5,
+  ]);
+
 
   return (
     <>
@@ -248,6 +304,92 @@ const HRCoils = () => {
       />
       <div className="relative w-full overflow-x-hidden font-helvetica">
         {/* ================= BANNER SECTION ================= */}
+        <HeroBanner
+          heroSrc={heroSrc}
+          heroHeading={heroHeading}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          ProductEnquiryModal={ProductEnquiryModal}
+          imageZoom={imageZoom}
+          fadeUp={fadeUp}
+        />
+
+        {/* ================= INTRO SECTION ================= */}
+        <ProductIntro
+          pageData={pageData}
+          displayCapacity={displayCapacity}
+          displayDescription={displayDescription}
+          displayHighlights={displayHighlights}
+          displayHighlightsImg={displayHighlightsImg}
+          containerVariants={containerVariants}
+          itemVariants={itemVariants}
+        />
+        {/* ================= TABS SECTION ================= */}
+        <section className="w-full py-12 px-4 sm:px-6 md:px-20 min-h-screen">
+          {/* Tabs - Mobile Scrollable & Centered on Desktop */}
+          <div className="flex overflow-x-auto no-scrollbar md:justify-center gap-4 mb-10 border-b border-gray-100 pb-2">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-5 py-3 font-semibold transition-all duration-300 whitespace-nowrap ${
+                  activeTab === tab
+                    ? "text-blue border-b-2 border-blue"
+                    : "text-gray-500 border-b-2 border-transparent hover:text-black"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+
+          {/* Tab Content Container (All tabs stay mounted) */}
+          <div className="w-full">
+            <ManufacturingTab
+            displayManufacturingImg={displayManufacturingImg}
+            displayManufacturingDesc={displayManufacturingDesc}
+            activeTab = {activeTab}
+          />
+
+          <CoreStrengthTab
+            displayCards={displayCards}
+            cards={cards}
+            sectionVariants={sectionVariants}
+            fadeUp={fadeUp}
+            activeTab = {activeTab}
+          />
+
+          <ProductSpecificationsTab displaySpecs={displaySpecs} activeTab = {activeTab}/>
+
+           <ApplicationsTab
+            displayAppIntro={displayAppIntro}
+            displayApps={displayApps}
+            fadeUp={fadeUp}
+            activeTab = {activeTab}
+          />  
+            
+            </div>
+        </section>
+
+        {/* ================= Get Detailed Information ================= */}
+        <GetDetailedInformation Information={Information} />
+      </div>
+    </>
+  );
+};
+
+const HeroBanner = React.memo(
+  ({
+    heroSrc,
+    heroHeading,
+    isModalOpen,
+    setIsModalOpen,
+    ProductEnquiryModal,
+    imageZoom,
+    fadeUp,
+  }) => {
+    return (
+      <>
         <motion.section
           initial="hidden"
           whileInView="visible"
@@ -264,6 +406,9 @@ const HRCoils = () => {
               loop
               muted
               playsInline
+              preload="none"
+              fetchpriority="high"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover"
             />
           ) : (
@@ -271,6 +416,12 @@ const HRCoils = () => {
               key={heroSrc || "fallback"}
               src={heroSrc || aboutVideo}
               alt="Hero Banner"
+              width="1600"
+              height="900"
+              fetchPriority="high"
+              decoding="async"
+              loading="eager"
+              sizes="(max-width: 768px) 100vw, 90vw"
               className="absolute inset-0 w-full h-full object-cover"
             />
           )}
@@ -328,14 +479,33 @@ const HRCoils = () => {
             </button>
           </div>
 
-          <ProductEnquiryModal
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-            productName={heroHeading}
-          />
+          {isModalOpen && (
+            <Suspense fallback={null}>
+              <ProductEnquiryModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                productName={heroHeading}
+              />
+            </Suspense>
+          )}
         </motion.section>
+      </>
+    );
+  },
+);
 
-        {/* ================= INTRO SECTION ================= */}
+const ProductIntro = React.memo(
+  ({
+    pageData,
+    displayCapacity,
+    displayDescription,
+    displayHighlights,
+    displayHighlightsImg,
+    containerVariants,
+    itemVariants,
+  }) => {
+    return (
+      <>
         <section className="bg-white">
           {/* ================= INTRO SECTION ================= */}
           <section className="bg-white">
@@ -415,206 +585,219 @@ const HRCoils = () => {
             </section>
           </section>
         </section>
-        {/* ================= TABS SECTION ================= */}
-        <section className="w-full py-12 px-4 sm:px-6 md:px-20 min-h-screen">
-          {/* Tabs - Mobile Scrollable & Centered on Desktop */}
-          <div className="flex overflow-x-auto no-scrollbar md:justify-center gap-4 mb-10 border-b border-gray-100 pb-2">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-5 py-3 font-semibold transition-all duration-300 whitespace-nowrap ${
-                  activeTab === tab
-                    ? "text-blue border-b-2 border-blue"
-                    : "text-gray-500 border-b-2 border-transparent hover:text-black"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
+      </>
+    );
+  },
+);
 
-          {/* Tab Content Container (All tabs stay mounted) */}
-          <div className="w-full">
-            {/* MANUFACTURING PROCESS */}
-            <div
+{
+  /* MANUFACTURING PROCESS */
+}
+const ManufacturingTab = React.memo(
+  ({ displayManufacturingImg, displayManufacturingDesc, activeTab }) => {
+    return (
+      <div
               className={
                 activeTab === "MANUFACTURING PROCESS" ? "block" : "hidden"
               }
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
-                <div className="w-full">
-                  <img
-                    src={displayManufacturingImg}
-                    alt="Manufacturing Process"
-                    className="w-full h-auto rounded-xl shadow-lg object-cover aspect-video md:aspect-auto"
-                  />
-                </div>
-                <div className="space-y-4">
-                  {displayManufacturingDesc.map((desc, idx) => (
-                    <p
-                      key={idx}
-                      className="text-gray-600 text-sm md:text-base leading-relaxed text-justify md:text-left"
-                    >
-                      {desc}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
+        <div className="w-full">
+          <img
+            src={displayManufacturingImg}
+            alt="Manufacturing Process"
+            className="w-full h-auto rounded-xl shadow-lg object-cover aspect-video md:aspect-auto"
+          />
+        </div>
+        <div className="space-y-4">
+          {displayManufacturingDesc.map((desc, idx) => (
+            <p
+              key={idx}
+              className="text-gray-600 text-sm md:text-base leading-relaxed text-justify md:text-left"
+            >
+              {desc}
+            </p>
+          ))}
+        </div>
+      </div>
+      </div>
+    );
+  },
+);
 
-            {/* CORE STRENGTH */}
-            <div className={activeTab === "CORE STRENGTH" ? "block" : "hidden"}>
-              <motion.div
-                className="w-full max-w-7xl mx-auto rounded-xl overflow-hidden border border-gray-100"
-                variants={sectionVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-              >
-                {/* Responsive Grid: 1 col mobile, 2 col tablet, 3 col desktop */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                  {displayCards.map((card, i) => (
-                    <motion.div
-                      key={i}
-                      variants={fadeUp}
-                      className={`flex flex-col items-center text-center p-8 transition-all duration-300 group min-h-[250px] justify-center ${
-                        i % 2 === 0
-                          ? "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white"
-                          : "bg-white hover:bg-blue hover:text-white"
-                      }`}
-                    >
-                      <img
-                        src={card.img || cards[i % cards.length]?.img}
-                        alt=""
-                        className="w-16 h-16 mb-4 transition duration-300 group-hover:brightness-0 group-hover:invert"
-                      />
-                      <h2 className="font-bold text-lg md:text-xl mb-2">
-                        {card.title}
-                      </h2>
-                      <p className="text-sm md:text-base leading-snug opacity-90 px-2">
-                        {card.desc}
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
+{
+  /* CORE STRENGTH */
+}
+const CoreStrengthTab = React.memo(
+  ({ displayCards, cards, sectionVariants, fadeUp, activeTab }) => {
+    return (
+      <div className={activeTab === "CORE STRENGTH" ? "block" : "hidden"}>
+      <motion.div
+        className="w-full max-w-7xl mx-auto rounded-xl overflow-hidden border border-gray-100"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {/* Responsive Grid: 1 col mobile, 2 col tablet, 3 col desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {displayCards.map((card, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              className={`flex flex-col items-center text-center p-8 transition-all duration-300 group min-h-[250px] justify-center ${
+                i % 2 === 0
+                  ? "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white"
+                  : "bg-white hover:bg-blue hover:text-white"
+              }`}
+            >
+              <img
+                src={card.img || cards[i % cards.length]?.img}
+                alt=""
+                className="w-16 h-16 mb-4 transition duration-300 group-hover:brightness-0 group-hover:invert"
+              />
+              <h2 className="font-bold text-lg md:text-xl mb-2">
+                {card.title}
+              </h2>
+              <p className="text-sm md:text-base leading-snug opacity-90 px-2">
+                {card.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+      </div>
+    );
+  },
+);
 
-            {/* PRODUCT SPECIFICATIONS */}
-            <div
+{
+  /* PRODUCT SPECIFICATIONS */
+}
+const ProductSpecificationsTab = React.memo(({ displaySpecs,activeTab }) => {
+  return (
+    <div
               className={
                 activeTab === "PRODUCT SPECIFICATIONS" ? "block" : "hidden"
               }
             >
-              <div className="max-w-7xl mx-auto py-6">
-                <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="bg-blue text-white">
-                        <th className="px-6 py-4 font-semibold text-base md:text-lg">
-                          Parameter
-                        </th>
-                        <th className="px-6 py-4 font-semibold text-base md:text-lg border-l border-blue-400">
-                          Details
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                      {displaySpecs.map((spec, idx) => (
-                        <tr
-                          key={idx}
-                          className="hover:bg-gray-50 transition-colors"
-                        >
-                          <th className="px-6 py-4 bg-gray-50/50 font-bold text-gray-700 text-sm md:text-base w-1/3">
-                            {spec.parameter}
-                          </th>
-                          <td className="px-6 py-4 text-gray-600 text-sm md:text-base">
-                            {spec.details}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+    <div className="max-w-7xl mx-auto py-6">
+      <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="bg-blue text-white">
+              <th className="px-6 py-4 font-semibold text-base md:text-lg">
+                Parameter
+              </th>
+              <th className="px-6 py-4 font-semibold text-base md:text-lg border-l border-blue-400">
+                Details
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200">
+            {displaySpecs.map((spec, idx) => (
+              <tr key={idx} className="hover:bg-gray-50 transition-colors">
+                <th className="px-6 py-4 bg-gray-50/50 font-bold text-gray-700 text-sm md:text-base w-1/3">
+                  {spec.parameter}
+                </th>
+                <td className="px-6 py-4 text-gray-600 text-sm md:text-base">
+                  {spec.details}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+  );
+});
 
-            {/* APPLICATIONS */}
-            <div className={activeTab === "APPLICATIONS" ? "block" : "hidden"}>
-              <div className="max-w-7xl mx-auto space-y-10">
-                {displayAppIntro && (
-                  <p className="text-gray-600 text-sm md:text-lg leading-relaxed text-justify md:text-left">
-                    {displayAppIntro}
-                  </p>
-                )}
+{
+  /* APPLICATIONS */
+}
+const ApplicationsTab = React.memo(
+  ({ displayAppIntro, displayApps, fadeUp,activeTab }) => {
+    return (
+      <div className={activeTab === "APPLICATIONS" ? "block" : "hidden"}> 
+      <div className="max-w-7xl mx-auto space-y-10">
+        {displayAppIntro && (
+          <p className="text-gray-600 text-sm md:text-lg leading-relaxed text-justify md:text-left">
+            {displayAppIntro}
+          </p>
+        )}
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 justify-items-center">
-                  {displayApps.map((item, index) => (
-                    <motion.div
-                      key={index}
-                      variants={fadeUp}
-                      className="flex flex-col items-center group w-full"
-                    >
-                      <div className="relative w-full aspect-square max-w-[180px] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
-                        <div className="w-16 h-16 md:w-20 md:h-20 mb-3">
-                          <img
-                            src={item.img}
-                            alt={item.label}
-                            className="w-full h-full object-contain group-hover:drop-shadow-md"
-                            style={
-                              item.scale
-                                ? { transform: `scale(${item.scale})` }
-                                : {}
-                            }
-                          />
-                        </div>
-
-                        <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
-                          {item.label}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ================= Get Detailed Information ================= */}
-        <section className="bg-blue text-white w-full py-12 md:py-20 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden">
-          {/* LEFT CONTENT */}
-          <div className="flex-1 text-center lg:text-left">
-            <motion.h2
-              className="text-[1.75rem] md:text-[2.5rem] font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 justify-items-center">
+          {displayApps.map((item, index) => (
+            <motion.div
+              key={index}
+              variants={fadeUp}
+              className="flex flex-col items-center group w-full"
             >
-              Get Detailed Information
-              <div className="w-52 md:w-72 lg:w-96 h-0.5 bg-white rounded-full mt-2 mx-auto lg:mx-0" />
-            </motion.h2>
+              <div className="relative w-full aspect-square max-w-[180px] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
+                <div className="w-16 h-16 md:w-20 md:h-20 mb-3">
+                  <img
+                    src={item.img}
+                    alt={item.label}
+                    className="w-full h-full object-contain group-hover:drop-shadow-md"
+                    style={
+                      item.scale ? { transform: `scale(${item.scale})` } : {}
+                    }
+                  />
+                </div>
 
-            <p className="text-sm md:text-base leading-7 text-gray-100 max-w-2xl mx-auto lg:mx-0">
-              Looking for more information? We’re here to help. Reach out and
-              get all the answers you need.
-            </p>
+                <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
+                  {item.label}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      </div>
+    );
+  },
+);
 
-            <Link
-              to="/contact-us"
-              className="inline-block px-8 py-3 md:py-4 hover:text-white bg-gray-400 text-black rounded-full mt-6 md:mt-8 font-medium hover:scale-105 transition"
-            >
-              Contact Us
-            </Link>
-          </div>
+const GetDetailedInformation = React.memo(({ Information }) => {
+  return (
+    <section className="bg-blue text-white w-full py-12 md:py-20 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden">
+      {/* LEFT CONTENT */}
+      <div className="flex-1 text-center lg:text-left">
+        <motion.h2
+          className="text-[1.75rem] md:text-[2.5rem] font-bold mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Get Detailed Information
+          <div className="w-52 md:w-72 lg:w-96 h-0.5 bg-white rounded-full mt-2 mx-auto lg:mx-0" />
+        </motion.h2>
 
-          {/* RIGHT IMAGE */}
-          <div className="flex-1 w-full flex justify-center lg:justify-end">
-            <img
-              src={Information}
-              alt="Detailed product information"
-              className="
+        <p className="text-sm md:text-base leading-7 text-gray-100 max-w-2xl mx-auto lg:mx-0">
+          Looking for more information? We’re here to help. Reach out and get
+          all the answers you need.
+        </p>
+
+        <Link
+          to="/contact-us"
+          className="inline-block px-8 py-3 md:py-4 hover:text-white bg-gray-400 text-black rounded-full mt-6 md:mt-8 font-medium hover:scale-105 transition"
+        >
+          Contact Us
+        </Link>
+      </div>
+
+      {/* RIGHT IMAGE */}
+      <div className="flex-1 w-full flex justify-center lg:justify-end">
+        <img
+          src={Information}
+          alt="Detailed product information"
+          width="800"
+          height="600"
+          loading="lazy"
+          decoding="async"
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="
                w-full
                max-w-md
                lg:max-w-xl
@@ -625,12 +808,10 @@ const HRCoils = () => {
                rounded-2xl
                md:rounded-3xl
              "
-            />
-          </div>
-        </section>
+        />
       </div>
-    </>
+    </section>
   );
-};
+});
 
 export default HRCoils;

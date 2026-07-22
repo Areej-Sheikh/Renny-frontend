@@ -1,5 +1,5 @@
 // ========== Imports ==========
-import { useState, useEffect } from "react";
+import React, { useState, useEffect,useMemo, useCallback, lazy, Suspense } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,7 +8,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import SEO from "../../components/SEO";
 import SchemaMarkup from "../../components/SchemaMarkup";
 import scaffoldingSchema from "../../schema/scaffoldingSchema";
-import ProductEnquiryModal from "../../components/ProductEnquiryModal";
+// import ProductEnquiryModal from "../../components/ProductEnquiryModal";
+const ProductEnquiryModal = lazy(()=> import("../../components/ProductEnquiryModal"));
 
 // ========== Hooks ==========
 import usePageHero from "../../hooks/usePageHero";
@@ -59,27 +60,15 @@ import product14 from "../../assets/productRange14-silver_kwikstage.webp";
 import product15 from "../../assets/productRange15-access tower.webp";
 import { API_BASE_URL } from "../../lib/api";
 
-const Scaffolding = () => {
-  const [videoSrc, setVideoSrc] = useState(video);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const imageZoom = {
+    hidden: { opacity: 0, scale: 1.1 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 1, ease: "easeOut" },
+    },
+  };
 
-  useEffect(() => {
-    // Function to check screen size
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setVideoSrc(mobileview);
-      } else {
-        setVideoSrc(video);
-      }
-    };
-
-    // Set initial value
-    handleResize();
-
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -159,7 +148,6 @@ const Scaffolding = () => {
     "CORE STRENGTH",
     "APPLICATIONS",
   ];
-  const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const cards = [
     {
@@ -219,18 +207,40 @@ const Scaffolding = () => {
     { title: "Kwikstage Systems", image: product14 },
     { title: "Access Towers", image: product15 },
   ];
+
+  const fadeUpSection = {
+    initial: { opacity: 0, y: 40 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.2 },
+    transition: { duration: 0.6 },
+  };
+
+const Scaffolding = () => {
+  const [videoSrc, setVideoSrc] = useState(video);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    // Function to check screen size
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setVideoSrc(mobileview);
+      } else {
+        setVideoSrc(video);
+      }
+    };
+
+    // Set initial value
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  
+  const [activeTab, setActiveTab] = useState(tabs[0]);
   const [fetchedData, setFetchedData] = useState({
     products: [],
   });
-  const imageZoom = {
-    hidden: { opacity: 0, scale: 1.1 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 1, ease: "easeOut" },
-    },
-  };
-
   const [pageData, setPageData] = useState(null);
   const { heroSrc, heroHeading } = usePageHero(
     "scaffolding",
@@ -241,16 +251,9 @@ const Scaffolding = () => {
     fetchedData.range?.length > 0 && fetchedData.range[0].image
       ? fetchedData.range
       : products;
-
-  const fadeUpSection = {
-    initial: { opacity: 0, y: 40 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { duration: 0.6 },
-  };
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
+  
+  const fetchData = useCallback(async () => {
+    try {
         const baseURL = API_BASE_URL;
         const res = await axios.get(
           `${baseURL}/api/product-content/scaffolding`,
@@ -261,20 +264,40 @@ const Scaffolding = () => {
       } catch (err) {
         console.error("Error fetching scaffolding page data:", err);
       }
+ }, []);
+
+  useEffect(() => {
+    const onPageLoaded = () => {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(fetchData);
+      } else {
+        setTimeout(fetchData, 1000);
+      }
     };
-    fetchData();
+
+    if (document.readyState === "complete") {
+      onPageLoaded();
+    } else {
+      window.addEventListener("load", onPageLoaded);
+    }
+
+    return () => {
+      window.removeEventListener("load", onPageLoaded);
+    };
   }, []);
 
-  const displayDescription =
+  const displayDescription = useMemo(
+      () =>
     pageData?.description?.length > 0 && pageData.description[0].trim() !== ""
       ? pageData.description
       : [
           "Renny Strips is one of India’s few fully integrated manufacturers of scaffolding and formwork systems producing everything from the raw steel billet to the final engineered component under one roof. With over 1,000 SKUs spanning multiple scaffolding systems, formwork panels, shoring solutions, and accessories, we serve construction projects of every scale and complexity.",
           "Our scaffolding and formwork products are engineered for safety, speed of assembly, and reusability, making them the preferred choice for contractors, rental companies, and infrastructure developers.",
-        ];
+        ],[pageData?.description])
 
   const displayHighlightsImg = pageData?.highlightsImage || img3;
-  const displayHighlights =
+  const displayHighlights = useMemo(
+      () =>
     pageData?.highlights?.length > 0 &&
     (typeof pageData.highlights[0] === "string"
       ? pageData.highlights[0].trim() !== ""
@@ -289,11 +312,12 @@ const Scaffolding = () => {
           { text: "Rapid \n Assembly" },
           { text: "Reusable \n And Durable" },
           { text: "ISO & CE \n Certified" },
-        ];
+        ],[pageData?.highlights])
 
   const displayManufacturingImg =
     pageData?.manufacturingImage || manufacturingProcess;
-  const displayManufacturingDesc =
+  const displayManufacturingDesc = useMemo(
+      () =>
     pageData?.manufacturingProcess?.length > 0 &&
     pageData.manufacturingProcess[0].trim() !== ""
       ? pageData.manufacturingProcess
@@ -301,15 +325,17 @@ const Scaffolding = () => {
           "The scaffolding and formwork manufacturing process at Renny Strips showcases the full power of our backward integration. Raw materials are melted in our induction furnaces to produce MS billets. These billets are hot-rolled into wire rods or HR coils, which are then processed further depending on the end product.",
           "For tubular components (scaffold tubes, props, jack bodies), HR coils are slit and formed into ERW pipes at our pipe mill. For forged components (couplers, jacks, fasteners), wire rods or steel blanks are forged, press-formed, cast, or machined at our fabrication unit (Unit III). Formwork panels are fabricated from steel plates and sections, welded, and finished to precise dimensional tolerances.",
           "Every component from a simple wing nut to a complete ringlock system is manufactured with steel whose chemistry and mechanical properties we control from the melt stage. This is a level of integration few scaffolding manufacturers in India can match.",
-        ];
+        ],[pageData?.manufacturingProcess]);
 
-  const displayCards =
+  const displayCards = useMemo(
+      () =>
     pageData?.coreStrengths?.length > 0 &&
     pageData.coreStrengths[0]?.title?.trim() !== ""
       ? pageData.coreStrengths
-      : cards;
+      : cards,[pageData?.coreStrengths])
 
-  const displaySpecs =
+  const displaySpecs = useMemo(
+      () =>
     pageData?.specifications?.length > 0 &&
     pageData.specifications[0]?.parameter?.trim() !== ""
       ? pageData.specifications
@@ -334,9 +360,10 @@ const Scaffolding = () => {
               "Occupational Health & Safety for manufacture and export of pipes, tubes, scaffolding and formwork accessories",
             details: "ISO 45001:2018",
           },
-        ];
+        ],[pageData?.specifications]);
 
-  const displayApps =
+  const displayApps = useMemo(
+      () =>
     pageData?.applications?.length > 0 &&
     pageData.applications[0]?.label?.trim() !== ""
       ? pageData.applications
@@ -347,7 +374,10 @@ const Scaffolding = () => {
           { img: Application4, label: "Formwork for Concrete" },
           { img: Application5, label: "Maintenance & Access" },
           { img: Application6, label: "Events & Temporary Structures" },
-        ];
+        ],[pageData?.applications])
+
+
+
 
   return (
     <>
@@ -361,7 +391,120 @@ const Scaffolding = () => {
       />
       <div className="relative w-full overflow-x-hidden font-helvetica">
         {/* ================= BANNER SECTION ================= */}
-        <motion.section
+        <HeroBanner
+          heroSrc={heroSrc}
+          heroHeading={heroHeading}
+          imageZoom={imageZoom}
+          fadeUp={fadeUp}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          ProductEnquiryModal={ProductEnquiryModal}
+        />
+
+        {/* ================= INTRO SECTION ================= */}
+        <ProductIntro
+          pageData={pageData}
+          displayDescription={displayDescription}
+          displayHighlights={displayHighlights}
+          displayHighlightsImg={displayHighlightsImg}
+          containerVariants={containerVariants}
+          itemVariants={itemVariants}
+        />
+        {/* ================= TABS SECTION ================= */}
+        <section className="w-full py-12 px-4 sm:px-6 md:px-20 min-h-screen">
+          {/* Tabs - Now includes horizontal scroll on mobile for better UX */}
+          <motion.div
+            className="flex overflow-x-auto no-scrollbar md:flex-wrap md:justify-center gap-4 mb-10 pb-2 md:pb-0"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
+          >
+            {tabs.map((tab, index) => (
+              <motion.button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08, duration: 0.4 }}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className={`px-5 py-3 font-semibold transition-all duration-300 whitespace-nowrap ${
+                  activeTab === tab
+                    ? "text-blue border-b-2 border-blue"
+                    : "text-gray-500 border-b-2 border-transparent hover:border-gray-300 hover:text-black"
+                }`}
+              >
+                {tab}
+              </motion.button>
+            ))}
+          </motion.div>
+
+          {/* Tab Content Container (Keeps all sections mounted simultaneously) */}
+          <div className="w-full">
+            <ManufacturingTab
+          displayManufacturingImg={displayManufacturingImg}
+          displayManufacturingDesc={displayManufacturingDesc}
+          containerVariants={containerVariants}
+          slideLeft={slideLeft}
+          slideRight={slideRight}
+          activeTab={activeTab}
+        />
+
+        <CoreStrengthTab
+          displayCards={displayCards}
+          cards={cards}
+          sectionVariants={sectionVariants}
+          fadeUp={fadeUp}
+          activeTab={activeTab}
+        />
+
+        <ProductSpecificationTab
+          displayRange={displayRange}
+          displaySpecs={displaySpecs}
+          containerVariants={containerVariants}
+          fadeUp={fadeUp}
+          activeTab={activeTab}
+        />
+
+        <ApplicationsTab
+          displayApps={displayApps}
+          containerVariants={containerVariants}
+          fadeUp={fadeUp}
+          activeTab={activeTab}
+        />
+            
+          </div>
+        </section>
+        {/* ================= CBAM SECTION ================= */}
+        <CBAMSection
+          CBAM={CBAM}
+          videoSrc={videoSrc}
+          containerVariants={containerVariants}
+          itemVariants={itemVariants}
+        />
+
+        {/* ================= Get Detailed Information ================= */}
+        
+        <GetDetailedInformation Information={Information} />
+      </div>
+    </>
+  );
+};
+
+const HeroBanner = React.memo(
+  ({
+    heroSrc,
+    heroHeading,
+    imageZoom,
+    fadeUp,
+    isModalOpen,
+    setIsModalOpen,
+    ProductEnquiryModal,
+  }) => {
+    return(
+      <motion.section
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -377,12 +520,20 @@ const Scaffolding = () => {
               loop
               muted
               playsInline
+              preload="none"
+            fetchpriority="high"
+            decoding="async"
               className="absolute inset-0 w-full h-full object-cover"
             />
           ) : (
             <img
               key={heroSrc || "fallback"}
               src={heroSrc || aboutVideo}
+              width="1600"
+            height="900"
+            fetchPriority="high"
+            decoding="async"
+            loading="eager"
               alt="Hero Banner"
               className="absolute inset-0 w-full h-full object-cover"
             />
@@ -440,16 +591,28 @@ const Scaffolding = () => {
               Request a Quote
             </button>
           </div>
-
+          <Suspense fallback={null}>
           <ProductEnquiryModal
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             productName={heroHeading}
           />
+          </Suspense>
         </motion.section>
+    )
+  });
 
-        {/* ================= INTRO SECTION ================= */}
-        <section className="bg-white">
+const ProductIntro = React.memo(
+  ({
+    pageData,
+    displayDescription,
+    displayHighlights,
+    displayHighlightsImg,
+    containerVariants,
+    itemVariants,
+  }) => {
+    return (
+      <section className="bg-white">
           {/* ================= WHITE INTRO SECTION ================= */}
           <div className="bg-white text-black pt-10 pb-10">
             <div className="px-6 md:px-20">
@@ -533,207 +696,208 @@ const Scaffolding = () => {
             </motion.div>
           </section>
         </section>
-        {/* ================= TABS SECTION ================= */}
-        <section className="w-full py-12 px-4 sm:px-6 md:px-20 min-h-screen">
-          {/* Tabs - Now includes horizontal scroll on mobile for better UX */}
-          <motion.div
-            className="flex overflow-x-auto no-scrollbar md:flex-wrap md:justify-center gap-4 mb-10 pb-2 md:pb-0"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5 }}
-          >
-            {tabs.map((tab, index) => (
-              <motion.button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08, duration: 0.4 }}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className={`px-5 py-3 font-semibold transition-all duration-300 whitespace-nowrap ${
-                  activeTab === tab
-                    ? "text-blue border-b-2 border-blue"
-                    : "text-gray-500 border-b-2 border-transparent hover:border-gray-300 hover:text-black"
-                }`}
-              >
-                {tab}
-              </motion.button>
-            ))}
-          </motion.div>
+    )
+  });
 
-          {/* Tab Content Container (Keeps all sections mounted simultaneously) */}
-          <div className="w-full">
-            {/* MANUFACTURING PROCESS */}
-            <div
+  {/* MANUFACTURING PROCESS */}
+const ManufacturingTab = React.memo(
+  ({
+    displayManufacturingImg,
+    displayManufacturingDesc,
+    containerVariants,
+    slideLeft,
+    slideRight,
+    activeTab
+  }) => {
+    return (
+      <div
               className={
                 activeTab === "MANUFACTURING PROCESS" ? "block" : "hidden"
               }
             >
-              <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto"
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-              >
-                <motion.div variants={slideLeft} className="w-full">
-                  <img
-                    src={displayManufacturingImg}
-                    alt="Manufacturing Process"
-                    className="w-full h-auto rounded-xl shadow-lg object-cover aspect-video md:aspect-auto"
-                  />
-                </motion.div>
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <motion.div variants={slideLeft} className="w-full">
+          <img
+            src={displayManufacturingImg}
+            alt="Manufacturing Process"
+            loading="lazy"
+                decoding="async"
+            className="w-full h-auto rounded-xl shadow-lg object-cover aspect-video md:aspect-auto"
+          />
+        </motion.div>
 
-                <motion.div variants={slideRight} className="space-y-4">
-                  {displayManufacturingDesc.map((desc, idx) => (
-                    <p
-                      key={idx}
-                      className="text-gray-600 text-sm md:text-base text-justify md:text-left"
-                    >
-                      {desc}
-                    </p>
-                  ))}
-                </motion.div>
-              </motion.div>
-            </div>
+        <motion.div variants={slideRight} className="space-y-4">
+          {displayManufacturingDesc.map((desc, idx) => (
+            <p
+              key={idx}
+              className="text-gray-600 text-sm md:text-base text-justify md:text-left"
+            >
+              {desc}
+            </p>
+          ))}
+        </motion.div>
+      </motion.div>
+      </div>
+    )
+  });
 
-            {/* CORE STRENGTH */}
-            <div className={activeTab === "CORE STRENGTH" ? "block" : "hidden"}>
-              <motion.div
-                className="w-full max-w-7xl mx-auto rounded-xl overflow-hidden border border-gray-100 shadow-sm"
-                variants={sectionVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-              >
-                {/* Responsive Grid: 1 col (mobile), 2 col (tablet), 3 col (desktop) */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                  {displayCards.map((card, i) => (
-                    <motion.div
-                      key={card._id || i}
-                      variants={fadeUp}
-                      whileHover={{ y: -4 }}
-                      className={`flex flex-col items-center justify-center p-8 transition-all duration-300 group text-center min-h-[280px] ${
-                        i % 2 === 0
-                          ? "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white"
-                          : "bg-white hover:bg-blue hover:text-white"
-                      }`}
-                    >
-                      <img
-                        src={card.img || cards[i % cards.length]?.img}
-                        alt=""
-                        className="w-16 h-16 md:w-20 md:h-20 mb-4 transition duration-300 group-hover:brightness-0 group-hover:invert"
-                      />
-                      <h2 className="font-bold text-lg md:text-xl mb-2">
-                        {card.title}
-                      </h2>
-                      <p className="text-sm md:text-base opacity-90 px-4">
-                        {card.desc}
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
+  {/* CORE STRENGTH */}
+const CoreStrengthTab = React.memo(
+  ({ displayCards, cards, sectionVariants, fadeUp,activeTab }) => {
+    return (
+      <div className={activeTab === "CORE STRENGTH" ? "block" : "hidden"}>
+      <motion.div
+        className="w-full max-w-7xl mx-auto rounded-xl overflow-hidden border border-gray-100 shadow-sm"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {/* Responsive Grid: 1 col (mobile), 2 col (tablet), 3 col (desktop) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {displayCards.map((card, i) => (
+            <motion.div
+              key={card._id || i}
+              variants={fadeUp}
+              whileHover={{ y: -4 }}
+              className={`flex flex-col items-center justify-center p-8 transition-all duration-300 group text-center min-h-[280px] ${
+                i % 2 === 0
+                  ? "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white"
+                  : "bg-white hover:bg-blue hover:text-white"
+              }`}
+            >
+              <img
+                src={card.img || cards[i % cards.length]?.img}
+                alt={card.title}
+                loading="lazy"
+                decoding="async"
+                className="w-16 h-16 md:w-20 md:h-20 mb-4 transition duration-300 group-hover:brightness-0 group-hover:invert"
+              />
+              <h2 className="font-bold text-lg md:text-xl mb-2">
+                {card.title}
+              </h2>
+              <p className="text-sm md:text-base opacity-90 px-4">
+                {card.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+      </div>
+    )
+  });
 
-            {/* PRODUCT SPECIFICATIONS & RANGE */}
-            <div
+  {/* PRODUCT SPECIFICATIONS & RANGE */}
+  const ProductSpecificationTab = React.memo(
+  ({ displayRange, displaySpecs, containerVariants, fadeUp, activeTab }) => {
+    return (
+      <><div
               className={
-                activeTab === "PRODUCT SPECIFICATIONS & RANGE"
-                  ? "block"
-                  : "hidden"
+                activeTab === "PRODUCT SPECIFICATIONS & RANGE" ? "block" : "hidden"
               }
             >
-              {/* ================= SCROLLING PRODUCTS ================= */}
-              <section className="w-full bg-white">
-                <div className="w-full overflow-hidden">
-                  <div className="flex w-max animate-scroll gap-6">
-                    {[...displayRange, ...displayRange].map(
-                      (product, index) => (
-                        <div
-                          key={`${product._id || product.title}-${index}`}
-                          className="relative w-[260px] h-[200px] rounded-2xl overflow-hidden group cursor-pointer flex-shrink-0"
-                        >
-                          <img
-                            src={product.image}
-                            alt={product.title}
-                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          />
-                          <div className="absolute inset-0 flex items-end justify-center bg-black/40 z-10 text-center px-4">
-                            <h2 className="text-white text-lg md:text-xl mb-5 font-semibold break-words text-center">
-                              {product.title}
-                            </h2>
-                          </div>
-                        </div>
-                      ),
-                    )}
-                  </div>
-                </div>
-              </section>
-
-              {/* ================= TABLE ================= */}
-              <section className="text-black pb-14 max-w-7xl mx-auto">
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
-                  className="text-gray-600 text-sm mt-10 md:text-base mb-8 px-2"
-                >
-                  Over 1,000 SKUs ranging from couplers, ringlock systems,
-                  formwork panels, props, and jacks amongst others in various
-                  specifications. Detailed specification sheets available on
-                  request.
-                </motion.p>
-
-                <div className="overflow-x-auto rounded-xl border border-gray-200">
-                  <table className="w-full min-w-[700px] text-left border-collapse">
-                    <thead>
-                      <tr className="bg-blue text-white">
-                        <th className="w-1/3 px-6 py-4 text-base md:text-lg font-semibold">
-                          Parameter
-                        </th>
-                        <th className="px-6 py-4 text-base md:text-lg font-semibold border-l border-white/20">
-                          Details
-                        </th>
-                      </tr>
-                    </thead>
-
-                    <motion.tbody
-                      variants={containerVariants}
-                      initial="hidden"
-                      whileInView="visible"
-                      viewport={{ once: true, amount: 0.1 }}
+          {/* ================= SCROLLING PRODUCTS ================= */}
+          
+          <section className="w-full bg-white">
+            <div className="w-full overflow-hidden">
+              <div className="flex w-max animate-scroll gap-6">
+                {[...displayRange, ...displayRange].map(
+                  (product, index) => (
+                    <div
+                      key={`${product._id || product.title}-${index}`}
+                      className="relative w-[260px] h-[200px] rounded-2xl overflow-hidden group cursor-pointer flex-shrink-0"
                     >
-                      {displaySpecs.map((spec, index) => (
-                        <motion.tr
-                          key={spec._id || index}
-                          variants={fadeUp}
-                          className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
-                        >
-                          <th
-                            className={`px-6 py-4 ${
-                              index % 2 === 0 ? "bg-gray-50/50" : "bg-white"
-                            } font-bold text-gray-700 text-sm md:text-base`}
-                          >
-                            {spec.parameter}
-                          </th>
-                          <td className="px-6 py-4 text-gray-600 text-sm md:text-base">
-                            {spec.details}
-                          </td>
-                        </motion.tr>
-                      ))}
-                    </motion.tbody>
-                  </table>
-                </div>
-              </section>
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 flex items-end justify-center bg-black/40 z-10 text-center px-4">
+                        <h2 className="text-white text-lg md:text-xl mb-5 font-semibold break-words text-center">
+                          {product.title}
+                        </h2>
+                      </div>
+                    </div>
+                  ),
+                )}
+              </div>
             </div>
+          </section>
 
-            {/* APPLICATIONS */}
-            <div className={activeTab === "APPLICATIONS" ? "block" : "hidden"}>
+          {/* ================= TABLE ================= */}
+          <section className="text-black pb-14 max-w-7xl mx-auto">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-gray-600 text-sm mt-10 md:text-base mb-8 px-2"
+            >
+              Over 1,000 SKUs ranging from couplers, ringlock systems,
+              formwork panels, props, and jacks amongst others in various
+              specifications. Detailed specification sheets available on
+              request.
+            </motion.p>
+
+            <div className="overflow-x-auto rounded-xl border border-gray-200">
+              <table className="w-full min-w-[700px] text-left border-collapse">
+                <thead>
+                  <tr className="bg-blue text-white">
+                    <th className="w-1/3 px-6 py-4 text-base md:text-lg font-semibold">
+                      Parameter
+                    </th>
+                    <th className="px-6 py-4 text-base md:text-lg font-semibold border-l border-white/20">
+                      Details
+                    </th>
+                  </tr>
+                </thead>
+
+                <motion.tbody
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                >
+                  {displaySpecs.map((spec, index) => (
+                    <motion.tr
+                      key={spec._id || index}
+                      variants={fadeUp}
+                      className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
+                    >
+                      <th
+                        className={`px-6 py-4 ${
+                          index % 2 === 0 ? "bg-gray-50/50" : "bg-white"
+                        } font-bold text-gray-700 text-sm md:text-base`}
+                      >
+                        {spec.parameter}
+                      </th>
+                      <td className="px-6 py-4 text-gray-600 text-sm md:text-base">
+                        {spec.details}
+                      </td>
+                    </motion.tr>
+                  ))}
+                </motion.tbody>
+              </table>
+            </div>
+          </section>
+          </div>
+      </>
+    )
+  });
+
+  {/* APPLICATIONS */}
+  const ApplicationsTab = React.memo(
+  ({ displayApps, containerVariants, fadeUp,activeTab }) => {
+    return (
+      <div className={activeTab === "APPLICATIONS" ? "block" : "hidden"}> 
               <motion.div
                 className="max-w-7xl mx-auto"
                 variants={containerVariants}
@@ -753,6 +917,8 @@ const Scaffolding = () => {
                           <img
                             src={item.img}
                             alt={item.label}
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-contain group-hover:drop-shadow-md"
                           />
                         </div>
@@ -764,11 +930,19 @@ const Scaffolding = () => {
                   ))}
                 </div>
               </motion.div>
-            </div>
-          </div>
-        </section>
-        {/* ================= CBAM SECTION ================= */}
-        <section className="bg-white min-h-screen w-full py-12 px-4 sm:px-6 md:px-20">
+              </div>
+    )
+  });
+
+  const CBAMSection = React.memo(
+  ({
+    CBAM,
+    videoSrc,
+    containerVariants,
+    itemVariants,
+  }) => {
+    return (
+      <section className="bg-white min-h-screen w-full py-12 px-4 sm:px-6 md:px-20">
           <motion.h2
             className="text-[28px] sm:text-[32px] text-blue md:text-[48px] font-bold w-full text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -848,9 +1022,13 @@ const Scaffolding = () => {
             </div>
           </section>
         </section>
+    )
+  });
 
-        {/* ================= Get Detailed Information ================= */}
-        <section className="bg-blue text-white w-full py-12 md:py-20 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden">
+
+const GetDetailedInformation = React.memo(({ Information }) => {
+  return (
+    <section className="bg-blue text-white w-full py-12 md:py-20 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden">
           {/* LEFT CONTENT */}
           <div className="flex-1 text-center lg:text-left">
             <motion.h2
@@ -881,6 +1059,11 @@ const Scaffolding = () => {
             <img
               src={Information}
               alt="Detailed product information"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="
                w-full
                max-w-md
@@ -895,9 +1078,7 @@ const Scaffolding = () => {
             />
           </div>
         </section>
-      </div>
-    </>
-  );
-};
+  )
+});
 
 export default Scaffolding;

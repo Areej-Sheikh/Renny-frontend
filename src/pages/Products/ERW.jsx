@@ -1,5 +1,5 @@
 // ========== Imports ==========
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect, useCallback, Suspense, lazy, useMemo } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -32,14 +32,15 @@ import bannerImg from "../../assets/pipes.webp";
 import manufacturingProcess from "../../assets/manufacturingProcess-4.webp";
 
 import Information from "../../assets/Information4-1.webp";
-import ProductEnquiryModal from "../../components/ProductEnquiryModal";
+// import ProductEnquiryModal from "../../components/ProductEnquiryModal";
 import products1 from "../../assets/product3.webp";
 import products2 from "../../assets/product2.webp";
 import products3 from "../../assets/product1.webp";
 
 import { API_BASE_URL } from "../../lib/api";
 
-const ERW = () => {
+const ProductEnquiryModal = lazy(()=> import("../../components/ProductEnquiryModal"));
+
   const containerVariants = {
     hidden: {},
     visible: {
@@ -125,10 +126,7 @@ const ERW = () => {
     "Renny Hollow Section Pipes",
     "Renny GI Pipes & Tubes",
   ];
-  const [activeTab, setActiveTab] = useState(tabs[0]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const imageZoom = {
+   const imageZoom = {
     hidden: { opacity: 0, scale: 1.1 },
     visible: {
       opacity: 1,
@@ -144,6 +142,13 @@ const ERW = () => {
       transition: { staggerChildren: 0.18 },
     },
   };
+
+const ERW = () => {
+
+  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+ 
   const [pageData, setPageData] = useState(null);
   const { heroSrc, heroHeading } = usePageHero(
     "erw-pipes",
@@ -151,9 +156,8 @@ const ERW = () => {
     banner,
   );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
+  const fetchData = useCallback(async () => {
+    try {
         const baseURL = API_BASE_URL;
         const res = await axios.get(`${baseURL}/api/product-content/erw-pipes`);
         if (res.data && res.data.data) {
@@ -162,22 +166,43 @@ const ERW = () => {
       } catch (err) {
         console.error("Error fetching page data:", err);
       }
+  });
+
+  useEffect(() => {
+    const onPageLoaded = () => {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(fetchData);
+      } else {
+        setTimeout(fetchData, 1000);
+      }
     };
-    fetchData();
+
+    if (document.readyState === "complete") {
+      onPageLoaded();
+    } else {
+      window.addEventListener("load", onPageLoaded);
+    }
+
+    return () => {
+      window.removeEventListener("load", onPageLoaded);
+    };
   }, []);
 
   const displayCapacity =
     pageData?.capacity || "Annualised Capacity: 37,476 MTPA";
-  const displayDescription =
+
+  const displayDescription = useMemo(
+      () =>
     pageData?.description &&
     pageData.description.length > 0 &&
     pageData.description[0].trim() !== ""
       ? pageData.description
       : [
           "Renny Strips manufactures high-quality Electric Resistance Welded (ERW) steel pipes and tubes in square, rectangular, and round configurations. Built from in-house HR coils, every pipe benefits from end- to-end quality control starting from steel melting all the way to the finished product. Our diverse size range and multiple thickness options make these pipes suitable for structural, industrial, and general engineering applications across India.",
-        ];
+        ],[pageData?.description])
   const displayHighlightsImg = pageData?.highlightsImage || bannerImg;
-  const displayHighlights =
+  const displayHighlights = useMemo(
+      () =>
     pageData?.highlights &&
     pageData.highlights.length > 0 &&
     pageData.highlights[0]?.text?.trim() !== ""
@@ -188,10 +213,11 @@ const ERW = () => {
           { text: "Dimensional \n Accuracy" },
           { text: "Versatile \n Range" },
           { text: "BIS \n Certified" },
-        ];
-  const displayManufacturingImg =
+        ],[pageData?.highlights]);
+  const displayManufacturingImg = 
     pageData?.manufacturingImage || manufacturingProcess;
-  const displayManufacturingDesc =
+  const displayManufacturingDesc = useMemo(
+      () =>
     pageData?.manufacturingProcess &&
     pageData.manufacturingProcess.length > 0 &&
     pageData.manufacturingProcess[0].trim() !== ""
@@ -200,14 +226,16 @@ const ERW = () => {
           "The manufacturing advantage at Renny Strips lies in full backward integration. The journey begins at our steel melting shop, where raw materials are melted in induction furnaces to produce MS billets. These billets are then hot-rolled into narrow-width HR coils at our in-house rolling mill. The HR coils are subsequently slit and trimmed to precise widths before being fed into our ERW pipe mills.",
           "At the pipe mill, the steel strip is progressively formed into a tubular shape. The longitudinal edges are welded using high-frequency ERW technology, producing a strong, uniform seam. The welded pipes then pass through a sizing mill for final dimensional accuracy. End operations such as beveling, threading, or plain-end finishing are carried out based on customer and application requirements.",
           "This steel-to-pipe integration eliminates dependency on external coil suppliers, gives us complete control over chemistry and mechanical properties, and significantly reduces production costs.",
-        ];
-  const displayCards =
+        ],[pageData?.manufacturingProcess]);
+  const displayCards = useMemo(
+      () =>
     pageData?.coreStrengths &&
     pageData.coreStrengths.length > 0 &&
     pageData.coreStrengths[0]?.title?.trim() !== ""
       ? pageData.coreStrengths
-      : cards;
-  const displaySpecs =
+      : cards,[pageData?.coreStrengths]);
+  const displaySpecs = useMemo(
+      () =>
     pageData?.specifications &&
     pageData.specifications.length > 0 &&
     pageData.specifications[0]?.parameter?.trim() !== ""
@@ -234,9 +262,10 @@ const ERW = () => {
             details:
               "IS 4923:2017, IS 18573:2024, IS 1161:2014, IS 1239 Part 1:2004, IS 3601:2006",
           },
-        ];
+        ],[pageData?.specifications])
   const displayAppIntro = pageData?.applicationsIntro || null;
-  const displayApps =
+  const displayApps = useMemo(
+      () =>
     pageData?.applications &&
     pageData.applications.length > 0 &&
     pageData.applications[0]?.label?.trim() !== ""
@@ -248,7 +277,9 @@ const ERW = () => {
           { img: Application4, label: "Furniture & General Fabrication" },
           { img: Application5, label: "Agriculture" },
           { img: Application6, label: "Industrial" },
-        ];
+        ],[pageData?.applications]);
+
+
 
   return (
     <>
@@ -262,7 +293,108 @@ const ERW = () => {
       />
       <div className="relative w-full overflow-x-hidden font-helvetica">
         {/* ================= BANNER SECTION ================= */}
-        <motion.section
+        <HeroBanner
+  heroSrc={heroSrc}
+  heroHeading={heroHeading}
+  imageZoom={imageZoom}
+  fadeUp={fadeUp}
+  isModalOpen={isModalOpen}
+  setIsModalOpen={setIsModalOpen}
+  ProductEnquiryModal={ProductEnquiryModal}
+/>
+
+        {/* ================= INTRO SECTION ================= */}
+        <ProductIntro
+  pageData={pageData}
+  displayCapacity={displayCapacity}
+  displayDescription={displayDescription}
+  displayHighlightsImg={displayHighlightsImg}
+  displayHighlights={displayHighlights}
+  containerVariants={containerVariants}
+  itemVariants={itemVariants}
+/>
+        {/* ================= TABS SECTION ================= */}
+        <section className="w-full py-12 px-4 sm:px-6 md:px-20 min-h-screen">
+          {/* Tabs - Mobile Scrollable & Centered on Desktop */}
+          <div className="flex overflow-x-auto no-scrollbar md:justify-center gap-4 mb-10 border-b border-gray-100 pb-2">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-5 py-3 font-semibold transition-all duration-300 whitespace-nowrap ${
+                  activeTab === tab
+                    ? "text-blue border-b-2 border-blue"
+                    : "text-gray-500 border-b-2 border-transparent hover:text-black"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+
+          {/* Tab Content */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+            > 
+              <ManufacturingProcess
+            displayManufacturingImg={displayManufacturingImg}
+            displayManufacturingDesc={displayManufacturingDesc}
+            activeTab={activeTab}
+          />
+
+          <CoreStrength
+            displayCards={displayCards}
+            cards={cards}
+            sectionVariants={sectionVariants}
+            fadeUp={fadeUp}
+            activeTab={activeTab}
+          />
+
+          <ProductSpecifications
+            displaySpecs={displaySpecs}
+            activeTab={activeTab}
+          />
+
+          <Applications
+          activeTab={activeTab}
+            displayAppIntro={displayAppIntro}
+            displayApps={displayApps}
+            fadeUp={fadeUp}
+          />
+
+               
+            </motion.div>
+          </AnimatePresence>
+        </section>
+
+        {/* ================= MORE PRODUCTS SECTION ================= */}
+        <MoreProducts products={products} />
+
+        {/* ================= Get Detailed Information ================= */}
+        <GetDetailedInformation Information={Information} />
+        
+      </div>
+    </>
+  );
+};
+
+const HeroBanner = React.memo(
+  ({
+    heroSrc,
+    heroHeading,
+    imageZoom,
+    fadeUp,
+    isModalOpen,
+    setIsModalOpen,
+    ProductEnquiryModal,
+  }) => {
+    return (
+      <motion.section
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -278,6 +410,9 @@ const ERW = () => {
               loop
               muted
               playsInline
+              preload="none"
+            fetchpriority="high"
+            decoding="async"
               className="absolute inset-0 w-full h-full object-cover"
             />
           ) : (
@@ -285,6 +420,12 @@ const ERW = () => {
               key={heroSrc || "fallback"}
               src={heroSrc || aboutVideo}
               alt="Hero Banner"
+              width="1600"
+            height="900"
+            fetchPriority="high"
+            decoding="async"
+            loading="eager"
+            sizes="(max-width: 768px) 100vw, 90vw"
               className="absolute inset-0 w-full h-full object-cover"
             />
           )}
@@ -342,15 +483,31 @@ const ERW = () => {
             </button>
           </div>
 
-          <ProductEnquiryModal
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-            productName={heroHeading}
-          />
+          {isModalOpen && (
+            <Suspense fallback={null}>       
+              <ProductEnquiryModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                productName={heroHeading}
+              />
+            </Suspense>
+           )}
         </motion.section>
+    )
+  });
 
-        {/* ================= INTRO SECTION ================= */}
-        <section className="bg-white">
+const ProductIntro = React.memo(
+  ({
+    pageData,
+    displayCapacity,
+    displayDescription,
+    displayHighlightsImg,
+    displayHighlights,
+    containerVariants,
+    itemVariants,
+  }) => {
+    return (
+       <section className="bg-white">
           {/* ================= WHITE INTRO SECTION ================= */}
           <div className="bg-white text-black pt-10 pb-10">
             <div className="px-6 md:px-20">
@@ -425,188 +582,184 @@ const ERW = () => {
             </motion.div>
           </section>
         </section>
-        {/* ================= TABS SECTION ================= */}
-        <section className="w-full py-12 px-4 sm:px-6 md:px-20 min-h-screen">
-          {/* Tabs - Mobile Scrollable & Centered on Desktop */}
-          <div className="flex overflow-x-auto no-scrollbar md:justify-center gap-4 mb-10 border-b border-gray-100 pb-2">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-5 py-3 font-semibold transition-all duration-300 whitespace-nowrap ${
-                  activeTab === tab
-                    ? "text-blue border-b-2 border-blue"
-                    : "text-gray-500 border-b-2 border-transparent hover:text-black"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
+      );
+  }
+);
 
-          {/* Tab Content */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
+{/* MANUFACTURING PROCESS */}
+const ManufacturingProcess = React.memo(
+  ({ displayManufacturingImg, displayManufacturingDesc, activeTab }) => (
+    <div
+              className={
+                activeTab === "MANUFACTURING PROCESS" ? "block" : "hidden"
+              }
             >
-              {/* MANUFACTURING PROCESS */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
+      <div className="w-full">
+        <img
+          src={displayManufacturingImg}
+          alt="Manufacturing Process"
+          loading="lazy"
+            decoding="async"
+          className="w-full h-auto rounded-xl shadow-lg object-cover aspect-video md:aspect-auto"
+        />
+      </div>
+      <div className="space-y-4">
+        {displayManufacturingDesc.map((desc, idx) => (
+          <p
+            key={idx}
+            className="text-gray-600 text-sm md:text-base  md:text-left"
+          >
+            {desc}
+          </p>
+        ))}
+      </div>
+    </div>
+    </div>
+  ));
 
-              <div
-                className={
-                  activeTab === "MANUFACTURING PROCESS" ? "block" : "hidden"
-                }
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-7xl mx-auto">
-                  <div className="w-full">
-                    <img
-                      src={displayManufacturingImg}
-                      alt="Manufacturing Process"
-                      className="w-full h-auto rounded-xl shadow-lg object-cover aspect-video md:aspect-auto"
-                    />
-                  </div>
-                  <div className="space-y-4">
-                    {displayManufacturingDesc.map((desc, idx) => (
-                      <p
-                        key={idx}
-                        className="text-gray-600 text-sm md:text-base  md:text-left"
-                      >
-                        {desc}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              </div>
+  {/* CORE STRENGTH */}
+  const CoreStrength = React.memo(
+  ({ displayCards, cards, sectionVariants, fadeUp , activeTab}) => (
+    <>
+    <div className={activeTab === "CORE STRENGTH" ? "block" : "hidden"}>
+      <motion.div
+        className="w-full max-w-7xl mx-auto rounded-xl overflow-hidden border border-gray-100"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {/* Responsive Grid: 1 col mobile, 2 col tablet, 3 col desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {displayCards.map((card, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              className={`flex flex-col items-center text-center p-8 transition-all duration-300 group min-h-[250px] justify-center ${
+                i % 2 === 0
+                  ? "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white"
+                  : "bg-white hover:bg-blue hover:text-white"
+              }`}
+            >
+              <img
+                src={card.img || cards[i % cards.length]?.img}
+                alt=""
+                loading="lazy"
+              decoding="async"
+                className="w-16 h-16 mb-4 transition duration-300 group-hover:brightness-0 group-hover:invert"
+              />
+              <h2 className="font-bold text-lg md:text-xl mb-2">
+                {card.title}
+              </h2>
+              <p className="text-sm md:text-base  opacity-90 px-2">
+                {card.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+      </div>
+    </>
+  )
+  );
 
-              {/* CORE STRENGTH */}
-              <div
-                className={activeTab === "CORE STRENGTH" ? "block" : "hidden"}
-              >
-                <motion.div
-                  className="w-full max-w-7xl mx-auto rounded-xl overflow-hidden border border-gray-100"
-                  variants={sectionVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.2 }}
+  {/* PRODUCT SPECIFICATIONS */}
+  const ProductSpecifications = React.memo(
+  ({ displaySpecs, activeTab }) => (
+    <>
+    <div
+              className={
+                activeTab === "PRODUCT SPECIFICATIONS" ? "block" : "hidden"
+              }
+            >
+      <div className="max-w-7xl mx-auto py-6">
+        <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-blue text-white">
+                <th className="px-6 py-4 font-semibold text-base md:text-lg">
+                  Parameter
+                </th>
+                <th className="px-6 py-4 font-semibold text-base md:text-lg border-l border-blue-400">
+                  Details
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {displaySpecs.map((spec, idx) => (
+                <tr
+                  key={idx}
+                  className="hover:bg-gray-50 transition-colors"
                 >
-                  {/* Responsive Grid: 1 col mobile, 2 col tablet, 3 col desktop */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                    {displayCards.map((card, i) => (
-                      <motion.div
-                        key={i}
-                        variants={fadeUp}
-                        className={`flex flex-col items-center text-center p-8 transition-all duration-300 group min-h-[250px] justify-center ${
-                          i % 2 === 0
-                            ? "bg-gray-200 text-gray-700 hover:bg-gray-700 hover:text-white"
-                            : "bg-white hover:bg-blue hover:text-white"
-                        }`}
-                      >
-                        <img
-                          src={card.img || cards[i % cards.length]?.img}
-                          alt=""
-                          className="w-16 h-16 mb-4 transition duration-300 group-hover:brightness-0 group-hover:invert"
-                        />
-                        <h2 className="font-bold text-lg md:text-xl mb-2">
-                          {card.title}
-                        </h2>
-                        <p className="text-sm md:text-base  opacity-90 px-2">
-                          {card.desc}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              </div>
+                  <th className="px-6 py-4 bg-gray-50/50 font-bold text-gray-700 text-sm md:text-base w-1/3">
+                    {spec.parameter}
+                  </th>
+                  <td className="px-6 py-4 text-gray-600 text-sm md:text-base">
+                    {spec.details}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </>
+    )
+);
 
-              {/* PRODUCT SPECIFICATIONS */}
-              <div
-                className={
-                  activeTab === "PRODUCT SPECIFICATIONS" ? "block" : "hidden"
-                }
-              >
-                <div className="max-w-7xl mx-auto py-6">
-                  <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
-                    <table className="w-full text-left border-collapse">
-                      <thead>
-                        <tr className="bg-blue text-white">
-                          <th className="px-6 py-4 font-semibold text-base md:text-lg">
-                            Parameter
-                          </th>
-                          <th className="px-6 py-4 font-semibold text-base md:text-lg border-l border-blue-400">
-                            Details
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-200">
-                        {displaySpecs.map((spec, idx) => (
-                          <tr
-                            key={idx}
-                            className="hover:bg-gray-50 transition-colors"
-                          >
-                            <th className="px-6 py-4 bg-gray-50/50 font-bold text-gray-700 text-sm md:text-base w-1/3">
-                              {spec.parameter}
-                            </th>
-                            <td className="px-6 py-4 text-gray-600 text-sm md:text-base">
-                              {spec.details}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+{/* APPLICATIONS */}
+  const Applications = React.memo(
+  ({ displayAppIntro, displayApps, fadeUp, activeTab }) => (
+    <>
+    <div className={activeTab === "APPLICATIONS" ? "block" : "hidden"}> 
+      <div className="max-w-7xl mx-auto space-y-10">
+        {displayAppIntro && (
+          <p className="text-gray-600 text-sm md:text-lg md:text-left">
+            {displayAppIntro}
+          </p>
+        )}
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
+          {displayApps.map((item, index) => (
+            <motion.div
+              key={index}
+              variants={fadeUp}
+              className="flex flex-col items-center group"
+            >
+              <div className="relative w-full aspect-square max-w-[180px] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
+                <div className="w-16 h-16 md:w-20 md:h-20 mb-3">
+                  <img
+                    src={item.img}
+                    alt={item.label}
+                    loading="lazy"
+              decoding="async"
+                    className="w-full h-full object-contain group-hover:drop-shadow-md"
+                    style={
+                      item.scale
+                        ? { transform: `scale(${item.scale})` }
+                        : {}
+                    }
+                  />
                 </div>
-              </div>
 
-              {/* APPLICATIONS */}
-              <div
-                className={activeTab === "APPLICATIONS" ? "block" : "hidden"}
-              >
-                <div className="max-w-7xl mx-auto space-y-10">
-                  {displayAppIntro && (
-                    <p className="text-gray-600 text-sm md:text-lg md:text-left">
-                      {displayAppIntro}
-                    </p>
-                  )}
-
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8">
-                    {displayApps.map((item, index) => (
-                      <motion.div
-                        key={index}
-                        variants={fadeUp}
-                        className="flex flex-col items-center group"
-                      >
-                        <div className="relative w-full aspect-square max-w-[180px] flex flex-col items-center justify-center rounded-2xl bg-gray-50 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-xl border border-transparent group-hover:border-blue/20">
-                          <div className="w-16 h-16 md:w-20 md:h-20 mb-3">
-                            <img
-                              src={item.img}
-                              alt={item.label}
-                              className="w-full h-full object-contain group-hover:drop-shadow-md"
-                              style={
-                                item.scale
-                                  ? { transform: `scale(${item.scale})` }
-                                  : {}
-                              }
-                            />
-                          </div>
-
-                          <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
-                            {item.label}
-                          </p>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
+                <p className="text-center font-bold text-xs md:text-sm text-gray-800 px-2 group-hover:text-blue">
+                  {item.label}
+                </p>
               </div>
             </motion.div>
-          </AnimatePresence>
-        </section>
+          ))}
+        </div>
+      </div>
+      </div>
+    </>
+    )
+);
 
-        {/* ================= MORE PRODUCTS SECTION ================= */}
-        <section className="w-full py-12 px-6 md:px-20 bg-gray-100">
+const MoreProducts = React.memo(({ products }) => {
+  return (
+    <section className="w-full py-12 px-6 md:px-20 bg-gray-100">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -630,6 +783,8 @@ const ERW = () => {
                 <img
                   src={product.image}
                   alt={product.title}
+                  loading="lazy"
+                        decoding="async"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
 
@@ -645,9 +800,12 @@ const ERW = () => {
             ))}
           </div>
         </section>
+        );
+});
 
-        {/* ================= Get Detailed Information ================= */}
-        <section className="bg-blue text-white w-full py-12 md:py-20 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden">
+const GetDetailedInformation = React.memo(({ Information }) => {
+  return (
+    <section className="bg-blue text-white w-full py-12 md:py-20 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden">
           {/* LEFT CONTENT */}
           <div className="flex-1 text-center lg:text-left">
             <motion.h2
@@ -678,6 +836,8 @@ const ERW = () => {
             <img
               src={Information}
               alt="Detailed product information"
+              loading="lazy"
+                        decoding="async"
               className="
                w-full
                max-w-md
@@ -692,9 +852,6 @@ const ERW = () => {
             />
           </div>
         </section>
-      </div>
-    </>
-  );
-};
+  )});
 
 export default ERW;

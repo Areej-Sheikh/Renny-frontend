@@ -9,25 +9,28 @@ const SustainabilitySlider = () => {
 
   const slides = [
     {
-      title: "CBAM & Sustainable Market Access",
-      description: "Renny Strips Ltd. strengthens its European presence through CBAM-aligned practices, delivering high-quality steel products with strong ROI. Fully in-house production enables rapid execution while maintaining a significantly lower carbon footprint.",
-      image: sustainability1
+      title: 'CBAM & Sustainable Market Access',
+      description:
+        "Renny Strips aligns with the EU's Carbon Border Adjustment Mechanism (CBAM), enabling export-ready green steel with a documented, significantly lower carbon footprint. Our in-house production model ensures rapid execution and competitive ROI for global buyers.",
+      image: sustainability1,
     },
     {
-      title: "Industry-Best Low-Emission Standards",
-      description: "Renny integrates sustainability through its vertically integrated manufacturing ecosystem and 22 MW solar power plant, meeting nearly 30% of energy needs while reducing emissions, improving resource efficiency, and supporting responsible manufacturing.",
-      image: sustainability3
+      title: 'Industry-Best Low-Emission Standards',
+      description:
+        "Our vertically integrated ecosystem, powered by a 22 MW solar plant, meets nearly 30% of our energy needs making Renny Strips one of India's most energy-efficient structural steel companies.",
+      image: sustainability3,
     },
     {
-      title: "Circular Economy & Stewardship",
-      description: "Renny Strips Ltd. prioritizes effective waste management and collaborates with local authorities. The company continually invests in innovative recycling solutions and environmentally responsible practices.",
-      image: sustainability4
-    }
+      title: 'Circular Economy & Responsible Stewardship',
+      description:
+        'Renny Strips prioritizes waste reduction, scrap recycling, and collaboration with local environmental bodies embodying the principles of a true circular economy in steel manufacturing.',
+      image: sustainability4,
+    },
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent(prev => (prev + 1) % slides.length);
+      setCurrent((prev) => (prev + 1) % slides.length);
     }, 4500);
     return () => clearInterval(interval);
   }, [slides.length]);
@@ -41,7 +44,6 @@ const SustainabilitySlider = () => {
         {slides.map((slide, index) => (
           <div key={index} className="w-full shrink-0 h-full">
             <div className="flex flex-col lg:flex-row h-full">
-              
               {/* Image Container: Order 1 on mobile, Order 2 on desktop */}
               <div className="w-full lg:w-2/5 h-114 lg:h-82 order-1 lg:order-2 shrink-0 overflow-hidden">
                 <img
@@ -60,7 +62,6 @@ const SustainabilitySlider = () => {
                   {slide.description}
                 </p>
               </div>
-
             </div>
           </div>
         ))}
@@ -73,7 +74,7 @@ const SustainabilitySlider = () => {
             key={i}
             onClick={() => setCurrent(i)}
             className={`h-2 rounded-full transition-all duration-300 ${
-              current === i ? "w-6 bg-blue-900" : "w-2 bg-gray-300"
+              current === i ? 'w-6 bg-blue-900' : 'w-2 bg-gray-300'
             }`}
             aria-label={`Go to slide ${i + 1}`}
           />

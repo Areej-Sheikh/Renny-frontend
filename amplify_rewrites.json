@@ -1720,6 +1720,11 @@
     "target": "/"
   },
   {
+    "source": "/sitemap.xml",
+    "status": "200",
+    "target": "/sitemap.xml"
+  },
+  {
     "source": "/home-main",
     "status": "301",
     "target": "/"
@@ -1885,9 +1890,219 @@
     "target": "/robots.txt"
   },
   {
-    "source": "/<*>",
-    "status": "404-200",
-    "target": "/<*>/index.html"
+    "source": "/company-overview",
+    "status": "200",
+    "target": "/company-overview/index.html"
+  },
+  {
+    "source": "/manufacturing-units",
+    "status": "200",
+    "target": "/manufacturing-units/index.html"
+  },
+  {
+    "source": "/quality-standard",
+    "status": "200",
+    "target": "/quality-standard/index.html"
+  },
+  {
+    "source": "/design-centre",
+    "status": "200",
+    "target": "/design-centre/index.html"
+  },
+  {
+    "source": "/ms-billets",
+    "status": "200",
+    "target": "/ms-billets/index.html"
+  },
+  {
+    "source": "/wire-rods",
+    "status": "200",
+    "target": "/wire-rods/index.html"
+  },
+  {
+    "source": "/narrow-hrcoil",
+    "status": "200",
+    "target": "/narrow-hrcoil/index.html"
+  },
+  {
+    "source": "/erw-pipes-and-tubes",
+    "status": "200",
+    "target": "/erw-pipes-and-tubes/index.html"
+  },
+  {
+    "source": "/scaffolding-formwork",
+    "status": "200",
+    "target": "/scaffolding-formwork/index.html"
+  },
+  {
+    "source": "/product-range",
+    "status": "200",
+    "target": "/product-range/index.html"
+  },
+  {
+    "source": "/product-range-2",
+    "status": "200",
+    "target": "/product-range-2/index.html"
+  },
+  {
+    "source": "/financials",
+    "status": "200",
+    "target": "/financials/index.html"
+  },
+  {
+    "source": "/corporate-governance",
+    "status": "200",
+    "target": "/corporate-governance/index.html"
+  },
+  {
+    "source": "/industry-report",
+    "status": "200",
+    "target": "/industry-report/index.html"
+  },
+  {
+    "source": "/ipo",
+    "status": "200",
+    "target": "/ipo/index.html"
+  },
+  {
+    "source": "/ipo-audio-visual",
+    "status": "200",
+    "target": "/ipo-audio-visual/index.html"
+  },
+  {
+    "source": "/share-holding-pattern",
+    "status": "200",
+    "target": "/share-holding-pattern/index.html"
+  },
+  {
+    "source": "/our-policies",
+    "status": "200",
+    "target": "/our-policies/index.html"
+  },
+  {
+    "source": "/ec",
+    "status": "200",
+    "target": "/ec/index.html"
+  },
+  {
+    "source": "/sustainability",
+    "status": "200",
+    "target": "/sustainability/index.html"
+  },
+  {
+    "source": "/news-room",
+    "status": "200",
+    "target": "/news-room/index.html"
+  },
+  {
+    "source": "/events",
+    "status": "200",
+    "target": "/events/index.html"
+  },
+  {
+    "source": "/contact-us",
+    "status": "200",
+    "target": "/contact-us/index.html"
+  },
+  {
+    "source": "/careers",
+    "status": "200",
+    "target": "/careers/index.html"
+  },
+  {
+    "source": "/blog",
+    "status": "200",
+    "target": "/blog/index.html"
+  },
+  {
+    "source": "/blog/<*>",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/careers/<*>",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/contact-us/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/careers/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/apply/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/ms-billets/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/wire-rods/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/narrow-hrcoil/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/erw-pipes-and-tubes/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/scaffolding-formwork/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/product-range/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/product-range-2/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/company-overview/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/manufacturing-units/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/quality-standard/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/design-centre/thank-you",
+    "status": "200",
+    "target": "/index.html"
+  },
+  {
+    "source": "/sustainability/thank-you",
+    "status": "200",
+    "target": "/index.html"
   },
   {
     "source": "/<*>",

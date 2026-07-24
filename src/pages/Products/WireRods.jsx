@@ -408,7 +408,7 @@ const HeroBanner = React.memo(
         ) : (
           <img
             key={heroSrc || "fallback"}
-            src={heroSrc || aboutVideo}
+            src={heroSrc || ""}
             alt="Hero Banner"
             width="1600"
             height="900"

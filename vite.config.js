@@ -9,6 +9,9 @@ export default defineConfig({
       'X-Frame-Options': 'SAMEORIGIN'
     }
   },
+  build: {
+    target: 'es2019'
+  },
   plugins: [
     react(),
     tailwindcss(),

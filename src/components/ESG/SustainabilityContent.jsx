@@ -112,7 +112,7 @@ const SustainabilityContent = () => {
         ) : (
           <img
             key={heroSrc || "fallback"}
-            src={heroSrc || aboutVideo}
+            src={heroSrc || ""}
             alt="Hero Banner"
             className="absolute inset-0 w-full h-full object-cover"
           />

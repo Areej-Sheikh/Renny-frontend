@@ -1,5 +1,5 @@
 // React
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 // Icons
 import {
@@ -25,27 +25,27 @@ import {
   FiGlobe,
   FiTruck,
   FiMapPin,
-} from "react-icons/fi";
-import { FiChevronDown } from "react-icons/fi";
-import { FaLeaf, FaQuoteLeft } from "react-icons/fa";
-import { PiColumnsBold, PiSquaresFourBold } from "react-icons/pi";
+} from 'react-icons/fi';
+import { FiChevronDown } from 'react-icons/fi';
+import { FaLeaf, FaQuoteLeft } from 'react-icons/fa';
+import { PiColumnsBold, PiSquaresFourBold } from 'react-icons/pi';
 // Animation libraries
-import { motion, AnimatePresence } from "framer-motion";
-import CountUp from "react-countup";
-import { useInView } from "react-intersection-observer";
+import { motion, AnimatePresence } from 'framer-motion';
+import CountUp from 'react-countup';
+import { useInView } from 'react-intersection-observer';
 
 // Image assets
-import heroSrc from "../../assets/CBAMHero.webp";
-import CBAMImage from "../../assets/CBAM1.webp";
-import CBAMImage1 from "../../assets/What Changed in 2026.webp";
-import CBAMImage2 from "../../assets/CBAM.svg";
-import logo from "../../assets/Co2.webp";
-import CostSavingCalculator from "../../assets/CBAM Cost Saving Calculator.webp";
-import global from "../../assets/Global_5.webp";
-import img1 from "../../assets/1.webp";
-import img2 from "../../assets/3.webp";
-import HowToComply from "../../assets/How To Comply.webp";
-import R from "../../assets/R.webp";
+import heroSrc from '../../assets/CBAMHero.webp';
+import CBAMImage from '../../assets/CBAM1.webp';
+import CBAMImage1 from '../../assets/What Changed in 2026.webp';
+import CBAMImage2 from '../../assets/CBAM.svg';
+import logo from '../../assets/Co2.webp';
+import CostSavingCalculator from '../../assets/CBAM Cost Saving Calculator.webp';
+import global from '../../assets/Global_5.webp';
+import img1 from '../../assets/1.webp';
+import img2 from '../../assets/3.webp';
+import HowToComply from '../../assets/How To Comply.webp';
+import R from '../../assets/R.webp';
 
 // import CredentialCard1 from "../../components/CredentialCard1"
 
@@ -75,12 +75,12 @@ const staggerContainer = {
 };
 
 const cardVariant = {
-  hidden: { opacity: 0, y: 60, scale: 0.9, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 60, scale: 0.9, filter: 'blur(8px)' },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    filter: "blur(0px)",
+    filter: 'blur(0px)',
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
   },
 };
@@ -90,7 +90,7 @@ const logoVariant = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 1, ease: "easeOut" },
+    transition: { duration: 1, ease: 'easeOut' },
   },
 };
 
@@ -125,7 +125,7 @@ const lineExtend = {
     scaleX: 1,
     transition: {
       duration: 1.2,
-      ease: "easeInOut",
+      ease: 'easeInOut',
     },
   },
 };
@@ -149,7 +149,7 @@ const slideLeft = {
     x: 0,
     transition: {
       duration: 0.9,
-      ease: "easeOut",
+      ease: 'easeOut',
     },
   },
 };
@@ -164,7 +164,7 @@ const slideRight = {
     x: 0,
     transition: {
       duration: 0.9,
-      ease: "easeOut",
+      ease: 'easeOut',
     },
   },
 };
@@ -182,7 +182,7 @@ const imageReveal = {
     y: 0,
     transition: {
       duration: 1,
-      ease: "easeOut",
+      ease: 'easeOut',
       delay: 0.5, // Waits slightly for the steps to complete their cycle
     },
   },
@@ -198,7 +198,7 @@ const imageZoom = {
     scale: 1,
     transition: {
       duration: 1,
-      ease: "easeOut",
+      ease: 'easeOut',
     },
   },
 };
@@ -227,7 +227,7 @@ const credentials = [
     icon: FiShield,
     text: (
       <>
-        Greenhouse gas emissions independently verified by{" "}
+        Greenhouse gas emissions independently verified by{' '}
         <span className="font-semibold text-green">TÜV Rheinland.</span>
       </>
     ),
@@ -236,7 +236,7 @@ const credentials = [
     icon: FiFileText,
     text: (
       <>
-        Verified under{" "}
+        Verified under{' '}
         <span className="font-semibold text-green">ISO 14064-3:2019</span> and
         the Greenhouse Gas Protocol.
       </>
@@ -246,9 +246,9 @@ const credentials = [
     icon: FiBarChart2,
     text: (
       <>
-        Emission intensity reported at{" "}
+        Emission intensity reported at{' '}
         <span className="font-semibold text-green">0.395 tCO₂e</span> per tonne
-        for the Steel Division and{" "}
+        for the Steel Division and{' '}
         <span className="font-semibold text-green">0.065 tCO₂e</span> per tonne
         for the Infra Division.
       </>
@@ -259,73 +259,73 @@ const credentials = [
 const cards = [
   {
     icon: FiBriefcase,
-    title: "Conventional Steel\nCarbon Impact",
-    value: "~€165.79",
-    unit: "per MT",
-    valueColor: "text-slate-800",
-    border: "border-orange-500",
-    iconBg: "bg-slate-100",
+    title: 'Conventional Steel\nCarbon Impact',
+    value: '~€165.79',
+    unit: 'per MT',
+    valueColor: 'text-slate-800',
+    border: 'border-orange-500',
+    iconBg: 'bg-slate-100',
   },
   {
     icon: FiCheckCircle,
-    title: "Renny Green Steel\nCarbon Impact",
-    value: "~€48.11",
-    unit: "per MT",
-    valueColor: "text-green",
-    border: "border-green",
-    iconBg: "bg-green/10",
+    title: 'Renny Green Steel\nCarbon Impact',
+    value: '~€48.11',
+    unit: 'per MT',
+    valueColor: 'text-green',
+    border: 'border-green',
+    iconBg: 'bg-green/10',
   },
   {
     icon: FiDollarSign,
-    title: "Estimated Savings",
-    value: "~€117.67",
-    unit: "per MT",
-    valueColor: "text-blue",
-    border: "border-blue",
-    iconBg: "bg-blue-50",
+    title: 'Estimated Savings',
+    value: '~€117.67',
+    unit: 'per MT',
+    valueColor: 'text-blue',
+    border: 'border-blue',
+    iconBg: 'bg-blue-50',
   },
 ];
 const products = [
   {
-    title: "Structural Steel",
+    title: 'Structural Steel',
     description:
-      "Steel products used in construction, infrastructure, and industrial applications.",
+      'Steel products used in construction, infrastructure, and industrial applications.',
     image: img1,
     Icon: PiColumnsBold, // Clean structural beam representation
   },
   {
-    title: "Construction Material",
+    title: 'Construction Material',
     description:
-      "Cement and other construction materials essential for building and infrastructure.",
+      'Cement and other construction materials essential for building and infrastructure.',
     image: img2,
     Icon: PiSquaresFourBold, // Clean material block layout
   },
 ];
 const stepsData = [
   {
-    id: "01",
-    title: "Collect",
-    description: "Capture operational and emissions data seamlessly.",
+    id: '01',
+    title: 'Collect',
+    description: 'Capture operational and emissions data seamlessly.',
     icon: FiDatabase,
   },
   {
-    id: "02",
-    title: "Monitor",
+    id: '02',
+    title: 'Monitor',
     description:
-      "Track emissions across fuel, electricity, processes, and raw materials.",
+      'Track emissions across fuel, electricity, processes, and raw materials.',
     icon: FiTrendingUp,
   },
   {
-    id: "03",
-    title: "Verify",
+    id: '03',
+    title: 'Verify',
     description:
-      "Validate and authenticate product-level carbon footprints digitally.",
+      'Validate and authenticate product-level carbon footprints digitally.',
     icon: FiShield,
   },
   {
-    id: "04",
-    title: "Report",
-    description: "Generate CBAM-ready reports with accuracy and transparency.",
+    id: '04',
+    title: 'Report',
+    description: 'Generate CBAM-ready reports with accuracy and transparency.',
     icon: FiFileText,
   },
 ];
@@ -335,7 +335,7 @@ const featureItems = [
     icon: FiCheckSquare,
     text: (
       <>
-        <span className="text-green font-bold">Independently verified</span>{" "}
+        <span className="text-green font-bold">Independently verified</span>{' '}
         emissions reporting.
       </>
     ),
@@ -362,7 +362,7 @@ const featureItems = [
     icon: FiLink2,
     text: (
       <>
-        <span className="text-green font-bold">Digital traceability</span>{" "}
+        <span className="text-green font-bold">Digital traceability</span>{' '}
         systems.
       </>
     ),
@@ -371,7 +371,7 @@ const featureItems = [
     icon: FiTrendingUp,
     text: (
       <>
-        <span className="text-green font-bold">Automated reporting</span>{" "}
+        <span className="text-green font-bold">Automated reporting</span>{' '}
         capabilities that provide quick access to verified emissions insights
         and compliance documentation.
       </>
@@ -411,77 +411,77 @@ const certData = [
   {
     id: 0,
     logo: mockLogos.tuv,
-    title: "TÜV Rheinland",
-    accentText: "Verified",
-    subTitle: "Greenhouse Gas Assessment.",
-    docTitle: "Verified Greenhouse Gas Assessment",
-    docBadge: "VERIFIED",
+    title: 'TÜV Rheinland',
+    accentText: 'Verified',
+    subTitle: 'Greenhouse Gas Assessment.',
+    docTitle: 'Verified Greenhouse Gas Assessment',
+    docBadge: 'VERIFIED',
     docDesc:
-      "Independently verified greenhouse gas emissions assessment for reliable reporting.",
-    footerUrl: "www.tuv.com",
+      'Independently verified greenhouse gas emissions assessment for reliable reporting.',
+    footerUrl: 'www.tuv.com',
   },
   {
     id: 1,
     logo: mockLogos.iso,
-    title: "ISO 14064-3:2019",
-    accentText: "Verification.",
-    subTitle: "",
-    docTitle: "ISO 14064-3:2019 Specification",
-    docBadge: "VERIFICATION",
+    title: 'ISO 14064-3:2019',
+    accentText: 'Verification.',
+    subTitle: '',
+    docTitle: 'ISO 14064-3:2019 Specification',
+    docBadge: 'VERIFICATION',
     docDesc:
-      "Verification of greenhouse gas statements for ISO 14064-3:2019 compliance standards.",
-    footerUrl: "www.iso.org",
+      'Verification of greenhouse gas statements for ISO 14064-3:2019 compliance standards.',
+    footerUrl: 'www.iso.org',
   },
   {
     id: 2,
     logo: mockLogos.ghg,
-    title: "Greenhouse Gas Protocol",
-    accentText: "Compliance.",
-    subTitle: "",
-    docTitle: "GREENHOUSE GAS PROTOCOL",
-    docBadge: "COMPLIANT",
+    title: 'Greenhouse Gas Protocol',
+    accentText: 'Compliance.',
+    subTitle: '',
+    docTitle: 'GREENHOUSE GAS PROTOCOL',
+    docBadge: 'COMPLIANT',
     docDesc:
-      "Aligned with the globally recognized Greenhouse Gas Protocol for corporate accounting.",
-    footerUrl: "www.ghgprotocol.org",
+      'Aligned with the globally recognized Greenhouse Gas Protocol for corporate accounting.',
+    footerUrl: 'www.ghgprotocol.org',
   },
   {
     id: 3,
     logo: mockLogos.nisst,
-    title: "5-Star Green Steel Manufacturing Rating by",
-    accentText: "NISST",
-    subTitle: ", Ministry of Steel, Government of India.",
-    docTitle: "5-STAR GREEN STEEL MANUFACTURING RATING",
-    docBadge: "★★★★★",
+    title: '5-Star Green Steel Manufacturing Rating by',
+    accentText: 'NISST',
+    subTitle: ', Ministry of Steel, Government of India.',
+    docTitle: '5-STAR GREEN STEEL MANUFACTURING RATING',
+    docBadge: '★★★★★',
     docDesc:
-      "Recognized for excellence in sustainable clean energy steel manufacturing practices.",
-    footerUrl: "www.steel.gov.in",
+      'Recognized for excellence in sustainable clean energy steel manufacturing practices.',
+    footerUrl: 'www.steel.gov.in',
   },
 ];
 
 const pillarData = [
   {
     icon: FiGlobe,
-    title: "Global Market Presence",
+    title: 'Global Market Presence',
     description:
-      "Serving customers in key international markets with a strong focus on Europe.",
+      'Serving customers in key international markets with a strong focus on Europe.',
   },
   {
     icon: FiTruck,
-    title: "Export-Ready Ecosystem",
+    title: 'Export-Ready Ecosystem',
     description:
-      "Integrated, efficient, and scalable operations designed to meet global quality and logistics standards.",
+      'Integrated, efficient, and scalable operations designed to meet global quality and logistics standards.',
   },
   {
     icon: FiFileText,
-    title: "Carbon Transparency",
+    title: 'Carbon Transparency',
     description:
-      "Providing verified emissions data and clear traceability to support decarbonization and stakeholder trust.",
+      'Providing verified emissions data and clear traceability to support decarbonization and stakeholder trust.',
   },
   {
     icon: FiShield,
-    title: "Compliance-Driven Operations",
+    title: 'Compliance-Driven Operations',
     description:
-      "Aligned with international regulations and CBAM requirements to ensure seamless compliance across markets.",
+      'Aligned with international regulations and CBAM requirements to ensure seamless compliance across markets.',
   },
 ];
 
@@ -490,75 +490,75 @@ const testimonialData = [
     id: 0,
     quote:
       "Renny's commitment to quality and CBAM compliance gives us complete confidence. Their transparency and reliability make them a valued partner in our supply chain.",
-    name: "Rajesh Mehta",
-    role: "Head – Procurement",
-    company: "Larsen & Toubro",
+    name: 'Rajesh Mehta',
+    role: 'Head – Procurement',
+    company: 'Larsen & Toubro',
     avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
   },
   {
     id: 1,
     quote:
-      "The real-time emissions data and product-level transparency from Renny have simplified our CBAM reporting and helped us achieve our sustainability goals with complete confidence.",
-    name: "Amit Agarwal",
-    role: "VP – Supply Chain",
-    company: "Tata Projects",
+      'The real-time emissions data and product-level transparency from Renny have simplified our CBAM reporting and helped us achieve our sustainability goals with complete confidence.',
+    name: 'Amit Agarwal',
+    role: 'VP – Supply Chain',
+    company: 'Tata Projects',
     avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
   },
   {
     id: 2,
     quote:
-      "Consistent quality, on-time delivery, and a strong focus on sustainability—Renny stands out as a partner who truly understands our business and values.",
-    name: "Sandeep Jain",
-    role: "Head – Procurement",
-    company: "Jindal Stainless",
+      'Consistent quality, on-time delivery, and a strong focus on sustainability—Renny stands out as a partner who truly understands our business and values.',
+    name: 'Sandeep Jain',
+    role: 'Head – Procurement',
+    company: 'Jindal Stainless',
     avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80",
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80',
   },
   {
     id: 3,
     quote:
-      "Their carbon-tracking dashboard sets a new benchmark for corporate transparency. Navigating international regulatory landscape audits has never been more fluid.",
-    name: "Arun Sharma",
-    role: "Director – Sustainability",
-    company: "GMR Group",
+      'Their carbon-tracking dashboard sets a new benchmark for corporate transparency. Navigating international regulatory landscape audits has never been more fluid.',
+    name: 'Arun Sharma',
+    role: 'Director – Sustainability',
+    company: 'GMR Group',
     avatar:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80",
+      'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80',
   },
 ];
 
 const faqData = [
   {
     id: 1,
-    question: "Is CBAM a tax?",
+    question: 'Is CBAM a tax?',
     answer:
-      "The Carbon Border Adjustment Mechanism (CBAM) functions like a tax on carbon emissions embedded in specific goods imported into the EU, ensuring that foreign products face equivalent carbon pricing to internal EU alternatives.",
+      'The Carbon Border Adjustment Mechanism (CBAM) functions like a tax on carbon emissions embedded in specific goods imported into the EU, ensuring that foreign products face equivalent carbon pricing to internal EU alternatives.',
   },
   {
     id: 2,
-    question: "How does CBAM work?",
+    question: 'How does CBAM work?',
     answer:
-      "Importers buy electronic certificates representing the embedded carbon price of their goods. The cost matches the EU Emissions Trading System (ETS) allowance prices, adjusting dynamically for any carbon price already paid in the originating jurisdiction.",
+      'Importers buy electronic certificates representing the embedded carbon price of their goods. The cost matches the EU Emissions Trading System (ETS) allowance prices, adjusting dynamically for any carbon price already paid in the originating jurisdiction.',
   },
   {
     id: 3,
-    question: "Does CBAM apply to finished goods?",
+    question: 'Does CBAM apply to finished goods?',
     answer:
-      "CBAM targets iron, steel, cement, aluminum, fertilizers, electricity, and hydrogen, covering both foundational raw substances and select downstream industrial finished goods derived directly from them.",
+      'CBAM targets iron, steel, cement, aluminum, fertilizers, electricity, and hydrogen, covering both foundational raw substances and select downstream industrial finished goods derived directly from them.',
   },
   {
     id: 4,
     question:
-      "Which greenhouse gas emissions are covered under CBAM, and what reporting metrics are used for different product categories?",
+      'Which greenhouse gas emissions are covered under CBAM, and what reporting metrics are used for different product categories?',
     answer:
-      "It covers direct emissions released during industrial synthesis alongside specific indirect emissions (like electricity consumed in manufacturing). Importers measure embedded intensity metrics using specific metric tons of CO2 equivalent ($tCO_2e$) per ton of output.",
+      'It covers direct emissions released during industrial synthesis alongside specific indirect emissions (like electricity consumed in manufacturing). Importers measure embedded intensity metrics using specific metric tons of CO2 equivalent ($tCO_2e$) per ton of output.',
   },
   {
     id: 5,
-    question: "What CBAM services does RENNY provide?",
+    question: 'What CBAM services does RENNY provide?',
     answer:
-      "RENNY provides end-to-end software integration to automate direct emission tracking, cross-border supply chain verification matrices, compliance documentation compilation, and real-time ledger auditing tools tailored to international customs standards.",
+      'RENNY provides end-to-end software integration to automate direct emission tracking, cross-border supply chain verification matrices, compliance documentation compilation, and real-time ledger auditing tools tailored to international customs standards.',
   },
 ];
 
@@ -573,10 +573,10 @@ const CredentialCard1 = ({ item, reverse }) => {
       whileHover={{
         scale: 1.03,
         y: -8,
-        transition: { duration: 0.35, ease: "easeOut" },
+        transition: { duration: 0.35, ease: 'easeOut' },
       }}
       className={`w-[350px] h-[175px] p-6 flex items-center gap-5 bg-white/80 backdrop-blur-md border border-green-100 rounded-[24px] shadow-[0_15px_40px_rgba(16,185,129,0.08)] hover:shadow-[0_25px_60px_rgba(16,185,129,0.18)] transition-all duration-350 ${
-        reverse ? "flex-row-reverse text-right" : ""
+        reverse ? 'flex-row-reverse text-right' : ''
       }`}
     >
       {/* Fixed Icon Size */}
@@ -616,7 +616,7 @@ const CBAM = () => {
 
   const prevSlide = () => {
     setCurrentIndex(
-      (prev) => (prev - 1 + testimonialData.length) % testimonialData.length,
+      (prev) => (prev - 1 + testimonialData.length) % testimonialData.length
     );
   };
 
@@ -626,9 +626,9 @@ const CBAM = () => {
     const leftIndex = (currentIndex - 1 + len) % len;
     const rightIndex = (currentIndex + 1) % len;
     return [
-      { ...testimonialData[leftIndex], position: "left" },
-      { ...testimonialData[currentIndex], position: "center" },
-      { ...testimonialData[rightIndex], position: "right" },
+      { ...testimonialData[leftIndex], position: 'left' },
+      { ...testimonialData[currentIndex], position: 'center' },
+      { ...testimonialData[rightIndex], position: 'right' },
     ];
   };
   const [openId, setOpenId] = useState(null);
@@ -697,10 +697,11 @@ const CBAM = () => {
             variants={fadeUp}
             className="text-black-700 text-center md:text-[17px]"
           >
-            The Carbon Border Adjustment Mechanism (CBAM) is a European Union
-            regulation that imposes carbon-related costs on imported goods based
-            on their embedded emissions. It promotes low-carbon manufacturing
-            and greater carbon transparency across global supply chains.
+            CBAM-Ready Steel for a Low-Carbon Future Renny Strips' Green Steel
+            carries a verified carbon footprint of just 0.6385 tCO₂ per metric
+            ton nearly 40% lower than the conventional industry average of 2.2
+            tCO₂ per metric ton. Verified emissions data. Stronger compliance
+            for European imports.
           </motion.p>
 
           <motion.div variants={imageReveal} className="my-10">
@@ -772,13 +773,25 @@ const CBAM = () => {
             <motion.div variants={slideRight}>
               <motion.p
                 variants={fadeUp}
-                className="text-[#2D334A] text-xl md:text-2xl max-w-2xl"
+                className="text-[#2D334A] text-md md:text-xl max-w-2xl"
               >
                 CBAM applies to manufacturers and importers exporting products
                 such as structural steel and construction materials to Europe.
-                These businesses must disclose embedded emissions associated
-                with their products and comply with carbon transparency
-                requirements.
+                Under the CBAM Omnibus simplification adopted in October 2025,
+                importers bringing in more than 50 tonnes of CBAM-covered goods
+                (cumulative, per year) must register as authorised CBAM
+                declarants and disclose the embedded emissions of their imports.
+                This replaces the earlier €150-per-consignment exemption with a
+                single mass-based threshold, so exposure is now tied to volume
+                rather than shipment value.
+              </motion.p>
+              <motion.p
+                variants={fadeUp}
+                className="text-[#2D334A] mt-2 text-md md:text-xl max-w-2xl"
+              >
+                If your imports from Renny Strips exceed this threshold, you'll
+                need verified, product-level emissions data which is exactly
+                what our CBAM compliance dashboard is built to provide.
               </motion.p>
             </motion.div>
           </div>
@@ -801,7 +814,7 @@ const CBAM = () => {
               }}
               transition={{
                 duration: 0.6,
-                ease: "easeOut",
+                ease: 'easeOut',
               }}
             />
           </motion.div>
@@ -819,8 +832,8 @@ const CBAM = () => {
             className="absolute right-0 top-0 h-full w-full"
             style={{
               background:
-                "radial-gradient(circle at center, rgba(0,0,0,.08) 1px, transparent 1px)",
-              backgroundSize: "40px 40px",
+                'radial-gradient(circle at center, rgba(0,0,0,.08) 1px, transparent 1px)',
+              backgroundSize: '40px 40px',
             }}
           />
         </div>
@@ -854,10 +867,10 @@ const CBAM = () => {
                 className="mt-8 text-[#2D3652] text-base md:text-lg leading-relaxed"
               >
                 <p>
-                  Renny Strips’ Green Steel has a carbon footprint of only{" "}
+                  Renny Strips’ Green Steel has a carbon footprint of only{' '}
                   <span className="font-bold text-green">0.6385 tCO₂</span> per
                   metric ton compared to the conventional industry average of
-                  nearly{" "}
+                  nearly{' '}
                   <span className="font-bold text-[#162456]">2.2 tCO₂</span> per
                   metric ton.
                 </p>
@@ -1006,7 +1019,7 @@ const CBAM = () => {
                 transition={{
                   duration: 4,
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: 'easeInOut',
                 }}
                 className="relative"
               >
@@ -1015,7 +1028,7 @@ const CBAM = () => {
                   transition={{
                     duration: 3,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: 'easeInOut',
                   }}
                   className="absolute inset-0 bg-green-400/30 blur-[80px] rounded-full"
                 />
@@ -1185,13 +1198,13 @@ const CBAM = () => {
                         >
                           <CountUp
                             end={parseFloat(
-                              String(card.value).replace(/[^\d.-]/g, ""),
+                              String(card.value).replace(/[^\d.-]/g, '')
                             )}
                             duration={2}
                             separator=","
                             decimals={
-                              String(card.value).includes(".")
-                                ? String(card.value).split(".")[1].length
+                              String(card.value).includes('.')
+                                ? String(card.value).split('.')[1].length
                                 : 0
                             }
                             prefix="€"
@@ -1363,9 +1376,7 @@ const CBAM = () => {
             Every Ton Accounted For. Every Emission Visible.
           </h3>
           <p className="text-slate-500 max-w-3xl text-center leading-relaxed text-sm md:text-base">
-            Renny's AI-powered emissions platform captures, monitors, and
-            verifies carbon data in line with CBAM requirements, delivering
-            real-time visibility and product-level traceability.
+            Every Ton Accounted For. Every Emission Visible. Renny's AI-powered emissions platform captures, monitors, and verifies carbon data in line with CBAM's definitive regime, which took effect on 1 January 2026. Importers must be authorised CBAM declarants by 31 March 2026 to continue importing without interruption, with the first annual CBAM declaration for 2026 imports due by 30 September 2027 and certificate purchases opening from 1 February 2027. Our platform delivers the real-time visibility and product-level traceability needed to meet each of these deadlines.
           </p>
         </motion.div>
 
@@ -1441,7 +1452,7 @@ const CBAM = () => {
       </section>
 
       {/* R */}
-      <section className="bg-white py-16 px-6 md:px-12 max-w-7xl mx-auto font-sans overflow-hidden">
+      <section className="bg-white py-16 px-6 md:px-12  mx-auto font-sans overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Side: Masked Image / Brand Asset */}
           <motion.div
@@ -1467,7 +1478,7 @@ const CBAM = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportConfig}
-              transition={{ duration: 0.7, ease: "easeOut" }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
               className="mb-8"
             >
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#111827] tracking-tight relative mb-4">
@@ -1513,7 +1524,7 @@ const CBAM = () => {
       </section>
 
       {/* Certifications and Documents */}
-      <section className="bg-gray-100 py-20 px-6 md:px-12 max-w-7xl mx-auto font-sans overflow-hidden">
+      <section className="bg-gray-100 py-20 px-6 md:px-12  mx-auto font-sans overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Side Column: Copy Info & Sidebar Triggers */}
           <div className="lg:col-span-5 flex flex-col">
@@ -1547,15 +1558,15 @@ const CBAM = () => {
                   onClick={() => setActiveIndex(index)}
                   className={`flex items-center p-4 rounded-xl border transition-all duration-300 cursor-pointer ${
                     activeIndex === index
-                      ? "bg-white border-slate-100 shadow-md shadow-slate-100/50"
-                      : "border-transparent hover:bg-slate-50"
+                      ? 'bg-white border-slate-100 shadow-md shadow-slate-100/50'
+                      : 'border-transparent hover:bg-slate-50'
                   }`}
                 >
                   <div className="flex-shrink-0 mr-5 bg-white w-14 h-14 rounded-full shadow-sm flex items-center justify-center border border-slate-50">
                     {cert.logo}
                   </div>
                   <p className="text-slate-700 text-sm md:text-[15px] font-medium leading-relaxed">
-                    {cert.title}{" "}
+                    {cert.title}{' '}
                     <span className="text-green font-bold">
                       {cert.accentText}
                     </span>
@@ -1593,7 +1604,7 @@ const CBAM = () => {
                 return (
                   <motion.div
                     key={cert.id}
-                    style={{ transformOrigin: "center bottom" }}
+                    style={{ transformOrigin: 'center bottom' }}
                     animate={{
                       x: isLeft ? -140 : isRight ? 140 : 0,
                       scale: isActive ? 1 : 0.82,
@@ -1601,7 +1612,7 @@ const CBAM = () => {
                       opacity: isActive ? 1 : 0.45,
                       rotateY: isLeft ? 12 : isRight ? -12 : 0,
                     }}
-                    transition={{ type: "spring", stiffness: 300, damping: 28 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 28 }}
                     className="absolute w-[280px] md:w-[320px] bg-white rounded-2xl shadow-xl border border-slate-100 p-6 flex flex-col items-center text-center h-[440px] pointer-events-none md:pointer-events-auto"
                   >
                     {/* Decorative Frame Border Layout lines */}
@@ -1674,8 +1685,8 @@ const CBAM = () => {
                   onClick={() => setActiveIndex(dotIdx)}
                   className={`h-2 rounded-full transition-all duration-300 ${
                     activeIndex === dotIdx
-                      ? "w-6 bg-[#0F172A]"
-                      : "w-2 bg-slate-200"
+                      ? 'w-6 bg-[#0F172A]'
+                      : 'w-2 bg-slate-200'
                   }`}
                   aria-label={`Go to slide ${dotIdx + 1}`}
                 />
@@ -1730,7 +1741,7 @@ const CBAM = () => {
                 key={idx}
                 variants={fadeUp}
                 className={`flex flex-col items-center text-center px-6 relative ${
-                  idx !== 3 ? "lg:border-r lg:border-slate-200" : ""
+                  idx !== 3 ? 'lg:border-r lg:border-slate-200' : ''
                 }`}
               >
                 {/* Soft Green Circled Icon */}
@@ -1790,7 +1801,7 @@ const CBAM = () => {
                     Strong Presence in
                   </div>
                   <div className="text-xs md:text-sm font-bold text-emerald-300">
-                    Europe{" "}
+                    Europe{' '}
                     <span className="text-[10px] font-normal text-white">
                       and Other Key Markets
                     </span>
@@ -1823,7 +1834,7 @@ const CBAM = () => {
                     Supporting a
                   </div>
                   <div className="text-xs md:text-sm font-bold text-emerald-300">
-                    Sustainable{" "}
+                    Sustainable{' '}
                     <span className="text-[10px] font-normal text-white">
                       Global Future
                     </span>
@@ -1836,9 +1847,9 @@ const CBAM = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="bg-gray-100 py-20 px-4 max-w-7xl mx-auto font-sans overflow-hidden">
-        {/* Header Section */}
-        <motion.div
+      {/* <section className="bg-gray-100 py-20 px-4 max-w-7xl mx-auto font-sans overflow-hidden"> */}
+      {/* Header Section */}
+      {/* <motion.div
           className="text-center mb-16 flex flex-col items-center"
           variants={containerVariants}
           initial="hidden"
@@ -1860,35 +1871,35 @@ const CBAM = () => {
             Hear from global partners who trust Renny for quality, compliance,
             and sustainable steel solutions.
           </motion.p>
-        </motion.div>
+        </motion.div> */}
 
-        {/* Carousel Wrapper Track Component */}
-        <motion.div
+      {/* Carousel Wrapper Track Component */}
+      {/* <motion.div
           className="relative max-w-6xl mx-auto flex items-center justify-center px-4 md:px-12"
           variants={slideRight}
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
-        >
-          {/* Navigation Action Triggers */}
-          <button
+        > */}
+      {/* Navigation Action Triggers */}
+      {/* <button
             onClick={prevSlide}
             className="absolute left-0 md:left-4 z-30 bg-white hover:bg-slate-50 text-slate-700 p-3 rounded-full border border-slate-100 shadow-md transition-all active:scale-95"
             aria-label="Previous testimonial"
           >
             <FiChevronLeft className="w-5 h-5" />
-          </button>
+          </button> */}
 
-          <button
+      {/* <button
             onClick={nextSlide}
             className="absolute right-0 md:right-4 z-30 bg-white hover:bg-slate-50 text-slate-700 p-3 rounded-full border border-slate-100 shadow-md transition-all active:scale-95"
             aria-label="Next testimonial"
           >
             <FiChevronRight className="w-5 h-5" />
-          </button>
+          </button> */}
 
-          {/* Carousel Window */}
-          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 items-center min-h-[440px]">
+      {/* Carousel Window */}
+      {/* <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 items-center min-h-[440px]">
             <AnimatePresence mode="popLayout" initial={false}>
               {getVisibleCards().map((item) => {
                 const isCenter = item.position === "center";
@@ -1910,19 +1921,19 @@ const CBAM = () => {
                         : "border-slate-100/70 shadow-sm z-10 hidden md:flex"
                     }`}
                   >
-                    <div>
-                      {/* Modern Quote Mark Style Icon Indicator */}
-                      <div className="text-blue-950 text-3xl mb-4 transform scale-x-[-1]">
+                    <div> */}
+      {/* Modern Quote Mark Style Icon Indicator */}
+      {/* <div className="text-blue-950 text-3xl mb-4 transform scale-x-[-1]">
                         <FaQuoteLeft />
                       </div>
 
                       <p className="text-slate-600 text-sm md:text-[15px] leading-relaxed font-normal">
                         {item.quote}
                       </p>
-                    </div>
+                    </div> */}
 
-                    {/* Profile Signature Node Footer Info Block */}
-                    <div className="mt-6 pt-6 border-t border-slate-100/80 flex items-center">
+      {/* Profile Signature Node Footer Info Block */}
+      {/* <div className="mt-6 pt-6 border-t border-slate-100/80 flex items-center">
                       <img
                         src={item.avatar}
                         alt={item.name}
@@ -1945,10 +1956,10 @@ const CBAM = () => {
               })}
             </AnimatePresence>
           </div>
-        </motion.div>
+        </motion.div> */}
 
-        {/* Pagination Tracking Indicators bar layout */}
-        <div className="flex items-center justify-center space-x-2 mt-10">
+      {/* Pagination Tracking Indicators bar layout */}
+      {/* <div className="flex items-center justify-center space-x-2 mt-10">
           {testimonialData.map((_, dotIdx) => (
             <button
               key={dotIdx}
@@ -1962,7 +1973,7 @@ const CBAM = () => {
             />
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ */}
       <section className="bg-white py-20 px-6 md:px-12 max-w-5xl mx-auto font-sans overflow-hidden">
@@ -2005,7 +2016,7 @@ const CBAM = () => {
                   </span>
                   <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
                     className="flex-shrink-0 text-slate-500 text-lg md:text-xl group-hover:text-emerald-600"
                   >
                     <FiChevronDown />
@@ -2018,10 +2029,10 @@ const CBAM = () => {
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{
-                        height: "auto",
+                        height: 'auto',
                         opacity: 1,
                         transition: {
-                          height: { duration: 0.35, ease: "easeOut" },
+                          height: { duration: 0.35, ease: 'easeOut' },
                           opacity: { duration: 0.25, delay: 0.05 },
                         },
                       }}
@@ -2029,7 +2040,7 @@ const CBAM = () => {
                         height: 0,
                         opacity: 0,
                         transition: {
-                          height: { duration: 0.3, ease: "easeIn" },
+                          height: { duration: 0.3, ease: 'easeIn' },
                           opacity: { duration: 0.15 },
                         },
                       }}

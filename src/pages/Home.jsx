@@ -5,58 +5,59 @@ import React, {
   lazy,
   Suspense,
   useCallback,
-} from "react";
+} from 'react';
 // import { motion, useScroll, useSpring } from 'framer-motion';
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
-import { useInView } from "react-intersection-observer";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Added for integration
+import { useInView } from 'react-intersection-observer';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Added for integration
 
-import HomepageBanner from "../assets/HomepageBanner.webm";
-import HeroPoster from "../assets/HeroPoster.webp";
-import SEO from "../components/SEO";
-import SchemaMarkup from "../components/SchemaMarkup";
-import homeSchema from "../schema/homeSchema";
+import HomepageBanner from '../assets/HomepageBanner.webm';
+import HeroPoster from '../assets/HeroPoster.webp';
+import SEO from '../components/SEO';
+import SchemaMarkup from '../components/SchemaMarkup';
+import homeSchema from '../schema/homeSchema';
 
-import MS from "../assets/product-1.webp";
-import Scaffolding from "../assets/product-2.webp";
-import ERW from "../assets/product-3.webp";
-import Coil from "../assets/hr-coil.webp";
-import rods from "../assets/product-5.webp";
+import MS from '../assets/product-1.webp';
+import Scaffolding from '../assets/product-2.webp';
+import ERW from '../assets/product-3.webp';
+import Coil from '../assets/hr-coil.webp';
+import rods from '../assets/product-5.webp';
 
-import sustainability2 from "../assets/CBAM.webm";
+import sustainability2 from '../assets/CBAM.webm';
 
-import CountUp from "react-countup";
+import CountUp from 'react-countup';
 
-import icons1 from "../assets/1a-about.svg";
-import icons2 from "../assets/2a-about.svg";
-import icons3 from "../assets/3a-about.svg";
+import icons1 from '../assets/1a-about.svg';
+import icons2 from '../assets/2a-about.svg';
+import icons3 from '../assets/3a-about.svg';
 
-import blog1 from "../assets/blog1.webp";
-import blog2 from "../assets/blog2.webp";
-import blog3 from "../assets/blog3.webp";
-import blog4 from "../assets/blog4.webp";
+import blog1 from '../assets/blog1.webp';
+import blog2 from '../assets/blog2.webp';
+import blog3 from '../assets/blog3.webp';
+import blog4 from '../assets/blog4.webp';
 
-import { AnimatePresence } from "framer-motion";
-import AboutUs from "../assets/about-3.webp";
-import AboutUsMobile from "../assets/about-3.webp";
+import { AnimatePresence } from 'framer-motion';
+import AboutUs from '../assets/about-3.webp';
+import AboutUsMobile from '../assets/about-3.webp';
 
 // import MockData
-import latestNews from "../data/latestNews.json";
-import latestBlogs from "../data/latestBlogs.json";
+import latestNews from '../data/latestNews.json';
+import latestBlogs from '../data/latestBlogs.json';
 
 // import SustainabilitySlider from '../components/SustainabilitySlider';
 // import MapPage from './MapPage';
-import { buildApiUrl } from "../lib/api";
+import { buildApiUrl } from '../lib/api';
 // import ProductCarousel from '../components/ProductCarousel';
+import NewSections from '../components/NewSections';
 
-const MapPage = lazy(() => import("./MapPage"));
+const MapPage = lazy(() => import('./MapPage'));
 const SustainabilitySlider = lazy(
-  () => import("../components/SustainabilitySlider"),
+  () => import('../components/SustainabilitySlider')
 );
-const ProductCarousel = lazy(() => import("../components/ProductCarousel"));
+const ProductCarousel = lazy(() => import('../components/ProductCarousel'));
 
 // const products = [
 //     { title: 'MS Billets', image: MS, link: '/MS-billets' },
@@ -94,7 +95,7 @@ const Home = () => {
   const [newsData, setNewsData] = useState([]);
   const [activeNews, setActiveNews] = useState(null);
   const [blogs, setBlogs] = useState([]);
-  const [contentError, setContentError] = useState("");
+  const [contentError, setContentError] = useState('');
   const [showVideo, setShowVideo] = useState(false);
 
   //   const fetchHomeData = useCallback(async () => {
@@ -159,30 +160,29 @@ const Home = () => {
     //     }, 1000);
     //   }
     // };
-    const onPageLoaded = ()=>{
+    const onPageLoaded = () => {
       setShowVideo(true);
       setNewsData(latestNews);
       setActiveNews(latestNews[0]);
       setBlogs(latestBlogs);
-    }
+    };
 
-    if (document.readyState === "complete") {
-      
-       onPageLoaded();
+    if (document.readyState === 'complete') {
+      onPageLoaded();
     } else {
-      window.addEventListener("load", onPageLoaded);
+      window.addEventListener('load', onPageLoaded);
     }
 
     return () => {
-      window.removeEventListener("load", onPageLoaded);
+      window.removeEventListener('load', onPageLoaded);
     };
   }, []);
 
   const formatDate = useCallback((dateString) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
     });
   }, []);
 
@@ -202,9 +202,9 @@ const Home = () => {
   const sustainabilityVideoRef = useRef(null);
 
   const scrollToNext = () => {
-    const nextSection = document.getElementById("next-section");
+    const nextSection = document.getElementById('next-section');
     if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth" });
+      nextSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
   return (
@@ -230,7 +230,8 @@ const Home = () => {
 
         {/* 3. Our Products Section */}
         <ProductsSection />
-
+        {/* NEW Sections */}
+        {/* <NewSections /> */}
         {/* 4. Our Network Section */}
         <NetworkSection
           // inView={inView}
@@ -274,7 +275,7 @@ const HeroSection = React.memo(({ showVideo, HomepageBanner, HeroPoster }) => {
         <motion.div
           className="flex flex-col justify-center h-auto ml-0 md:ml-10 mb-2  text-center md:text-left"
           initial={{ opacity: 1, x: -40 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           animate={{ opacity: 1, x: 0 }}
         >
           <h1
@@ -316,7 +317,7 @@ const HeroSection = React.memo(({ showVideo, HomepageBanner, HeroPoster }) => {
           className="w-full mr-0 md:mr-1 max-w-full relative flex flex-col items-start"
           initial={{ opacity: 1, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
         >
           {/* Video Container - Preserved your hover logic and desktop widths */}
           <div className="w-full flex items-center justify-center mt-4 md:mt-8 pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
@@ -440,34 +441,34 @@ const AboutSection = React.memo(() => {
             <div className="bg-transparent rounded-xl px-6 py-8 md:px-8 lg:px-12 md:py-6 lg:py-8 max-w-5xl lg:max-w-4xl xl:max-w-5xl w-full text-center flex-1 overflow-y-auto md:flex-none md:overflow-visible mx-auto">
               <motion.h2
                 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-2 lg:mb-3"
-                initial={{ y: 30, filter: "blur(1px)" }}
-                whileInView={{ y: 0, filter: "blur(0px)" }}
+                initial={{ y: 30, filter: 'blur(1px)' }}
+                whileInView={{ y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
               >
                 About Renny Strips Ltd.
               </motion.h2>
               <motion.h3
                 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl text-white mb-6 lg:mb-8 font-light tracking-wide"
-                initial={{ y: 30, filter: "blur(1px)" }}
-                whileInView={{ y: 0, filter: "blur(0px)" }}
+                initial={{ y: 30, filter: 'blur(1px)' }}
+                whileInView={{ y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
               >
                 A Legacy Structural Steel Company Since 1996
               </motion.h3>
 
               <motion.p
                 className="text-sm sm:text-base md:text-base lg:text-lg text-white mb-4 lg:mb-6 leading-relaxed"
-                initial={{ y: 30, filter: "blur(1px)" }}
-                whileInView={{ y: 0, filter: "blur(0px)" }}
+                initial={{ y: 30, filter: 'blur(1px)' }}
+                whileInView={{ y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
               >
                 Founded in 1996 by Mr. Binny Gupta and headquartered in
                 Ludhiana, Punjab, Renny Strips Limited is one of India's leading
                 integrated structural steel companies. With three induction
-                furnaces and a melting capacity of{" "}
+                furnaces and a melting capacity of{' '}
                 <span className="font-bold">199,200 TPA</span>, we leverage
                 advanced technologies such as CNC machining and robotic welding
                 to deliver precision-engineered steel solutions across India.
@@ -475,10 +476,10 @@ const AboutSection = React.memo(() => {
 
               <motion.p
                 className="text-sm sm:text-base md:text-base lg:text-lg text-white mb-4 lg:mb-6 leading-relaxed"
-                initial={{ y: 30, filter: "blur(1px)" }}
-                whileInView={{ y: 0, filter: "blur(0px)" }}
+                initial={{ y: 30, filter: 'blur(1px)' }}
+                whileInView={{ y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
               >
                 Our diverse product portfolio includes ERW Pipes & Tubes,
                 Scaffolding & Formwork Systems, Narrow Width HR Coils, Wire
@@ -491,10 +492,10 @@ const AboutSection = React.memo(() => {
 
               <motion.p
                 className="text-sm sm:text-base md:text-base lg:text-lg text-white leading-relaxed"
-                initial={{ y: 30, filter: "blur(1px)" }}
-                whileInView={{ y: 0, filter: "blur(0px)" }}
+                initial={{ y: 30, filter: 'blur(1px)' }}
+                whileInView={{ y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
               >
                 Achieving 40% lower emissions than industry averages, Renny is
                 committed to becoming a leading green structural steel company
@@ -567,7 +568,7 @@ const NetworkSection = React.memo(
           initial={{ y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <motion.h2
             className="text-3xl text-blue sm:text-4xl md:text-[48px] font-bold ml-0 md:ml-20 w-full text-center"
@@ -592,19 +593,19 @@ const NetworkSection = React.memo(
             variants={staggerContainer}
           >
             {[
-              { value: 1000, suffix: "+", label: "SKUs", duration: 2 },
+              { value: 1000, suffix: '+', label: 'SKUs', duration: 2 },
               {
                 value: 199200,
-                suffix: " TPA",
-                label: "Annual Production",
+                suffix: ' TPA',
+                label: 'Annual Production',
                 duration: 3,
-                separator: ",",
+                separator: ',',
               },
-              { value: 1000, suffix: "+", label: "Work Force", duration: 2 },
+              { value: 1000, suffix: '+', label: 'Work Force', duration: 2 },
               {
                 value: 22,
-                suffix: " MW",
-                label: "Captive Solar Power",
+                suffix: ' MW',
+                label: 'Captive Solar Power',
                 duration: 2,
               },
             ].map((item, index) => (
@@ -612,7 +613,7 @@ const NetworkSection = React.memo(
                 key={index}
                 className="border-t-2 border-b-2 px-4 sm:px-6 py-4 text-center w-full sm:w-auto"
                 variants={listItem}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
               >
                 <p className="text-3xl sm:text-4xl md:text-5xl font-light text-blue">
                   {inView ? (
@@ -637,7 +638,7 @@ const NetworkSection = React.memo(
         </motion.section>
       </>
     );
-  },
+  }
 );
 
 const FeaturesSection = React.memo(({ openIndex, toggleCard }) => {
@@ -649,42 +650,42 @@ const FeaturesSection = React.memo(({ openIndex, toggleCard }) => {
           initial={{ y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10  w-full">
             {[
               {
                 id: 0,
                 icon: icons1,
-                alt: "Innovation",
-                title: "Precision Engineering and Manufacturing",
-                desc: "Specializes in manufacturing high-precision, safety-critical components as per specifications.",
+                alt: 'Innovation',
+                title: 'Precision Engineering and Manufacturing',
+                desc: 'Specializes in manufacturing high-precision, safety-critical components as per specifications.',
               },
               {
                 id: 1,
                 icon: icons2,
-                alt: "Sustainability",
-                title: "Fabrication and Forging",
-                desc: "Advanced sheet metal processing with EN 1090 & ISO 3834 compliance.",
+                alt: 'Sustainability',
+                title: 'Fabrication and Forging',
+                desc: 'Advanced sheet metal processing with EN 1090 & ISO 3834 compliance.',
               },
               {
                 id: 2,
                 icon: icons3,
-                alt: "Quality",
-                title: "Customized Excellence",
-                desc: "Tailored solutions backed by an in-house raw material ecosystem.",
+                alt: 'Quality',
+                title: 'Customized Excellence',
+                desc: 'Tailored solutions backed by an in-house raw material ecosystem.',
               },
               {
                 id: 3,
                 icon: icons1,
-                alt: "Innovation",
-                title: "CNC Machining and Finishing",
-                desc: "Automated precision machining for consistent, high-quality output.",
+                alt: 'Innovation',
+                title: 'CNC Machining and Finishing',
+                desc: 'Automated precision machining for consistent, high-quality output.',
               },
             ].map((card, i) => (
               <motion.div
                 key={i}
-                className={`rounded-2xl border overflow-hidden transition-all duration-500 cursor-pointer ${openIndex === i ? "bg-gray-600 text-white shadow-xl" : "bg-white text-gray-800 border-gray-200 shadow-md hover:bg-gray-600 hover:text-white"}`}
+                className={`rounded-2xl border overflow-hidden transition-all duration-500 cursor-pointer ${openIndex === i ? 'bg-gray-600 text-white shadow-xl' : 'bg-white text-gray-800 border-gray-200 shadow-md hover:bg-gray-600 hover:text-white'}`}
                 onClick={() => toggleCard(i)}
               >
                 <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center relative">
@@ -695,19 +696,19 @@ const FeaturesSection = React.memo(({ openIndex, toggleCard }) => {
                     height="72"
                     loading="lazy"
                     decoding="async"
-                    className={`h-18 w-18 mb-6 transition-all duration-500 ${openIndex === i ? "scale-110 brightness-0 invert" : ""}`}
+                    className={`h-18 w-18 mb-6 transition-all duration-500 ${openIndex === i ? 'scale-110 brightness-0 invert' : ''}`}
                   />
                   <h3 className="text-lg font-semibold mb-4">{card.title}</h3>
                   <i
                     className={`ri-arrow-down-s-line text-2xl transition-transform absolute bottom-4`}
                     style={{
                       transform:
-                        openIndex === i ? "rotate(180deg)" : "rotate(0deg)",
+                        openIndex === i ? 'rotate(180deg)' : 'rotate(0deg)',
                     }}
                   />
                 </div>
                 <div
-                  className={`px-8 overflow-hidden transition-all duration-500 ${openIndex === i ? "max-h-48 pb-10 opacity-100" : "max-h-0 opacity-0"}`}
+                  className={`px-8 overflow-hidden transition-all duration-500 ${openIndex === i ? 'max-h-48 pb-10 opacity-100' : 'max-h-0 opacity-0'}`}
                 >
                   <p className="text-sm text-white">{card.desc}</p>
                 </div>
@@ -769,8 +770,8 @@ const NewsSection = React.memo(
                     whileHover={{ scale: 1.02 }}
                     className={`group relative flex items-center gap-3 sm:gap-4 w-full p-3 rounded-2xl text-left transition ${
                       activeNews?._id === news._id
-                        ? "bg-gray-100"
-                        : "hover:bg-gray-50"
+                        ? 'bg-gray-100'
+                        : 'hover:bg-gray-50'
                     }`}
                   >
                     {activeNews?._id === news._id && (
@@ -871,11 +872,11 @@ const NewsSection = React.memo(
 
               <div className="flex flex-col gap-4 mb-6">
                 {[
-                  { title: "Financials", path: "/financials" },
-                  { title: "Industry Report", path: "/industry-report" },
-                  { title: "IPO Documents", path: "/ipo" },
-                  { title: "IPO Audio Visual", path: "/ipo-audio-visual" },
-                  { title: "Our Policies", path: "/our-policies" },
+                  { title: 'Financials', path: '/financials' },
+                  { title: 'Industry Report', path: '/industry-report' },
+                  { title: 'IPO Documents', path: '/ipo' },
+                  { title: 'IPO Audio Visual', path: '/ipo-audio-visual' },
+                  { title: 'Our Policies', path: '/our-policies' },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -916,7 +917,7 @@ const NewsSection = React.memo(
         </section>
       </>
     );
-  },
+  }
 );
 
 const SustainabilitySection = React.memo(({ sustainabilityVideoRef }) => {
@@ -928,9 +929,9 @@ const SustainabilitySection = React.memo(({ sustainabilityVideoRef }) => {
           initial={{ x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          Engineering Sustainable Steel{" "}
+          Engineering Sustainable Steel{' '}
           <span className="font-semibold text-gray-500 bg-clip-text">
             for a Greener Tomorrow
           </span>
@@ -942,7 +943,7 @@ const SustainabilitySection = React.memo(({ sustainabilityVideoRef }) => {
           initial={{ y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }} // Reduced amount for better mobile triggering
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           {/* Slider Container */}
           <motion.div
@@ -963,11 +964,11 @@ const SustainabilitySection = React.memo(({ sustainabilityVideoRef }) => {
             initial={{ x: 20, scale: 0.98 }} // Reduced X and scale for smoother mobile entry
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+            transition={{ duration: 0.6, delay: 0.25, ease: 'easeOut' }}
             onAnimationComplete={() => {
               if (sustainabilityVideoRef.current) {
                 sustainabilityVideoRef.current.play().catch((err) => {
-                  console.warn("Autoplay failed:", err);
+                  console.warn('Autoplay failed:', err);
                 });
               }
             }}
@@ -1002,7 +1003,7 @@ const BlogSection = React.memo(({ blogs, formatDate }) => {
           visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, ease: "easeOut" },
+            transition: { duration: 0.6, ease: 'easeOut' },
           },
         }}
       >
@@ -1022,7 +1023,7 @@ const BlogSection = React.memo(({ blogs, formatDate }) => {
           initial={{ scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
         >
           {/* Latest Blog */}
           <div className="lg:w-1/2">
@@ -1050,7 +1051,7 @@ const BlogSection = React.memo(({ blogs, formatDate }) => {
                     {formatDate(
                       blogs[0].date ||
                         blogs[0].publishedAt ||
-                        blogs[0].createdAt,
+                        blogs[0].createdAt
                     )}
                   </span>
                   <p className="text-gray-600 mt-4 line-clamp-4">
@@ -1093,7 +1094,7 @@ const BlogSection = React.memo(({ blogs, formatDate }) => {
                         </h2>
                         <span className="block text-sm text-gray-500 mt-1">
                           {formatDate(
-                            blog.date || blog.publishedAt || blog.createdAt,
+                            blog.date || blog.publishedAt || blog.createdAt
                           )}
                         </span>
                         <p className="text-sm text-gray-600 mt-2 line-clamp-2">

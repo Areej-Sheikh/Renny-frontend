@@ -230,7 +230,7 @@ const Footer = () => {
       >
         <div className="mx-auto px-6 md:px-16 py-4 flex flex-col sm:flex-row justify-between text-sm text-gray-600 gap-2">
           <div>© Renny</div>
-          <div className="flex gap-4">
+          {/* <div className="flex gap-4">
             <Link to="/privacy-policy" className="hover:text-blue-800">
               Privacy Notice
             </Link>
@@ -240,7 +240,7 @@ const Footer = () => {
             <Link to="/cookies" className="hover:text-blue-800">
               Cookie Policy
             </Link>
-          </div>
+          </div> */}
         </div>
       </motion.div>
     </footer>

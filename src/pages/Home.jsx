@@ -230,8 +230,10 @@ const Home = () => {
 
         {/* 3. Our Products Section */}
         <ProductsSection />
+        
         {/* NEW Sections */}
         {/* <NewSections /> */}
+
         {/* 4. Our Network Section */}
         <NetworkSection
           // inView={inView}

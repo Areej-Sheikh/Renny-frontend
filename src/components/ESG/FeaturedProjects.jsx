@@ -9,20 +9,7 @@ import medicalSupport from "../../assets/Medical.webp";
 import publicPond from "../../assets/Public_Pond.webp";
 
 const hardcodedProjects = [
-  {
-    img: adoptionSchool,
-    title: "Adoption of School",
-    content:
-      "Renny Strips Ltd. has adopted a Primary Boys School in Raian Village to support quality education and holistic student development.",
-    infrastructure: [
-      "Constructed boundary wall for school security",
-      "Installed green boards for better learning",
-      "Built toilet shed for improved hygiene",
-      "Developed stage shed for school activities",
-      "Installed water cooler tanks for safe drinking water",
-    ],
-    pointsTitle: "Infrastructure Development"
-  },
+  
   {
     img: medicalSupport,
     title: "Medical Support by Conducting Medical Camps",

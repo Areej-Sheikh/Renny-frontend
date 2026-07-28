@@ -82,7 +82,7 @@ const Footer = () => {
 
         {/* COL 3 */}
         <motion.div variants={item} className="space-y-2">
-          <h2 className="font-semibold">Products</h2>
+          <h3 className="font-semibold">Products</h3>
           <FooterLink
             to="/erw-pipes-and-tubes"
             className="block hover:translate-x-1 transition-transform text-[13px] uppercase font-medium text-gray-700 "

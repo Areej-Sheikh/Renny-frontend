@@ -232,7 +232,7 @@ const Home = () => {
         <ProductsSection />
         
         {/* NEW Sections */}
-        {/* <NewSections /> */}
+        <NewSections />
 
         {/* 4. Our Network Section */}
         <NetworkSection

@@ -64,46 +64,22 @@ const CertificateCard = ({ cert, onSelect, cardVariants, iconVariants }) => {
       className="group relative overflow-hidden rounded-3xl cursor-pointer bg-white shadow-lg"
     >
       {/* Image */}
-      <div className="relative aspect-[4/5] overflow-hidden">
+      <div className="relative aspect-[4/5] pt-3 overflow-hidden">
         <img
           src={cert.thumbnail}
           alt={cert.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="w-full h-90 object-cover transition-transform duration-700 group-hover:scale-105"
         />
 
-        {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-blue/95 via-[#05267e]/90 to-blue/95 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6">
-          <h3 className="text-white text-xl font-bold">{cert.title}</h3>
-
-          <p className="text-white/90 text-sm mt-3 leading-relaxed translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-            {cert.description}
-          </p>
-
-          <div className="mt-5 flex items-center gap-2 text-white font-semibold uppercase tracking-wider text-sm">
-            View Details
-            <svg
-              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M14 5l7 7-7 7M21 12H3"
-              />
-            </svg>
-          </div>
-        </div>
+      
       </div>
 
       {/* Bottom Bar */}
-      <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md p-5 group-hover:opacity-0 transition-opacity duration-300">
+      <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md p-5  transition-opacity duration-300">
         <h3 className="text-lg font-bold text-[#292c44]">{cert.title}</h3>
 
         <span className="text-sm text-[#05267e] font-semibold">
-          View Certificate →
+          View Certificate 
         </span>
       </div>
     </motion.div>
@@ -624,6 +600,8 @@ const NewSections = () => {
           </div>
         </div>
       </section>
+
+
       {/* Certifications & Standards */}
       <section className="relative w-full bg-gray-100 text-[#292c44] overflow-hidden py-16 sm:py-20 lg:py-14">
         <div className="absolute inset-0 pointer-events-none opacity-[0.015] mix-blend-overlay" />

@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import RennyLogo from "../assets/RennyLogo.webp";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import RennyLogo from '../assets/RennyLogo.webp';
 import {
   FaBars,
   FaTimes,
   FaChevronDown,
   FaChevronUp,
   FaChevronRight,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 
+import greatPlace from '../assets/Great_Place_To_Work-removebg-preview.webp';
 const Navbar = () => {
   const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,59 +22,59 @@ const Navbar = () => {
 
   const navLinks = [
     {
-      title: "About Us",
+      title: 'About Us',
       links: [
-        { name: "Company Overview", path: "/company-overview" },
-        { name: "Manufacturing Process", path: "/manufacturing-units" },
-        { name: "Quality & Standard", path: "/quality-standard" },
-        { name: "Design Centre", path: "/design-centre" },
+        { name: 'Company Overview', path: '/company-overview' },
+        { name: 'Manufacturing Process', path: '/manufacturing-units' },
+        { name: 'Quality & Standard', path: '/quality-standard' },
+        { name: 'Design Centre', path: '/design-centre' },
       ],
     },
     {
-      title: "Products",
+      title: 'Products',
       links: [
-        { name: "ERW Pipes & Tubes", path: "/erw-pipes-and-tubes" },
+        { name: 'ERW Pipes & Tubes', path: '/erw-pipes-and-tubes' },
         {
-          name: "Scaffolding & Formwork Systems",
-          path: "/scaffolding-formwork",
+          name: 'Scaffolding & Formwork Systems',
+          path: '/scaffolding-formwork',
           // subLinks: [
           //   { name: "ProductRange", path: "/product-range" },
           //   { name: "ProductRange2", path: "/product-range-2" },
           // ],
         },
-        { name: "Narrow-width HR Coils", path: "/narrow-hrcoil" },
-        { name: "Wire Rods", path: "/wire-rods" },
-        { name: "MS Billets", path: "/ms-billets" },
+        { name: 'Narrow-width HR Coils', path: '/narrow-hrcoil' },
+        { name: 'Wire Rods', path: '/wire-rods' },
+        { name: 'MS Billets', path: '/ms-billets' },
       ],
     },
     {
-      title: "Investor Relations",
+      title: 'Investor Relations',
       links: [
-        { name: "Financials", path: "/financials" },
-        { name: "Corporate Governance", path: "/corporate-governance" },
-        { name: "Industry Report", path: "/industry-report" },
-        { name: "IPO Documents", path: "/ipo" },
-        { name: "IPO Audio Visual", path: "/ipo-audio-visual" },
-        { name: "Shareholding Pattern", path: "/share-holding-pattern" },
-        { name: "Our Policies", path: "/our-policies" },
+        { name: 'Financials', path: '/financials' },
+        { name: 'Corporate Governance', path: '/corporate-governance' },
+        { name: 'Industry Report', path: '/industry-report' },
+        { name: 'IPO Documents', path: '/ipo' },
+        { name: 'IPO Audio Visual', path: '/ipo-audio-visual' },
+        { name: 'Shareholding Pattern', path: '/share-holding-pattern' },
+        { name: 'Our Policies', path: '/our-policies' },
       ],
     },
-    { title: "EC", path: "/ec" },
+    { title: 'EC', path: '/ec' },
     {
-      title: "Sustainability",
-      links: [{ name: "ESG", path: "/sustainability" }],
+      title: 'Sustainability',
+      links: [{ name: 'ESG', path: '/sustainability' }],
       // links: [{ name: "CBAM", path: "/cbam" }],
     },
     {
-      title: "Media",
+      title: 'Media',
       links: [
-        { name: "News Room", path: "/news-room" },
-        { name: "Blogs", path: "/blog" },
-        { name: "Events", path: "/events" },
+        { name: 'News Room', path: '/news-room' },
+        { name: 'Blogs', path: '/blog' },
+        { name: 'Events', path: '/events' },
       ],
     },
-    { title: "Career", path: "/careers" },
-    { title: "Contact Us", path: "/contact-us" },
+    { title: 'Career', path: '/careers' },
+    { title: 'Contact Us', path: '/contact-us' },
   ];
 
   useEffect(() => {
@@ -81,10 +82,10 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -93,8 +94,8 @@ const Navbar = () => {
         transition-all duration-500 ease-in-out font-helvetica
         ${
           isScrolled
-            ? "bg-white/70 backdrop-blur-md shadow-md "
-            : "bg-transparent backdrop-blur-0"
+            ? 'bg-white/70 backdrop-blur-md shadow-md '
+            : 'bg-transparent backdrop-blur-0'
         }
       `}
     >
@@ -112,7 +113,7 @@ const Navbar = () => {
       <ul
         className={`hidden lg:flex items-center gap-3 transition-all duration-300
     ${
-      isScrolled ? "text-gray-700 font-semibold" : "font-semibold text-blue-900"
+      isScrolled ? 'text-gray-700 font-semibold' : 'font-semibold text-blue-900'
     }
   `}
       >
@@ -319,10 +320,12 @@ const Navbar = () => {
             Contact Us
           </Link>
         </li>
-      </ul>
 
+   
+      </ul>
       {/* Mobile Menu Toggle */}
-      <button
+      <div className='flex '>
+  <button
         aria-label="Open navigation menu"
         aria-expanded={isMenuOpen}
         aria-controls="main-nav"
@@ -330,17 +333,27 @@ const Navbar = () => {
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         {isMenuOpen ? <FaTimes /> : <FaBars />}
-      </button>
-
+      </button>{' '}
+      <div className="flex items-center">
+        <div className="w-16 h-auto md:w-12 lg:w-14  object-contain">
+          <img
+            src={greatPlace}
+            alt="Great Place to Work"
+            className="w-full h-auto"
+          />
+        </div>
+      </div>
+      </div>
+    
       {/* Mobile Navigation Drawer */}
       <div
         id="main-nav"
         className={`fixed top-16 left-0 w-full bg-white shadow-lg transition-all duration-300 ease-in-out transform lg:hidden ${
           isMenuOpen
-            ? "translate-x-0 opacity-100"
-            : "-translate-x-full opacity-0"
+            ? 'translate-x-0 opacity-100'
+            : '-translate-x-full opacity-0'
         }`}
-        style={{ height: "calc(100vh - 64px)", overflowY: "auto" }}
+        style={{ height: 'calc(100vh - 64px)', overflowY: 'auto' }}
       >
         <ul className="flex flex-col p-6 space-y-4">
           {navLinks.map((item, index) => (
@@ -360,11 +373,12 @@ const Navbar = () => {
                     ) : (
                       <FaChevronDown />
                     )}
+                    {/* Great Place Image - Added 'flex items-center' for vertical alignment within the UL */}
                   </div>
                   {/* Mobile Dropdown */}
                   <ul
                     className={`pl-4 mt-2 space-y-2 transition-all duration-300 ${
-                      activeMobileDropdown === index ? "block" : "hidden"
+                      activeMobileDropdown === index ? 'block' : 'hidden'
                     }`}
                   >
                     {item.links.map((subLink, subIndex) => (
@@ -394,7 +408,7 @@ const Navbar = () => {
                           </>
                         ) : (
                           <Link
-                            to={subLink.path || "#"}
+                            to={subLink.path || '#'}
                             className="block py-2 text-sm text-gray-600 hover:text-blue"
                             onClick={() => setIsMenuOpen(false)}
                           >

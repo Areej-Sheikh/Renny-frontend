@@ -7,6 +7,7 @@ import {
   MdOutlineBusinessCenter,
   MdFilterList,
   MdLocationOn,
+  MdClose,
 } from "react-icons/md";
 import SEO from "../../components/SEO";
 
@@ -23,6 +24,10 @@ import { buildApiUrl } from "../../lib/api";
 
 // ========== Assets ==========
 import banner from "../../assets/careerBanner.webp";
+import popup from "../../assets/careerPopup.webp"
+import makeUsGreat from "../../assets/Our_People_make_us_Great._IN.webp";
+import amazingCulture from "../../assets/Amazing_Culture!_IN.webp";
+import wereCertified from "../../assets/We're_Certified!_IN.webp";
 
 // ========== Job Types ==========
 const jobTypes = ["Full-time", "Part-time", "Contract", "Remote", "Trainee"];
@@ -34,6 +39,12 @@ const departments = [
   "Operations",
   "Sales & Marketing",
   "Quality Control",
+];
+
+const badgeImages = [
+  { src: makeUsGreat, alt: "Our People make us Great" },
+  { src: amazingCulture, alt: "Amazing Culture" },
+  { src: wereCertified, alt: "We're Certified" },
 ];
 
 const Career = () => {
@@ -50,9 +61,23 @@ const Career = () => {
   const [activeType, setActiveType] = useState("Full-time");
 
   const [search, setSearch] = useState("");
+  // Popup state (true so it appears automatically when user visits the page)
+    const [showPopup, setShowPopup] = useState(true);
+  
+  // Carousel Active Index State (Fixed Reference)
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   // ========== Navigation ==========
   const navigate = useNavigate();
+
+  // ========== Auto-slide for Badge Carousel ==========
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prevIndex) => (prevIndex + 1) % badgeImages.length);
+    }, 3500);
+
+    return () => clearInterval(timer);
+  }, []);
 
   // ========== Fetch Jobs ==========
   useEffect(() => {
@@ -103,6 +128,46 @@ const Career = () => {
         keywords="Renny Strips careers, steel jobs, engineering jobs, manufacturing careers"
         url="https://rennystrips.com/careers"
       />
+
+      {/* ========== AUTOMATIC POPUP MODAL ========== */}
+            <AnimatePresence>
+              {showPopup && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+                  {/* Click backdrop to close */}
+                  <div
+                    className="absolute inset-0"
+                    onClick={() => setShowPopup(false)}
+                  />
+      
+                  {/* Popup Container */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="relative z-10 max-w-lg w-full flex items-center justify-center"
+                  >
+                    {/* Close (X) Icon Button */}
+                    <button
+                      onClick={() => setShowPopup(false)}
+                      className="absolute top-4 right-4 p-2 text-gray-400 hover:text-[#292c44] hover:bg-gray-100 rounded-full transition"
+                      aria-label="Close modal"
+                    >
+                      <MdClose className="text-2xl" />
+                    </button>
+      
+                    {/* Popup Image Only */}
+                    <img
+                      src={popup}
+                      alt="Popup Announcement"
+                      className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-2xl"
+                    />
+                  </motion.div>
+                </div>
+              )}
+            </AnimatePresence>
+      
+
       <section className="w-full font-helvetica bg-[#f8f9fa] font-helvetica">
         {/* HERO */}
         <section className="relative h-[100vh] md:h-[100vh] overflow-hidden">
@@ -132,6 +197,91 @@ const Career = () => {
           >
             {heroHeading}
           </motion.h1>
+        </section>
+
+        {/* ========== WHERE TALENT MEETS OPPORTUNITY SECTION ========== */}
+          <section className="bg-white py-16 md:py-24 border-b border-gray-100">
+          <div className="max-w-7xl mx-auto px-6">
+            {/* Centered Heading */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={fadeUp}
+              className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
+            >
+              <h2 className="text-3xl md:text-5xl font-bold text-[#292c44] tracking-tight">
+                Where Talent Meets Opportunity
+              </h2>
+            </motion.div>
+
+            {/* Split Grid: Left Text, Right Carousel */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Left Side: Text */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="space-y-5 text-gray-600 text-base md:text-lg leading-relaxed text-left"
+              >
+                <p>
+                  At Renny, our people first culture is the foundation of everything we do. We work like a family built on trust, respect, collaboration, and the belief that every voice deserves to be heard.
+                </p>
+                <p>
+                  As a Great Place To Work® Certified organization with 93% employee participation, our workplace reflects the confidence and commitment of our people.
+                </p>
+                <p>
+                  Here, you're empowered to learn, grow, lead, and make a meaningful impact.
+                </p>
+                <p className="font-bold text-[#292c44] text-lg pt-2">
+                  Join Renny, where people come first, careers flourish, and the future is built together.
+                </p>
+              </motion.div>
+
+              {/* Right Side: Image Auto Scroller with 3 Dots */}
+              {/* Right Side: Image Auto Scroller with 3 Dots */}
+<motion.div
+  initial={{ opacity: 0, x: 30 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="flex flex-col items-center justify-center w-full"
+>
+  {/* Full Coverage Image Slide Container */}
+  <div className="relative w-full max-w-lg aspect-[16/10] bg-gray-50 rounded-3xl border border-gray-100 shadow-md overflow-hidden p-0">
+    <AnimatePresence mode="wait">
+      <motion.img
+        key={currentSlide}
+        src={badgeImages[currentSlide].src}
+        alt={badgeImages[currentSlide].alt}
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 1.02 }}
+        transition={{ duration: 0.4 }}
+        className="w-full h-full object-cover block"
+      />
+    </AnimatePresence>
+  </div>
+
+  {/* Interactive 3 Dots Navigation */}
+  <div className="flex items-center gap-3 mt-6">
+    {badgeImages.map((_, index) => (
+      <button
+        key={index}
+        onClick={() => setCurrentSlide(index)}
+        className={`h-3 rounded-full transition-all duration-300 ${
+          currentSlide === index
+            ? "w-8 bg-[#292c44]"
+            : "w-3 bg-gray-300 hover:bg-gray-400"
+        }`}
+        aria-label={`Go to slide ${index + 1}`}
+      />
+    ))}
+  </div>
+</motion.div>
+            </div>
+          </div>
         </section>
 
         {/* CONTENT */}

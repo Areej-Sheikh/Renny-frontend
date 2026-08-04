@@ -270,9 +270,9 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              {/* <Link to="/cbam" className="dropdown-item">
+            <Link to="/cbam" className="dropdown-item">
                 CBAM
-              </Link> */}
+              </Link> 
             </li>
           </ul>
         </li>

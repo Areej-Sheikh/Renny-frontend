@@ -24,7 +24,8 @@ import { buildApiUrl } from "../../lib/api";
 
 // ========== Assets ==========
 import banner from "../../assets/careerBanner.webp";
-import popup from "../../assets/careerPopup.webp"
+import popup from "../../assets/careerPopup2.webp"
+// import popup from "../../assets/careerPopup.webp"
 import makeUsGreat from "../../assets/Our_People_make_us_Great._IN.webp";
 import amazingCulture from "../../assets/Amazing_Culture!_IN.webp";
 import wereCertified from "../../assets/We're_Certified!_IN.webp";

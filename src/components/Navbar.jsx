@@ -339,7 +339,7 @@ const Navbar = () => {
           <img
             src={greatPlace}
             alt="Great Place to Work"
-            className="w-full h-auto"
+            className={`w-full h-auto ${isScrolled ? 'mt-43 scale-175 ' : ''}`}
           />
         </div>
       </div>

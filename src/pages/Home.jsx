@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 // import { motion, useScroll, useSpring } from 'framer-motion';
 import { motion } from 'framer-motion';
+import { RiArrowDownSLine } from 'react-icons/ri';
 
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
@@ -25,7 +26,10 @@ import Scaffolding from '../assets/product-2.webp';
 import ERW from '../assets/product-3.webp';
 import Coil from '../assets/hr-coil.webp';
 import rods from '../assets/product-5.webp';
-
+import popup from '../assets/baumaimg2.webp';
+import popup_Mobile from '../assets/baumaimg2_mobile.webp';
+import popupVideo from  "../assets/Bauma Desktop video.webm"
+import popupVideoMobile from  "../assets/bauman mobile.webm"
 import sustainability2 from '../assets/CBAM.webm';
 
 import CountUp from 'react-countup';
@@ -38,11 +42,17 @@ import blog1 from '../assets/blog1.webp';
 import blog2 from '../assets/blog2.webp';
 import blog3 from '../assets/blog3.webp';
 import blog4 from '../assets/blog4.webp';
+import blog1_Mobile from '../assets/blog1-Mobile.webp';
+import blog2_Mobile from '../assets/blog2-Mobile.webp';
+import blog3_Mobile from '../assets/blog3-Mobile.webp';
+import blog4_Mobile from '../assets/blog4-Mobile.webp';
 
 import { AnimatePresence } from 'framer-motion';
 import AboutUs from '../assets/about-3.webp';
-import AboutUsMobile from '../assets/about-3.webp';
-
+import AboutUsMobile from '../assets/about-3-Mobile.webp';
+import {
+  MdClose,
+} from "react-icons/md";
 // import MockData
 import latestNews from '../data/latestNews.json';
 import latestBlogs from '../data/latestBlogs.json';
@@ -51,7 +61,6 @@ import latestBlogs from '../data/latestBlogs.json';
 // import MapPage from './MapPage';
 import { buildApiUrl } from '../lib/api';
 // import ProductCarousel from '../components/ProductCarousel';
-import NewSections from '../components/NewSections';
 
 const MapPage = lazy(() => import('./MapPage'));
 const SustainabilitySlider = lazy(
@@ -90,82 +99,87 @@ const scaleFade = {
 
 const Home = () => {
   const navigate = useNavigate();
-
+  const [showPopup, setShowPopup] = useState(false);
   // --- BACKEND INTEGRATION STATES ---
   const [newsData, setNewsData] = useState([]);
   const [activeNews, setActiveNews] = useState(null);
   const [blogs, setBlogs] = useState([]);
   const [contentError, setContentError] = useState('');
-  const [showVideo, setShowVideo] = useState(false);
 
-  //   const fetchHomeData = useCallback(async () => {
-  //   try {
-  //     const [newsRes, blogsRes] = await Promise.all([
-  //       axios.get(buildApiUrl('/api/news')),
-  //       axios.get(buildApiUrl('/api/blogs')),
-  //     ]);
+  const fetchHomeData = useCallback(async () => {
+    try {
+      const [newsRes, blogsRes] = await Promise.all([
+        axios.get(buildApiUrl('/api/news')),
+        axios.get(buildApiUrl('/api/blogs')),
+      ]);
+      // setShowPopup(true); // Show popup after fetching data (Commented out to decouple from API latency)
 
-  //     const getLatestDate = (item) =>
-  //       new Date(item.publishedAt || item.date || item.createdAt);
+      const getLatestDate = (item) =>
+        new Date(item.publishedAt || item.date || item.createdAt);
 
-  //     // ================= Latest 5 News =================
-  //     const newsArray =
-  //       newsRes.data.data || newsRes.data.news || newsRes.data;
+      // ================= Latest 5 News =================
+      const newsArray = newsRes.data.data || newsRes.data.news || newsRes.data;
 
-  //     if (Array.isArray(newsArray) && newsArray.length > 0) {
-  //       const latestNews = [...newsArray]
-  //         .sort((a, b) => getLatestDate(b) - getLatestDate(a))
-  //         .slice(0, 5);
-  //       console.log("latestNews: ",latestNews)
-  //       setNewsData(latestNews);
-  //       setActiveNews(latestNews[0]); // newest item
-  //     } else {
-  //       setNewsData([]);
-  //       setActiveNews(null);
-  //     }
+      if (Array.isArray(newsArray) && newsArray.length > 0) {
+        const latestNews = [...newsArray]
+          .sort((a, b) => getLatestDate(b) - getLatestDate(a))
+          .slice(0, 5);
+        console.log('latestNews: ', latestNews);
+        setNewsData(latestNews);
+        setActiveNews(latestNews[0]); // newest item
+      } else {
+        setNewsData([]);
+        setActiveNews(null);
+      }
 
-  //     // ================= Latest 5 Blogs =================
-  //     const blogArray =
-  //       blogsRes.data.data || blogsRes.data.blogs || blogsRes.data;
+      // ================= Latest 5 Blogs =================
+      const blogArray =
+        blogsRes.data.data || blogsRes.data.blogs || blogsRes.data;
 
-  //     if (Array.isArray(blogArray) && blogArray.length > 0) {
-  //       const latestBlogs = [...blogArray]
-  //         .sort((a, b) => getLatestDate(b) - getLatestDate(a))
-  //         .slice(0, 5);
-  //       console.log("latestBlogs: ",latestBlogs)
-  //       setBlogs(latestBlogs);
-  //     } else {
-  //       setBlogs([]);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching homepage content:', error);
-  //     setContentError('Some homepage content is temporarily unavailable.');
-  //   }
-  // },[]);
+      if (Array.isArray(blogArray) && blogArray.length > 0) {
+        const latestBlogs = blogArray.slice(0, 5);
+        // console.log("latestBlogs: ",latestBlogs)
+        setBlogs(latestBlogs);
+      } else {
+        setBlogs([]);
+      }
+    } catch (error) {
+      console.error('Error fetching homepage content:', error);
+      setContentError('Some homepage content is temporarily unavailable.');
+    }
+  }, []);
 
   useEffect(() => {
-    // const onPageLoaded = () => {
-    //   // Show Hero Video
-    //   setShowVideo(true);
-
-    //   // Load News & Blogs
-
-    //   if ('requestIdleCallback' in window) {
-    //     requestIdleCallback(() => {
-    //       fetchHomeData();
-    //     });
-    //   } else {
-    //     setTimeout(() => {
-    //       fetchHomeData();
-    //     }, 1000);
-    //   }
-    // };
+    let popupTimeoutId;
     const onPageLoaded = () => {
-      setShowVideo(true);
-      setNewsData(latestNews);
-      setActiveNews(latestNews[0]);
-      setBlogs(latestBlogs);
+      // Show Hero Video
+
+      // Load News & Blogs
+
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+          fetchHomeData();
+        });
+      } else {
+        setTimeout(() => {
+          fetchHomeData();
+        }, 1000);
+      }
+
+      // Trigger automatic popup after a predictable delay (800ms) to allow initial paint (LCP) to finish
+      const isPrerender = typeof navigator !== 'undefined' && navigator.userAgent === 'ReactSnap';
+      if (!isPrerender) {
+        popupTimeoutId = setTimeout(() => {
+          setShowPopup(true);
+        }, 800);
+      }
     };
+    // const onPageLoaded = ()=>{
+    //   setShowVideo(true);
+    //   setNewsData(latestNews);
+    //   setActiveNews(latestNews[0]);
+    //   setBlogs(latestBlogs);
+    // }
 
     if (document.readyState === 'complete') {
       onPageLoaded();
@@ -175,6 +189,9 @@ const Home = () => {
 
     return () => {
       window.removeEventListener('load', onPageLoaded);
+      if (popupTimeoutId) {
+        clearTimeout(popupTimeoutId);
+      }
     };
   }, []);
 
@@ -217,22 +234,117 @@ const Home = () => {
         url="https://rennystrips.com"
         image={HomepageBanner}
       />
+
+      {/* ========== AUTOMATIC POPUP MODAL ========== */}
+      <AnimatePresence>
+        {showPopup && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+            {/* Click backdrop to close */}
+            <div
+              className="absolute inset-0"
+              onClick={() => setShowPopup(false)}
+            />
+
+            {/* Popup Container */}
+            {/* Commented out old container to preserve history:
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              className="relative z-10 max-w-lg w-full flex items-center justify-center"
+            >
+            */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              className="relative z-10 max-w-lg w-full flex items-center justify-center aspect-[3/2]"
+            >
+              {/* Close (X) Icon Button */}
+              {/* Commented out old close button to keep history:
+              <button
+                onClick={() => setShowPopup(false)}
+                className="absolute top-4 right-4 p-2 text-gray-400 hover:text-[#292c44] hover:bg-gray-100 rounded-full transition"
+                aria-label="Close modal"
+              >
+                <MdClose className="text-2xl" />
+              </button>
+              */}
+              <button
+                onClick={() => setShowPopup(false)}
+                className="absolute top-4 right-4 p-2 text-gray-400 hover:text-[#292c44] hover:bg-gray-100 rounded-full transition z-20"
+                aria-label="Close modal"
+              >
+                <MdClose className="text-2xl" />
+              </button>
+
+              {/* Popup Image Only */}
+              {/* Commented out old image to keep history:
+              <img
+                src={popup}
+                alt="Popup Announcement"
+                className="w-full h-auto max-h-[80vh] object-contain rounded-2xl shadow-2xl"
+              />
+              */}
+              <picture className="w-full flex justify-center">
+                {/* Commented out old mobile source to keep history:
+                <source
+                  media="(max-width: 767px)"
+                  srcSet={popup}
+                  width="1536"
+                  height="1024"
+                  type="image/webp"
+                />
+                */}
+                <source
+                  media="(max-width: 767px)"
+                  srcSet={popupVideoMobile}
+                  width="665"
+                  height="443"
+                  type="video/webm"
+                />
+                <source
+                  media="(min-width: 768px)"
+                  srcSet={popup}
+                  width="512"
+                  height="314"
+                  type="image/webp"
+                />
+                {/* <img
+                  src={popup}
+                  alt="Popup Announcement" 
+                  width="512"
+                  height="314"
+                  fetchpriority="high"
+                  className="w-full  h-auto max-h-[80vh] object-contain rounded-2xl shadow-2xl aspect-[3/2]"
+                /> */}
+                   <video
+            src={popupVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            controls
+              className="w-full h-auto  object-fill rounded-2xl shadow-2xl aspect-[3/2]"
+          />
+              </picture>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+
       <div className="relative flex flex-col font-helvetica ">
         {/* 1. Banner Section */}
-        <HeroSection
-          showVideo={showVideo}
-          HomepageBanner={HomepageBanner}
-          HeroPoster={HeroPoster}
-        />
+        <HeroSection HomepageBanner={HomepageBanner} HeroPoster={HeroPoster} />
 
         {/* 2. About Us Section */}
         <AboutSection />
 
         {/* 3. Our Products Section */}
         <ProductsSection />
-        
-        {/* NEW Sections */}
-        <NewSections />
 
         {/* 4. Our Network Section */}
         <NetworkSection
@@ -269,7 +381,39 @@ const Home = () => {
   );
 };
 
-const HeroSection = React.memo(({ showVideo, HomepageBanner, HeroPoster }) => {
+const HeroSection = React.memo(({ HomepageBanner, HeroPoster }) => {
+  const [loadVideo, setLoadVideo] = useState(false);
+  const videoRef = React.useRef(null);
+
+  useEffect(() => {
+    const isPrerender =
+      typeof navigator !== "undefined" && navigator.userAgent === "ReactSnap";
+    if (isPrerender) return;
+
+    const handleLoad = () => {
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(() => setLoadVideo(true));
+      } else {
+        setTimeout(() => setLoadVideo(true), 1000);
+      }
+    };
+
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad);
+      return () => window.removeEventListener("load", handleLoad);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (loadVideo && videoRef.current) {
+      videoRef.current.play().catch((err) => {
+        console.warn("Autoplay was prevented:", err);
+      });
+    }
+  }, [loadVideo]);
+
   return (
     <section className="w-full min-h-screen relative flex items-center py-12 md:py-0 overflow-hidden">
       <div className="w-full flex flex-col nest-hub:flex-row items-center justify-center px-4 md:px-0 gap-6 md:gap-0">
@@ -279,6 +423,9 @@ const HeroSection = React.memo(({ showVideo, HomepageBanner, HeroPoster }) => {
           initial={{ opacity: 1, x: -40 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           animate={{ opacity: 1, x: 0 }}
+          style={{
+            willChange: 'transform',
+          }}
         >
           <h1
             className="
@@ -320,36 +467,50 @@ const HeroSection = React.memo(({ showVideo, HomepageBanner, HeroPoster }) => {
           initial={{ opacity: 1, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
+          style={{
+            willChange: 'transform',
+          }}
         >
           {/* Video Container - Preserved your hover logic and desktop widths */}
           <div className="w-full flex items-center justify-center mt-4 md:mt-8 pr-0 md:pr-[5%] pl-0 md:pl-[2%]">
-            {showVideo ? (
+            {loadVideo ? (
               <video
-                className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-48 sm:h-64 md:h-75 md:mt-10
+                ref={videoRef}
+                className="w-[90%] md:w-[600px]  xl:w-[500px] h-48 sm:h-64 md:h-75 md:mt-10
                      ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover 
                      transition-all duration-700 ease-out 
                      hover:scale-110 lg:hover:w-[calc(100vw-460px)] 
-                     hover:mt-0 md:hover:mt-16 hover:ml-0 md:hover:ml-10"
+                    "
                 src={HomepageBanner}
                 poster={HeroPoster}
+                width="500"
+                height="300"
                 autoPlay
                 preload="none"
                 loop
                 muted
                 playsInline
+                style={{
+                  willChange: 'transform',
+                }}
               />
             ) : (
               <img
-                src={HeroPoster}
-                fetchpriority="high"
-                loading="eager"
-                decoding="async"
-                alt="Renny Strips"
-                className="w-[90%] md:w-[600px] lg:w-[calc(100vw-850px)] xl:w-[500px] h-48 sm:h-64 md:h-80 
+                className="w-[90%] md:w-[600px]  xl:w-[500px] h-48 sm:h-64 md:h-75 md:mt-10
                      ml-0 md:ml-20 mb-4 rounded-2xl md:rounded-4xl object-cover 
                      transition-all duration-700 ease-out 
                      hover:scale-110 lg:hover:w-[calc(100vw-460px)] 
-                     hover:mt-0 md:hover:mt-16 hover:ml-0 md:hover:ml-10"
+                    "
+                src={HeroPoster}
+                alt="Homepage Banner Poster"
+                width="500"
+                height="300"
+                fetchpriority="high"
+                decoding="async"
+                loading="eager"
+                style={{
+                  willChange: 'transform',
+                }}
               />
             )}
           </div>
@@ -376,7 +537,7 @@ const HeroSection = React.memo(({ showVideo, HomepageBanner, HeroPoster }) => {
               Renny Strips Limited is a vertically integrated structural steel
               company and certified green steel manufacturer delivering ERW
               Pipes & Tubes, Scaffolding & Formwork Systems, Narrow-Width HR
-              Coils, Wire Rods, MS Billets across India. Proudly awarded the
+              Coils, Wire Rods across the globe. Proudly awarded the 
               5-Star Green Steel Manufacturing Rating.
             </p>
 
@@ -388,6 +549,12 @@ const HeroSection = React.memo(({ showVideo, HomepageBanner, HeroPoster }) => {
               >
                 Explore Our Products
               </Link>
+              {/* <Link
+                to="/catelogue-download"
+                className="w-full sm:w-auto bg-blue text-white px-6 sm:px-7 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:-translate-y-1 text-center text-sm sm:text-base whitespace-nowrap"
+              >
+                Download Brochure
+              </Link> */}
 
               <Link
                 to="https://renny-assets-storage.s3.ap-south-1.amazonaws.com/documents/1770374581565_DRHP.pdf"
@@ -417,9 +584,12 @@ const AboutSection = React.memo(() => {
         <div className="relative w-full min-h-[100vh] md:h-full overflow-hidden">
           <picture className="absolute inset-0">
             {/* Desktop Image */}
+            
             <source
               media="(min-width: 768px)"
               srcSet={AboutUs}
+              width="1920"
+              height="1080"
               type="image/webp"
             />
 
@@ -427,8 +597,8 @@ const AboutSection = React.memo(() => {
             <img
               src={AboutUsMobile}
               alt="About Us"
-              width="1534"
-              height="1080"
+              width="796"
+              height="448"
               loading="lazy"
               decoding="async"
               className="w-full h-full object-cover"
@@ -541,7 +711,13 @@ const ProductsSection = React.memo(() => {
         </motion.h2>
 
         {/* Horizontal Scroll Container */}
-        <Suspense fallback="Loading...">
+        <Suspense
+          fallback={
+            <div className="w-full h-[60vh] sm:h-[75vh] md:h-[85vh] bg-gray-50/30 animate-pulse rounded-2xl flex items-center justify-center">
+              <div className="text-gray-400 text-sm">Loading Products...</div>
+            </div>
+          }
+        >
           <ProductCarousel />
         </Suspense>
       </section>
@@ -582,7 +758,15 @@ const NetworkSection = React.memo(
             Our Network
             <div className="w-36 sm:w-48 md:w-60 h-0.5 bg-blue mx-auto rounded-full" />
           </motion.h2>
-          <Suspense fallback="Loading...">
+          <Suspense
+            fallback={
+              <div className="w-full aspect-video max-w-5xl mx-auto bg-gray-50/30 animate-pulse rounded-2xl flex items-center justify-center mt-6">
+                <div className="text-gray-400 text-sm">
+                  Loading Network Map...
+                </div>
+              </div>
+            }
+          >
             <MapPage />
           </Suspense>
 
@@ -593,6 +777,9 @@ const NetworkSection = React.memo(
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={staggerContainer}
+            style={{
+              willChange: 'transform',
+            }}
           >
             {[
               { value: 1000, suffix: '+', label: 'SKUs', duration: 2 },
@@ -616,8 +803,16 @@ const NetworkSection = React.memo(
                 className="border-t-2 border-b-2 px-4 sm:px-6 py-4 text-center w-full sm:w-auto"
                 variants={listItem}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
+                style={{
+                  willChange: 'transform',
+                }}
               >
-                <p className="text-3xl sm:text-4xl md:text-5xl font-light text-blue">
+                <p
+                  className="text-3xl sm:text-4xl md:text-5xl font-light text-blue min-w-[180px]"
+                  style={{
+                    fontVariantNumeric: 'tabular-nums',
+                  }}
+                >
                   {inView ? (
                     <CountUp
                       key={viewKey}
@@ -654,7 +849,12 @@ const FeaturesSection = React.memo(({ openIndex, toggleCard }) => {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
-          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10  w-full">
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10  w-full"
+            style={{
+              willChange: 'transform',
+            }}
+          >
             {[
               {
                 id: 0,
@@ -688,6 +888,9 @@ const FeaturesSection = React.memo(({ openIndex, toggleCard }) => {
               <motion.div
                 key={i}
                 className={`rounded-2xl border overflow-hidden transition-all duration-500 cursor-pointer ${openIndex === i ? 'bg-gray-600 text-white shadow-xl' : 'bg-white text-gray-800 border-gray-200 shadow-md hover:bg-gray-600 hover:text-white'}`}
+                style={{
+                  willChange: 'transform',
+                }}
                 onClick={() => toggleCard(i)}
               >
                 <div className="px-8 pt-10 pb-6 flex flex-col items-center text-center relative">
@@ -701,8 +904,8 @@ const FeaturesSection = React.memo(({ openIndex, toggleCard }) => {
                     className={`h-18 w-18 mb-6 transition-all duration-500 ${openIndex === i ? 'scale-110 brightness-0 invert' : ''}`}
                   />
                   <h3 className="text-lg font-semibold mb-4">{card.title}</h3>
-                  <i
-                    className={`ri-arrow-down-s-line text-2xl transition-transform absolute bottom-4`}
+                  <RiArrowDownSLine
+                    className={`text-2xl transition-transform absolute bottom-4`}
                     style={{
                       transform:
                         openIndex === i ? 'rotate(180deg)' : 'rotate(0deg)',
@@ -762,6 +965,9 @@ const NewsSection = React.memo(
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               className="w-full lg:w-1/4 bg-white rounded-2xl shadow p-4 space-y-3"
+              style={{
+                willChange: 'transform',
+              }}
             >
               {newsData.length > 0 ? (
                 newsData.map((news) => (
@@ -786,6 +992,8 @@ const NewsSection = React.memo(
                     <img
                       src={news.imageUrl}
                       alt={news.title}
+                      width={56}
+                      height={56}
                       loading="lazy"
                       decoding="async"
                       className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded flex-shrink-0"
@@ -810,6 +1018,9 @@ const NewsSection = React.memo(
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               className="w-full lg:w-2/4 bg-white rounded-2xl shadow p-4 sm:p-6 min-h-auto lg:min-h-[500px] flex items-center justify-center"
+              style={{
+                willChange: 'transform',
+              }}
             >
               <AnimatePresence mode="wait">
                 {activeNews ? (
@@ -819,11 +1030,16 @@ const NewsSection = React.memo(
                     animate="visible"
                     exit="hidden"
                     className="flex flex-col items-center text-center w-full"
+                    style={{
+                      willChange: 'transform',
+                    }}
                   >
                     <motion.img
                       variants={scaleFade}
                       src={activeNews.imageUrl}
                       alt={activeNews.title}
+                      width={256}
+                      height={256}
                       className="w-40 h-40 sm:w-56 sm:h-56 lg:w-64 lg:h-64 object-contain rounded-2xl mb-4 sm:mb-6 shadow-sm"
                     />
 
@@ -841,7 +1057,12 @@ const NewsSection = React.memo(
                       {activeNews.description}
                     </motion.p>
 
-                    <motion.div variants={fadeUp}>
+                    <motion.div
+                      variants={fadeUp}
+                      style={{
+                        willChange: 'transform',
+                      }}
+                    >
                       <a
                         href={activeNews.externalLink}
                         target="_blank"
@@ -867,6 +1088,9 @@ const NewsSection = React.memo(
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
+              style={{
+                willChange: 'transform',
+              }}
             >
               <h2 className="text-lg sm:text-xl font-bold mb-5 sm:mb-6 text-center">
                 Investor Relations
@@ -886,6 +1110,9 @@ const NewsSection = React.memo(
                     variants={{
                       hidden: { x: 20 },
                       visible: { opacity: 1, x: 0 },
+                    }}
+                    style={{
+                      willChange: 'transform',
                     }}
                   >
                     <span className="text-sm mr-10 font-medium">
@@ -946,6 +1173,9 @@ const SustainabilitySection = React.memo(({ sustainabilityVideoRef }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }} // Reduced amount for better mobile triggering
           transition={{ duration: 0.7, ease: 'easeOut' }}
+          style={{
+            willChange: 'transform',
+          }}
         >
           {/* Slider Container */}
           <motion.div
@@ -954,8 +1184,19 @@ const SustainabilitySection = React.memo(({ sustainabilityVideoRef }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.15 }}
+            style={{
+              willChange: 'transform',
+            }}
           >
-            <Suspense fallback="Loading...">
+            <Suspense
+              fallback={
+                <div className="w-full h-[580px] lg:h-[328px] bg-gray-50/30 animate-pulse rounded-3xl lg:rounded-4xl flex items-center justify-center">
+                  <div className="text-gray-400 text-sm">
+                    Loading Sustainability Info...
+                  </div>
+                </div>
+              }
+            >
               <SustainabilitySlider />
             </Suspense>
           </motion.div>
@@ -974,11 +1215,16 @@ const SustainabilitySection = React.memo(({ sustainabilityVideoRef }) => {
                 });
               }
             }}
+            style={{
+              willChange: 'transform',
+            }}
           >
             <video
               ref={sustainabilityVideoRef}
               src={sustainability2}
               className="w-full h-auto aspect-video lg:aspect-auto lg:h-full object-fill shadow-lg rounded-3xl lg:rounded-4xl"
+              width="640"
+              height="360"
               muted={true}
               loop={true}
               autoPlay={true}
@@ -1026,6 +1272,9 @@ const BlogSection = React.memo(({ blogs, formatDate }) => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
+          style={{
+            willChange: 'transform',
+          }}
         >
           {/* Latest Blog */}
           <div className="lg:w-1/2">
@@ -1038,13 +1287,47 @@ const BlogSection = React.memo(({ blogs, formatDate }) => {
                 className="group block bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
               >
                 {/* FIX: Use mainImage to match your Mongoose Schema */}
-                <img
-                  src={blogs[0].mainImage || blog1}
-                  alt={blogs[0].title}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-64 md:h-80 object-fill   object-center"
-                />
+                <picture className="w-full h-64 md:h-80 block overflow-hidden">
+                  {!blogs[0].mainImage && (
+                    <>
+                      
+                      <source
+                        media="(max-width: 767px)"
+                        srcSet={blog1_Mobile}
+                        width="761"
+                        height="428"
+                        type="image/webp"
+                      />
+                      <source
+                        media="(min-width: 768px)"
+                        srcSet={blog1}
+                        width="1280"
+                        height="720"
+                        type="image/webp"
+                      />
+                    </>
+                  )}
+                  {/* Commented out old image to keep history:
+                  <img
+                    src={blogs[0].mainImage || blog1}
+                    alt={blogs[0].title}
+                    width={800}
+                    height={450}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-fill   object-center"
+                  />
+                  */}
+                  <img
+                    src={blogs[0].mainImage || blog1}
+                    alt={blogs[0].title}
+                    width={1280}
+                    height={720}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-fill   object-center"
+                  />
+                </picture>
                 <div className="p-6">
                   <h2 className="text-xl font-semibold text-blue group-hover:text-blue-900 transition">
                     {blogs[0].title}
@@ -1062,7 +1345,7 @@ const BlogSection = React.memo(({ blogs, formatDate }) => {
                   <span className="inline-block mt-4 font-medium text-blue group-hover:text-blue-900 transition">
                     Read More →
                   </span>
-                </div>
+                  </div>
               </Link>
             ) : (
               <div className="text-gray-400 italic">No blogs published.</div>
@@ -1083,13 +1366,55 @@ const BlogSection = React.memo(({ blogs, formatDate }) => {
                       className="group flex gap-4 bg-white rounded-xl p-4 shadow-sm hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
                     >
                       {/* FIX: Use mainImage and flex-shrink-0 for perfect fitting */}
-                      <img
-                        src={blog.mainImage || [blog2, blog3, blog4][index]}
-                        alt={blog.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-42 h-24 object-cover rounded-md flex-shrink-0"
-                      />
+                      <picture className="w-42 h-24 block overflow-hidden rounded-md flex-shrink-0 bg-gray-100">
+                        {!blog.mainImage && (
+                          <>
+                            {/* Commented out old sources to keep history:
+                            <source
+                              media="(max-width: 767px)"
+                              srcSet={
+                                [blog2_Mobile, blog3_Mobile, blog4_Mobile][
+                                  index
+                                ]
+                              }
+                              type="image/webp"
+                            />
+                            <source
+                              media="(min-width: 768px)"
+                              srcSet={[blog2, blog3, blog4][index]}
+                              type="image/webp"
+                            />
+                            */}
+                            <source
+                              media="(max-width: 767px)"
+                              srcSet={
+                                [blog2_Mobile, blog3_Mobile, blog4_Mobile][
+                                  index
+                                ]
+                              }
+                              width="761"
+                              height="428"
+                              type="image/webp"
+                            />
+                            <source
+                              media="(min-width: 768px)"
+                              srcSet={[blog2, blog3, blog4][index]}
+                              width="1280"
+                              height="720"
+                              type="image/webp"
+                            />
+                          </>
+                        )}
+                        <img
+                          src={blog.mainImage || [blog2, blog3, blog4][index]}
+                          alt={blog.title}
+                          width={168}
+                          height={96}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover"
+                        />
+                      </picture>
                       <div>
                         <h2 className="font-semibold text-gray-800 group-hover:text-blue-900 transition line-clamp-2">
                           {blog.title}

@@ -62,8 +62,11 @@ const Navbar = () => {
     { title: 'EC', path: '/ec' },
     {
       title: 'Sustainability',
-      links: [{ name: 'ESG', path: '/sustainability' }],
-       links: [{ name: "CBAM", path: "/cbam" }],
+      links: [
+        { name: 'Green Steel', path: '/green-steel' },
+        { name: 'ESG', path: '/sustainability' },
+        { name: 'CBAM', path: '/cbam' },
+      ],
     },
     {
       title: 'Media',

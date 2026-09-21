@@ -17,6 +17,7 @@ import NotFound from './pages/NotFound.jsx';
 import Thankyou from './pages/Thankyou.jsx';
 import GreenSteel from './pages/Sustainability/GreenSteel.jsx';
 import ScaffoldingBrochure from './pages/ScaffoldingBrochure.jsx';
+import CatelogueDownload from './components/CatelogueDownload.jsx';
 // import CBAM from "./pages/Sustainability/CBAM.jsx";
 
 /* ── Pages ── */
@@ -100,7 +101,7 @@ const App = () => {
       const newPath = location.pathname.slice(0, -1);
       navigate(newPath + location.search, { replace: true });
       return;
-    } 
+    }
 
     // Query string SEO redirect
     if (location.pathname === '/' && location.search.includes('p=')) {
@@ -248,8 +249,11 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
             <Route path="/thank-you" element={<Thankyou />} />
             <Route path="/:slug/thank-you" element={<Thankyou />} />
-            <Route path="/catelogue-download" element={<ComingSoon />} />
-            <Route path="/scaffolding-brochure" element={<ScaffoldingBrochure />} />
+            <Route path="/catelogue-download" element={<CatelogueDownload />} />
+            <Route
+              path="/scaffolding-brochure"
+              element={<ScaffoldingBrochure />}
+            />
           </Routes>
           <Parallax />
           <Footer />

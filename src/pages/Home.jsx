@@ -48,9 +48,7 @@ import blog4_Mobile from '../assets/blog4-Mobile.webp';
 import { AnimatePresence } from 'framer-motion';
 import AboutUs from '../assets/about-3.webp';
 import AboutUsMobile from '../assets/about-3-Mobile.webp';
-import {
-  MdClose,
-} from "react-icons/md";
+import { MdClose } from 'react-icons/md';
 // import MockData
 import latestNews from '../data/latestNews.json';
 import latestBlogs from '../data/latestBlogs.json';
@@ -58,6 +56,7 @@ import latestBlogs from '../data/latestBlogs.json';
 // import SustainabilitySlider from '../components/SustainabilitySlider';
 // import MapPage from './MapPage';
 import { buildApiUrl } from '../lib/api';
+import NewSections from '../components/NewSections';
 // import ProductCarousel from '../components/ProductCarousel';
 
 const MapPage = lazy(() => import('./MapPage'));
@@ -165,7 +164,8 @@ const Home = () => {
       }
 
       // Trigger automatic popup after a predictable delay (800ms) to allow initial paint (LCP) to finish
-      const isPrerender = typeof navigator !== 'undefined' && navigator.userAgent === 'ReactSnap';
+      const isPrerender =
+        typeof navigator !== 'undefined' && navigator.userAgent === 'ReactSnap';
       if (!isPrerender) {
         popupTimeoutId = setTimeout(() => {
           setShowPopup(true);
@@ -312,7 +312,7 @@ const Home = () => {
                 />
                 <img
                   src={popup}
-                  alt="Popup Announcement" 
+                  alt="Popup Announcement"
                   width="512"
                   height="314"
                   fetchpriority="high"
@@ -332,7 +332,7 @@ const Home = () => {
 
         {/* 3. Our Products Section */}
         <ProductsSection />
-
+        <NewSections />
         {/* 4. Our Network Section */}
         <NetworkSection
           // inView={inView}
@@ -374,29 +374,29 @@ const HeroSection = React.memo(({ HomepageBanner, HeroPoster }) => {
 
   useEffect(() => {
     const isPrerender =
-      typeof navigator !== "undefined" && navigator.userAgent === "ReactSnap";
+      typeof navigator !== 'undefined' && navigator.userAgent === 'ReactSnap';
     if (isPrerender) return;
 
     const handleLoad = () => {
-      if ("requestIdleCallback" in window) {
+      if ('requestIdleCallback' in window) {
         requestIdleCallback(() => setLoadVideo(true));
       } else {
         setTimeout(() => setLoadVideo(true), 1000);
       }
     };
 
-    if (document.readyState === "complete") {
+    if (document.readyState === 'complete') {
       handleLoad();
     } else {
-      window.addEventListener("load", handleLoad);
-      return () => window.removeEventListener("load", handleLoad);
+      window.addEventListener('load', handleLoad);
+      return () => window.removeEventListener('load', handleLoad);
     }
   }, []);
 
   useEffect(() => {
     if (loadVideo && videoRef.current) {
       videoRef.current.play().catch((err) => {
-        console.warn("Autoplay was prevented:", err);
+        console.warn('Autoplay was prevented:', err);
       });
     }
   }, [loadVideo]);
@@ -524,8 +524,8 @@ const HeroSection = React.memo(({ HomepageBanner, HeroPoster }) => {
               Renny Strips Limited is a vertically integrated structural steel
               company and certified green steel manufacturer delivering ERW
               Pipes & Tubes, Scaffolding & Formwork Systems, Narrow-Width HR
-              Coils, Wire Rods across the globe. Proudly awarded the 
-              5-Star Green Steel Manufacturing Rating.
+              Coils, Wire Rods across the globe. Proudly awarded the 5-Star
+              Green Steel Manufacturing Rating.
             </p>
 
             {/* Centered CTA Buttons */}
@@ -571,7 +571,7 @@ const AboutSection = React.memo(() => {
         <div className="relative w-full min-h-[100vh] md:h-full overflow-hidden">
           <picture className="absolute inset-0">
             {/* Desktop Image */}
-            
+
             <source
               media="(min-width: 768px)"
               srcSet={AboutUs}
@@ -1277,7 +1277,6 @@ const BlogSection = React.memo(({ blogs, formatDate }) => {
                 <picture className="w-full h-64 md:h-80 block overflow-hidden">
                   {!blogs[0].mainImage && (
                     <>
-                      
                       <source
                         media="(max-width: 767px)"
                         srcSet={blog1_Mobile}
@@ -1332,7 +1331,7 @@ const BlogSection = React.memo(({ blogs, formatDate }) => {
                   <span className="inline-block mt-4 font-medium text-blue group-hover:text-blue-900 transition">
                     Read More →
                   </span>
-                  </div>
+                </div>
               </Link>
             ) : (
               <div className="text-gray-400 italic">No blogs published.</div>

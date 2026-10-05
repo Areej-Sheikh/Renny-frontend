@@ -1161,7 +1161,7 @@ const CBAM = () => {
             <div className="flex flex-col gap-6">
               <motion.div
                 variants={slideRight}
-                className="rounded-xl overflow-hidden shadow-sm border border-gray-100 relative w-full h-44 sm:h-60 md:h-66 lg:h-72 bg-black/5"
+                className="rounded-xl overflow-hidden shadow-sm border border-gray-100 relative w-full h-46 sm:h-62 md:h-68 lg:h-78 bg-black/5"
               >
                 <video
                   src={CbamVideo}

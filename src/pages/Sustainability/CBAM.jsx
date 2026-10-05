@@ -46,7 +46,7 @@ import img1 from '../../assets/1.webp';
 import img2 from '../../assets/3.webp';
 import HowToComply from '../../assets/How To Comply.webp';
 import R from '../../assets/R.webp';
-
+import CbamVideo from '../../assets/CBAM New Video.webm';
 // import CredentialCard1 from "../../components/CredentialCard1"
 
 // Animation viewport settings
@@ -119,6 +119,7 @@ const fadeUp = {
     },
   },
 };
+
 const lineExtend = {
   hidden: { scaleX: 0 },
   visible: {
@@ -285,6 +286,7 @@ const cards = [
     iconBg: 'bg-blue-50',
   },
 ];
+
 const products = [
   {
     title: 'Structural Steel',
@@ -301,6 +303,7 @@ const products = [
     Icon: PiSquaresFourBold, // Clean material block layout
   },
 ];
+
 const stepsData = [
   {
     id: '01',
@@ -1105,7 +1108,7 @@ const CBAM = () => {
 
       {/* Cost Saving Calculator */}
       <section className="py-12 bg-white overflow-hidden selection:bg-green/20">
-        <div className="max-w-7xl mx-auto sm:px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* Heading */}
           <motion.div
             variants={textContainer}
@@ -1122,7 +1125,6 @@ const CBAM = () => {
               <div className="w-64 md:w-130 h-0.5 bg-blue mx-auto mt-2" />
             </motion.h2>
 
-            {/* Kept this original element but removed heavy styles to let the h2 absolute border handle styling gracefully */}
             <motion.div variants={fadeUp} className="hidden" />
 
             <motion.p
@@ -1133,136 +1135,88 @@ const CBAM = () => {
             </motion.p>
           </motion.div>
 
+          {/* Content Grid */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
-            className="grid lg:grid-cols-[1fr_1.3fr] gap-6 items-stretch"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch w-full"
           >
             {/* LEFT IMAGE */}
             <motion.div
               variants={slideLeft}
-              className="rounded-xl overflow-hidden shadow-sm border border-gray-100 min-h-[340px] lg:min-h-auto relative"
+              className="rounded-xl overflow-hidden shadow-sm border border-gray-100 relative w-full h-64 sm:h-80 md:h-96 lg:h-auto min-h-[300px]"
             >
               <motion.img
                 src={CostSavingCalculator}
                 alt="Cost Saving Calculator"
-                className="w-full h-full object-cover absolute inset-0"
-                whileHover={{
-                  scale: 1.02,
-                }}
-                transition={{
-                  duration: 0.5,
-                }}
+                className="w-full h-full object-cover object-center"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.5 }}
               />
             </motion.div>
 
-            {/* RIGHT SIDE */}
-            <motion.div
-              variants={slideRight}
-              className="flex flex-col justify-between gap-5"
-            >
-              {/* Top Cards */}
+            {/* RIGHT SIDE - VIDEO & CONTENT */}
+            <div className="flex flex-col gap-6">
               <motion.div
-                variants={staggerContainer}
-                className="grid sm:grid-cols-3 gap-4"
+                variants={slideRight}
+                className="rounded-xl overflow-hidden shadow-sm border border-gray-100 relative w-full h-44 sm:h-60 md:h-66 lg:h-72 bg-black/5"
               >
-                {cards.map((card, index) => {
-                  const Icon = card.icon;
-
-                  return (
-                    <motion.div
-                      key={index}
-                      variants={fadeUp}
-                      whileHover={{
-                        y: -4,
-                      }}
-                      className={`bg-white rounded-xl border-b-[3px] ${card.border} shadow-sm px-4 py-6 text-center flex flex-col justify-between min-h-[220px]`}
-                    >
-                      <div>
-                        <div
-                          className={`w-12 h-12 rounded-full ${card.iconBg} flex items-center justify-center mx-auto mb-4 border border-gray-50`}
-                        >
-                          <Icon size={22} className="text-[#1d2b4f]" />
-                        </div>
-
-                        <h3 className="text-xs font-semibold text-gray-700 tracking-wide leading-tight whitespace-pre-line">
-                          {card.title}
-                        </h3>
-                      </div>
-
-                      <div className="mt-4">
-                        <div
-                          className={`text-2xl xl:text-3xl font-bold tracking-tight ${card.valueColor}`}
-                        >
-                          <CountUp
-                            end={parseFloat(
-                              String(card.value).replace(/[^\d.-]/g, '')
-                            )}
-                            duration={2}
-                            separator=","
-                            decimals={
-                              String(card.value).includes('.')
-                                ? String(card.value).split('.')[1].length
-                                : 0
-                            }
-                            prefix="€"
-                            enableScrollSpy
-                            scrollSpyOnce
-                          />
-                        </div>
-
-                        <p className="text-[11px] font-medium uppercase tracking-wider text-gray-400 mt-0.5">
-                          {card.unit}
-                        </p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
+                <video
+                  src={CbamVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-fill"
+                />
               </motion.div>
 
-              {/* Bottom Savings */}
+              {/* Structured Content Box */}
               <motion.div
                 variants={fadeUp}
-                whileHover={{
-                  scale: 1.005,
-                }}
-                className="rounded-xl border border-green/20 bg-gradient-to-br from-green/20 to-[#f0f4eb] p-6 shadow-sm flex-grow flex items-center"
+                className="bg-gray-50 border border-gray-100 rounded-xl p-5 sm:p-6 text-gray-800 space-y-4 shadow-xs"
               >
-                <div className="flex items-center justify-between gap-6 w-full">
-                  <div className="flex items-center gap-4 sm:gap-5">
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-green/20 border border-green/10 flex items-center justify-center shrink-0">
-                      <FiHome size={26} className="text-green" />
-                    </div>
+      
 
-                    <div>
-                      <p className="text-gray-600 text-xs sm:text-sm font-medium tracking-wide">
-                        Estimated Savings per 25 MT Export Container
-                      </p>
-
-                      <h3 className="text-2xl sm:text-3xl xl:text-4xl font-bold text-green mt-1 tracking-tight">
-                        ~
-                        <CountUp
-                          end={2941.75}
-                          duration={2.5}
-                          separator=","
-                          decimals={2}
-                          prefix="€"
-                          enableScrollSpy
-                          scrollSpyOnce
-                        />
-                      </h3>
-                    </div>
-                  </div>
-
-                  <FiPackage
-                    size={100}
-                    className="text-green/40 hidden md:block shrink-0 stroke-[1.2]"
-                  />
+                {/* Key Metrics */}
+                <div className="bg-white p-4 rounded-lg border border-gray-100 shadow-xs space-y-1">
+                  <h3 className="font-bold text-base sm:text-lg text-gray-900">
+                    Renny Green Structural Steel
+                  </h3>
+                  <p className="text-xl sm:text-2xl font-extrabold text-green-600">
+                    0.6385 tCO₂/MT
+                  </p>
+                  <p className="text-xs sm:text-sm text-gray-500">
+                    ~72% lower carbon footprint than the 2.2 tCO₂/MT industry
+                    benchmark
+                  </p>
                 </div>
+
+                {/* CBAM Benefits Highlight */}
+                <div className="border-l-4 border-green-500 pl-4 py-1 space-y-1">
+                  <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                    LESS CARBON COST. MORE VALUE.
+                  </span>
+                  <p className="text-sm sm:text-base text-gray-700">
+                    Potential CBAM benefit:{' '}
+                    <span className="font-bold text-gray-900">€117.67/MT</span>
+                  </p>
+                  <p className="text-sm sm:text-base text-gray-700">
+                    ≈ <span className="font-bold text-green-600">€3,000</span>{' '}
+                    potential saving per 25 MT container
+                  </p>
+                </div>
+
+                {/* Call to Action Statement */}
+           
+
+                <p className="text-sm font-bold text-blue-900 tracking-wide uppercase">
+                  BUY RENNY. BUILD WITH LESS CARBON COST.
+                </p>
               </motion.div>
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Footer */}
@@ -1376,7 +1330,15 @@ const CBAM = () => {
             Every Ton Accounted For. Every Emission Visible.
           </h3>
           <p className="text-slate-500 max-w-3xl text-center leading-relaxed text-sm md:text-base">
-            Every Ton Accounted For. Every Emission Visible. Renny's AI-powered emissions platform captures, monitors, and verifies carbon data in line with CBAM's definitive regime, which took effect on 1 January 2026. Importers must be authorised CBAM declarants by 31 March 2026 to continue importing without interruption, with the first annual CBAM declaration for 2026 imports due by 30 September 2027 and certificate purchases opening from 1 February 2027. Our platform delivers the real-time visibility and product-level traceability needed to meet each of these deadlines.
+            Every Ton Accounted For. Every Emission Visible. Renny's AI-powered
+            emissions platform captures, monitors, and verifies carbon data in
+            line with CBAM's definitive regime, which took effect on 1 January
+            2026. Importers must be authorised CBAM declarants by 31 March 2026
+            to continue importing without interruption, with the first annual
+            CBAM declaration for 2026 imports due by 30 September 2027 and
+            certificate purchases opening from 1 February 2027. Our platform
+            delivers the real-time visibility and product-level traceability
+            needed to meet each of these deadlines.
           </p>
         </motion.div>
 
